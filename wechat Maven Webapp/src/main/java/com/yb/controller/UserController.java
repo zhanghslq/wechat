@@ -1,0 +1,85 @@
+package com.yb.controller;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.UUID;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.yb.entity.User;
+import com.yb.service.UserService;
+import com.yb.util.OpenUtils;
+
+@Controller
+@Scope("prototype")
+@RequestMapping("/user")
+public class UserController {
+	@Resource
+	private UserService userService;
+	//微信授权登录
+	@RequestMapping("/regist")
+	@ResponseBody
+	public Object login(String nickname,String code,MultipartFile file,HttpServletRequest request) throws IllegalStateException, IOException{
+		
+		String openId = OpenUtils.getOpenId(code);
+		 if(!file.isEmpty()) {
+	            //上传文件路径
+	            String path = request.getServletContext().getRealPath("/images/");
+	            //上传文件名
+	            String filename = UUID.randomUUID().toString()+".jpg";
+	            File filepath = new File(path,filename);
+	            //判断路径是否存在，如果不存在就创建一个
+	            if (!filepath.getParentFile().exists()) { 
+	                filepath.getParentFile().mkdirs();
+	            }
+	            //将上传文件保存到一个目标文件当中
+	            file.transferTo(new File(path + File.separator + filename));
+	            String imageUrl="http://lcoahost:8989/wechat/images/"+filename;
+	            User user = userService.getUser(openId);
+	            if(user==null){
+	            	User user2 = new User(openId,imageUrl,nickname,8000);
+	            	userService.insertUser();
+	            }else {
+					return user;
+				}
+	            return "success";
+		 }
+		 return null;
+	}
+	@RequestMapping("/login")
+	@ResponseBody
+	public Object login(String nickname,String code,MultipartFile file,HttpServletRequest request) throws IllegalStateException, IOException{
+		
+		String openId = OpenUtils.getOpenId(code);
+		if(!file.isEmpty()) {
+			//上传文件路径
+			String path = request.getServletContext().getRealPath("/images/");
+			//上传文件名
+			String filename = UUID.randomUUID().toString()+".jpg";
+			File filepath = new File(path,filename);
+			//判断路径是否存在，如果不存在就创建一个
+			if (!filepath.getParentFile().exists()) { 
+				filepath.getParentFile().mkdirs();
+			}
+			//将上传文件保存到一个目标文件当中
+			file.transferTo(new File(path + File.separator + filename));
+			String imageUrl="http://lcoahost:8989/wechat/images/"+filename;
+			User user = userService.getUser(openId);
+			if(user==null){
+				User user2 = new User(openId,imageUrl,nickname,8000);
+				userService.insertUser();
+			}else {
+				return user;
+			}
+			return "success";
+		}
+		return null;
+	}
+}
