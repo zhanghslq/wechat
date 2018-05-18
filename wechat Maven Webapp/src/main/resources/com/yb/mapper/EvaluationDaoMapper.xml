@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yb.dao.EvaluationDao">
+	<select id="queryEvaluation" resultType="Evaluation">
+		select openid,tricky_brains,food_anchor,imagination_talent,
+		iron_cock,wealthy from evaluation
+		where openid=#{openid}
+	</select>
+</mapper>

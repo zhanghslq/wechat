@@ -153,8 +153,40 @@
 			<artifactId>commons-fileupload</artifactId>
 			<version>1.2.1</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/net.sf.json-lib/json-lib -->
+		<dependency>    
+		    <groupId>net.sf.json-lib</groupId>    
+		    <artifactId>json-lib</artifactId>    
+		    <version>2.4</version>    
+		    <classifier>jdk15</classifier>    
+		</dependency>
+		
   </dependencies>
   <build>
     <finalName>wechat</finalName>
+    <plugins>
+    <plugin>  
+            <groupId>org.apache.maven.plugins</groupId>  
+            <artifactId>maven-compiler-plugin</artifactId>  
+            <version>3.6.1</version>
+            <configuration>  
+                <source>1.7</source>  
+                <target>1.7</target>  
+            </configuration>  
+        </plugin>  
+    	<plugin>
+	    <groupId>org.apache.tomcat.maven</groupId>
+	    <artifactId>tomcat7-maven-plugin</artifactId>
+	    <version>2.2</version>
+	    <configuration>
+	        <url>http://39.104.85.35:8989/manager/text</url>
+	        <server>tomcat7</server>
+	        <path>/wechat</path> 
+	        <charset>utf8</charset>
+	        <update>true</update>
+	    </configuration>
+		</plugin>
+    </plugins>
+    
   </build>
 </project>

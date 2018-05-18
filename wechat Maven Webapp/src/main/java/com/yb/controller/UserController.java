@@ -26,8 +26,7 @@ public class UserController {
 	//微信授权登录
 	@RequestMapping("/regist")
 	@ResponseBody
-	public Object login(String nickname,String code,MultipartFile file,HttpServletRequest request) throws IllegalStateException, IOException{
-		
+	public Object regist(String nickname,String code,MultipartFile file,HttpServletRequest request) throws IllegalStateException, IOException{
 		String openId = OpenUtils.getOpenId(code);
 		 if(!file.isEmpty()) {
 	            //上传文件路径
@@ -45,41 +44,41 @@ public class UserController {
 	            User user = userService.getUser(openId);
 	            if(user==null){
 	            	User user2 = new User(openId,imageUrl,nickname,8000);
-	            	userService.insertUser();
+	            	userService.insertUser(user2);
 	            }else {
+	            	user.setCurrency(null);
 					return user;
 				}
 	            return "success";
 		 }
 		 return null;
 	}
+	//直接登录
 	@RequestMapping("/login")
 	@ResponseBody
-	public Object login(String nickname,String code,MultipartFile file,HttpServletRequest request) throws IllegalStateException, IOException{
-		
-		String openId = OpenUtils.getOpenId(code);
-		if(!file.isEmpty()) {
-			//上传文件路径
-			String path = request.getServletContext().getRealPath("/images/");
-			//上传文件名
-			String filename = UUID.randomUUID().toString()+".jpg";
-			File filepath = new File(path,filename);
-			//判断路径是否存在，如果不存在就创建一个
-			if (!filepath.getParentFile().exists()) { 
-				filepath.getParentFile().mkdirs();
-			}
-			//将上传文件保存到一个目标文件当中
-			file.transferTo(new File(path + File.separator + filename));
-			String imageUrl="http://lcoahost:8989/wechat/images/"+filename;
+	public Object login(String code) throws IllegalStateException, IOException{
+		try {
+			String openId = OpenUtils.getOpenId(code);
 			User user = userService.getUser(openId);
-			if(user==null){
-				User user2 = new User(openId,imageUrl,nickname,8000);
-				userService.insertUser();
-			}else {
-				return user;
-			}
-			return "success";
+			user.setCurrency(null);
+			return user;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "error";
 		}
-		return null;
+	}
+	@RequestMapping("/getMessage")
+	@ResponseBody
+	public Object getMessage(String code) throws IllegalStateException, IOException{
+		try {
+			String openId = OpenUtils.getOpenId(code);
+			User user = userService.getUser(openId);
+			return user;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "error";
+		}
 	}
 }
