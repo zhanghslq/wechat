@@ -30,12 +30,17 @@ public class TestJson {
              System.out.println(bean);
 		 }*/
 		 JSONArray fromObject = JSONArray.fromObject(s2);
-		 Object object = fromObject.get(0);
+			for (Object object : fromObject) {
+				JSONArray jsonArray2 = JSONArray.fromObject(object);
+				Object object2 = jsonArray2.get(1);
+				System.out.println(object2);
+			}
+		 /*Object object = fromObject.get(0);
 		 JSONArray fromObject2 = JSONArray.fromObject(object.toString());
 		 Object object2 = fromObject2.get(5);
 		 JSONArray fromObject3 = JSONArray.fromObject(object2);
 		 int int1 = fromObject3.getInt(2);
-		 System.out.println(int1);
+		 System.out.println(int1);*/
 		 
 		 
 	        

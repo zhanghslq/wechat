@@ -21,10 +21,8 @@ import com.yb.util.OpenUtils;
 @RequestMapping("/evaluation")
 @Scope("prototype")
 public class EvaluationController {
-	
 	@Resource
 	private EvaluationService evaluationService;
-	
 	@RequestMapping("/queryEvaluation")
 	@ResponseBody
 	public Object queryEvaluation(String code){
