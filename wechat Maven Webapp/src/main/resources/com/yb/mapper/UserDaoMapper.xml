@@ -1,7 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yb.dao.UserDao">
-	<select id="" resultType="User">
-		
+
+	<select id="getUser" resultType="User">
+		select openid,nickname,imageUrl,currency from user where openid=#{openid}
 	</select>
+	<insert id="insertUser">
+		insert into user(openid,imageUrl,nickname,currency) values
+		(#{user.openid},#{user.imageUrl},#{user.nickname})
+	</insert>
+	<select id="getRank" resultType="User">
+		set @rownum:=0;  
+		select openid,nickname,wins,@rownum:=@rownum+1 as rownum from user order by wins desc limit 10
+	</select>
+	<select id="getSelf" resultType="Integer">
+		select count(openid)+1 from user where wins &lt; #{wins}
+	</select>
+	
+	<update id="updateCurrency">
+		update user set currency=currency+#{num} where openid=#{openid}
+	</update>
+	<update id="updateWins">
+		update user set wins=wins+1,all=all+1 where openid=#{openid}
+	</update>
+	<update id="updateAll">
+		update user set all=all+1 where openid=#{openid}
+	</update>
 </mapper>

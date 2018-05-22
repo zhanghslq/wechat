@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yb.dao.MatchDao">
+	<insert id="insertMatches">
+		replace into matches(id,eventid,status,time,homeid,home_grade,visitid,visit_grade)
+		values
+		<foreach collection="matchs" item="item" separator=",">
+			(#{item.id},#{item.eventid},#{item.status},#{item.time},#{item.homeid},
+			#{item.home_grade},#{item.visitid},#{item.visit_grade})
+		</foreach>
+	</insert>
+	<select id="queryMatches" resultType="Match">
+		select id,eventid,status,time,homeid,home_grade,visitid,visit_grade from matches
+		
+		where time >now() limit 4
+	</select>
+</mapper>

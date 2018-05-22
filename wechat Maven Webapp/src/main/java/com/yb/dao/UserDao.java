@@ -15,4 +15,12 @@ public interface UserDao {
 	User getUser(@Param("openid")String openid);
 	//排行榜
 	List<User> getRank(@Param("openid")String openid);
+	//获取自己的排行位置
+	Integer getSelf(@Param("openid")String openid,@Param("wins")Integer wins); 
+	//当天第一次登陆送100金币,胜利获得赌注相同金币，就是修改金币数量，
+	void updateCurrency(@Param("openid")String openid,@Param("num")Integer num);
+	//获胜之后更改胜利场次+1
+	void updateWins(@Param("openid")String openid);
+	//用户竞猜输，用户参与总对局数+1
+	void updateAll(@Param("openid")String openid);
 }

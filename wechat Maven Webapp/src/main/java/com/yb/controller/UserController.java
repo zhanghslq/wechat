@@ -2,6 +2,8 @@ package com.yb.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -27,7 +29,7 @@ public class UserController {
 	@RequestMapping("/regist")
 	@ResponseBody
 	public Object regist(String nickname,String code,MultipartFile file,HttpServletRequest request) throws IllegalStateException, IOException{
-		String openId = OpenUtils.getOpenId(code);
+		 String openId = OpenUtils.getOpenId(code);
 		 if(!file.isEmpty()) {
 	            //上传文件路径
 	            String path = request.getServletContext().getRealPath("/images/");
@@ -43,7 +45,7 @@ public class UserController {
 	            String imageUrl="http://lcoahost:8989/wechat/images/"+filename;
 	            User user = userService.getUser(openId);
 	            if(user==null){
-	            	User user2 = new User(openId,imageUrl,nickname,8000);
+	            	User user2 = new User(openId,imageUrl,nickname,8000,0,new Date());
 	            	userService.insertUser(user2);
 	            }else {
 	            	user.setCurrency(null);
@@ -59,7 +61,13 @@ public class UserController {
 	public Object login(String code) throws IllegalStateException, IOException{
 		try {
 			String openId = OpenUtils.getOpenId(code);
-			User user = userService.getUser(openId);
+			User user = userService.getUser(openId);//需要判断是不是当天第一次登陆，第一次登陆送100金币
+			Date lasttime = user.getLasttime();
+			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+			String format = simpleDateFormat.format(lasttime);
+			if(!simpleDateFormat.format(new Date()).equals(format)){//当天第一次登陆
+				
+			}
 			user.setCurrency(null);
 			return user;
 		} catch (Exception e) {

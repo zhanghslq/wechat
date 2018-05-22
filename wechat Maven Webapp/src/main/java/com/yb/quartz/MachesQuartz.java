@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component;
 
 import com.yb.entity.Events;
 import com.yb.entity.Team;
-import com.yb.util.CharSetUtil;
 
 @Component
 public class MachesQuartz {

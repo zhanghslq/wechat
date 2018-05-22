@@ -2,6 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yb.dao.EventDao">
 	<select id="insertEvent">
-		replace into events(id,name,logo) values(#{events.id},#{events.name_zh},#{team.logo})
+		replace into events(id,name,logo) values
+		<foreach collection="events" index="i" separator="," item="item">
+			(#{item.id},#{item.name_zh},#{item.logo})
+		</foreach>
 	</select>
 </mapper>
