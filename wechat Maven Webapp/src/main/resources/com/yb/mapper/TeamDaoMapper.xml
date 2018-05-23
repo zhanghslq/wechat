@@ -7,4 +7,7 @@
 			#{item.id},#{item.name_zh},#{item.logo},#{item.matchevent_id}
 		</foreach>
 	</select>
+	<select id="queryById" resultType="Team">
+		select id,name,logo from team_event where id=#{id}
+	</select>
 </mapper>

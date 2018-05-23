@@ -13,6 +13,8 @@ public interface UserDao {
 	void insertUser(@Param("user")User user);
 	//取用户信息
 	User getUser(@Param("openid")String openid);
+	//获取多个用户信息
+	List<User> queryUsers(@Param("ids")List<String> ids);
 	//排行榜
 	List<User> getRank(@Param("openid")String openid);
 	//获取自己的排行位置

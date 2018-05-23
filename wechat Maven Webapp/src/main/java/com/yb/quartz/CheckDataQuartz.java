@@ -8,11 +8,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CheckDataQuartz {
-	//检查契约数据是否符合开局的条件，如果创建超过30分钟，人数不大于2
-	@Scheduled(cron="0 * * * * ?")//每天晚上1点
+	//每分钟检测一次，看比赛是否有结果了，有结果的话，就进行结算
+	@Scheduled(cron="0 * * * * ?")//每分钟一次
 	public void  autoCheck() throws ClientProtocolException, IOException {
 		
-	}
-	public static void main(String[] args) {
 	}
 }

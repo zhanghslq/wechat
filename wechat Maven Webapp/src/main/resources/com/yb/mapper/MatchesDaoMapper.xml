@@ -12,6 +12,9 @@
 	<select id="queryMatches" resultType="Match">
 		select id,eventid,status,time,homeid,home_grade,visitid,visit_grade from matches
 		
-		where time >now() limit 4
+		where time >now() order by time asc limit 4
+	</select>
+	<select id="queryById" resultType="Match">
+		select homeid,visitid from matches where id=#{id}
 	</select>
 </mapper>

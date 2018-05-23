@@ -12,4 +12,6 @@ public interface MatchDao {
 	List<Match> queryMatches(@Param("openid")String openid);
 	
 	void insertMatches(@Param("matchs")List<Match> matchs);
+	
+	Match queryById(@Param("id")Integer id);
 }

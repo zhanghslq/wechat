@@ -8,4 +8,6 @@ import com.yb.entity.Team;
 
 public interface TeamDao {
 	void insertTeam(@Param("teams")List<Team> teams);
+	
+	Team queryById(@Param("id")Integer id);
 }

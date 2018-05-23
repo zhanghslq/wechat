@@ -2,6 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yb.dao.StakeDao">
 	<insert id="insertStake">
-		insert into stake(name,type) values(#{name},3)
+		insert into stake(id,name,type) values(#{id},#{name},3)
 	</insert>
 </mapper>
