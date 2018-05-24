@@ -11,4 +11,5 @@ public interface ContractGroupDao {
 		void delete(@Param("id")Integer id);
 		//删除多个契约
 		void deleteList(@Param("ids")List<Integer> ids);
+		void updateStatus(@Param("cid")String cid);
 }

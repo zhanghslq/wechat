@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yb.dao.ContractDao">
+	<select id="queryNumber" resultType="Integer">
+		select count(cu.uid) from contract c right join contract_user cu on c.id=cu.cid where c.matchId=#{matchId}
+	</select>
+	<select id="queryCreateByUid" resultType="String">
+		select c.id from create_contract cc left join contract c on cc.cid=c.id
+		where cc.createUser=#{uid} and c.matchId=#{matchId}
+	</select>
+	<select id="queryJoinByUid" resultType="String">
+		select c.id from contract_user cc left join contract c on cc.cid=c.id
+		where cc.uid=#{uid} and c.matchId=#{matchId}
+	</select>
 	<select id="getContract" resultType="ContractCome">
-		select guessType,stakeId,status,matchId from contract where id=#{cid}
+		select id,guessType,stakeId,status,matchId from contract where id=#{cid}
 	</select>
 	<select id="getOpenId" resultType="String">
 		select createUser from create_contract where cid=#{cid}
@@ -43,4 +54,11 @@
 			#{item}
 		</foreach>
 	</delete>
+	<select id="queryResult" resultType="String">
+		select result from contract_user where cid=#{cid} and uid=#{uid}
+	</select>
+	<select id="queryUserList" resultType="User">
+		select u.id,u.name,u.imageUrl from contract_user cu left join user u on cu.uid=u.id 
+		where cu.cid=#{cid} and cu.result=#{result}
+	</select>
 </mapper>

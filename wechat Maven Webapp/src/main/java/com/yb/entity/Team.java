@@ -5,6 +5,22 @@ public class Team {
 	private String name_zh;
 	private String logo;
 	private Integer matchevent_id;//比賽ID
+	private Integer grade;
+	public Integer getGrade() {
+		return grade;
+	}
+	public void setGrade(Integer grade) {
+		this.grade = grade;
+	}
+	public Team(Integer id, String name_zh, String logo, Integer matchevent_id,
+			Integer grade) {
+		super();
+		this.id = id;
+		this.name_zh = name_zh;
+		this.logo = logo;
+		this.matchevent_id = matchevent_id;
+		this.grade = grade;
+	}
 	public Team() {
 		super();
 		// TODO Auto-generated constructor stub

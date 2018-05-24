@@ -16,6 +16,7 @@ import com.yb.dao.TeamDao;
 import com.yb.dao.UserDao;
 import com.yb.entity.ContractCome;
 import com.yb.entity.ContractDetails;
+import com.yb.entity.ContractDone;
 import com.yb.entity.Match;
 import com.yb.entity.Stake;
 import com.yb.entity.Team;
@@ -102,25 +103,7 @@ public class ContractServiceImpl implements ContractService{
 		}
 		
 	}
-	@Override
-	public String resetMyGuess(String myGuess,String code,String cid) {
-		// TODO Auto-generated method stub
-		ContractCome contract = contractDao.getContract(cid);
-		if(1==contract.getStatus()){//等于1的时候，证明契约生效，不能更改
-			return "error";
-		}else {
-			String openId;
-			try {
-				openId = OpenUtils.getOpenId(code);
-			}catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				throw new RuntimeException("获取openid出错");
-			}
-			contractDao.insertConstractUser(cid, openId, myGuess);
-			return "success";
-		}
-	}
+	
 	@Override
 	public String beginStake(String cid) {
 		// TODO Auto-generated method stub
@@ -132,6 +115,43 @@ public class ContractServiceImpl implements ContractService{
 		}else {
 			return "error";
 		}
+	}
+	@Override
+	public ContractDone queryContractDone(String cid, String code) {
+		// TODO Auto-generated method stub
+		String openId="";
+		try {
+			openId = OpenUtils.getOpenId(code);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new RuntimeException("获取openid出错");
+		}
+		ContractCome contract = contractDao.getContract(cid);//获取契约详情
+		Integer queryResult = contractDao.queryResult(openId, cid);
+		String result;
+		String message;
+		if(0==queryResult){//0代表输，1代表赢
+			result="WIN";
+			message="";
+		}else {
+			result="LOSE";
+			message="";
+		}
+		List<User> loser = contractDao.queryUserList(cid, 0);//获取 胜利或者输的人列表
+		List<User> success = contractDao.queryUserList(cid, 1);//获取 胜利或者输的人列表
+		Integer matchId = contract.getMatchId();
+		Match match = matchDao.queryById(matchId);
+		Integer home_grade = match.getHome_grade();
+		Integer visit_grade = match.getVisit_grade();
+		Integer homeid = match.getHomeid();
+		Integer visitid = match.getVisitid();
+		Team home = teamDao.queryById(homeid);
+		home.setGrade(home_grade);
+		Team visit = teamDao.queryById(visitid);
+		visit.setGrade(visit_grade);
+		ContractDone contractDone = new ContractDone(result, message, loser, success, home, visit);
+		return contractDone;
 	}
 
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.yb.entity.ContractCome;
+import com.yb.entity.User;
 
 public interface ContractDao {
 	//生成契约
@@ -13,7 +14,6 @@ public interface ContractDao {
 	void insertConstractCreate(@Param("cid")String cid,@Param("uid")String uid);
 	//生成契约的时候，同时生成一条此人缔结契约的信息
 	void insertConstractUser(@Param("cid")String cid,@Param("uid")String uid,@Param("myGuess")String myGuess);
-	
 	
 	//获取契约详情,需要获取契约基本信息，获取比赛，然后获取两只球队，获取契约创建人，获取契约人列表
 	//契约基本信息
@@ -34,5 +34,19 @@ public interface ContractDao {
 	void delete(@Param("id")Integer id);
 	//删除多个契约
 	void deleteList(@Param("ids")List<Integer> ids);
+	
+	//需要根据用户id查询是否创建了竞猜
+	String queryCreateByUid(@Param("uid")String uid,@Param("matchId")Integer matchId);
+	//根据用户id查询用户是否参与了竞猜
+	String queryJoinByUid(@Param("uid")String uid,@Param("matchId")Integer matchId);
+	//根据比赛id查看参与本场比赛，好友赛，的人数
+	Integer queryNumber(@Param("matchId")Integer matchId);
+	
+	
+	//契约完成之后，获取结果
+	Integer queryResult(@Param("uid")String uid,@Param("cid")String cid);
+	//赢家列表，输家列表
+	List<User> queryUserList(@Param("cid")String cid,@Param("result")Integer result);
+	
 	
 }

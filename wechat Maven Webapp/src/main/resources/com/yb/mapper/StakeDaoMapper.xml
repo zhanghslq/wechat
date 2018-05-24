@@ -4,4 +4,12 @@
 	<insert id="insertStake">
 		insert into stake(id,name,type) values(#{id},#{name},3)
 	</insert>
+	
+	<select id="queryById" resultType="Stake">
+		select id,type,name,logo,time from stake where id=#{id}
+	</select>
+	
+	<select id="queryAll" resultType="Stake">
+		select id,type,name,logo,time from stake order by time asc limit 8
+	</select>
 </mapper>

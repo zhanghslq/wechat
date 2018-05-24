@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yb.dao.ContractGroupDao">
-	
+	<select id="queryList" resultType="String">
+		select id from contract_group where time &lt; DATE_SUB(NOW(),INTERVAL 30 MINUTE) and status=0
+	</select>
+	<delete id="delete">
+		delete from contract_group where id=#{id}
+	</delete>
+	<delete id="deleteList">
+		delete from contract_group where
+		 <foreach collection="ids" open="(" close=")" item="item" separator="," >
+			#{item}
+		</foreach>
+	</delete>
+	<update id="updateStatus">
+		update contract_group set status=1 where id=#{cid}
+	</update>
 </mapper>

@@ -1,5 +1,7 @@
 package com.yb.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 import com.yb.entity.Stake;
@@ -9,4 +11,6 @@ public interface StakeDao {
 	void insertStake(@Param("id")String id,@Param("name")String name);
 	
 	Stake queryById(@Param("id")String id);
+	//查询赌注的情况，需要几个不会动的，到时候先插入，按照时间排序，查出来最早的几个
+	List<Stake> queryAll();
 }
