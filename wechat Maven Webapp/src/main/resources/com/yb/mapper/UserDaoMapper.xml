@@ -9,7 +9,7 @@
 		</foreach>
 	</select>
 	<select id="getUser" resultType="User">
-		select openid,nickname,imageUrl,currency from user where openid=#{openid}
+		select openid,nickname,imageUrl,currency,wins from user where openid=#{openid}
 	</select>
 	<insert id="insertUser">
 		insert into user(openid,imageUrl,nickname,currency) values

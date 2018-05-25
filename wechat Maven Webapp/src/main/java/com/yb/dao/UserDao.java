@@ -16,9 +16,9 @@ public interface UserDao {
 	//获取多个用户信息
 	List<User> queryUsers(@Param("ids")List<String> ids);
 	//排行榜
-	List<User> getRank(@Param("openid")String openid);
+	List<User> getRank();
 	//获取自己的排行位置
-	Integer getSelf(@Param("openid")String openid,@Param("wins")Integer wins); 
+	Integer getSelf(@Param("wins")Integer wins); 
 	//当天第一次登陆送100金币,胜利获得赌注相同金币，就是修改金币数量，
 	void updateCurrency(@Param("openid")String openid,@Param("num")Integer num);
 	//获胜之后更改胜利场次+1

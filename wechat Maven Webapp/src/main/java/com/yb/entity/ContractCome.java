@@ -14,6 +14,29 @@ public class ContractCome {
 	private String stakeText;//备用，
 	private String myGuess;
 	private Integer matchId;
+	private Integer number;//留给群pk使用
+	
+	public Integer getNumber() {
+		return number;
+	}
+	public void setNumber(Integer number) {
+		this.number = number;
+	}
+	public ContractCome(String code, String id, Integer guessType,
+			String stakeId, Integer status, Integer stakeType,
+			String stakeText, String myGuess, Integer matchId, Integer number) {
+		super();
+		this.code = code;
+		this.id = id;
+		this.guessType = guessType;
+		this.stakeId = stakeId;
+		this.status = status;
+		this.stakeType = stakeType;
+		this.stakeText = stakeText;
+		this.myGuess = myGuess;
+		this.matchId = matchId;
+		this.number = number;
+	}
 	public ContractCome() {
 		super();
 		// TODO Auto-generated constructor stub
