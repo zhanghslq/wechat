@@ -38,7 +38,7 @@
 		insert into crate_contract(cid,createUser)values(#{cid},#{uid})
 	</insert>
 	<insert id="insertConstractUser">
-		replace into constract_user(cid,uid,myGuess) values(#{cid},#{uid},#{myGuess})
+		replace into constract_user(cid,uid,myGuess,result) values(#{cid},#{uid},#{myGuess},2)
 	</insert>
 	
 	

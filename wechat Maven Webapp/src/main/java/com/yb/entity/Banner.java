@@ -14,12 +14,14 @@ public class Banner {
 	private Integer number;//参与本场竞猜人数
 	private Boolean create;//是否创建
 	private Boolean join;//是否参与
+	private Boolean createGroup;
+	private Boolean joinGroup;
 	public Banner() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public Banner(Integer id, Date time, Team home, Team visit, Integer number,
-			Boolean create, Boolean join) {
+			Boolean create, Boolean join, Boolean createGroup, Boolean joinGroup) {
 		super();
 		this.id = id;
 		this.time = time;
@@ -28,12 +30,15 @@ public class Banner {
 		this.number = number;
 		this.create = create;
 		this.join = join;
+		this.createGroup = createGroup;
+		this.joinGroup = joinGroup;
 	}
 	@Override
 	public String toString() {
 		return "Banner [id=" + id + ", time=" + time + ", home=" + home
 				+ ", visit=" + visit + ", number=" + number + ", create="
-				+ create + ", join=" + join + "]";
+				+ create + ", join=" + join + ", createGroup=" + createGroup
+				+ ", joinGroup=" + joinGroup + "]";
 	}
 	public Integer getId() {
 		return id;
@@ -77,5 +82,19 @@ public class Banner {
 	public void setJoin(Boolean join) {
 		this.join = join;
 	}
+	public Boolean getCreateGroup() {
+		return createGroup;
+	}
+	public void setCreateGroup(Boolean createGroup) {
+		this.createGroup = createGroup;
+	}
+	public Boolean getJoinGroup() {
+		return joinGroup;
+	}
+	public void setJoinGroup(Boolean joinGroup) {
+		this.joinGroup = joinGroup;
+	}
+	
+	
 	
 }

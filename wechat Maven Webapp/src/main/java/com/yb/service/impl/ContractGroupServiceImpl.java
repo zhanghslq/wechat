@@ -15,10 +15,12 @@ import com.yb.dao.MatchDao;
 import com.yb.dao.TeamDao;
 import com.yb.entity.ContractCome;
 import com.yb.entity.ContractGroupDetails;
+import com.yb.entity.ContractGroupResult;
 import com.yb.entity.Events;
 import com.yb.entity.JoinData;
 import com.yb.entity.Match;
 import com.yb.entity.Team;
+import com.yb.entity.User;
 import com.yb.service.ContractGroupService;
 import com.yb.util.OpenUtils;
 
@@ -75,8 +77,6 @@ public class ContractGroupServiceImpl implements ContractGroupService{
 		Events queryById = eventDao.queryById(match.getEventid());
 		Team home = teamDao.queryById(match.getHomeid());
 		Team visit = teamDao.queryById(match.getVisitid());
-		
-		
 		List<JoinData> queryContractGroupUser = contractGroupDao.queryContractGroupUser(cid);
 		Long queryCurrencys = contractGroupDao.queryCurrencys(contractCome.getMatchId());
 		List<String> queryNearLogo = contractGroupDao.queryNearLogo(cid);
@@ -85,6 +85,44 @@ public class ContractGroupServiceImpl implements ContractGroupService{
 		ContractGroupDetails contractGroupDetails = new ContractGroupDetails(queryById.getName_zh(), home, visit, contractCome.getGuessType(),
 				null, null, queryCurrencys, queryNearLogo, queryNumberByCid, queryContractGroupUser);
 		return contractGroupDetails;
+	}
+	@Override
+	public void beginContractGroup(String cid) {
+		// TODO Auto-generated method stub
+		contractGroupDao.updateStatus(cid);
+	}
+	@Override
+	public ContractGroupResult queryContractGroupResult(String cid,String code) {
+		// TODO Auto-generated method stub
+		ContractCome queryContractGroup = contractGroupDao.queryContractGroup(cid);
+		Integer matchId = queryContractGroup.getMatchId();
+		String openId = "";
+		try {
+			openId = OpenUtils.getOpenId(code);
+		} catch (ClientProtocolException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String message="获胜";
+		Integer resultByUidAndCid = contractGroupDao.queryResultByUidAndCid(cid, openId);
+		if(0==resultByUidAndCid){
+			message="输";
+		}
+		Match match = matchDao.queryById(matchId);
+		Integer homeid = match.getHomeid();
+		Integer visitid = match.getVisitid();
+		Team homeTeam = teamDao.queryById(homeid);
+		Team visiTeam = teamDao.queryById(visitid);
+		homeTeam.setGrade(match.getHome_grade());
+		visiTeam.setGrade(match.getVisit_grade());
+		Long queryCurrencys = contractGroupDao.queryCurrencys(matchId);
+		List<User> loserList = contractGroupDao.queryUserByResult(0);
+		List<User> successList = contractGroupDao.queryUserByResult(1);
+		ContractGroupResult contractGroupResult = new ContractGroupResult(message, homeTeam, visiTeam, loserList, successList, queryCurrencys);
+		return contractGroupResult;
 	}
 
 }

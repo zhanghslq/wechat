@@ -10,6 +10,7 @@ public class User {
 	private Integer wins;
 	private Date lasttime;
 	private Integer rownum;
+	private String message;
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -24,11 +25,32 @@ public class User {
 		this.wins = wins;
 		this.lasttime = lasttime;
 	}
+	
+	public String getMessage() {
+		return message;
+	}
+	public void setMessage(String message) {
+		this.message = message;
+	}
+	public User(String openid, String imageUrl, String nickname,
+			Integer currency, Integer wins, Date lasttime, Integer rownum,
+			String message) {
+		super();
+		this.openid = openid;
+		this.imageUrl = imageUrl;
+		this.nickname = nickname;
+		this.currency = currency;
+		this.wins = wins;
+		this.lasttime = lasttime;
+		this.rownum = rownum;
+		this.message = message;
+	}
 	@Override
 	public String toString() {
 		return "User [openid=" + openid + ", imageUrl=" + imageUrl
 				+ ", nickname=" + nickname + ", currency=" + currency
-				+ ", wins=" + wins + ", lasttime=" + lasttime + "]";
+				+ ", wins=" + wins + ", lasttime=" + lasttime + ", rownum="
+				+ rownum + ", message=" + message + "]";
 	}
 	
 	public Integer getRownum() {

@@ -10,4 +10,6 @@ public interface UserService {
 	User getUser(String openid);
 	//获取排行榜
 	RankData getRank(String code);
+	//当天第一次登录，送100金币
+	void updateCurrencys(String openId);
 }

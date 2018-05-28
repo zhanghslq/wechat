@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.yb.entity.ContractCome;
 import com.yb.entity.JoinData;
+import com.yb.entity.User;
 
 public interface ContractGroupDao {
 		//查询时间大于30分钟还未开局的契约
@@ -26,8 +27,6 @@ public interface ContractGroupDao {
 		//统计结果填入每个用户契约结果
 		void setResult(@Param("cid")String cid,@Param("uid")String uid,@Param("result")Integer result);
 		
-		
-		
 		//查询契约详情，
 		ContractCome queryContractGroup(@Param("cid")String cid);
 		//查询契约用户的下注数量，以及竞猜内容
@@ -38,4 +37,19 @@ public interface ContractGroupDao {
 		List<String> queryNearLogo(@Param("cid")String cid);
 		//查询房间人数
 		Integer queryNumberByCid(@Param("cid")String cid);
+		
+		//查看契约结果
+		
+		//查看胜利或失败的人
+		List<User> queryUserByResult(@Param("result")Integer result);
+		//查询当事人的竞猜结果
+		Integer queryResultByUidAndCid(@Param("cid")String cid,@Param("uid")String uid);
+		
+		
+		//需要查询参与这场比赛竞猜的人数，是否创建，是否参与
+		Integer queryNumberByMatchId(Integer matchId);
+		
+		String queryCreateByUid(Integer matchId,String uid);
+		
+		String queryJoinByUid(Integer matchId,String uid);
 }

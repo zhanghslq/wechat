@@ -1,13 +1,14 @@
 package com.yb.service.impl;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
-import org.apache.http.client.ClientProtocolException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yb.dao.UserDao;
+import com.yb.entity.Proceed;
 import com.yb.entity.RankData;
 import com.yb.entity.User;
 import com.yb.service.UserService;
@@ -27,7 +28,44 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User getUser(String openid) {
 		// TODO Auto-generated method stub
+		String message="无竞猜";
 		User user = userDao.getUser(openid);
+		Proceed queryLastContract = userDao.queryLastContract(openid);
+		Proceed queryLastContractGroup = userDao.queryLastContractGroup(openid);
+		if(queryLastContract!=null&&queryLastContractGroup!=null){
+			Date time = queryLastContract.getTime();
+			Date time2 = queryLastContractGroup.getTime();
+			if(time.after(time2)){
+				Integer result = queryLastContract.getResult();
+				if(2!=result){
+					message="已完成";
+				}else {
+					message="未完成";
+				}
+			}else {
+				Integer result = queryLastContractGroup.getResult();
+				if(2!=result){
+					message="已完成";
+				}else {
+					message="未完成";
+				}
+			}
+		}else if (queryLastContract!=null&&queryLastContractGroup==null) {
+			Integer result = queryLastContract.getResult();
+			if(2!=result){
+				message="已完成";
+			}else {
+				message="未完成";
+			}
+		}else if (queryLastContract==null&&queryLastContractGroup!=null) {
+			Integer result = queryLastContractGroup.getResult();
+			if(2!=result){
+				message="已完成";
+			}else {
+				message="未完成";
+			}
+		}
+		user.setMessage(message);
 		return user;
 	}
 
@@ -46,6 +84,12 @@ public class UserServiceImpl implements UserService {
 		List<User> rank = userDao.getRank();
 		RankData rankData = new RankData(self, rank);
 		return rankData;
+	}
+
+	@Override
+	public void updateCurrencys(String openId) {
+		// TODO Auto-generated method stub
+		userDao.updateCurrency(openId, 100);
 	}
 	
 }

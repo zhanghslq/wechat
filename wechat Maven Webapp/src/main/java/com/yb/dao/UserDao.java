@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.yb.entity.Proceed;
 import com.yb.entity.User;
 
 
@@ -25,4 +26,8 @@ public interface UserDao {
 	void updateWins(@Param("openid")String openid);
 	//用户竞猜输，用户参与总对局数+1
 	void updateAll(@Param("openid")String openid);
+	
+	//查询用户进程
+	Proceed queryLastContract(@Param("uid")String uid);
+	Proceed queryLastContractGroup(@Param("uid")String uid);
 }
