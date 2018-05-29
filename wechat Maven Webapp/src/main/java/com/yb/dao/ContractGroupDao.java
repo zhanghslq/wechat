@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.yb.entity.ContractCome;
 import com.yb.entity.JoinData;
+import com.yb.entity.TheGuess;
 import com.yb.entity.User;
 
 public interface ContractGroupDao {
@@ -52,4 +53,7 @@ public interface ContractGroupDao {
 		String queryCreateByUid(Integer matchId,String uid);
 		
 		String queryJoinByUid(Integer matchId,String uid);
+		
+		//查询本场比赛签订的契约
+		List<TheGuess> queryByMatchIdAndUid(@Param("uid")String uid,@Param("matchId")Integer matchId);
 }

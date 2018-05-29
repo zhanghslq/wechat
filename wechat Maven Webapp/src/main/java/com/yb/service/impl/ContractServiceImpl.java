@@ -20,6 +20,7 @@ import com.yb.entity.ContractDone;
 import com.yb.entity.Match;
 import com.yb.entity.Stake;
 import com.yb.entity.Team;
+import com.yb.entity.TheGuess;
 import com.yb.entity.User;
 import com.yb.service.ContractService;
 import com.yb.util.OpenUtils;
@@ -77,7 +78,10 @@ public class ContractServiceImpl implements ContractService{
 		User user = userDao.getUser(openId);//創建人信息
 		String myGuess = contractDao.queryGuessByUid(openId, cid);
 		List<String> openLists = contractDao.getOpenLists(cid);//缔结契约人列表，這個
-		List<User> queryUsers = userDao.queryUsers(openLists);//包括創建人在内的契約人列表
+		
+		List<User> queryUsers = userDao.queryUsers(openLists,cid);//包括創建人在内的契約人列表
+		
+		
 		ContractDetails contractDetails = new ContractDetails(homeTeam, visitTeam, "文案", contract.getGuessType(),
 				myGuess, stake.getLogo(), stake.getName(), queryById.getStatus(),
 				"30minutes待定", user.getNickname(), user.getImageUrl(), queryUsers);
@@ -152,6 +156,29 @@ public class ContractServiceImpl implements ContractService{
 		visit.setGrade(visit_grade);
 		ContractDone contractDone = new ContractDone(result, message, loser, success, home, visit);
 		return contractDone;
+	}
+	/**
+	 * 这是参与本场竞彩的，包括群pk和好友赛，都放在一起了
+	 */
+	@Override
+	public List<TheGuess> queryByMatchIdAndUid(String uid, Integer matchId) {
+		// TODO Auto-generated method stub
+		List<TheGuess> queryByMatchIdAndUid = contractDao.queryByMatchIdAndUid(uid, matchId);
+		if(queryByMatchIdAndUid!=null&&queryByMatchIdAndUid.size()!=0){
+			for (TheGuess theGuess : queryByMatchIdAndUid) {
+				Integer queryNumberByCid = contractDao.queryNumberByCid(theGuess.getCid());
+				theGuess.setNumber(queryNumberByCid);
+			}
+		}
+		List<TheGuess> queryByMatchIdAndUid2 = contractGroupDao.queryByMatchIdAndUid(uid, matchId);
+		if(queryByMatchIdAndUid2!=null&&queryByMatchIdAndUid2.size()!=0){
+			for (TheGuess theGuess : queryByMatchIdAndUid2) {
+				Integer queryNumberByCid = contractGroupDao.queryNumberByCid(theGuess.getCid());
+				theGuess.setNumber(queryNumberByCid);
+			}
+		}
+		queryByMatchIdAndUid.addAll(queryByMatchIdAndUid2);
+		return queryByMatchIdAndUid;
 	}
 
 }

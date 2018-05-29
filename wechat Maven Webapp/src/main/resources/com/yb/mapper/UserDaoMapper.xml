@@ -8,11 +8,13 @@
 		select cid,time,result from contract_user_group order by time desc limit 1
 	</select>
 	<select id="queryUsers" resultType="User">
-		select openid,nickname,imageUrl from user
-		where openid in
+		select u.openid,u.nickname,u.imageUrl,cu.myGuess message
+		from user u left join contract_user cu on u.openid=cu.uid
+		where cu.cid=#{cid} and u.openid in
 		<foreach collection="ids" open="(" close=")" separator="," item="item" index="i">
 			#{item}
 		</foreach>
+		
 	</select>
 	<select id="getUser" resultType="User">
 		select openid,nickname,imageUrl,currency,wins from user where openid=#{openid}

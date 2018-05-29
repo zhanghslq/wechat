@@ -10,7 +10,6 @@ import net.sf.json.JSONObject;
 
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.fluent.Request;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import com.yb.entity.Match;
@@ -18,7 +17,7 @@ import com.yb.entity.Match;
 @Component
 public class CheckDataQuartz {
 	//每分钟检测一次，看比赛是否有结果了，有结果的话，就进行结算
-	@Scheduled(cron="0 * * * * ?")//每分钟一次，取当天的数据
+	//@Scheduled(cron="0 * * * * ?")//每分钟一次，取当天的数据
 	public void  autoCheck() throws ClientProtocolException, IOException {
 		String asString = Request.Get("http://docs.open.leisu.com/#/index?user=&date=")
 				.setHeader("content-type", "application/x-www-form-urlencoded")

@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yb.dao.ContractGroupDao">
+	
+	<select id="queryByMatchIdAndUid" resultType="TheGuess">
+		select "好友赛" as type,c.id cid,u.nickname,u.imageUrl,c.status
+		from contract_user_group cu 
+		left join contract_group c on cu.cid=c.id
+		left join create_contract_group cc on cu.cid=cc.cid
+		left join user u on cc.createUser=u.openId
+		where cu.uid=#{uid} and c.matchId=#{matchId}
+	</select>
+	
 	<select id="queryNumberByMatchId" resultType="Integer">
 		select count(cu.uid) from contract_group c right join contract_user_group cu on c.id=cu.cid where c.matchId=#{matchId}
 	</select>

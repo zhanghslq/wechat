@@ -15,7 +15,7 @@ public interface UserDao {
 	//取用户信息
 	User getUser(@Param("openid")String openid);
 	//获取多个用户信息
-	List<User> queryUsers(@Param("ids")List<String> ids);
+	List<User> queryUsers(@Param("ids")List<String> ids,@Param("cid")String cid);
 	//排行榜
 	List<User> getRank();
 	//获取自己的排行位置

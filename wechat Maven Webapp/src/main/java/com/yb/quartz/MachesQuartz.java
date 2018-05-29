@@ -29,7 +29,7 @@ public class MachesQuartz {
 	private TeamDao teamDao;
 	@Autowired
 	private EventDao eventDao;
-	@Scheduled(cron="0 0 1 * * ?")//每天晚上1点
+	//@Scheduled(cron="0 0 1 * * ?")//每天晚上1点
 	public void  autoGrade() throws ClientProtocolException, IOException {
 		String asString = Request.Get("http://docs.open.leisu.com/#/index?user=&date=")
 		.setHeader("content-type", "application/x-www-form-urlencoded")

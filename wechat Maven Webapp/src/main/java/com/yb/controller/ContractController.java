@@ -1,5 +1,8 @@
 package com.yb.controller;
 
+import java.io.IOException;
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.context.annotation.Scope;
@@ -11,7 +14,9 @@ import com.yb.entity.ContractCome;
 import com.yb.entity.ContractDetails;
 import com.yb.entity.ContractDone;
 import com.yb.entity.ResultPack;
+import com.yb.entity.TheGuess;
 import com.yb.service.ContractService;
+import com.yb.util.OpenUtils;
 
 @Controller
 @RequestMapping("/contract")
@@ -81,5 +86,20 @@ public class ContractController {//0代表失败，1代表成功
 		ContractDone queryContractDone = contractService.queryContractDone(cid, code);
 		return new ResultPack(1, queryContractDone);
 	}
-
+	/**
+	 * 本场竞猜
+	 */
+	@ResponseBody
+	@RequestMapping("/theGuess")
+	public ResultPack queryTheGuess(String code,Integer matchId){
+		try {
+			String openId = OpenUtils.getOpenId(code);
+			List<TheGuess> queryByMatchIdAndUid = contractService.queryByMatchIdAndUid(openId, matchId);
+			return new ResultPack(1, queryByMatchIdAndUid);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return new ResultPack(0, e.getMessage());
+		}
+	}
 }

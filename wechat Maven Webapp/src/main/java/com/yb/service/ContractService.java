@@ -1,8 +1,13 @@
 package com.yb.service;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.yb.entity.ContractCome;
 import com.yb.entity.ContractDetails;
 import com.yb.entity.ContractDone;
+import com.yb.entity.TheGuess;
 
 public interface ContractService {
 	//生成契约
@@ -16,4 +21,6 @@ public interface ContractService {
 	String beginStake(String cid);
 	//获取完成状态的契约
 	ContractDone queryContractDone(String cid,String code);
+	
+	List<TheGuess> queryByMatchIdAndUid(String uid,Integer matchId);
 }

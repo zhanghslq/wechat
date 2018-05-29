@@ -12,9 +12,8 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class ResultQuartz {
-	//检查契约数据是否符合开局的条件，如果创建超过30分钟，人数不大于2
-	@Scheduled(cron="* * * * * ?")//每天晚上1点
-	public void  autoClear() throws ClientProtocolException, IOException {
+	//@Scheduled(cron="0 * * * * ?")//每天晚上1点,需要直接根据数据对比赛结果进行修改
+	public void  autoResult() throws ClientProtocolException, IOException {
 		
 	}
 }

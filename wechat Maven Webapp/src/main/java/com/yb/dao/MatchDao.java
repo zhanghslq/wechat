@@ -14,4 +14,6 @@ public interface MatchDao {
 	void insertMatches(@Param("matchs")List<Match> matchs);
 	
 	Match queryById(@Param("id")Integer id);
+	
+	
 }

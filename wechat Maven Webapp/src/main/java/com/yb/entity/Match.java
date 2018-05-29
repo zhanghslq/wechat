@@ -5,7 +5,7 @@ import java.util.Date;
 public class Match {
 	private Integer id;
 	private Integer eventid;
-	private Integer status;
+	private Integer status;//比赛状态
 	private Date time;
 	private Integer homeid;
 	private Integer home_grade;//暂时没考虑比分为小数的情况，需要的话奥该数据类型并修改数据库类型

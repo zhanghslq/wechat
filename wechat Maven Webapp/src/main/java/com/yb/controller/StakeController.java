@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.yb.entity.ResultPack;
 import com.yb.entity.Stake;
 import com.yb.service.StakeService;
 
@@ -22,8 +23,14 @@ public class StakeController {
 	
 	@RequestMapping("/queryAll")
 	@ResponseBody
-	public List<Stake> queryAll(){
-		List<Stake> queryAll = stakeService.queryAll();
-		return queryAll;
+	public ResultPack queryAll(){
+		try {
+			List<Stake> queryAll = stakeService.queryAll();
+			return new ResultPack(1, queryAll);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return new ResultPack(0, e.getMessage());
+		}
 	}
 }

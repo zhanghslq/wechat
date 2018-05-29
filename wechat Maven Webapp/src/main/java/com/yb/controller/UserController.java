@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.yb.entity.RankData;
 import com.yb.entity.ResultPack;
 import com.yb.entity.User;
 import com.yb.service.UserService;
@@ -89,6 +90,18 @@ public class UserController {
 			String openId = OpenUtils.getOpenId(code);
 			User user = userService.getUser(openId);
 			return new ResultPack(1, user);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return new ResultPack(0, e.getMessage());
+		}
+	}
+	@RequestMapping("/getRank")
+	@ResponseBody
+	public ResultPack getRank(String code){
+		try {
+			RankData rank = userService.getRank(code);
+			return new ResultPack(1, rank);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
