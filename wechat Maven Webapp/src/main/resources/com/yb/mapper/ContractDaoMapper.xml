@@ -8,25 +8,25 @@
 
 	<select id="queryByMatchIdAndUid" resultType="TheGuess">
 		select "好友赛" as type,c.id cid,u.nickname,u.imageUrl,c.status
-		from contract_user cu left join contract c on cu.cid=c.id
+		from contract_user cu left join worldcup_pk_contract c on cu.cid=c.id
 		left join create_contract cc on cu.cid=cc.cid
 		left join user u on cc.createUser=u.openId
 		where cu.uid=#{uid} and c.matchId=#{matchId}
 	</select>
 
 	<select id="queryNumber" resultType="Integer">
-		select count(cu.uid) from contract c right join contract_user cu on c.id=cu.cid where c.matchId=#{matchId}
+		select count(cu.uid) from worldcup_pk_contract c right join contract_user cu on c.id=cu.cid where c.matchId=#{matchId}
 	</select>
 	<select id="queryCreateByUid" resultType="String">
-		select c.id from create_contract cc left join contract c on cc.cid=c.id
+		select c.id from create_contract cc left join worldcup_pk_contract c on cc.cid=c.id
 		where cc.createUser=#{uid} and c.matchId=#{matchId}
 	</select>
 	<select id="queryJoinByUid" resultType="String">
-		select c.id from contract_user cc left join contract c on cc.cid=c.id
+		select c.id from contract_user cc left join worldcup_pk_contract c on cc.cid=c.id
 		where cc.uid=#{uid} and c.matchId=#{matchId}
 	</select>
 	<select id="getContract" resultType="ContractCome">
-		select id,guessType,stakeId,status,matchId from contract where id=#{cid}
+		select id,guessType,stakeId,status,matchId from worldcup_pk_contract where id=#{cid}
 	</select>
 	<select id="getOpenId" resultType="String">
 		select createUser from create_contract where cid=#{cid}
@@ -39,11 +39,11 @@
 	</select>
 	
 	<update id="updateStatus">
-		update contract set status=1 where id=#{cid}
+		update worldcup_pk_contract set status=1 where id=#{cid}
 	</update>
 
 	<insert id="insertContract">
-		insert into contract(id,guessType,stakeId,status,matchId,time)
+		insert into worldcup_pk_contract(id,guessType,stakeId,status,matchId,time)
 		values(#{contractCome.id},#{contractCome.guessType},#{contractCome.stakeId}
 		,#{contractCome.status},#{contractCome.matchId},now())
 	</insert>
@@ -56,13 +56,14 @@
 	
 	
 	<select id="queryList" resultType="Integer">
-		select id from contract where time &lt; DATE_SUB(NOW(),INTERVAL 30 MINUTE) and status=0
+		select id from worldcup_pk_contract where time &lt; DATE_SUB(NOW(),INTERVAL 30 MINUTE) and status=0
 	</select>
 	<delete id="delete">
-		delete from contract where id=#{id}
+		update worldcup_pk_contract set yn=0 where id=#{id}
 	</delete>
 	<delete id="deleteList">
-		delete from contract where id in
+		update worldcup_pk_contract set yn=0 
+		where id in
 		 <foreach collection="ids" open="(" close=")" item="item" separator="," >
 			#{item}
 		</foreach>

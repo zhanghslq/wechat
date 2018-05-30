@@ -1,0 +1,789 @@
+2018-05-30 10:33:07,988 [main] DEBUG org.apache.http.client.protocol.RequestAddCookies  - CookieSpec selected: default
+2018-05-30 10:33:08,001 [main] DEBUG org.apache.http.client.protocol.RequestAuthCache  - Auth cache not set in the context
+2018-05-30 10:33:08,002 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection request: [route: {s}->https://api.weixin.qq.com:443][total kept alive: 0; route allocated: 0 of 100; total allocated: 0 of 200]
+2018-05-30 10:33:08,016 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection leased: [id: 0][route: {s}->https://api.weixin.qq.com:443][total kept alive: 0; route allocated: 1 of 100; total allocated: 1 of 200]
+2018-05-30 10:33:08,017 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Opening connection {s}->https://api.weixin.qq.com:443
+2018-05-30 10:33:08,111 [main] DEBUG org.apache.http.impl.conn.DefaultHttpClientConnectionOperator  - Connecting to api.weixin.qq.com/58.246.220.31:443
+2018-05-30 10:33:08,112 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Connecting socket to api.weixin.qq.com/58.246.220.31:443 with timeout 0
+2018-05-30 10:33:08,379 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Enabled protocols: [TLSv1]
+2018-05-30 10:33:08,379 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Enabled cipher suites:[TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA, TLS_RSA_WITH_AES_128_CBC_SHA, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_DSS_WITH_AES_128_CBC_SHA, TLS_ECDHE_ECDSA_WITH_RC4_128_SHA, TLS_ECDHE_RSA_WITH_RC4_128_SHA, SSL_RSA_WITH_RC4_128_SHA, TLS_ECDH_ECDSA_WITH_RC4_128_SHA, TLS_ECDH_RSA_WITH_RC4_128_SHA, TLS_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_RC4_128_MD5, TLS_EMPTY_RENEGOTIATION_INFO_SCSV]
+2018-05-30 10:33:08,380 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Starting handshake
+2018-05-30 10:33:08,670 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Secure session established
+2018-05-30 10:33:08,670 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  negotiated protocol: TLSv1
+2018-05-30 10:33:08,671 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  negotiated cipher suite: TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
+2018-05-30 10:33:08,671 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  peer principal: CN=mp.weixin.qq.com, OU=R&D, O=Shenzhen Tencent Computer Systems Company Limited, L=Shenzhen, ST=Guangdong, C=CN
+2018-05-30 10:33:08,672 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  peer alternative names: [developers.weixin.qq.com, ad.weixin.qq.com, game.weixin.qq.com, as.weixin.qq.com, hk.open.weixin.qq.com, open.weixin.qq.com, api.weixin.qq.com, sz.api.weixin.qq.com, long.open.weixin.qq.com, mp.weixinbridge.com, servicewechat.com, hk.mp.weixin.qq.com, sz.mp.weixin.qq.com, hk.api.weixin.qq.com, sh.api.weixin.qq.com, sz.open.weixin.qq.com, a.weixin.qq.com, mp.weixin.qq.com]
+2018-05-30 10:33:08,672 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  issuer principal: CN=GeoTrust SSL CA - G3, O=GeoTrust Inc., C=US
+2018-05-30 10:33:08,750 [main] DEBUG org.apache.http.impl.conn.DefaultHttpClientConnectionOperator  - Connection established 192.168.0.107:52568<->58.246.220.31:443
+2018-05-30 10:33:08,751 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Executing request GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=0211b6nV1tXJYU0USNpV1Q99nV11b6nv&grant_type=authorization_code HTTP/1.1
+2018-05-30 10:33:08,751 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Target auth state: UNCHALLENGED
+2018-05-30 10:33:08,751 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Proxy auth state: UNCHALLENGED
+2018-05-30 10:33:08,753 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=0211b6nV1tXJYU0USNpV1Q99nV11b6nv&grant_type=authorization_code HTTP/1.1
+2018-05-30 10:33:08,753 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Host: api.weixin.qq.com
+2018-05-30 10:33:08,754 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Connection: Keep-Alive
+2018-05-30 10:33:08,754 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_45)
+2018-05-30 10:33:08,754 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Accept-Encoding: gzip,deflate
+2018-05-30 10:33:08,754 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=0211b6nV1tXJYU0USNpV1Q99nV11b6nv&grant_type=authorization_code HTTP/1.1[\r][\n]"
+2018-05-30 10:33:08,754 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Host: api.weixin.qq.com[\r][\n]"
+2018-05-30 10:33:08,754 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Connection: Keep-Alive[\r][\n]"
+2018-05-30 10:33:08,754 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_45)[\r][\n]"
+2018-05-30 10:33:08,754 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Accept-Encoding: gzip,deflate[\r][\n]"
+2018-05-30 10:33:08,754 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "[\r][\n]"
+2018-05-30 10:33:08,823 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "HTTP/1.1 200 OK[\r][\n]"
+2018-05-30 10:33:08,823 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Connection: keep-alive[\r][\n]"
+2018-05-30 10:33:08,823 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Content-Type: text/plain[\r][\n]"
+2018-05-30 10:33:08,823 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Date: Wed, 30 May 2018 02:33:08 GMT[\r][\n]"
+2018-05-30 10:33:08,823 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Content-Length: 76[\r][\n]"
+2018-05-30 10:33:08,823 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "[\r][\n]"
+2018-05-30 10:33:08,823 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "{"errcode":40029,"errmsg":"invalid code, hints: [ req_id: 5_jHQA0588th48 ]"}"
+2018-05-30 10:33:08,825 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << HTTP/1.1 200 OK
+2018-05-30 10:33:08,825 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Connection: keep-alive
+2018-05-30 10:33:08,825 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Content-Type: text/plain
+2018-05-30 10:33:08,826 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Date: Wed, 30 May 2018 02:33:08 GMT
+2018-05-30 10:33:08,826 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Content-Length: 76
+2018-05-30 10:33:08,829 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Connection can be kept alive indefinitely
+2018-05-30 10:33:08,835 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection [id: 0][route: {s}->https://api.weixin.qq.com:443] can be kept alive indefinitely
+2018-05-30 10:33:08,835 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection released: [id: 0][route: {s}->https://api.weixin.qq.com:443][total kept alive: 1; route allocated: 1 of 100; total allocated: 1 of 200]
+2018-05-30 10:34:02,587 [main] DEBUG org.apache.http.client.protocol.RequestAddCookies  - CookieSpec selected: default
+2018-05-30 10:34:02,599 [main] DEBUG org.apache.http.client.protocol.RequestAuthCache  - Auth cache not set in the context
+2018-05-30 10:34:02,600 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection request: [route: {s}->https://api.weixin.qq.com:443][total kept alive: 0; route allocated: 0 of 100; total allocated: 0 of 200]
+2018-05-30 10:34:02,614 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection leased: [id: 0][route: {s}->https://api.weixin.qq.com:443][total kept alive: 0; route allocated: 1 of 100; total allocated: 1 of 200]
+2018-05-30 10:34:02,616 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Opening connection {s}->https://api.weixin.qq.com:443
+2018-05-30 10:34:02,620 [main] DEBUG org.apache.http.impl.conn.DefaultHttpClientConnectionOperator  - Connecting to api.weixin.qq.com/58.246.220.31:443
+2018-05-30 10:34:02,620 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Connecting socket to api.weixin.qq.com/58.246.220.31:443 with timeout 0
+2018-05-30 10:34:02,775 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Enabled protocols: [TLSv1]
+2018-05-30 10:34:02,775 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Enabled cipher suites:[TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA, TLS_RSA_WITH_AES_128_CBC_SHA, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_DSS_WITH_AES_128_CBC_SHA, TLS_ECDHE_ECDSA_WITH_RC4_128_SHA, TLS_ECDHE_RSA_WITH_RC4_128_SHA, SSL_RSA_WITH_RC4_128_SHA, TLS_ECDH_ECDSA_WITH_RC4_128_SHA, TLS_ECDH_RSA_WITH_RC4_128_SHA, TLS_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_RC4_128_MD5, TLS_EMPTY_RENEGOTIATION_INFO_SCSV]
+2018-05-30 10:34:02,775 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Starting handshake
+2018-05-30 10:34:02,891 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Secure session established
+2018-05-30 10:34:02,891 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  negotiated protocol: TLSv1
+2018-05-30 10:34:02,892 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  negotiated cipher suite: TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
+2018-05-30 10:34:02,892 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  peer principal: CN=mp.weixin.qq.com, OU=R&D, O=Shenzhen Tencent Computer Systems Company Limited, L=Shenzhen, ST=Guangdong, C=CN
+2018-05-30 10:34:02,892 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  peer alternative names: [developers.weixin.qq.com, ad.weixin.qq.com, game.weixin.qq.com, as.weixin.qq.com, hk.open.weixin.qq.com, open.weixin.qq.com, api.weixin.qq.com, sz.api.weixin.qq.com, long.open.weixin.qq.com, mp.weixinbridge.com, servicewechat.com, hk.mp.weixin.qq.com, sz.mp.weixin.qq.com, hk.api.weixin.qq.com, sh.api.weixin.qq.com, sz.open.weixin.qq.com, a.weixin.qq.com, mp.weixin.qq.com]
+2018-05-30 10:34:02,892 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  issuer principal: CN=GeoTrust SSL CA - G3, O=GeoTrust Inc., C=US
+2018-05-30 10:34:02,904 [main] DEBUG org.apache.http.impl.conn.DefaultHttpClientConnectionOperator  - Connection established 192.168.0.107:52579<->58.246.220.31:443
+2018-05-30 10:34:02,904 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Executing request GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=0211b6nV1tXJYU0USNpV1Q99nV11b6nv&grant_type=authorization_code HTTP/1.1
+2018-05-30 10:34:02,904 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Target auth state: UNCHALLENGED
+2018-05-30 10:34:02,905 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Proxy auth state: UNCHALLENGED
+2018-05-30 10:34:02,906 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=0211b6nV1tXJYU0USNpV1Q99nV11b6nv&grant_type=authorization_code HTTP/1.1
+2018-05-30 10:34:02,906 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Host: api.weixin.qq.com
+2018-05-30 10:34:02,906 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Connection: Keep-Alive
+2018-05-30 10:34:02,906 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_45)
+2018-05-30 10:34:02,906 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Accept-Encoding: gzip,deflate
+2018-05-30 10:34:02,906 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=0211b6nV1tXJYU0USNpV1Q99nV11b6nv&grant_type=authorization_code HTTP/1.1[\r][\n]"
+2018-05-30 10:34:02,906 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Host: api.weixin.qq.com[\r][\n]"
+2018-05-30 10:34:02,906 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Connection: Keep-Alive[\r][\n]"
+2018-05-30 10:34:02,906 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_45)[\r][\n]"
+2018-05-30 10:34:02,906 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Accept-Encoding: gzip,deflate[\r][\n]"
+2018-05-30 10:34:02,906 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "[\r][\n]"
+2018-05-30 10:34:02,958 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "HTTP/1.1 200 OK[\r][\n]"
+2018-05-30 10:34:02,958 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Connection: keep-alive[\r][\n]"
+2018-05-30 10:34:02,958 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Content-Type: text/plain[\r][\n]"
+2018-05-30 10:34:02,958 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Date: Wed, 30 May 2018 02:34:02 GMT[\r][\n]"
+2018-05-30 10:34:02,958 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Content-Length: 76[\r][\n]"
+2018-05-30 10:34:02,958 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "[\r][\n]"
+2018-05-30 10:34:02,958 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "{"errcode":40029,"errmsg":"invalid code, hints: [ req_id: zJ1VKA0642th21 ]"}"
+2018-05-30 10:34:02,960 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << HTTP/1.1 200 OK
+2018-05-30 10:34:02,961 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Connection: keep-alive
+2018-05-30 10:34:02,961 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Content-Type: text/plain
+2018-05-30 10:34:02,961 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Date: Wed, 30 May 2018 02:34:02 GMT
+2018-05-30 10:34:02,961 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Content-Length: 76
+2018-05-30 10:34:02,964 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Connection can be kept alive indefinitely
+2018-05-30 10:34:02,968 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection [id: 0][route: {s}->https://api.weixin.qq.com:443] can be kept alive indefinitely
+2018-05-30 10:34:02,968 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection released: [id: 0][route: {s}->https://api.weixin.qq.com:443][total kept alive: 1; route allocated: 1 of 100; total allocated: 1 of 200]
+2018-05-30 10:34:03,036 [main] DEBUG org.apache.http.client.protocol.RequestAddCookies  - CookieSpec selected: default
+2018-05-30 10:34:03,036 [main] DEBUG org.apache.http.client.protocol.RequestAuthCache  - Auth cache not set in the context
+2018-05-30 10:34:03,036 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection request: [route: {s}->https://api.weixin.qq.com:443][total kept alive: 1; route allocated: 1 of 100; total allocated: 1 of 200]
+2018-05-30 10:34:03,036 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection leased: [id: 0][route: {s}->https://api.weixin.qq.com:443][total kept alive: 0; route allocated: 1 of 100; total allocated: 1 of 200]
+2018-05-30 10:34:03,037 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Executing request GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=0211b6nV1tXJYU0USNpV1Q99nV11b6nv&grant_type=authorization_code HTTP/1.1
+2018-05-30 10:34:03,037 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Target auth state: UNCHALLENGED
+2018-05-30 10:34:03,037 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Proxy auth state: UNCHALLENGED
+2018-05-30 10:34:03,037 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=0211b6nV1tXJYU0USNpV1Q99nV11b6nv&grant_type=authorization_code HTTP/1.1
+2018-05-30 10:34:03,037 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Host: api.weixin.qq.com
+2018-05-30 10:34:03,037 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Connection: Keep-Alive
+2018-05-30 10:34:03,037 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_45)
+2018-05-30 10:34:03,037 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Accept-Encoding: gzip,deflate
+2018-05-30 10:34:03,037 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=0211b6nV1tXJYU0USNpV1Q99nV11b6nv&grant_type=authorization_code HTTP/1.1[\r][\n]"
+2018-05-30 10:34:03,037 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Host: api.weixin.qq.com[\r][\n]"
+2018-05-30 10:34:03,037 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Connection: Keep-Alive[\r][\n]"
+2018-05-30 10:34:03,037 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_45)[\r][\n]"
+2018-05-30 10:34:03,037 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Accept-Encoding: gzip,deflate[\r][\n]"
+2018-05-30 10:34:03,037 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "[\r][\n]"
+2018-05-30 10:34:03,087 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "HTTP/1.1 200 OK[\r][\n]"
+2018-05-30 10:34:03,087 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Connection: keep-alive[\r][\n]"
+2018-05-30 10:34:03,087 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Content-Type: text/plain[\r][\n]"
+2018-05-30 10:34:03,087 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Date: Wed, 30 May 2018 02:34:02 GMT[\r][\n]"
+2018-05-30 10:34:03,087 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Content-Length: 76[\r][\n]"
+2018-05-30 10:34:03,087 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "[\r][\n]"
+2018-05-30 10:34:03,087 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "{"errcode":40029,"errmsg":"invalid code, hints: [ req_id: KiSlwa0642th19 ]"}"
+2018-05-30 10:34:03,087 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << HTTP/1.1 200 OK
+2018-05-30 10:34:03,087 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Connection: keep-alive
+2018-05-30 10:34:03,087 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Content-Type: text/plain
+2018-05-30 10:34:03,087 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Date: Wed, 30 May 2018 02:34:02 GMT
+2018-05-30 10:34:03,088 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Content-Length: 76
+2018-05-30 10:34:03,088 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Connection can be kept alive indefinitely
+2018-05-30 10:34:03,088 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection [id: 0][route: {s}->https://api.weixin.qq.com:443] can be kept alive indefinitely
+2018-05-30 10:34:03,088 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection released: [id: 0][route: {s}->https://api.weixin.qq.com:443][total kept alive: 1; route allocated: 1 of 100; total allocated: 1 of 200]
+2018-05-30 10:34:11,570 [main] DEBUG org.apache.http.client.protocol.RequestAddCookies  - CookieSpec selected: default
+2018-05-30 10:34:11,591 [main] DEBUG org.apache.http.client.protocol.RequestAuthCache  - Auth cache not set in the context
+2018-05-30 10:34:11,592 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection request: [route: {s}->https://api.weixin.qq.com:443][total kept alive: 0; route allocated: 0 of 100; total allocated: 0 of 200]
+2018-05-30 10:34:11,616 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection leased: [id: 0][route: {s}->https://api.weixin.qq.com:443][total kept alive: 0; route allocated: 1 of 100; total allocated: 1 of 200]
+2018-05-30 10:34:11,620 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Opening connection {s}->https://api.weixin.qq.com:443
+2018-05-30 10:34:11,629 [main] DEBUG org.apache.http.impl.conn.DefaultHttpClientConnectionOperator  - Connecting to api.weixin.qq.com/58.246.220.31:443
+2018-05-30 10:34:11,630 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Connecting socket to api.weixin.qq.com/58.246.220.31:443 with timeout 0
+2018-05-30 10:34:11,803 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Enabled protocols: [TLSv1]
+2018-05-30 10:34:11,804 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Enabled cipher suites:[TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA, TLS_RSA_WITH_AES_128_CBC_SHA, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_DSS_WITH_AES_128_CBC_SHA, TLS_ECDHE_ECDSA_WITH_RC4_128_SHA, TLS_ECDHE_RSA_WITH_RC4_128_SHA, SSL_RSA_WITH_RC4_128_SHA, TLS_ECDH_ECDSA_WITH_RC4_128_SHA, TLS_ECDH_RSA_WITH_RC4_128_SHA, TLS_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_RC4_128_MD5, TLS_EMPTY_RENEGOTIATION_INFO_SCSV]
+2018-05-30 10:34:11,804 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Starting handshake
+2018-05-30 10:34:11,925 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Secure session established
+2018-05-30 10:34:11,925 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  negotiated protocol: TLSv1
+2018-05-30 10:34:11,925 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  negotiated cipher suite: TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
+2018-05-30 10:34:11,925 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  peer principal: CN=mp.weixin.qq.com, OU=R&D, O=Shenzhen Tencent Computer Systems Company Limited, L=Shenzhen, ST=Guangdong, C=CN
+2018-05-30 10:34:11,925 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  peer alternative names: [developers.weixin.qq.com, ad.weixin.qq.com, game.weixin.qq.com, as.weixin.qq.com, hk.open.weixin.qq.com, open.weixin.qq.com, api.weixin.qq.com, sz.api.weixin.qq.com, long.open.weixin.qq.com, mp.weixinbridge.com, servicewechat.com, hk.mp.weixin.qq.com, sz.mp.weixin.qq.com, hk.api.weixin.qq.com, sh.api.weixin.qq.com, sz.open.weixin.qq.com, a.weixin.qq.com, mp.weixin.qq.com]
+2018-05-30 10:34:11,925 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  issuer principal: CN=GeoTrust SSL CA - G3, O=GeoTrust Inc., C=US
+2018-05-30 10:34:11,937 [main] DEBUG org.apache.http.impl.conn.DefaultHttpClientConnectionOperator  - Connection established 192.168.0.107:52581<->58.246.220.31:443
+2018-05-30 10:34:11,937 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Executing request GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=0211b6nV1tXJYU0USNpV1Q99nV11b6nv&grant_type=authorization_code HTTP/1.1
+2018-05-30 10:34:11,938 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Target auth state: UNCHALLENGED
+2018-05-30 10:34:11,938 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Proxy auth state: UNCHALLENGED
+2018-05-30 10:34:11,939 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=0211b6nV1tXJYU0USNpV1Q99nV11b6nv&grant_type=authorization_code HTTP/1.1
+2018-05-30 10:34:11,939 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Host: api.weixin.qq.com
+2018-05-30 10:34:11,939 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Connection: Keep-Alive
+2018-05-30 10:34:11,939 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_45)
+2018-05-30 10:34:11,939 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Accept-Encoding: gzip,deflate
+2018-05-30 10:34:11,939 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=0211b6nV1tXJYU0USNpV1Q99nV11b6nv&grant_type=authorization_code HTTP/1.1[\r][\n]"
+2018-05-30 10:34:11,939 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Host: api.weixin.qq.com[\r][\n]"
+2018-05-30 10:34:11,939 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Connection: Keep-Alive[\r][\n]"
+2018-05-30 10:34:11,939 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_45)[\r][\n]"
+2018-05-30 10:34:11,940 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Accept-Encoding: gzip,deflate[\r][\n]"
+2018-05-30 10:34:11,940 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "[\r][\n]"
+2018-05-30 10:34:12,000 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "HTTP/1.1 200 OK[\r][\n]"
+2018-05-30 10:34:12,001 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Connection: keep-alive[\r][\n]"
+2018-05-30 10:34:12,001 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Content-Type: text/plain[\r][\n]"
+2018-05-30 10:34:12,001 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Date: Wed, 30 May 2018 02:34:11 GMT[\r][\n]"
+2018-05-30 10:34:12,001 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Content-Length: 76[\r][\n]"
+2018-05-30 10:34:12,001 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "[\r][\n]"
+2018-05-30 10:34:12,001 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "{"errcode":40029,"errmsg":"invalid code, hints: [ req_id: l1EygA0651th24 ]"}"
+2018-05-30 10:34:12,002 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << HTTP/1.1 200 OK
+2018-05-30 10:34:12,003 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Connection: keep-alive
+2018-05-30 10:34:12,003 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Content-Type: text/plain
+2018-05-30 10:34:12,003 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Date: Wed, 30 May 2018 02:34:11 GMT
+2018-05-30 10:34:12,003 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Content-Length: 76
+2018-05-30 10:34:12,006 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Connection can be kept alive indefinitely
+2018-05-30 10:34:12,011 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection [id: 0][route: {s}->https://api.weixin.qq.com:443] can be kept alive indefinitely
+2018-05-30 10:34:12,011 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection released: [id: 0][route: {s}->https://api.weixin.qq.com:443][total kept alive: 1; route allocated: 1 of 100; total allocated: 1 of 200]
+2018-05-30 10:34:12,082 [main] DEBUG org.apache.http.client.protocol.RequestAddCookies  - CookieSpec selected: default
+2018-05-30 10:34:12,082 [main] DEBUG org.apache.http.client.protocol.RequestAuthCache  - Auth cache not set in the context
+2018-05-30 10:34:12,082 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection request: [route: {s}->https://api.weixin.qq.com:443][total kept alive: 1; route allocated: 1 of 100; total allocated: 1 of 200]
+2018-05-30 10:34:12,083 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection leased: [id: 0][route: {s}->https://api.weixin.qq.com:443][total kept alive: 0; route allocated: 1 of 100; total allocated: 1 of 200]
+2018-05-30 10:34:12,083 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Executing request GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=0211b6nV1tXJYU0USNpV1Q99nV11b6nv&grant_type=authorization_code HTTP/1.1
+2018-05-30 10:34:12,083 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Target auth state: UNCHALLENGED
+2018-05-30 10:34:12,083 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Proxy auth state: UNCHALLENGED
+2018-05-30 10:34:12,083 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=0211b6nV1tXJYU0USNpV1Q99nV11b6nv&grant_type=authorization_code HTTP/1.1
+2018-05-30 10:34:12,083 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Host: api.weixin.qq.com
+2018-05-30 10:34:12,083 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Connection: Keep-Alive
+2018-05-30 10:34:12,083 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_45)
+2018-05-30 10:34:12,083 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Accept-Encoding: gzip,deflate
+2018-05-30 10:34:12,083 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=0211b6nV1tXJYU0USNpV1Q99nV11b6nv&grant_type=authorization_code HTTP/1.1[\r][\n]"
+2018-05-30 10:34:12,083 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Host: api.weixin.qq.com[\r][\n]"
+2018-05-30 10:34:12,083 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Connection: Keep-Alive[\r][\n]"
+2018-05-30 10:34:12,083 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_45)[\r][\n]"
+2018-05-30 10:34:12,083 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Accept-Encoding: gzip,deflate[\r][\n]"
+2018-05-30 10:34:12,083 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "[\r][\n]"
+2018-05-30 10:34:12,141 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "HTTP/1.1 200 OK[\r][\n]"
+2018-05-30 10:34:12,141 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Connection: keep-alive[\r][\n]"
+2018-05-30 10:34:12,141 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Content-Type: text/plain[\r][\n]"
+2018-05-30 10:34:12,142 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Date: Wed, 30 May 2018 02:34:11 GMT[\r][\n]"
+2018-05-30 10:34:12,142 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Content-Length: 74[\r][\n]"
+2018-05-30 10:34:12,142 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "[\r][\n]"
+2018-05-30 10:34:12,142 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "{"errcode":40029,"errmsg":"invalid code, hints: [ req_id: gVbH0651th21 ]"}"
+2018-05-30 10:34:12,142 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << HTTP/1.1 200 OK
+2018-05-30 10:34:12,142 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Connection: keep-alive
+2018-05-30 10:34:12,142 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Content-Type: text/plain
+2018-05-30 10:34:12,142 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Date: Wed, 30 May 2018 02:34:11 GMT
+2018-05-30 10:34:12,142 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Content-Length: 74
+2018-05-30 10:34:12,142 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Connection can be kept alive indefinitely
+2018-05-30 10:34:12,142 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection [id: 0][route: {s}->https://api.weixin.qq.com:443] can be kept alive indefinitely
+2018-05-30 10:34:12,142 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection released: [id: 0][route: {s}->https://api.weixin.qq.com:443][total kept alive: 1; route allocated: 1 of 100; total allocated: 1 of 200]
+2018-05-30 10:35:17,152 [main] DEBUG org.apache.http.client.protocol.RequestAddCookies  - CookieSpec selected: default
+2018-05-30 10:35:17,168 [main] DEBUG org.apache.http.client.protocol.RequestAuthCache  - Auth cache not set in the context
+2018-05-30 10:35:17,169 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection request: [route: {s}->https://api.weixin.qq.com:443][total kept alive: 0; route allocated: 0 of 100; total allocated: 0 of 200]
+2018-05-30 10:35:17,182 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection leased: [id: 0][route: {s}->https://api.weixin.qq.com:443][total kept alive: 0; route allocated: 1 of 100; total allocated: 1 of 200]
+2018-05-30 10:35:17,183 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Opening connection {s}->https://api.weixin.qq.com:443
+2018-05-30 10:35:17,188 [main] DEBUG org.apache.http.impl.conn.DefaultHttpClientConnectionOperator  - Connecting to api.weixin.qq.com/58.246.220.31:443
+2018-05-30 10:35:17,188 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Connecting socket to api.weixin.qq.com/58.246.220.31:443 with timeout 0
+2018-05-30 10:35:17,338 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Enabled protocols: [TLSv1]
+2018-05-30 10:35:17,338 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Enabled cipher suites:[TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA, TLS_RSA_WITH_AES_128_CBC_SHA, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_DSS_WITH_AES_128_CBC_SHA, TLS_ECDHE_ECDSA_WITH_RC4_128_SHA, TLS_ECDHE_RSA_WITH_RC4_128_SHA, SSL_RSA_WITH_RC4_128_SHA, TLS_ECDH_ECDSA_WITH_RC4_128_SHA, TLS_ECDH_RSA_WITH_RC4_128_SHA, TLS_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_RC4_128_MD5, TLS_EMPTY_RENEGOTIATION_INFO_SCSV]
+2018-05-30 10:35:17,338 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Starting handshake
+2018-05-30 10:35:17,457 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Secure session established
+2018-05-30 10:35:17,457 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  negotiated protocol: TLSv1
+2018-05-30 10:35:17,457 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  negotiated cipher suite: TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
+2018-05-30 10:35:17,457 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  peer principal: CN=mp.weixin.qq.com, OU=R&D, O=Shenzhen Tencent Computer Systems Company Limited, L=Shenzhen, ST=Guangdong, C=CN
+2018-05-30 10:35:17,457 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  peer alternative names: [developers.weixin.qq.com, ad.weixin.qq.com, game.weixin.qq.com, as.weixin.qq.com, hk.open.weixin.qq.com, open.weixin.qq.com, api.weixin.qq.com, sz.api.weixin.qq.com, long.open.weixin.qq.com, mp.weixinbridge.com, servicewechat.com, hk.mp.weixin.qq.com, sz.mp.weixin.qq.com, hk.api.weixin.qq.com, sh.api.weixin.qq.com, sz.open.weixin.qq.com, a.weixin.qq.com, mp.weixin.qq.com]
+2018-05-30 10:35:17,458 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  issuer principal: CN=GeoTrust SSL CA - G3, O=GeoTrust Inc., C=US
+2018-05-30 10:35:17,470 [main] DEBUG org.apache.http.impl.conn.DefaultHttpClientConnectionOperator  - Connection established 192.168.0.107:52594<->58.246.220.31:443
+2018-05-30 10:35:17,470 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Executing request GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=0211b6nV1tXJYU0USNpV1Q99nV11b6nv&grant_type=authorization_code HTTP/1.1
+2018-05-30 10:35:17,470 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Target auth state: UNCHALLENGED
+2018-05-30 10:35:17,470 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Proxy auth state: UNCHALLENGED
+2018-05-30 10:35:17,471 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=0211b6nV1tXJYU0USNpV1Q99nV11b6nv&grant_type=authorization_code HTTP/1.1
+2018-05-30 10:35:17,471 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Host: api.weixin.qq.com
+2018-05-30 10:35:17,471 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Connection: Keep-Alive
+2018-05-30 10:35:17,471 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_45)
+2018-05-30 10:35:17,472 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Accept-Encoding: gzip,deflate
+2018-05-30 10:35:17,472 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=0211b6nV1tXJYU0USNpV1Q99nV11b6nv&grant_type=authorization_code HTTP/1.1[\r][\n]"
+2018-05-30 10:35:17,472 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Host: api.weixin.qq.com[\r][\n]"
+2018-05-30 10:35:17,472 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Connection: Keep-Alive[\r][\n]"
+2018-05-30 10:35:17,472 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_45)[\r][\n]"
+2018-05-30 10:35:17,472 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Accept-Encoding: gzip,deflate[\r][\n]"
+2018-05-30 10:35:17,472 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "[\r][\n]"
+2018-05-30 10:35:17,529 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "HTTP/1.1 200 OK[\r][\n]"
+2018-05-30 10:35:17,529 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Connection: keep-alive[\r][\n]"
+2018-05-30 10:35:17,529 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Content-Type: text/plain[\r][\n]"
+2018-05-30 10:35:17,529 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Date: Wed, 30 May 2018 02:35:17 GMT[\r][\n]"
+2018-05-30 10:35:17,529 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Content-Length: 72[\r][\n]"
+2018-05-30 10:35:17,529 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "[\r][\n]"
+2018-05-30 10:35:17,529 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "{"errcode":40029,"errmsg":"invalid code, hints: [ req_id: XF0717th44 ]"}"
+2018-05-30 10:35:17,531 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << HTTP/1.1 200 OK
+2018-05-30 10:35:17,531 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Connection: keep-alive
+2018-05-30 10:35:17,531 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Content-Type: text/plain
+2018-05-30 10:35:17,531 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Date: Wed, 30 May 2018 02:35:17 GMT
+2018-05-30 10:35:17,531 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Content-Length: 72
+2018-05-30 10:35:17,534 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Connection can be kept alive indefinitely
+2018-05-30 10:35:17,539 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection [id: 0][route: {s}->https://api.weixin.qq.com:443] can be kept alive indefinitely
+2018-05-30 10:35:17,539 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection released: [id: 0][route: {s}->https://api.weixin.qq.com:443][total kept alive: 1; route allocated: 1 of 100; total allocated: 1 of 200]
+2018-05-30 10:43:44,168 [main] DEBUG org.apache.http.client.protocol.RequestAddCookies  - CookieSpec selected: default
+2018-05-30 10:43:44,183 [main] DEBUG org.apache.http.client.protocol.RequestAuthCache  - Auth cache not set in the context
+2018-05-30 10:43:44,184 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection request: [route: {s}->https://api.weixin.qq.com:443][total kept alive: 0; route allocated: 0 of 100; total allocated: 0 of 200]
+2018-05-30 10:43:44,200 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection leased: [id: 0][route: {s}->https://api.weixin.qq.com:443][total kept alive: 0; route allocated: 1 of 100; total allocated: 1 of 200]
+2018-05-30 10:43:44,201 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Opening connection {s}->https://api.weixin.qq.com:443
+2018-05-30 10:43:44,213 [main] DEBUG org.apache.http.impl.conn.DefaultHttpClientConnectionOperator  - Connecting to api.weixin.qq.com/58.246.220.31:443
+2018-05-30 10:43:44,213 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Connecting socket to api.weixin.qq.com/58.246.220.31:443 with timeout 0
+2018-05-30 10:43:44,350 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Enabled protocols: [TLSv1]
+2018-05-30 10:43:44,350 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Enabled cipher suites:[TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA, TLS_RSA_WITH_AES_128_CBC_SHA, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_DSS_WITH_AES_128_CBC_SHA, TLS_ECDHE_ECDSA_WITH_RC4_128_SHA, TLS_ECDHE_RSA_WITH_RC4_128_SHA, SSL_RSA_WITH_RC4_128_SHA, TLS_ECDH_ECDSA_WITH_RC4_128_SHA, TLS_ECDH_RSA_WITH_RC4_128_SHA, TLS_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_RC4_128_MD5, TLS_EMPTY_RENEGOTIATION_INFO_SCSV]
+2018-05-30 10:43:44,350 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Starting handshake
+2018-05-30 10:43:44,481 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Secure session established
+2018-05-30 10:43:44,482 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  negotiated protocol: TLSv1
+2018-05-30 10:43:44,482 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  negotiated cipher suite: TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
+2018-05-30 10:43:44,482 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  peer principal: CN=mp.weixin.qq.com, OU=R&D, O=Shenzhen Tencent Computer Systems Company Limited, L=Shenzhen, ST=Guangdong, C=CN
+2018-05-30 10:43:44,482 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  peer alternative names: [developers.weixin.qq.com, ad.weixin.qq.com, game.weixin.qq.com, as.weixin.qq.com, hk.open.weixin.qq.com, open.weixin.qq.com, api.weixin.qq.com, sz.api.weixin.qq.com, long.open.weixin.qq.com, mp.weixinbridge.com, servicewechat.com, hk.mp.weixin.qq.com, sz.mp.weixin.qq.com, hk.api.weixin.qq.com, sh.api.weixin.qq.com, sz.open.weixin.qq.com, a.weixin.qq.com, mp.weixin.qq.com]
+2018-05-30 10:43:44,482 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  issuer principal: CN=GeoTrust SSL CA - G3, O=GeoTrust Inc., C=US
+2018-05-30 10:43:44,494 [main] DEBUG org.apache.http.impl.conn.DefaultHttpClientConnectionOperator  - Connection established 192.168.0.107:52754<->58.246.220.31:443
+2018-05-30 10:43:44,495 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Executing request GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=011fnbbf2DNC9C0dyddf2spubf2fnbbe&grant_type=authorization_code HTTP/1.1
+2018-05-30 10:43:44,495 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Target auth state: UNCHALLENGED
+2018-05-30 10:43:44,495 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Proxy auth state: UNCHALLENGED
+2018-05-30 10:43:44,496 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=011fnbbf2DNC9C0dyddf2spubf2fnbbe&grant_type=authorization_code HTTP/1.1
+2018-05-30 10:43:44,496 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Host: api.weixin.qq.com
+2018-05-30 10:43:44,496 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Connection: Keep-Alive
+2018-05-30 10:43:44,496 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_45)
+2018-05-30 10:43:44,497 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Accept-Encoding: gzip,deflate
+2018-05-30 10:43:44,497 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=011fnbbf2DNC9C0dyddf2spubf2fnbbe&grant_type=authorization_code HTTP/1.1[\r][\n]"
+2018-05-30 10:43:44,497 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Host: api.weixin.qq.com[\r][\n]"
+2018-05-30 10:43:44,497 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Connection: Keep-Alive[\r][\n]"
+2018-05-30 10:43:44,497 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_45)[\r][\n]"
+2018-05-30 10:43:44,497 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Accept-Encoding: gzip,deflate[\r][\n]"
+2018-05-30 10:43:44,497 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "[\r][\n]"
+2018-05-30 10:43:44,576 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "HTTP/1.1 200 OK[\r][\n]"
+2018-05-30 10:43:44,576 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Connection: keep-alive[\r][\n]"
+2018-05-30 10:43:44,576 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Content-Type: text/plain[\r][\n]"
+2018-05-30 10:43:44,576 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Date: Wed, 30 May 2018 02:43:44 GMT[\r][\n]"
+2018-05-30 10:43:44,576 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Content-Length: 82[\r][\n]"
+2018-05-30 10:43:44,576 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "[\r][\n]"
+2018-05-30 10:43:44,576 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "{"session_key":"TDSMtIWe3BfyXxuEA50rJg==","openid":"om9W35Siht5C9hWmXkbYkXB2f7xI"}"
+2018-05-30 10:43:44,578 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << HTTP/1.1 200 OK
+2018-05-30 10:43:44,578 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Connection: keep-alive
+2018-05-30 10:43:44,578 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Content-Type: text/plain
+2018-05-30 10:43:44,578 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Date: Wed, 30 May 2018 02:43:44 GMT
+2018-05-30 10:43:44,578 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Content-Length: 82
+2018-05-30 10:43:44,581 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Connection can be kept alive indefinitely
+2018-05-30 10:43:44,585 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection [id: 0][route: {s}->https://api.weixin.qq.com:443] can be kept alive indefinitely
+2018-05-30 10:43:44,586 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection released: [id: 0][route: {s}->https://api.weixin.qq.com:443][total kept alive: 1; route allocated: 1 of 100; total allocated: 1 of 200]
+2018-05-30 10:44:09,810 [main] DEBUG org.apache.http.client.protocol.RequestAddCookies  - CookieSpec selected: default
+2018-05-30 10:44:09,822 [main] DEBUG org.apache.http.client.protocol.RequestAuthCache  - Auth cache not set in the context
+2018-05-30 10:44:09,824 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection request: [route: {s}->https://api.weixin.qq.com:443][total kept alive: 0; route allocated: 0 of 100; total allocated: 0 of 200]
+2018-05-30 10:44:09,837 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection leased: [id: 0][route: {s}->https://api.weixin.qq.com:443][total kept alive: 0; route allocated: 1 of 100; total allocated: 1 of 200]
+2018-05-30 10:44:09,839 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Opening connection {s}->https://api.weixin.qq.com:443
+2018-05-30 10:44:09,843 [main] DEBUG org.apache.http.impl.conn.DefaultHttpClientConnectionOperator  - Connecting to api.weixin.qq.com/58.246.220.31:443
+2018-05-30 10:44:09,843 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Connecting socket to api.weixin.qq.com/58.246.220.31:443 with timeout 0
+2018-05-30 10:44:09,982 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Enabled protocols: [TLSv1]
+2018-05-30 10:44:09,982 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Enabled cipher suites:[TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA, TLS_RSA_WITH_AES_128_CBC_SHA, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_DSS_WITH_AES_128_CBC_SHA, TLS_ECDHE_ECDSA_WITH_RC4_128_SHA, TLS_ECDHE_RSA_WITH_RC4_128_SHA, SSL_RSA_WITH_RC4_128_SHA, TLS_ECDH_ECDSA_WITH_RC4_128_SHA, TLS_ECDH_RSA_WITH_RC4_128_SHA, TLS_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_RC4_128_MD5, TLS_EMPTY_RENEGOTIATION_INFO_SCSV]
+2018-05-30 10:44:09,983 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Starting handshake
+2018-05-30 10:44:10,104 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Secure session established
+2018-05-30 10:44:10,104 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  negotiated protocol: TLSv1
+2018-05-30 10:44:10,104 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  negotiated cipher suite: TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
+2018-05-30 10:44:10,104 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  peer principal: CN=mp.weixin.qq.com, OU=R&D, O=Shenzhen Tencent Computer Systems Company Limited, L=Shenzhen, ST=Guangdong, C=CN
+2018-05-30 10:44:10,104 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  peer alternative names: [developers.weixin.qq.com, ad.weixin.qq.com, game.weixin.qq.com, as.weixin.qq.com, hk.open.weixin.qq.com, open.weixin.qq.com, api.weixin.qq.com, sz.api.weixin.qq.com, long.open.weixin.qq.com, mp.weixinbridge.com, servicewechat.com, hk.mp.weixin.qq.com, sz.mp.weixin.qq.com, hk.api.weixin.qq.com, sh.api.weixin.qq.com, sz.open.weixin.qq.com, a.weixin.qq.com, mp.weixin.qq.com]
+2018-05-30 10:44:10,104 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  issuer principal: CN=GeoTrust SSL CA - G3, O=GeoTrust Inc., C=US
+2018-05-30 10:44:10,116 [main] DEBUG org.apache.http.impl.conn.DefaultHttpClientConnectionOperator  - Connection established 192.168.0.107:52760<->58.246.220.31:443
+2018-05-30 10:44:10,116 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Executing request GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=011fnbbf2DNC9C0dyddf2spubf2fnbbe&grant_type=authorization_code HTTP/1.1
+2018-05-30 10:44:10,116 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Target auth state: UNCHALLENGED
+2018-05-30 10:44:10,117 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Proxy auth state: UNCHALLENGED
+2018-05-30 10:44:10,118 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=011fnbbf2DNC9C0dyddf2spubf2fnbbe&grant_type=authorization_code HTTP/1.1
+2018-05-30 10:44:10,118 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Host: api.weixin.qq.com
+2018-05-30 10:44:10,118 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Connection: Keep-Alive
+2018-05-30 10:44:10,118 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_45)
+2018-05-30 10:44:10,118 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Accept-Encoding: gzip,deflate
+2018-05-30 10:44:10,118 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=011fnbbf2DNC9C0dyddf2spubf2fnbbe&grant_type=authorization_code HTTP/1.1[\r][\n]"
+2018-05-30 10:44:10,119 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Host: api.weixin.qq.com[\r][\n]"
+2018-05-30 10:44:10,119 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Connection: Keep-Alive[\r][\n]"
+2018-05-30 10:44:10,119 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_45)[\r][\n]"
+2018-05-30 10:44:10,119 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Accept-Encoding: gzip,deflate[\r][\n]"
+2018-05-30 10:44:10,119 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "[\r][\n]"
+2018-05-30 10:44:10,169 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "HTTP/1.1 200 OK[\r][\n]"
+2018-05-30 10:44:10,170 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Connection: keep-alive[\r][\n]"
+2018-05-30 10:44:10,170 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Content-Type: text/plain[\r][\n]"
+2018-05-30 10:44:10,170 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Date: Wed, 30 May 2018 02:44:10 GMT[\r][\n]"
+2018-05-30 10:44:10,170 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Content-Length: 77[\r][\n]"
+2018-05-30 10:44:10,170 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "[\r][\n]"
+2018-05-30 10:44:10,170 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "{"errcode":40163,"errmsg":"code been used, hints: [ req_id: UW7W70249th24 ]"}"
+2018-05-30 10:44:10,172 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << HTTP/1.1 200 OK
+2018-05-30 10:44:10,172 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Connection: keep-alive
+2018-05-30 10:44:10,172 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Content-Type: text/plain
+2018-05-30 10:44:10,172 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Date: Wed, 30 May 2018 02:44:10 GMT
+2018-05-30 10:44:10,172 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Content-Length: 77
+2018-05-30 10:44:10,175 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Connection can be kept alive indefinitely
+2018-05-30 10:44:10,180 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection [id: 0][route: {s}->https://api.weixin.qq.com:443] can be kept alive indefinitely
+2018-05-30 10:44:10,180 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection released: [id: 0][route: {s}->https://api.weixin.qq.com:443][total kept alive: 1; route allocated: 1 of 100; total allocated: 1 of 200]
+2018-05-30 10:44:32,449 [main] DEBUG org.apache.http.client.protocol.RequestAddCookies  - CookieSpec selected: default
+2018-05-30 10:44:32,462 [main] DEBUG org.apache.http.client.protocol.RequestAuthCache  - Auth cache not set in the context
+2018-05-30 10:44:32,463 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection request: [route: {s}->https://api.weixin.qq.com:443][total kept alive: 0; route allocated: 0 of 100; total allocated: 0 of 200]
+2018-05-30 10:44:32,477 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection leased: [id: 0][route: {s}->https://api.weixin.qq.com:443][total kept alive: 0; route allocated: 1 of 100; total allocated: 1 of 200]
+2018-05-30 10:44:32,479 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Opening connection {s}->https://api.weixin.qq.com:443
+2018-05-30 10:44:32,483 [main] DEBUG org.apache.http.impl.conn.DefaultHttpClientConnectionOperator  - Connecting to api.weixin.qq.com/58.246.220.31:443
+2018-05-30 10:44:32,483 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Connecting socket to api.weixin.qq.com/58.246.220.31:443 with timeout 0
+2018-05-30 10:44:32,638 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Enabled protocols: [TLSv1]
+2018-05-30 10:44:32,638 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Enabled cipher suites:[TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA, TLS_RSA_WITH_AES_128_CBC_SHA, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_DSS_WITH_AES_128_CBC_SHA, TLS_ECDHE_ECDSA_WITH_RC4_128_SHA, TLS_ECDHE_RSA_WITH_RC4_128_SHA, SSL_RSA_WITH_RC4_128_SHA, TLS_ECDH_ECDSA_WITH_RC4_128_SHA, TLS_ECDH_RSA_WITH_RC4_128_SHA, TLS_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_RC4_128_MD5, TLS_EMPTY_RENEGOTIATION_INFO_SCSV]
+2018-05-30 10:44:32,638 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Starting handshake
+2018-05-30 10:44:32,754 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Secure session established
+2018-05-30 10:44:32,755 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  negotiated protocol: TLSv1
+2018-05-30 10:44:32,755 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  negotiated cipher suite: TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
+2018-05-30 10:44:32,755 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  peer principal: CN=mp.weixin.qq.com, OU=R&D, O=Shenzhen Tencent Computer Systems Company Limited, L=Shenzhen, ST=Guangdong, C=CN
+2018-05-30 10:44:32,755 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  peer alternative names: [developers.weixin.qq.com, ad.weixin.qq.com, game.weixin.qq.com, as.weixin.qq.com, hk.open.weixin.qq.com, open.weixin.qq.com, api.weixin.qq.com, sz.api.weixin.qq.com, long.open.weixin.qq.com, mp.weixinbridge.com, servicewechat.com, hk.mp.weixin.qq.com, sz.mp.weixin.qq.com, hk.api.weixin.qq.com, sh.api.weixin.qq.com, sz.open.weixin.qq.com, a.weixin.qq.com, mp.weixin.qq.com]
+2018-05-30 10:44:32,755 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  issuer principal: CN=GeoTrust SSL CA - G3, O=GeoTrust Inc., C=US
+2018-05-30 10:44:32,770 [main] DEBUG org.apache.http.impl.conn.DefaultHttpClientConnectionOperator  - Connection established 192.168.0.107:52768<->58.246.220.31:443
+2018-05-30 10:44:32,770 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Executing request GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=011fnbbf2DNC9C0dyddf2spubf2fnbbe&grant_type=authorization_code HTTP/1.1
+2018-05-30 10:44:32,770 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Target auth state: UNCHALLENGED
+2018-05-30 10:44:32,770 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Proxy auth state: UNCHALLENGED
+2018-05-30 10:44:32,773 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=011fnbbf2DNC9C0dyddf2spubf2fnbbe&grant_type=authorization_code HTTP/1.1
+2018-05-30 10:44:32,773 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Host: api.weixin.qq.com
+2018-05-30 10:44:32,773 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Connection: Keep-Alive
+2018-05-30 10:44:32,773 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_45)
+2018-05-30 10:44:32,773 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Accept-Encoding: gzip,deflate
+2018-05-30 10:44:32,773 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=011fnbbf2DNC9C0dyddf2spubf2fnbbe&grant_type=authorization_code HTTP/1.1[\r][\n]"
+2018-05-30 10:44:32,773 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Host: api.weixin.qq.com[\r][\n]"
+2018-05-30 10:44:32,773 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Connection: Keep-Alive[\r][\n]"
+2018-05-30 10:44:32,773 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_45)[\r][\n]"
+2018-05-30 10:44:32,773 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Accept-Encoding: gzip,deflate[\r][\n]"
+2018-05-30 10:44:32,773 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "[\r][\n]"
+2018-05-30 10:44:32,823 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "HTTP/1.1 200 OK[\r][\n]"
+2018-05-30 10:44:32,823 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Connection: keep-alive[\r][\n]"
+2018-05-30 10:44:32,823 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Content-Type: text/plain[\r][\n]"
+2018-05-30 10:44:32,823 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Date: Wed, 30 May 2018 02:44:32 GMT[\r][\n]"
+2018-05-30 10:44:32,823 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Content-Length: 78[\r][\n]"
+2018-05-30 10:44:32,823 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "[\r][\n]"
+2018-05-30 10:44:32,823 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "{"errcode":40163,"errmsg":"code been used, hints: [ req_id: SuD_.A0272th24 ]"}"
+2018-05-30 10:44:32,825 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << HTTP/1.1 200 OK
+2018-05-30 10:44:32,825 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Connection: keep-alive
+2018-05-30 10:44:32,825 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Content-Type: text/plain
+2018-05-30 10:44:32,825 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Date: Wed, 30 May 2018 02:44:32 GMT
+2018-05-30 10:44:32,826 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Content-Length: 78
+2018-05-30 10:44:32,829 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Connection can be kept alive indefinitely
+2018-05-30 10:44:32,833 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection [id: 0][route: {s}->https://api.weixin.qq.com:443] can be kept alive indefinitely
+2018-05-30 10:44:32,833 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection released: [id: 0][route: {s}->https://api.weixin.qq.com:443][total kept alive: 1; route allocated: 1 of 100; total allocated: 1 of 200]
+2018-05-30 10:44:32,906 [main] DEBUG org.apache.http.client.protocol.RequestAddCookies  - CookieSpec selected: default
+2018-05-30 10:44:32,906 [main] DEBUG org.apache.http.client.protocol.RequestAuthCache  - Auth cache not set in the context
+2018-05-30 10:44:32,906 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection request: [route: {s}->https://api.weixin.qq.com:443][total kept alive: 1; route allocated: 1 of 100; total allocated: 1 of 200]
+2018-05-30 10:44:32,906 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection leased: [id: 0][route: {s}->https://api.weixin.qq.com:443][total kept alive: 0; route allocated: 1 of 100; total allocated: 1 of 200]
+2018-05-30 10:44:32,906 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Executing request GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=011fnbbf2DNC9C0dyddf2spubf2fnbbe&grant_type=authorization_code HTTP/1.1
+2018-05-30 10:44:32,906 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Target auth state: UNCHALLENGED
+2018-05-30 10:44:32,906 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Proxy auth state: UNCHALLENGED
+2018-05-30 10:44:32,907 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=011fnbbf2DNC9C0dyddf2spubf2fnbbe&grant_type=authorization_code HTTP/1.1
+2018-05-30 10:44:32,907 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Host: api.weixin.qq.com
+2018-05-30 10:44:32,907 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Connection: Keep-Alive
+2018-05-30 10:44:32,907 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_45)
+2018-05-30 10:44:32,907 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Accept-Encoding: gzip,deflate
+2018-05-30 10:44:32,907 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=011fnbbf2DNC9C0dyddf2spubf2fnbbe&grant_type=authorization_code HTTP/1.1[\r][\n]"
+2018-05-30 10:44:32,907 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Host: api.weixin.qq.com[\r][\n]"
+2018-05-30 10:44:32,907 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Connection: Keep-Alive[\r][\n]"
+2018-05-30 10:44:32,907 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_45)[\r][\n]"
+2018-05-30 10:44:32,907 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Accept-Encoding: gzip,deflate[\r][\n]"
+2018-05-30 10:44:32,907 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "[\r][\n]"
+2018-05-30 10:44:32,968 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "HTTP/1.1 200 OK[\r][\n]"
+2018-05-30 10:44:32,968 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Connection: keep-alive[\r][\n]"
+2018-05-30 10:44:32,968 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Content-Type: text/plain[\r][\n]"
+2018-05-30 10:44:32,968 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Date: Wed, 30 May 2018 02:44:32 GMT[\r][\n]"
+2018-05-30 10:44:32,969 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Content-Length: 78[\r][\n]"
+2018-05-30 10:44:32,969 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "[\r][\n]"
+2018-05-30 10:44:32,969 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "{"errcode":40163,"errmsg":"code been used, hints: [ req_id: n1MTZa0272th21 ]"}"
+2018-05-30 10:44:32,969 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << HTTP/1.1 200 OK
+2018-05-30 10:44:32,969 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Connection: keep-alive
+2018-05-30 10:44:32,969 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Content-Type: text/plain
+2018-05-30 10:44:32,969 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Date: Wed, 30 May 2018 02:44:32 GMT
+2018-05-30 10:44:32,969 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Content-Length: 78
+2018-05-30 10:44:32,969 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Connection can be kept alive indefinitely
+2018-05-30 10:44:32,969 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection [id: 0][route: {s}->https://api.weixin.qq.com:443] can be kept alive indefinitely
+2018-05-30 10:44:32,969 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection released: [id: 0][route: {s}->https://api.weixin.qq.com:443][total kept alive: 1; route allocated: 1 of 100; total allocated: 1 of 200]
+2018-05-30 10:50:17,141 [main] DEBUG org.apache.http.client.protocol.RequestAddCookies  - CookieSpec selected: default
+2018-05-30 10:50:17,154 [main] DEBUG org.apache.http.client.protocol.RequestAuthCache  - Auth cache not set in the context
+2018-05-30 10:50:17,155 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection request: [route: {s}->https://api.weixin.qq.com:443][total kept alive: 0; route allocated: 0 of 100; total allocated: 0 of 200]
+2018-05-30 10:50:17,170 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection leased: [id: 0][route: {s}->https://api.weixin.qq.com:443][total kept alive: 0; route allocated: 1 of 100; total allocated: 1 of 200]
+2018-05-30 10:50:17,171 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Opening connection {s}->https://api.weixin.qq.com:443
+2018-05-30 10:50:17,182 [main] DEBUG org.apache.http.impl.conn.DefaultHttpClientConnectionOperator  - Connecting to api.weixin.qq.com/58.246.220.31:443
+2018-05-30 10:50:17,182 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Connecting socket to api.weixin.qq.com/58.246.220.31:443 with timeout 0
+2018-05-30 10:50:17,324 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Enabled protocols: [TLSv1]
+2018-05-30 10:50:17,324 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Enabled cipher suites:[TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA, TLS_RSA_WITH_AES_128_CBC_SHA, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_DSS_WITH_AES_128_CBC_SHA, TLS_ECDHE_ECDSA_WITH_RC4_128_SHA, TLS_ECDHE_RSA_WITH_RC4_128_SHA, SSL_RSA_WITH_RC4_128_SHA, TLS_ECDH_ECDSA_WITH_RC4_128_SHA, TLS_ECDH_RSA_WITH_RC4_128_SHA, TLS_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_RC4_128_MD5, TLS_EMPTY_RENEGOTIATION_INFO_SCSV]
+2018-05-30 10:50:17,325 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Starting handshake
+2018-05-30 10:50:17,432 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Secure session established
+2018-05-30 10:50:17,432 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  negotiated protocol: TLSv1
+2018-05-30 10:50:17,432 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  negotiated cipher suite: TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
+2018-05-30 10:50:17,433 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  peer principal: CN=mp.weixin.qq.com, OU=R&D, O=Shenzhen Tencent Computer Systems Company Limited, L=Shenzhen, ST=Guangdong, C=CN
+2018-05-30 10:50:17,433 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  peer alternative names: [developers.weixin.qq.com, ad.weixin.qq.com, game.weixin.qq.com, as.weixin.qq.com, hk.open.weixin.qq.com, open.weixin.qq.com, api.weixin.qq.com, sz.api.weixin.qq.com, long.open.weixin.qq.com, mp.weixinbridge.com, servicewechat.com, hk.mp.weixin.qq.com, sz.mp.weixin.qq.com, hk.api.weixin.qq.com, sh.api.weixin.qq.com, sz.open.weixin.qq.com, a.weixin.qq.com, mp.weixin.qq.com]
+2018-05-30 10:50:17,433 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  issuer principal: CN=GeoTrust SSL CA - G3, O=GeoTrust Inc., C=US
+2018-05-30 10:50:17,446 [main] DEBUG org.apache.http.impl.conn.DefaultHttpClientConnectionOperator  - Connection established 192.168.0.107:52993<->58.246.220.31:443
+2018-05-30 10:50:17,446 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Executing request GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=081DCDMf1F2QPz0qJxPf1xRjMf1DCDM2&grant_type=authorization_code HTTP/1.1
+2018-05-30 10:50:17,446 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Target auth state: UNCHALLENGED
+2018-05-30 10:50:17,447 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Proxy auth state: UNCHALLENGED
+2018-05-30 10:50:17,448 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=081DCDMf1F2QPz0qJxPf1xRjMf1DCDM2&grant_type=authorization_code HTTP/1.1
+2018-05-30 10:50:17,448 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Host: api.weixin.qq.com
+2018-05-30 10:50:17,448 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Connection: Keep-Alive
+2018-05-30 10:50:17,448 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_45)
+2018-05-30 10:50:17,448 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Accept-Encoding: gzip,deflate
+2018-05-30 10:50:17,448 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=081DCDMf1F2QPz0qJxPf1xRjMf1DCDM2&grant_type=authorization_code HTTP/1.1[\r][\n]"
+2018-05-30 10:50:17,448 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Host: api.weixin.qq.com[\r][\n]"
+2018-05-30 10:50:17,448 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Connection: Keep-Alive[\r][\n]"
+2018-05-30 10:50:17,448 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_45)[\r][\n]"
+2018-05-30 10:50:17,449 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Accept-Encoding: gzip,deflate[\r][\n]"
+2018-05-30 10:50:17,449 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "[\r][\n]"
+2018-05-30 10:50:17,531 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "HTTP/1.1 200 OK[\r][\n]"
+2018-05-30 10:50:17,531 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Connection: keep-alive[\r][\n]"
+2018-05-30 10:50:17,531 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Content-Type: text/plain[\r][\n]"
+2018-05-30 10:50:17,531 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Date: Wed, 30 May 2018 02:50:17 GMT[\r][\n]"
+2018-05-30 10:50:17,532 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Content-Length: 82[\r][\n]"
+2018-05-30 10:50:17,532 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "[\r][\n]"
+2018-05-30 10:50:17,532 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "{"session_key":"NSLRcknUk4DmRuUFnX8a+w==","openid":"om9W35Siht5C9hWmXkbYkXB2f7xI"}"
+2018-05-30 10:50:17,533 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << HTTP/1.1 200 OK
+2018-05-30 10:50:17,534 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Connection: keep-alive
+2018-05-30 10:50:17,534 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Content-Type: text/plain
+2018-05-30 10:50:17,534 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Date: Wed, 30 May 2018 02:50:17 GMT
+2018-05-30 10:50:17,534 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Content-Length: 82
+2018-05-30 10:50:17,537 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Connection can be kept alive indefinitely
+2018-05-30 10:50:17,542 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection [id: 0][route: {s}->https://api.weixin.qq.com:443] can be kept alive indefinitely
+2018-05-30 10:50:17,543 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection released: [id: 0][route: {s}->https://api.weixin.qq.com:443][total kept alive: 1; route allocated: 1 of 100; total allocated: 1 of 200]
+2018-05-30 10:51:23,786 [main] DEBUG org.apache.http.client.protocol.RequestAddCookies  - CookieSpec selected: default
+2018-05-30 10:51:23,799 [main] DEBUG org.apache.http.client.protocol.RequestAuthCache  - Auth cache not set in the context
+2018-05-30 10:51:23,800 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection request: [route: {s}->https://api.weixin.qq.com:443][total kept alive: 0; route allocated: 0 of 100; total allocated: 0 of 200]
+2018-05-30 10:51:23,814 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection leased: [id: 0][route: {s}->https://api.weixin.qq.com:443][total kept alive: 0; route allocated: 1 of 100; total allocated: 1 of 200]
+2018-05-30 10:51:23,816 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Opening connection {s}->https://api.weixin.qq.com:443
+2018-05-30 10:51:23,820 [main] DEBUG org.apache.http.impl.conn.DefaultHttpClientConnectionOperator  - Connecting to api.weixin.qq.com/58.246.220.31:443
+2018-05-30 10:51:23,820 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Connecting socket to api.weixin.qq.com/58.246.220.31:443 with timeout 0
+2018-05-30 10:51:23,966 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Enabled protocols: [TLSv1]
+2018-05-30 10:51:23,966 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Enabled cipher suites:[TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA, TLS_RSA_WITH_AES_128_CBC_SHA, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_DSS_WITH_AES_128_CBC_SHA, TLS_ECDHE_ECDSA_WITH_RC4_128_SHA, TLS_ECDHE_RSA_WITH_RC4_128_SHA, SSL_RSA_WITH_RC4_128_SHA, TLS_ECDH_ECDSA_WITH_RC4_128_SHA, TLS_ECDH_RSA_WITH_RC4_128_SHA, TLS_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_RC4_128_MD5, TLS_EMPTY_RENEGOTIATION_INFO_SCSV]
+2018-05-30 10:51:23,966 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Starting handshake
+2018-05-30 10:51:24,116 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Secure session established
+2018-05-30 10:51:24,116 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  negotiated protocol: TLSv1
+2018-05-30 10:51:24,116 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  negotiated cipher suite: TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
+2018-05-30 10:51:24,117 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  peer principal: CN=mp.weixin.qq.com, OU=R&D, O=Shenzhen Tencent Computer Systems Company Limited, L=Shenzhen, ST=Guangdong, C=CN
+2018-05-30 10:51:24,117 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  peer alternative names: [developers.weixin.qq.com, ad.weixin.qq.com, game.weixin.qq.com, as.weixin.qq.com, hk.open.weixin.qq.com, open.weixin.qq.com, api.weixin.qq.com, sz.api.weixin.qq.com, long.open.weixin.qq.com, mp.weixinbridge.com, servicewechat.com, hk.mp.weixin.qq.com, sz.mp.weixin.qq.com, hk.api.weixin.qq.com, sh.api.weixin.qq.com, sz.open.weixin.qq.com, a.weixin.qq.com, mp.weixin.qq.com]
+2018-05-30 10:51:24,117 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  issuer principal: CN=GeoTrust SSL CA - G3, O=GeoTrust Inc., C=US
+2018-05-30 10:51:24,129 [main] DEBUG org.apache.http.impl.conn.DefaultHttpClientConnectionOperator  - Connection established 192.168.0.107:53038<->58.246.220.31:443
+2018-05-30 10:51:24,129 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Executing request GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=081DCDMf1F2QPz0qJxPf1xRjMf1DCDM2&grant_type=authorization_code HTTP/1.1
+2018-05-30 10:51:24,129 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Target auth state: UNCHALLENGED
+2018-05-30 10:51:24,130 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Proxy auth state: UNCHALLENGED
+2018-05-30 10:51:24,131 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=081DCDMf1F2QPz0qJxPf1xRjMf1DCDM2&grant_type=authorization_code HTTP/1.1
+2018-05-30 10:51:24,131 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Host: api.weixin.qq.com
+2018-05-30 10:51:24,131 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Connection: Keep-Alive
+2018-05-30 10:51:24,131 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_45)
+2018-05-30 10:51:24,131 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Accept-Encoding: gzip,deflate
+2018-05-30 10:51:24,131 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=081DCDMf1F2QPz0qJxPf1xRjMf1DCDM2&grant_type=authorization_code HTTP/1.1[\r][\n]"
+2018-05-30 10:51:24,131 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Host: api.weixin.qq.com[\r][\n]"
+2018-05-30 10:51:24,131 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Connection: Keep-Alive[\r][\n]"
+2018-05-30 10:51:24,131 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_45)[\r][\n]"
+2018-05-30 10:51:24,131 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Accept-Encoding: gzip,deflate[\r][\n]"
+2018-05-30 10:51:24,131 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "[\r][\n]"
+2018-05-30 10:51:24,189 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "HTTP/1.1 200 OK[\r][\n]"
+2018-05-30 10:51:24,189 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Connection: keep-alive[\r][\n]"
+2018-05-30 10:51:24,189 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Content-Type: text/plain[\r][\n]"
+2018-05-30 10:51:24,189 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Date: Wed, 30 May 2018 02:51:24 GMT[\r][\n]"
+2018-05-30 10:51:24,189 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Content-Length: 78[\r][\n]"
+2018-05-30 10:51:24,189 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "[\r][\n]"
+2018-05-30 10:51:24,189 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "{"errcode":40163,"errmsg":"code been used, hints: [ req_id: lmWKja0684th21 ]"}"
+2018-05-30 10:51:24,191 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << HTTP/1.1 200 OK
+2018-05-30 10:51:24,191 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Connection: keep-alive
+2018-05-30 10:51:24,192 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Content-Type: text/plain
+2018-05-30 10:51:24,192 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Date: Wed, 30 May 2018 02:51:24 GMT
+2018-05-30 10:51:24,192 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Content-Length: 78
+2018-05-30 10:51:24,195 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Connection can be kept alive indefinitely
+2018-05-30 10:51:24,199 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection [id: 0][route: {s}->https://api.weixin.qq.com:443] can be kept alive indefinitely
+2018-05-30 10:51:24,199 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection released: [id: 0][route: {s}->https://api.weixin.qq.com:443][total kept alive: 1; route allocated: 1 of 100; total allocated: 1 of 200]
+2018-05-30 12:44:32,889 [main] DEBUG org.apache.http.client.protocol.RequestAddCookies  - CookieSpec selected: default
+2018-05-30 12:44:32,903 [main] DEBUG org.apache.http.client.protocol.RequestAuthCache  - Auth cache not set in the context
+2018-05-30 12:44:32,904 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection request: [route: {s}->https://api.weixin.qq.com:443][total kept alive: 0; route allocated: 0 of 100; total allocated: 0 of 200]
+2018-05-30 12:44:32,918 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection leased: [id: 0][route: {s}->https://api.weixin.qq.com:443][total kept alive: 0; route allocated: 1 of 100; total allocated: 1 of 200]
+2018-05-30 12:44:32,919 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Opening connection {s}->https://api.weixin.qq.com:443
+2018-05-30 12:44:32,930 [main] DEBUG org.apache.http.impl.conn.DefaultHttpClientConnectionOperator  - Connecting to api.weixin.qq.com/58.246.220.31:443
+2018-05-30 12:44:32,930 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Connecting socket to api.weixin.qq.com/58.246.220.31:443 with timeout 0
+2018-05-30 12:44:33,077 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Enabled protocols: [TLSv1]
+2018-05-30 12:44:33,077 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Enabled cipher suites:[TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA, TLS_RSA_WITH_AES_128_CBC_SHA, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_DSS_WITH_AES_128_CBC_SHA, TLS_ECDHE_ECDSA_WITH_RC4_128_SHA, TLS_ECDHE_RSA_WITH_RC4_128_SHA, SSL_RSA_WITH_RC4_128_SHA, TLS_ECDH_ECDSA_WITH_RC4_128_SHA, TLS_ECDH_RSA_WITH_RC4_128_SHA, TLS_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_RC4_128_MD5, TLS_EMPTY_RENEGOTIATION_INFO_SCSV]
+2018-05-30 12:44:33,077 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Starting handshake
+2018-05-30 12:44:33,189 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Secure session established
+2018-05-30 12:44:33,189 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  negotiated protocol: TLSv1
+2018-05-30 12:44:33,189 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  negotiated cipher suite: TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
+2018-05-30 12:44:33,190 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  peer principal: CN=mp.weixin.qq.com, OU=R&D, O=Shenzhen Tencent Computer Systems Company Limited, L=Shenzhen, ST=Guangdong, C=CN
+2018-05-30 12:44:33,190 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  peer alternative names: [developers.weixin.qq.com, ad.weixin.qq.com, game.weixin.qq.com, as.weixin.qq.com, hk.open.weixin.qq.com, open.weixin.qq.com, api.weixin.qq.com, sz.api.weixin.qq.com, long.open.weixin.qq.com, mp.weixinbridge.com, servicewechat.com, hk.mp.weixin.qq.com, sz.mp.weixin.qq.com, hk.api.weixin.qq.com, sh.api.weixin.qq.com, sz.open.weixin.qq.com, a.weixin.qq.com, mp.weixin.qq.com]
+2018-05-30 12:44:33,190 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  issuer principal: CN=GeoTrust SSL CA - G3, O=GeoTrust Inc., C=US
+2018-05-30 12:44:33,202 [main] DEBUG org.apache.http.impl.conn.DefaultHttpClientConnectionOperator  - Connection established 192.168.0.107:55420<->58.246.220.31:443
+2018-05-30 12:44:33,202 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Executing request GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=081RwuOS1sP2j81fYbSS1YNROS1RwuOf&grant_type=authorization_code HTTP/1.1
+2018-05-30 12:44:33,202 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Target auth state: UNCHALLENGED
+2018-05-30 12:44:33,202 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Proxy auth state: UNCHALLENGED
+2018-05-30 12:44:33,203 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=081RwuOS1sP2j81fYbSS1YNROS1RwuOf&grant_type=authorization_code HTTP/1.1
+2018-05-30 12:44:33,203 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Host: api.weixin.qq.com
+2018-05-30 12:44:33,204 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Connection: Keep-Alive
+2018-05-30 12:44:33,204 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_45)
+2018-05-30 12:44:33,204 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Accept-Encoding: gzip,deflate
+2018-05-30 12:44:33,204 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=081RwuOS1sP2j81fYbSS1YNROS1RwuOf&grant_type=authorization_code HTTP/1.1[\r][\n]"
+2018-05-30 12:44:33,204 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Host: api.weixin.qq.com[\r][\n]"
+2018-05-30 12:44:33,204 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Connection: Keep-Alive[\r][\n]"
+2018-05-30 12:44:33,204 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_45)[\r][\n]"
+2018-05-30 12:44:33,204 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Accept-Encoding: gzip,deflate[\r][\n]"
+2018-05-30 12:44:33,204 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "[\r][\n]"
+2018-05-30 12:44:33,267 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "HTTP/1.1 200 OK[\r][\n]"
+2018-05-30 12:44:33,267 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Connection: keep-alive[\r][\n]"
+2018-05-30 12:44:33,267 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Content-Type: text/plain[\r][\n]"
+2018-05-30 12:44:33,267 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Date: Wed, 30 May 2018 04:44:32 GMT[\r][\n]"
+2018-05-30 12:44:33,267 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Content-Length: 76[\r][\n]"
+2018-05-30 12:44:33,267 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "[\r][\n]"
+2018-05-30 12:44:33,267 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "{"errcode":40029,"errmsg":"invalid code, hints: [ req_id: gVwEOa0472th42 ]"}"
+2018-05-30 12:44:33,269 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << HTTP/1.1 200 OK
+2018-05-30 12:44:33,269 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Connection: keep-alive
+2018-05-30 12:44:33,269 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Content-Type: text/plain
+2018-05-30 12:44:33,269 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Date: Wed, 30 May 2018 04:44:32 GMT
+2018-05-30 12:44:33,269 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Content-Length: 76
+2018-05-30 12:44:33,272 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Connection can be kept alive indefinitely
+2018-05-30 12:44:33,278 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection [id: 0][route: {s}->https://api.weixin.qq.com:443] can be kept alive indefinitely
+2018-05-30 12:44:33,278 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection released: [id: 0][route: {s}->https://api.weixin.qq.com:443][total kept alive: 1; route allocated: 1 of 100; total allocated: 1 of 200]
+2018-05-30 12:44:44,439 [main] DEBUG org.apache.http.client.protocol.RequestAddCookies  - CookieSpec selected: default
+2018-05-30 12:44:44,452 [main] DEBUG org.apache.http.client.protocol.RequestAuthCache  - Auth cache not set in the context
+2018-05-30 12:44:44,453 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection request: [route: {s}->https://api.weixin.qq.com:443][total kept alive: 0; route allocated: 0 of 100; total allocated: 0 of 200]
+2018-05-30 12:44:44,467 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection leased: [id: 0][route: {s}->https://api.weixin.qq.com:443][total kept alive: 0; route allocated: 1 of 100; total allocated: 1 of 200]
+2018-05-30 12:44:44,469 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Opening connection {s}->https://api.weixin.qq.com:443
+2018-05-30 12:44:44,473 [main] DEBUG org.apache.http.impl.conn.DefaultHttpClientConnectionOperator  - Connecting to api.weixin.qq.com/58.246.220.31:443
+2018-05-30 12:44:44,473 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Connecting socket to api.weixin.qq.com/58.246.220.31:443 with timeout 0
+2018-05-30 12:44:44,611 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Enabled protocols: [TLSv1]
+2018-05-30 12:44:44,611 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Enabled cipher suites:[TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA, TLS_RSA_WITH_AES_128_CBC_SHA, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_DSS_WITH_AES_128_CBC_SHA, TLS_ECDHE_ECDSA_WITH_RC4_128_SHA, TLS_ECDHE_RSA_WITH_RC4_128_SHA, SSL_RSA_WITH_RC4_128_SHA, TLS_ECDH_ECDSA_WITH_RC4_128_SHA, TLS_ECDH_RSA_WITH_RC4_128_SHA, TLS_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_RC4_128_MD5, TLS_EMPTY_RENEGOTIATION_INFO_SCSV]
+2018-05-30 12:44:44,611 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Starting handshake
+2018-05-30 12:44:44,736 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Secure session established
+2018-05-30 12:44:44,736 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  negotiated protocol: TLSv1
+2018-05-30 12:44:44,736 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  negotiated cipher suite: TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
+2018-05-30 12:44:44,737 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  peer principal: CN=mp.weixin.qq.com, OU=R&D, O=Shenzhen Tencent Computer Systems Company Limited, L=Shenzhen, ST=Guangdong, C=CN
+2018-05-30 12:44:44,737 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  peer alternative names: [developers.weixin.qq.com, ad.weixin.qq.com, game.weixin.qq.com, as.weixin.qq.com, hk.open.weixin.qq.com, open.weixin.qq.com, api.weixin.qq.com, sz.api.weixin.qq.com, long.open.weixin.qq.com, mp.weixinbridge.com, servicewechat.com, hk.mp.weixin.qq.com, sz.mp.weixin.qq.com, hk.api.weixin.qq.com, sh.api.weixin.qq.com, sz.open.weixin.qq.com, a.weixin.qq.com, mp.weixin.qq.com]
+2018-05-30 12:44:44,737 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  issuer principal: CN=GeoTrust SSL CA - G3, O=GeoTrust Inc., C=US
+2018-05-30 12:44:44,749 [main] DEBUG org.apache.http.impl.conn.DefaultHttpClientConnectionOperator  - Connection established 192.168.0.107:55423<->58.246.220.31:443
+2018-05-30 12:44:44,749 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Executing request GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=081RwuOS1sP2j81fYbSS1YNROS1RwuOf&grant_type=authorization_code HTTP/1.1
+2018-05-30 12:44:44,749 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Target auth state: UNCHALLENGED
+2018-05-30 12:44:44,750 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Proxy auth state: UNCHALLENGED
+2018-05-30 12:44:44,751 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=081RwuOS1sP2j81fYbSS1YNROS1RwuOf&grant_type=authorization_code HTTP/1.1
+2018-05-30 12:44:44,751 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Host: api.weixin.qq.com
+2018-05-30 12:44:44,751 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Connection: Keep-Alive
+2018-05-30 12:44:44,751 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_45)
+2018-05-30 12:44:44,751 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Accept-Encoding: gzip,deflate
+2018-05-30 12:44:44,751 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=081RwuOS1sP2j81fYbSS1YNROS1RwuOf&grant_type=authorization_code HTTP/1.1[\r][\n]"
+2018-05-30 12:44:44,751 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Host: api.weixin.qq.com[\r][\n]"
+2018-05-30 12:44:44,751 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Connection: Keep-Alive[\r][\n]"
+2018-05-30 12:44:44,751 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_45)[\r][\n]"
+2018-05-30 12:44:44,751 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Accept-Encoding: gzip,deflate[\r][\n]"
+2018-05-30 12:44:44,751 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "[\r][\n]"
+2018-05-30 12:44:44,806 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "HTTP/1.1 200 OK[\r][\n]"
+2018-05-30 12:44:44,806 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Connection: keep-alive[\r][\n]"
+2018-05-30 12:44:44,806 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Content-Type: text/plain[\r][\n]"
+2018-05-30 12:44:44,806 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Date: Wed, 30 May 2018 04:44:44 GMT[\r][\n]"
+2018-05-30 12:44:44,806 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Content-Length: 76[\r][\n]"
+2018-05-30 12:44:44,806 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "[\r][\n]"
+2018-05-30 12:44:44,806 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "{"errcode":40029,"errmsg":"invalid code, hints: [ req_id: WEeSpA0484th31 ]"}"
+2018-05-30 12:44:44,808 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << HTTP/1.1 200 OK
+2018-05-30 12:44:44,808 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Connection: keep-alive
+2018-05-30 12:44:44,808 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Content-Type: text/plain
+2018-05-30 12:44:44,808 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Date: Wed, 30 May 2018 04:44:44 GMT
+2018-05-30 12:44:44,808 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Content-Length: 76
+2018-05-30 12:44:44,811 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Connection can be kept alive indefinitely
+2018-05-30 12:44:44,815 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection [id: 0][route: {s}->https://api.weixin.qq.com:443] can be kept alive indefinitely
+2018-05-30 12:44:44,815 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection released: [id: 0][route: {s}->https://api.weixin.qq.com:443][total kept alive: 1; route allocated: 1 of 100; total allocated: 1 of 200]
+2018-05-30 13:45:14,366 [main] DEBUG org.apache.http.client.protocol.RequestAddCookies  - CookieSpec selected: default
+2018-05-30 13:45:14,391 [main] DEBUG org.apache.http.client.protocol.RequestAuthCache  - Auth cache not set in the context
+2018-05-30 13:45:14,392 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection request: [route: {s}->https://api.weixin.qq.com:443][total kept alive: 0; route allocated: 0 of 100; total allocated: 0 of 200]
+2018-05-30 13:45:14,407 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection leased: [id: 0][route: {s}->https://api.weixin.qq.com:443][total kept alive: 0; route allocated: 1 of 100; total allocated: 1 of 200]
+2018-05-30 13:45:14,409 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Opening connection {s}->https://api.weixin.qq.com:443
+2018-05-30 13:45:14,469 [main] DEBUG org.apache.http.impl.conn.DefaultHttpClientConnectionOperator  - Connecting to api.weixin.qq.com/58.246.220.31:443
+2018-05-30 13:45:14,470 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Connecting socket to api.weixin.qq.com/58.246.220.31:443 with timeout 0
+2018-05-30 13:45:14,653 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Enabled protocols: [TLSv1]
+2018-05-30 13:45:14,654 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Enabled cipher suites:[TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA, TLS_RSA_WITH_AES_128_CBC_SHA, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_DSS_WITH_AES_128_CBC_SHA, TLS_ECDHE_ECDSA_WITH_RC4_128_SHA, TLS_ECDHE_RSA_WITH_RC4_128_SHA, SSL_RSA_WITH_RC4_128_SHA, TLS_ECDH_ECDSA_WITH_RC4_128_SHA, TLS_ECDH_RSA_WITH_RC4_128_SHA, TLS_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_RC4_128_MD5, TLS_EMPTY_RENEGOTIATION_INFO_SCSV]
+2018-05-30 13:45:14,654 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Starting handshake
+2018-05-30 13:45:14,814 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Secure session established
+2018-05-30 13:45:14,814 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  negotiated protocol: TLSv1
+2018-05-30 13:45:14,814 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  negotiated cipher suite: TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
+2018-05-30 13:45:14,814 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  peer principal: CN=mp.weixin.qq.com, OU=R&D, O=Shenzhen Tencent Computer Systems Company Limited, L=Shenzhen, ST=Guangdong, C=CN
+2018-05-30 13:45:14,814 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  peer alternative names: [developers.weixin.qq.com, ad.weixin.qq.com, game.weixin.qq.com, as.weixin.qq.com, hk.open.weixin.qq.com, open.weixin.qq.com, api.weixin.qq.com, sz.api.weixin.qq.com, long.open.weixin.qq.com, mp.weixinbridge.com, servicewechat.com, hk.mp.weixin.qq.com, sz.mp.weixin.qq.com, hk.api.weixin.qq.com, sh.api.weixin.qq.com, sz.open.weixin.qq.com, a.weixin.qq.com, mp.weixin.qq.com]
+2018-05-30 13:45:14,815 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  issuer principal: CN=GeoTrust SSL CA - G3, O=GeoTrust Inc., C=US
+2018-05-30 13:45:14,826 [main] DEBUG org.apache.http.impl.conn.DefaultHttpClientConnectionOperator  - Connection established 192.168.0.107:57705<->58.246.220.31:443
+2018-05-30 13:45:14,826 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Executing request GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=08184QWp1XpNwp0PUDWp1gHJWp184QW-&grant_type=authorization_code HTTP/1.1
+2018-05-30 13:45:14,826 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Target auth state: UNCHALLENGED
+2018-05-30 13:45:14,827 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Proxy auth state: UNCHALLENGED
+2018-05-30 13:45:14,828 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=08184QWp1XpNwp0PUDWp1gHJWp184QW-&grant_type=authorization_code HTTP/1.1
+2018-05-30 13:45:14,828 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Host: api.weixin.qq.com
+2018-05-30 13:45:14,828 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Connection: Keep-Alive
+2018-05-30 13:45:14,828 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_45)
+2018-05-30 13:45:14,828 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Accept-Encoding: gzip,deflate
+2018-05-30 13:45:14,828 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=08184QWp1XpNwp0PUDWp1gHJWp184QW-&grant_type=authorization_code HTTP/1.1[\r][\n]"
+2018-05-30 13:45:14,828 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Host: api.weixin.qq.com[\r][\n]"
+2018-05-30 13:45:14,829 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Connection: Keep-Alive[\r][\n]"
+2018-05-30 13:45:14,829 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_45)[\r][\n]"
+2018-05-30 13:45:14,829 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Accept-Encoding: gzip,deflate[\r][\n]"
+2018-05-30 13:45:14,829 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "[\r][\n]"
+2018-05-30 13:45:14,945 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "HTTP/1.1 200 OK[\r][\n]"
+2018-05-30 13:45:14,946 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Connection: keep-alive[\r][\n]"
+2018-05-30 13:45:14,946 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Content-Type: text/plain[\r][\n]"
+2018-05-30 13:45:14,946 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Date: Wed, 30 May 2018 05:45:14 GMT[\r][\n]"
+2018-05-30 13:45:14,946 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Content-Length: 84[\r][\n]"
+2018-05-30 13:45:14,946 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "[\r][\n]"
+2018-05-30 13:45:14,946 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "{"session_key":"su54rIqfdXw\/\/XQLTKTWHw==","openid":"om9W35Siht5C9hWmXkbYkXB2f7xI"}"
+2018-05-30 13:45:14,949 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << HTTP/1.1 200 OK
+2018-05-30 13:45:14,949 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Connection: keep-alive
+2018-05-30 13:45:14,949 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Content-Type: text/plain
+2018-05-30 13:45:14,949 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Date: Wed, 30 May 2018 05:45:14 GMT
+2018-05-30 13:45:14,949 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Content-Length: 84
+2018-05-30 13:45:14,954 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Connection can be kept alive indefinitely
+2018-05-30 13:45:14,960 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection [id: 0][route: {s}->https://api.weixin.qq.com:443] can be kept alive indefinitely
+2018-05-30 13:45:14,960 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection released: [id: 0][route: {s}->https://api.weixin.qq.com:443][total kept alive: 1; route allocated: 1 of 100; total allocated: 1 of 200]
+2018-05-30 13:47:33,815 [main] DEBUG org.apache.http.client.protocol.RequestAddCookies  - CookieSpec selected: default
+2018-05-30 13:47:33,827 [main] DEBUG org.apache.http.client.protocol.RequestAuthCache  - Auth cache not set in the context
+2018-05-30 13:47:33,828 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection request: [route: {s}->https://api.weixin.qq.com:443][total kept alive: 0; route allocated: 0 of 100; total allocated: 0 of 200]
+2018-05-30 13:47:33,842 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection leased: [id: 0][route: {s}->https://api.weixin.qq.com:443][total kept alive: 0; route allocated: 1 of 100; total allocated: 1 of 200]
+2018-05-30 13:47:33,843 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Opening connection {s}->https://api.weixin.qq.com:443
+2018-05-30 13:47:33,848 [main] DEBUG org.apache.http.impl.conn.DefaultHttpClientConnectionOperator  - Connecting to api.weixin.qq.com/58.246.220.31:443
+2018-05-30 13:47:33,848 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Connecting socket to api.weixin.qq.com/58.246.220.31:443 with timeout 0
+2018-05-30 13:47:34,012 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Enabled protocols: [TLSv1]
+2018-05-30 13:47:34,012 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Enabled cipher suites:[TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA, TLS_RSA_WITH_AES_128_CBC_SHA, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_DSS_WITH_AES_128_CBC_SHA, TLS_ECDHE_ECDSA_WITH_RC4_128_SHA, TLS_ECDHE_RSA_WITH_RC4_128_SHA, SSL_RSA_WITH_RC4_128_SHA, TLS_ECDH_ECDSA_WITH_RC4_128_SHA, TLS_ECDH_RSA_WITH_RC4_128_SHA, TLS_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_RC4_128_MD5, TLS_EMPTY_RENEGOTIATION_INFO_SCSV]
+2018-05-30 13:47:34,013 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Starting handshake
+2018-05-30 13:47:34,147 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Secure session established
+2018-05-30 13:47:34,147 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  negotiated protocol: TLSv1
+2018-05-30 13:47:34,147 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  negotiated cipher suite: TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
+2018-05-30 13:47:34,148 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  peer principal: CN=mp.weixin.qq.com, OU=R&D, O=Shenzhen Tencent Computer Systems Company Limited, L=Shenzhen, ST=Guangdong, C=CN
+2018-05-30 13:47:34,148 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  peer alternative names: [developers.weixin.qq.com, ad.weixin.qq.com, game.weixin.qq.com, as.weixin.qq.com, hk.open.weixin.qq.com, open.weixin.qq.com, api.weixin.qq.com, sz.api.weixin.qq.com, long.open.weixin.qq.com, mp.weixinbridge.com, servicewechat.com, hk.mp.weixin.qq.com, sz.mp.weixin.qq.com, hk.api.weixin.qq.com, sh.api.weixin.qq.com, sz.open.weixin.qq.com, a.weixin.qq.com, mp.weixin.qq.com]
+2018-05-30 13:47:34,148 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  issuer principal: CN=GeoTrust SSL CA - G3, O=GeoTrust Inc., C=US
+2018-05-30 13:47:34,159 [main] DEBUG org.apache.http.impl.conn.DefaultHttpClientConnectionOperator  - Connection established 192.168.0.107:57839<->58.246.220.31:443
+2018-05-30 13:47:34,159 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Executing request GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=08184QWp1XpNwp0PUDWp1gHJWp184QW-&grant_type=authorization_code HTTP/1.1
+2018-05-30 13:47:34,159 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Target auth state: UNCHALLENGED
+2018-05-30 13:47:34,159 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Proxy auth state: UNCHALLENGED
+2018-05-30 13:47:34,160 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=08184QWp1XpNwp0PUDWp1gHJWp184QW-&grant_type=authorization_code HTTP/1.1
+2018-05-30 13:47:34,161 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Host: api.weixin.qq.com
+2018-05-30 13:47:34,161 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Connection: Keep-Alive
+2018-05-30 13:47:34,161 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_45)
+2018-05-30 13:47:34,161 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Accept-Encoding: gzip,deflate
+2018-05-30 13:47:34,161 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=08184QWp1XpNwp0PUDWp1gHJWp184QW-&grant_type=authorization_code HTTP/1.1[\r][\n]"
+2018-05-30 13:47:34,161 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Host: api.weixin.qq.com[\r][\n]"
+2018-05-30 13:47:34,161 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Connection: Keep-Alive[\r][\n]"
+2018-05-30 13:47:34,161 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_45)[\r][\n]"
+2018-05-30 13:47:34,161 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Accept-Encoding: gzip,deflate[\r][\n]"
+2018-05-30 13:47:34,161 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "[\r][\n]"
+2018-05-30 13:47:34,222 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "HTTP/1.1 200 OK[\r][\n]"
+2018-05-30 13:47:34,222 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Connection: keep-alive[\r][\n]"
+2018-05-30 13:47:34,223 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Content-Type: text/plain[\r][\n]"
+2018-05-30 13:47:34,223 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Date: Wed, 30 May 2018 05:47:33 GMT[\r][\n]"
+2018-05-30 13:47:34,223 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Content-Length: 78[\r][\n]"
+2018-05-30 13:47:34,223 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "[\r][\n]"
+2018-05-30 13:47:34,223 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "{"errcode":40163,"errmsg":"code been used, hints: [ req_id: 4zTIiA0253th19 ]"}"
+2018-05-30 13:47:34,229 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << HTTP/1.1 200 OK
+2018-05-30 13:47:34,229 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Connection: keep-alive
+2018-05-30 13:47:34,229 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Content-Type: text/plain
+2018-05-30 13:47:34,229 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Date: Wed, 30 May 2018 05:47:33 GMT
+2018-05-30 13:47:34,229 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Content-Length: 78
+2018-05-30 13:47:34,239 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Connection can be kept alive indefinitely
+2018-05-30 13:47:34,249 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection [id: 0][route: {s}->https://api.weixin.qq.com:443] can be kept alive indefinitely
+2018-05-30 13:47:34,250 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection released: [id: 0][route: {s}->https://api.weixin.qq.com:443][total kept alive: 1; route allocated: 1 of 100; total allocated: 1 of 200]
+2018-05-30 14:58:30,399 [main] DEBUG org.apache.http.client.protocol.RequestAddCookies  - CookieSpec selected: default
+2018-05-30 14:58:30,411 [main] DEBUG org.apache.http.client.protocol.RequestAuthCache  - Auth cache not set in the context
+2018-05-30 14:58:30,413 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection request: [route: {s}->https://api.weixin.qq.com:443][total kept alive: 0; route allocated: 0 of 100; total allocated: 0 of 200]
+2018-05-30 14:58:30,427 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection leased: [id: 0][route: {s}->https://api.weixin.qq.com:443][total kept alive: 0; route allocated: 1 of 100; total allocated: 1 of 200]
+2018-05-30 14:58:30,429 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Opening connection {s}->https://api.weixin.qq.com:443
+2018-05-30 14:58:30,439 [main] DEBUG org.apache.http.impl.conn.DefaultHttpClientConnectionOperator  - Connecting to api.weixin.qq.com/58.246.220.31:443
+2018-05-30 14:58:30,439 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Connecting socket to api.weixin.qq.com/58.246.220.31:443 with timeout 0
+2018-05-30 14:58:30,585 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Enabled protocols: [TLSv1]
+2018-05-30 14:58:30,585 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Enabled cipher suites:[TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA, TLS_RSA_WITH_AES_128_CBC_SHA, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_DSS_WITH_AES_128_CBC_SHA, TLS_ECDHE_ECDSA_WITH_RC4_128_SHA, TLS_ECDHE_RSA_WITH_RC4_128_SHA, SSL_RSA_WITH_RC4_128_SHA, TLS_ECDH_ECDSA_WITH_RC4_128_SHA, TLS_ECDH_RSA_WITH_RC4_128_SHA, TLS_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_RC4_128_MD5, TLS_EMPTY_RENEGOTIATION_INFO_SCSV]
+2018-05-30 14:58:30,585 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Starting handshake
+2018-05-30 14:58:30,712 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Secure session established
+2018-05-30 14:58:30,712 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  negotiated protocol: TLSv1
+2018-05-30 14:58:30,712 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  negotiated cipher suite: TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
+2018-05-30 14:58:30,713 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  peer principal: CN=mp.weixin.qq.com, OU=R&D, O=Shenzhen Tencent Computer Systems Company Limited, L=Shenzhen, ST=Guangdong, C=CN
+2018-05-30 14:58:30,713 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  peer alternative names: [developers.weixin.qq.com, ad.weixin.qq.com, game.weixin.qq.com, as.weixin.qq.com, hk.open.weixin.qq.com, open.weixin.qq.com, api.weixin.qq.com, sz.api.weixin.qq.com, long.open.weixin.qq.com, mp.weixinbridge.com, servicewechat.com, hk.mp.weixin.qq.com, sz.mp.weixin.qq.com, hk.api.weixin.qq.com, sh.api.weixin.qq.com, sz.open.weixin.qq.com, a.weixin.qq.com, mp.weixin.qq.com]
+2018-05-30 14:58:30,713 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  issuer principal: CN=GeoTrust SSL CA - G3, O=GeoTrust Inc., C=US
+2018-05-30 14:58:30,726 [main] DEBUG org.apache.http.impl.conn.DefaultHttpClientConnectionOperator  - Connection established 192.168.0.107:61155<->58.246.220.31:443
+2018-05-30 14:58:30,726 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Executing request GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=061abTrU1OwCjW0G8crU1ztSrU1abTra&grant_type=authorization_code HTTP/1.1
+2018-05-30 14:58:30,726 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Target auth state: UNCHALLENGED
+2018-05-30 14:58:30,727 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Proxy auth state: UNCHALLENGED
+2018-05-30 14:58:30,727 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=061abTrU1OwCjW0G8crU1ztSrU1abTra&grant_type=authorization_code HTTP/1.1
+2018-05-30 14:58:30,728 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Host: api.weixin.qq.com
+2018-05-30 14:58:30,728 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Connection: Keep-Alive
+2018-05-30 14:58:30,728 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_45)
+2018-05-30 14:58:30,728 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Accept-Encoding: gzip,deflate
+2018-05-30 14:58:30,728 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=061abTrU1OwCjW0G8crU1ztSrU1abTra&grant_type=authorization_code HTTP/1.1[\r][\n]"
+2018-05-30 14:58:30,728 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Host: api.weixin.qq.com[\r][\n]"
+2018-05-30 14:58:30,728 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Connection: Keep-Alive[\r][\n]"
+2018-05-30 14:58:30,728 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_45)[\r][\n]"
+2018-05-30 14:58:30,728 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Accept-Encoding: gzip,deflate[\r][\n]"
+2018-05-30 14:58:30,728 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "[\r][\n]"
+2018-05-30 14:58:30,847 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "HTTP/1.1 200 OK[\r][\n]"
+2018-05-30 14:58:30,847 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Connection: keep-alive[\r][\n]"
+2018-05-30 14:58:30,848 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Content-Type: text/plain[\r][\n]"
+2018-05-30 14:58:30,848 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Date: Wed, 30 May 2018 06:58:30 GMT[\r][\n]"
+2018-05-30 14:58:30,848 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Content-Length: 82[\r][\n]"
+2018-05-30 14:58:30,848 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "[\r][\n]"
+2018-05-30 14:58:30,848 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "{"session_key":"2gQ2ZB56H5giMQTFEVU6Ng==","openid":"om9W35Siht5C9hWmXkbYkXB2f7xI"}"
+2018-05-30 14:58:30,850 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << HTTP/1.1 200 OK
+2018-05-30 14:58:30,850 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Connection: keep-alive
+2018-05-30 14:58:30,850 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Content-Type: text/plain
+2018-05-30 14:58:30,850 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Date: Wed, 30 May 2018 06:58:30 GMT
+2018-05-30 14:58:30,850 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Content-Length: 82
+2018-05-30 14:58:30,853 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Connection can be kept alive indefinitely
+2018-05-30 14:58:30,858 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection [id: 0][route: {s}->https://api.weixin.qq.com:443] can be kept alive indefinitely
+2018-05-30 14:58:30,858 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection released: [id: 0][route: {s}->https://api.weixin.qq.com:443][total kept alive: 1; route allocated: 1 of 100; total allocated: 1 of 200]
+2018-05-30 14:58:42,450 [main] DEBUG org.apache.http.client.protocol.RequestAddCookies  - CookieSpec selected: default
+2018-05-30 14:58:42,462 [main] DEBUG org.apache.http.client.protocol.RequestAuthCache  - Auth cache not set in the context
+2018-05-30 14:58:42,465 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection request: [route: {s}->https://api.weixin.qq.com:443][total kept alive: 0; route allocated: 0 of 100; total allocated: 0 of 200]
+2018-05-30 14:58:42,479 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection leased: [id: 0][route: {s}->https://api.weixin.qq.com:443][total kept alive: 0; route allocated: 1 of 100; total allocated: 1 of 200]
+2018-05-30 14:58:42,481 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Opening connection {s}->https://api.weixin.qq.com:443
+2018-05-30 14:58:42,486 [main] DEBUG org.apache.http.impl.conn.DefaultHttpClientConnectionOperator  - Connecting to api.weixin.qq.com/58.246.220.31:443
+2018-05-30 14:58:42,486 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Connecting socket to api.weixin.qq.com/58.246.220.31:443 with timeout 0
+2018-05-30 14:58:42,642 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Enabled protocols: [TLSv1]
+2018-05-30 14:58:42,642 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Enabled cipher suites:[TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA, TLS_RSA_WITH_AES_128_CBC_SHA, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_DSS_WITH_AES_128_CBC_SHA, TLS_ECDHE_ECDSA_WITH_RC4_128_SHA, TLS_ECDHE_RSA_WITH_RC4_128_SHA, SSL_RSA_WITH_RC4_128_SHA, TLS_ECDH_ECDSA_WITH_RC4_128_SHA, TLS_ECDH_RSA_WITH_RC4_128_SHA, TLS_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_RC4_128_MD5, TLS_EMPTY_RENEGOTIATION_INFO_SCSV]
+2018-05-30 14:58:42,642 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Starting handshake
+2018-05-30 14:58:43,087 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  - Secure session established
+2018-05-30 14:58:43,087 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  negotiated protocol: TLSv1
+2018-05-30 14:58:43,087 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  negotiated cipher suite: TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
+2018-05-30 14:58:43,088 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  peer principal: CN=mp.weixin.qq.com, OU=R&D, O=Shenzhen Tencent Computer Systems Company Limited, L=Shenzhen, ST=Guangdong, C=CN
+2018-05-30 14:58:43,089 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  peer alternative names: [developers.weixin.qq.com, ad.weixin.qq.com, game.weixin.qq.com, as.weixin.qq.com, hk.open.weixin.qq.com, open.weixin.qq.com, api.weixin.qq.com, sz.api.weixin.qq.com, long.open.weixin.qq.com, mp.weixinbridge.com, servicewechat.com, hk.mp.weixin.qq.com, sz.mp.weixin.qq.com, hk.api.weixin.qq.com, sh.api.weixin.qq.com, sz.open.weixin.qq.com, a.weixin.qq.com, mp.weixin.qq.com]
+2018-05-30 14:58:43,089 [main] DEBUG org.apache.http.conn.ssl.SSLConnectionSocketFactory  -  issuer principal: CN=GeoTrust SSL CA - G3, O=GeoTrust Inc., C=US
+2018-05-30 14:58:43,130 [main] DEBUG org.apache.http.impl.conn.DefaultHttpClientConnectionOperator  - Connection established 192.168.0.107:61160<->58.246.220.31:443
+2018-05-30 14:58:43,131 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Executing request GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=061abTrU1OwCjW0G8crU1ztSrU1abTra&grant_type=authorization_code HTTP/1.1
+2018-05-30 14:58:43,131 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Target auth state: UNCHALLENGED
+2018-05-30 14:58:43,132 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Proxy auth state: UNCHALLENGED
+2018-05-30 14:58:43,135 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=061abTrU1OwCjW0G8crU1ztSrU1abTra&grant_type=authorization_code HTTP/1.1
+2018-05-30 14:58:43,135 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Host: api.weixin.qq.com
+2018-05-30 14:58:43,135 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Connection: Keep-Alive
+2018-05-30 14:58:43,135 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_45)
+2018-05-30 14:58:43,135 [main] DEBUG org.apache.http.headers  - http-outgoing-0 >> Accept-Encoding: gzip,deflate
+2018-05-30 14:58:43,136 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "GET /sns/jscode2session?appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314&js_code=061abTrU1OwCjW0G8crU1ztSrU1abTra&grant_type=authorization_code HTTP/1.1[\r][\n]"
+2018-05-30 14:58:43,136 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Host: api.weixin.qq.com[\r][\n]"
+2018-05-30 14:58:43,136 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Connection: Keep-Alive[\r][\n]"
+2018-05-30 14:58:43,136 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_45)[\r][\n]"
+2018-05-30 14:58:43,136 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "Accept-Encoding: gzip,deflate[\r][\n]"
+2018-05-30 14:58:43,136 [main] DEBUG org.apache.http.wire  - http-outgoing-0 >> "[\r][\n]"
+2018-05-30 14:58:43,183 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "HTTP/1.1 200 OK[\r][\n]"
+2018-05-30 14:58:43,183 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Connection: keep-alive[\r][\n]"
+2018-05-30 14:58:43,183 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Content-Type: text/plain[\r][\n]"
+2018-05-30 14:58:43,183 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Date: Wed, 30 May 2018 06:58:42 GMT[\r][\n]"
+2018-05-30 14:58:43,183 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "Content-Length: 78[\r][\n]"
+2018-05-30 14:58:43,183 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "[\r][\n]"
+2018-05-30 14:58:43,183 [main] DEBUG org.apache.http.wire  - http-outgoing-0 << "{"errcode":40163,"errmsg":"code been used, hints: [ req_id: 7UsAma0522th42 ]"}"
+2018-05-30 14:58:43,186 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << HTTP/1.1 200 OK
+2018-05-30 14:58:43,186 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Connection: keep-alive
+2018-05-30 14:58:43,186 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Content-Type: text/plain
+2018-05-30 14:58:43,186 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Date: Wed, 30 May 2018 06:58:42 GMT
+2018-05-30 14:58:43,187 [main] DEBUG org.apache.http.headers  - http-outgoing-0 << Content-Length: 78
+2018-05-30 14:58:43,190 [main] DEBUG org.apache.http.impl.execchain.MainClientExec  - Connection can be kept alive indefinitely
+2018-05-30 14:58:43,194 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection [id: 0][route: {s}->https://api.weixin.qq.com:443] can be kept alive indefinitely
+2018-05-30 14:58:43,194 [main] DEBUG org.apache.http.impl.conn.PoolingHttpClientConnectionManager  - Connection released: [id: 0][route: {s}->https://api.weixin.qq.com:443][total kept alive: 1; route allocated: 1 of 100; total allocated: 1 of 200]

@@ -5,26 +5,26 @@
 	<select id="queryByMatchIdAndUid" resultType="TheGuess">
 		select "好友赛" as type,c.id cid,u.nickname,u.imageUrl,c.status
 		from contract_user_group cu 
-		left join contract_group c on cu.cid=c.id
+		left join worldcup_pk_contract_group c on cu.cid=c.id
 		left join create_contract_group cc on cu.cid=cc.cid
 		left join user u on cc.createUser=u.openId
 		where cu.uid=#{uid} and c.matchId=#{matchId}
 	</select>
 	
 	<select id="queryNumberByMatchId" resultType="Integer">
-		select count(cu.uid) from contract_group c right join contract_user_group cu on c.id=cu.cid where c.matchId=#{matchId}
+		select count(cu.uid) from worldcup_pk_contract_group c right join contract_user_group cu on c.id=cu.cid where c.matchId=#{matchId}
 	</select>
 	<select id="queryCreateByUid" resultType="String">
-		select c.id from create_contract_group cc left join contract_group c on cc.cid=c.id
+		select c.id from create_contract_group cc left join worldcup_pk_contract_group c on cc.cid=c.id
 		where cc.createUser=#{uid} and c.matchId=#{matchId}
 	</select>
 	<select id="queryJoinByUid" resultType="String">
-		select c.id from contract_user_group cc left join contract_group c on cc.cid=c.id
+		select c.id from contract_user_group cc left join worldcup_pk_contract_group c on cc.cid=c.id
 		where cc.uid=#{uid} and c.matchId=#{matchId}
 	</select>
 	
 	<select id="queryContractGroup" resultType="ContractCome">
-		select id,guessType,status,matchId,time from contract_group 
+		select id,guessType,status,matchId,time from worldcup_pk_contract_group 
 		where id=#{cid}
 	</select>
 	<select id="queryContractGroupUser">
@@ -33,7 +33,7 @@
 		where cug.cid=#{cid}
 	</select>
 	<select id="queryCurrencys" resultType="Long">
-		select sum(sug.number) from contract_user_group cug left join contract_group cg
+		select sum(sug.number) from contract_user_group cug left join worldcup_pk_contract_group cg
 		on cug.cid=cd.cid where cg.matchId=#{matchId}
 	</select>
 	<select id="queryNearLogo" resultType="String">
@@ -50,27 +50,31 @@
 		update contract_user_group set result=#{result} where cid=#{cid} and uid=#{uid}
 	</update>
 	<select id="queryList" resultType="String">
-		select id from contract_group where time &lt; DATE_SUB(NOW(),INTERVAL 30 MINUTE) and status=0
+		select id from worldcup_pk_contract_group where time &lt; DATE_SUB(NOW(),INTERVAL 30 MINUTE) and status=0
 	</select>
 	<delete id="delete">
-		delete from contract_group where id=#{id}
+		update worldcup_pk_contract_group 
+		set yn=0
+		where id=#{id}
 	</delete>
 	<delete id="deleteList">
-		delete from contract_group where
+		update worldcup_pk_contract_group
+		set yn=0
+		 where
 		 <foreach collection="ids" open="(" close=")" item="item" separator="," >
 			#{item}
 		</foreach>
 	</delete>
 	<update id="updateStatus">
-		update contract_group set status=1 where id=#{cid}
+		update worldcup_pk_contract_group set status=1 where id=#{cid}
 	</update>
 	<insert id="insertContractGroup" >
-		insert into contract_group(id,guessType,status,matchId,time)
+		insert into worldcup_pk_contract_group(id,guessType,status,matchId,time)
 		 values(#{contractCome.id},#{contractCome.guessType},0,
 		 #{contractCome.matchId},now())
 	</insert>
 	<insert id="insertConstractGroupCreate">
-		insert into create_contract_group(cid,createUser)
+		insert into create_worldcup_pk_contract_group(cid,createUser)
 		values(#{cid},#{uid})
 	</insert>
 	<insert id="insertConstractGroupUser">

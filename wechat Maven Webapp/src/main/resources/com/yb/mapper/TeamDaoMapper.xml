@@ -3,8 +3,8 @@
 <mapper namespace="com.yb.dao.TeamDao">
 	<select id="insertTeam">
 		replace into team_event(id,name,logo,eventid) values
-		<foreach collection="teams" index="i" separator="," open="(" close=")" item="item">
-			#{item.id},#{item.name_zh},#{item.logo},#{item.matchevent_id}
+		<foreach collection="teams" index="i" separator=","  item="item">
+			(#{item.id},#{item.name_zh},#{item.logo},#{item.matchevent_id})
 		</foreach>
 	</select>
 	<select id="queryById" resultType="Team">

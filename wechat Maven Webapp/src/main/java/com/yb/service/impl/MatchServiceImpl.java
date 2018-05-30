@@ -1,6 +1,7 @@
 package com.yb.service.impl;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +14,7 @@ import com.yb.dao.MatchDao;
 import com.yb.dao.TeamDao;
 import com.yb.entity.Banner;
 import com.yb.entity.Match;
+import com.yb.entity.MatchData;
 import com.yb.entity.Team;
 import com.yb.service.MatchService;
 import com.yb.util.OpenUtils;
@@ -27,6 +29,7 @@ public class MatchServiceImpl implements MatchService{
 	private ContractDao contractDao;
 	@Autowired
 	private ContractGroupDao contractGroupDao;
+	private SimpleDateFormat sfDateFormat=new SimpleDateFormat("yyyy-MM-dd");
 	@Override
 	public List<Banner> queryBanner(String code) {//查询当前赛事
 		// TODO Auto-generated method stub
@@ -72,6 +75,26 @@ public class MatchServiceImpl implements MatchService{
 			data.add(banner);
 		}
 		return data;
+	}
+	@Override
+	public List<MatchData> queryMatchDone() {
+		// TODO Auto-generated method stub
+		List<Match> queryMatchDone = matchDao.queryMatchDone();
+		List<MatchData> list = new ArrayList<MatchData>();
+		if(queryMatchDone!=null&&queryMatchDone.size()!=0){
+			for (Match match : queryMatchDone) {
+				Integer homeid = match.getHomeid();
+				Team home = teamDao.queryById(homeid);
+				home.setGrade(match.getHome_grade());
+				Integer visitid = match.getVisitid();
+				Team visitTeam = teamDao.queryById(visitid);
+				visitTeam.setGrade(match.getVisit_grade());
+				MatchData matchData = new MatchData(home, visitTeam, sfDateFormat.format(match.getTime()));
+				list.add(matchData);
+			}
+			return list;
+		}
+		return null;
 	}
 
 }

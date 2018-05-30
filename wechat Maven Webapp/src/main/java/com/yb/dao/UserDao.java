@@ -14,6 +14,8 @@ public interface UserDao {
 	void insertUser(@Param("user")User user);
 	//取用户信息
 	User getUser(@Param("openid")String openid);
+	//取用户信息只有在登录的时候用到，更新登陆时间
+	void update(@Param("openid")String openid);
 	//获取多个用户信息
 	List<User> queryUsers(@Param("ids")List<String> ids,@Param("cid")String cid);
 	//排行榜

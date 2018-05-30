@@ -15,5 +15,6 @@ public interface MatchDao {
 	
 	Match queryById(@Param("id")Integer id);
 	
-	
+	//查询比赛出结果的，进行人工干预，只查询过去两天之内的
+	List<Match> queryMatchDone();
 }

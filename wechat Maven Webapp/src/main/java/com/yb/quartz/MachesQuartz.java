@@ -20,6 +20,7 @@ import com.yb.dao.TeamDao;
 import com.yb.entity.Events;
 import com.yb.entity.Match;
 import com.yb.entity.Team;
+import com.yb.util.DateUtil;
 
 @Component
 public class MachesQuartz {
@@ -29,11 +30,12 @@ public class MachesQuartz {
 	private TeamDao teamDao;
 	@Autowired
 	private EventDao eventDao;
-	//@Scheduled(cron="0 0 1 * * ?")//每天晚上1点
+	@Scheduled(cron="0 0 1 * * ?")//每天晚上1点
 	public void  autoGrade() throws ClientProtocolException, IOException {
-		String asString = Request.Get("http://docs.open.leisu.com/#/index?user=&date=")
+		String asString = Request.Get("http://open.leisu.com/api/sports/football/odds/list?user=cqdr&secret=JyN1wifrX2T0orlp&date="+DateUtil.getTomorrow())
 		.setHeader("content-type", "application/x-www-form-urlencoded")
 		.execute().returnContent().asString();
+		//System.out.println("反会结果-=================================="+asString);
 		//String decodeUnicode = CharSetUtil.decodeUnicode(asString);//把unicode編碼的都變回來
 		JSONObject fromObject = JSONObject.fromObject(asString);
 		String string = fromObject.get("teams").toString();//整个team
@@ -43,6 +45,8 @@ public class MachesQuartz {
             String jsonObjStr = json_Arr.get(key1).toString();            
             net.sf.json.JSONObject jsonObject = net.sf.json.JSONObject.fromObject(jsonObjStr);
             Team bean = (Team) net.sf.json.JSONObject.toBean(jsonObject, Team.class);
+            String logo = bean.getLogo();
+            bean.setLogo("https://cdn.leisu.com/teamflag_s/"+logo);
             teams.add(bean);
 		 }
 		teamDao.insertTeam(teams);//插入球队信息
@@ -53,6 +57,8 @@ public class MachesQuartz {
             String jsonObjStr = fromObject2.get(key1).toString();            
             net.sf.json.JSONObject jsonObject = net.sf.json.JSONObject.fromObject(jsonObjStr);
             Events bean = (Events) JSONObject.toBean(jsonObject, Events.class);
+            String logo = bean.getLogo();
+            bean.setLogo("https://cdn.leisu.com/eventlogo/"+logo);
            events.add(bean);
 		 }
 		eventDao.insertEvent(events);//插入赛事信息

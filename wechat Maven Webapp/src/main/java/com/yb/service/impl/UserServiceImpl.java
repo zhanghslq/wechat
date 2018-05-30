@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User getUser(String openid) {
+	public User getUserStatus(String openid) {
 		// TODO Auto-generated method stub
 		String message="无竞猜";
 		User user = userDao.getUser(openid);
@@ -90,6 +90,14 @@ public class UserServiceImpl implements UserService {
 	public void updateCurrencys(String openId) {
 		// TODO Auto-generated method stub
 		userDao.updateCurrency(openId, 100);
+	}
+	//只有在登录的时候用到
+	@Override
+	public User getUser(String openid) {
+		// TODO Auto-generated method stub
+		User user = userDao.getUser(openid);
+		userDao.update(openid);//修改登录时间
+		return user;
 	}
 	
 }
