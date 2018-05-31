@@ -2,61 +2,72 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yb.dao.ContractDao">
 	<select id="queryNumberByCid" resultType="Integer">
-		select count(uid) from contract_user
+		select count(uid) from worldcup_pk_contract_user
 		where cid=#{cid}
 	</select>
 
 	<select id="queryByMatchIdAndUid" resultType="TheGuess">
 		select "好友赛" as type,c.id cid,u.nickname,u.imageUrl,c.status
-		from contract_user cu left join worldcup_pk_contract c on cu.cid=c.id
-		left join create_contract cc on cu.cid=cc.cid
-		left join user u on cc.createUser=u.openId
-		where cu.uid=#{uid} and c.matchId=#{matchId}
+		from worldcup_pk_contract_user cu left join worldcup_pk_contract c on cu.cid=c.id
+		left join worldcup_pk_create_contract cc on cu.cid=cc.cid
+		left join worldcup_pk_user u on cc.createUser=u.openId
+		where cu.uid=#{uid} and c.matchId=#{matchId} and cu.yn=1 and cc.yn=1
 	</select>
 
 	<select id="queryNumber" resultType="Integer">
-		select count(cu.uid) from worldcup_pk_contract c right join contract_user cu on c.id=cu.cid where c.matchId=#{matchId}
+		select count(cu.uid) from worldcup_pk_contract c 
+		right join worldcup_pk_contract_user cu on c.id=cu.cid
+		where c.matchId=#{matchId} and cu.yn=1
 	</select>
 	<select id="queryCreateByUid" resultType="String">
-		select c.id from create_contract cc left join worldcup_pk_contract c on cc.cid=c.id
-		where cc.createUser=#{uid} and c.matchId=#{matchId}
+		select c.id 
+		from worldcup_pk_create_contract cc 
+		left join worldcup_pk_contract c on cc.cid=c.id
+		where cc.createUser=#{uid} and c.matchId=#{matchId} cc.yn=1
 	</select>
-	<select id="queryJoinByUid" resultType="String">
-		select c.id from contract_user cc left join worldcup_pk_contract c on cc.cid=c.id
-		where cc.uid=#{uid} and c.matchId=#{matchId}
+	<select id="queryJoinByUid" resultType="Integer">
+		select c.id 
+		from worldcup_pk_contract_user cc 
+		left join worldcup_pk_contract c on cc.cid=c.id
+		where cc.uid=#{uid} and c.matchId=#{matchId} and cc.yn=1
 	</select>
 	<select id="getContract" resultType="ContractCome">
-		select id,guessType,stakeId,status,matchId from worldcup_pk_contract where id=#{cid}
+		select id,guessType,stakeId,status,matchId 
+		from worldcup_pk_contract where id=#{cid} and yn=1
 	</select>
 	<select id="getOpenId" resultType="String">
-		select createUser from create_contract where cid=#{cid}
+		select createUser 
+		from worldcup_pk_create_contract 
+		where cid=#{cid} and yn=1
 	</select>
 	<select id="getOpenLists" resultType="String">
-		select uid from contract_user where cid=#{cid}
+		select uid from worldcup_pk_contract_user where cid=#{cid}
 	</select>
 	<select id="queryGuessByUid" resultType="String">
-		select myGuess from contract_user where cid=#{cid} and uid=#{uid}
+		select myGuess from worldcup_pk_contract_user 
+		where cid=#{cid} and uid=#{uid} and yn=1
 	</select>
 	
 	<update id="updateStatus">
-		update worldcup_pk_contract set status=1 where id=#{cid}
+		update worldcup_pk_contract set status=1 where id=#{cid} and yn=1
 	</update>
 
-	<insert id="insertContract">
-		insert into worldcup_pk_contract(id,guessType,stakeId,status,matchId,time)
-		values(#{contractCome.id},#{contractCome.guessType},#{contractCome.stakeId}
+	<insert id="insertContract" useGeneratedKeys="true" keyProperty="id">
+		insert into worldcup_pk_contract(guessType,stakeId,status,matchId,time)
+		values(#{contractCome.guessType},#{contractCome.stakeId}
 		,#{contractCome.status},#{contractCome.matchId},now())
 	</insert>
 	<insert id="insertConstractCreate">
-		insert into crate_contract(cid,createUser)values(#{cid},#{uid})
+		insert into worldcup_pk_crate_contract(cid,createUser)values(#{cid},#{uid})
 	</insert>
 	<insert id="insertConstractUser">
-		replace into constract_user(cid,uid,myGuess,result) values(#{cid},#{uid},#{myGuess},2)
+		replace into worldcup_pk_constract_user(cid,uid,myGuess,result) values(#{cid},#{uid},#{myGuess},2)
 	</insert>
 	
 	
 	<select id="queryList" resultType="Integer">
-		select id from worldcup_pk_contract where time &lt; DATE_SUB(NOW(),INTERVAL 30 MINUTE) and status=0
+		select id from worldcup_pk_contract 
+		where time &lt; DATE_SUB(NOW(),INTERVAL 30 MINUTE) and status=0 and yn=1
 	</select>
 	<delete id="delete">
 		update worldcup_pk_contract set yn=0 where id=#{id}
@@ -64,15 +75,29 @@
 	<delete id="deleteList">
 		update worldcup_pk_contract set yn=0 
 		where id in
-		 <foreach collection="ids" open="(" close=")" item="item" separator="," >
+		<foreach collection="ids" open="(" close=")" item="item" separator="," >
 			#{item}
 		</foreach>
 	</delete>
+	<delete id="deleteFromCuByCid">
+		update worldcup_pk_contract_user 
+		set yn=0
+		where cid=#{cid}
+	</delete>
+	<delete id="deleteFromCrateByCid">
+		update worldcup_pk_create_contract 
+		set yn=0
+		where cid=#{cid}
+	</delete>
+	
 	<select id="queryResult" resultType="String">
-		select result from contract_user where cid=#{cid} and uid=#{uid}
+		select result from worldcup_pk_contract_user 
+		where cid=#{cid} and uid=#{uid} and yn=1
 	</select>
 	<select id="queryUserList" resultType="User">
-		select u.id,u.name,u.imageUrl from contract_user cu left join user u on cu.uid=u.id 
-		where cu.cid=#{cid} and cu.result=#{result}
+		select u.id,u.name,u.imageUrl 
+		from worldcup_pk_contract_user cu 
+		left join worldcup_pk_user u on cu.uid=u.id 
+		where cu.cid=#{cid} and cu.result=#{result} and cu.yn=1
 	</select>
 </mapper>

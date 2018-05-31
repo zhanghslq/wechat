@@ -6,24 +6,21 @@ package com.yb.entity;
  */
 public class ContractCome {
 	private String code;//用戶携帶code
-	private String id;
+	private Integer id;
 	private Integer guessType;//竞猜类型，可以0代表输赢，1代表比分
-	private String stakeId;
+	private Integer stakeId;
 	private Integer status;
 	private Integer stakeType;
 	private String stakeText;//备用，
 	private String myGuess;
 	private Integer matchId;
 	private Integer number;//留给群pk使用
-	
-	public Integer getNumber() {
-		return number;
+	public ContractCome() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
-	public void setNumber(Integer number) {
-		this.number = number;
-	}
-	public ContractCome(String code, String id, Integer guessType,
-			String stakeId, Integer status, Integer stakeType,
+	public ContractCome(String code, Integer id, Integer guessType,
+			Integer stakeId, Integer status, Integer stakeType,
 			String stakeText, String myGuess, Integer matchId, Integer number) {
 		super();
 		this.code = code;
@@ -37,30 +34,13 @@ public class ContractCome {
 		this.matchId = matchId;
 		this.number = number;
 	}
-	public ContractCome() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	public ContractCome(String code, String id, Integer guessType,
-			String stakeId, Integer status, Integer stakeType,
-			String stakeText, String myGuess, Integer matchId) {
-		super();
-		this.code = code;
-		this.id = id;
-		this.guessType = guessType;
-		this.stakeId = stakeId;
-		this.status = status;
-		this.stakeType = stakeType;
-		this.stakeText = stakeText;
-		this.myGuess = myGuess;
-		this.matchId = matchId;
-	}
 	@Override
 	public String toString() {
 		return "ContractCome [code=" + code + ", id=" + id + ", guessType="
 				+ guessType + ", stakeId=" + stakeId + ", status=" + status
 				+ ", stakeType=" + stakeType + ", stakeText=" + stakeText
-				+ ", myGuess=" + myGuess + ", matchId=" + matchId + "]";
+				+ ", myGuess=" + myGuess + ", matchId=" + matchId + ", number="
+				+ number + "]";
 	}
 	public String getCode() {
 		return code;
@@ -68,10 +48,10 @@ public class ContractCome {
 	public void setCode(String code) {
 		this.code = code;
 	}
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public Integer getGuessType() {
@@ -80,10 +60,10 @@ public class ContractCome {
 	public void setGuessType(Integer guessType) {
 		this.guessType = guessType;
 	}
-	public String getStakeId() {
+	public Integer getStakeId() {
 		return stakeId;
 	}
-	public void setStakeId(String stakeId) {
+	public void setStakeId(Integer stakeId) {
 		this.stakeId = stakeId;
 	}
 	public Integer getStatus() {
@@ -116,6 +96,14 @@ public class ContractCome {
 	public void setMatchId(Integer matchId) {
 		this.matchId = matchId;
 	}
+	public Integer getNumber() {
+		return number;
+	}
+	public void setNumber(Integer number) {
+		this.number = number;
+	}
+	
+	
 	
 	
 }

@@ -30,7 +30,7 @@ public class ContractController {//0代表失败，1代表成功
 	@ResponseBody
 	public ResultPack insertContract(ContractCome contractCome){//生成契约，返回字符串，契约id
 		try {
-			String contract = contractService.insertContract(contractCome);
+			Integer contract = contractService.insertContract(contractCome);
 			return new ResultPack(1, contract);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -41,7 +41,7 @@ public class ContractController {//0代表失败，1代表成功
 	//获取契约详情
 	@ResponseBody
 	@RequestMapping("/queryContract")
-	public ResultPack queryContract(String cid){
+	public ResultPack queryContract(Integer cid){
 		try {
 			ContractDetails queryContract = contractService.queryContract(cid);
 			return new ResultPack(1,  queryContract);
@@ -56,7 +56,7 @@ public class ContractController {//0代表失败，1代表成功
 	//重新预测,两个是一样的
 	@ResponseBody
 	@RequestMapping("/joinContract")
-	public ResultPack joinContract(String code,String cid,String myGuess){
+	public ResultPack joinContract(String code,Integer cid,String myGuess){
 		try {
 			String joinContract = contractService.joinContract(code, cid, myGuess);
 			return new ResultPack(1, joinContract);
@@ -69,7 +69,7 @@ public class ContractController {//0代表失败，1代表成功
 	//开局
 	@RequestMapping("/beginStake")
 	@ResponseBody
-	public ResultPack beginStake(String cid){
+	public ResultPack beginStake(Integer cid){
 		try {
 			String beginStake = contractService.beginStake(cid);
 			return new ResultPack(1, beginStake);
@@ -82,7 +82,7 @@ public class ContractController {//0代表失败，1代表成功
 	//获取完成状态的契约
 	@ResponseBody
 	@RequestMapping("/queryContractDone")
-	public ResultPack queryContractDone(String cid,String code){
+	public ResultPack queryContractDone(Integer cid,String code){
 		ContractDone queryContractDone = contractService.queryContractDone(cid, code);
 		return new ResultPack(1, queryContractDone);
 	}

@@ -1,6 +1,7 @@
 package com.yb.entity;
 
 public class Evaluation {
+	private Integer id;
 	private String openid;
 	private Integer tricky_brains;
 	private Integer food_anchor;

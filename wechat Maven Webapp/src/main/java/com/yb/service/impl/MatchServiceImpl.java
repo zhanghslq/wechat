@@ -50,7 +50,7 @@ public class MatchServiceImpl implements MatchService{
 			//这是普通契约
 			Integer queryNumber = contractDao.queryNumber(id);
 			String queryCreateByUid = contractDao.queryCreateByUid(openId,id);
-			String queryJoinByUid = contractDao.queryJoinByUid(openId, id);
+			Integer queryJoinByUid = contractDao.queryJoinByUid(openId, id);
 			Boolean create=false;
 			Boolean join=false;
 			if(queryCreateByUid!=null){

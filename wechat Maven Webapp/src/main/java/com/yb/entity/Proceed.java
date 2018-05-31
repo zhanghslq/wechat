@@ -5,14 +5,14 @@ import java.util.Date;
  * 
  */
 public class Proceed {
-	private String cid;
+	private Integer cid;
 	private Date time;
 	private Integer result;
 	public Proceed() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Proceed(String cid, Date time, Integer result) {
+	public Proceed(Integer cid, Date time, Integer result) {
 		super();
 		this.cid = cid;
 		this.time = time;
@@ -23,10 +23,10 @@ public class Proceed {
 		return "Proceed [cid=" + cid + ", time=" + time + ", result=" + result
 				+ "]";
 	}
-	public String getCid() {
+	public Integer getCid() {
 		return cid;
 	}
-	public void setCid(String cid) {
+	public void setCid(Integer cid) {
 		this.cid = cid;
 	}
 	public Date getTime() {
@@ -41,5 +41,6 @@ public class Proceed {
 	public void setResult(Integer result) {
 		this.result = result;
 	}
+	
 	
 }

@@ -1,7 +1,7 @@
 package com.yb.entity;
 
 public class TheGuess {
-	private String cid;
+	private Integer cid;
 	private String type;
 	private String nickname;
 	private String imageUrl;
@@ -11,7 +11,7 @@ public class TheGuess {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public TheGuess(String cid, String type, String nickname, String imageUrl,
+	public TheGuess(Integer cid, String type, String nickname, String imageUrl,
 			Integer number, Integer status) {
 		super();
 		this.cid = cid;
@@ -27,10 +27,10 @@ public class TheGuess {
 				+ nickname + ", imageUrl=" + imageUrl + ", number=" + number
 				+ ", status=" + status + "]";
 	}
-	public String getCid() {
+	public Integer getCid() {
 		return cid;
 	}
-	public void setCid(String cid) {
+	public void setCid(Integer cid) {
 		this.cid = cid;
 	}
 	public String getType() {
@@ -63,5 +63,6 @@ public class TheGuess {
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
+	
 	
 }

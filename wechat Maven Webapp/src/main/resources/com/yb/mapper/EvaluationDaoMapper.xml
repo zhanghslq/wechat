@@ -3,7 +3,7 @@
 <mapper namespace="com.yb.dao.EvaluationDao">
 	<select id="queryEvaluation" resultType="Evaluation">
 		select openid,tricky_brains,food_anchor,imagination_talent,
-		iron_cock,wealthy from evaluation
+		iron_cock,wealthy from worldcup_pk_evaluation
 		where openid=#{openid}
 	</select>
 </mapper>

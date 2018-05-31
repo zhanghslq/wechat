@@ -3,6 +3,7 @@ package com.yb.entity;
 import java.util.Date;
 
 public class User {
+	private Integer id;
 	private String openid;
 	private String imageUrl;
 	private String nickname;

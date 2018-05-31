@@ -3,7 +3,7 @@ package com.yb.entity;
 import java.util.Date;
 
 public class Stake {
-	private String id;
+	private Integer id;
 	private Integer type;
 	private String name;
 	private String logo;
@@ -12,7 +12,7 @@ public class Stake {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Stake(String id, Integer type, String name, String logo, Date time) {
+	public Stake(Integer id, Integer type, String name, String logo, Date time) {
 		super();
 		this.id = id;
 		this.type = type;
@@ -25,10 +25,10 @@ public class Stake {
 		return "Stake [id=" + id + ", type=" + type + ", name=" + name
 				+ ", logo=" + logo + ", time=" + time + "]";
 	}
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public Integer getType() {

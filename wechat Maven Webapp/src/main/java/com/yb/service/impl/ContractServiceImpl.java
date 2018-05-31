@@ -41,10 +41,8 @@ public class ContractServiceImpl implements ContractService{
 	private UserDao userDao;
 	@Override
 	@Transactional
-	public String insertContract(ContractCome contractCome) {
+	public Integer insertContract(ContractCome contractCome) {
 		// TODO Auto-generated method stub
-		String cid = UUID.randomUUID().toString();
-		contractCome.setId(cid);
 		String openId="";
 		try {
 			openId = OpenUtils.getOpenId(contractCome.getCode());
@@ -54,20 +52,21 @@ public class ContractServiceImpl implements ContractService{
 			throw new RuntimeException("获取openid出现异常");
 		}
 		if(contractCome.getStakeType()==3){//自定义赌注,需要先添加赌注
-			String sid = UUID.randomUUID().toString();//赌注id，利用UUID生成，主键变成字符串类型的
-			stakeDao.insertStake(sid,contractCome.getStakeText());
-			contractCome.setStakeId(sid);//自定义的id放进去
+			Stake stake = new Stake(null,3,contractCome.getStakeText(),"",null);
+			stakeDao.insertStake(stake);
+			contractCome.setStakeId(stake.getId());//自定义的id放进去
 		}
 		contractDao.insertContract(contractCome);
-		contractDao.insertConstractUser(cid, openId, contractCome.getMyGuess());
-		contractDao.insertConstractCreate(cid, openId);
-		return cid;//返回契约id
+		Integer id = contractCome.getId();
+		contractDao.insertConstractUser(id, openId, contractCome.getMyGuess());
+		contractDao.insertConstractCreate(id, openId);
+		return id;//返回契约id
 	}
 	@Override
-	public ContractDetails queryContract(String cid) {//获取契约详情，
+	public ContractDetails queryContract(Integer cid) {//获取契约详情，
 		// TODO Auto-generated method stub
 		ContractCome contract = contractDao.getContract(cid);//获取契约基本信息
-		String stakeId = contract.getStakeId();
+		Integer stakeId = contract.getStakeId();
 		Stake stake = stakeDao.queryById(stakeId);
 		Integer matchId = contract.getMatchId();//契约所针对的比赛id
 		Match queryById = matchDao.queryById(matchId);
@@ -88,7 +87,7 @@ public class ContractServiceImpl implements ContractService{
 		return contractDetails;
 	}
 	@Override
-	public String joinContract(String code, String cid,String myGuess) {//加入契约
+	public String joinContract(String code, Integer cid,String myGuess) {//加入契约
 		// TODO Auto-generated method stub
 		ContractCome contract = contractDao.getContract(cid);
 		if(1==contract.getStatus()){//等于1的时候，证明契约生效，不能更改
@@ -105,11 +104,10 @@ public class ContractServiceImpl implements ContractService{
 			contractDao.insertConstractUser(cid, openId, myGuess);
 			return "success";
 		}
-		
 	}
 	
 	@Override
-	public String beginStake(String cid) {
+	public String beginStake(Integer cid) {
 		// TODO Auto-generated method stub
 		//契约开局，但是需要参与人数大于1
 		List<String> openLists = contractDao.getOpenLists(cid);
@@ -121,7 +119,7 @@ public class ContractServiceImpl implements ContractService{
 		}
 	}
 	@Override
-	public ContractDone queryContractDone(String cid, String code) {
+	public ContractDone queryContractDone(Integer cid, String code) {
 		// TODO Auto-generated method stub
 		String openId="";
 		try {
@@ -179,6 +177,13 @@ public class ContractServiceImpl implements ContractService{
 		}
 		queryByMatchIdAndUid.addAll(queryByMatchIdAndUid2);
 		return queryByMatchIdAndUid;
+	}
+	@Override
+	public void updateResultAndAutoCommit(Integer matchId, Integer homeGrade,
+			Integer visitGrade) {//更新比赛结果，结算赌局
+		// TODO Auto-generated method stub
+		
+		
 	}
 
 }

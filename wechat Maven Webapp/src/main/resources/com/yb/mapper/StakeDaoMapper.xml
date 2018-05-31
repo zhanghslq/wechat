@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yb.dao.StakeDao">
-	<insert id="insertStake">
-		insert into stake(id,name,type) values(#{id},#{name},3)
+	<insert id="insertStake" useGeneratedKeys="true" keyProperty="id">
+		insert into worldcup_pk_stake(name,type) values(#{stake.name},#{stake.type})
 	</insert>
 	
 	<select id="queryById" resultType="Stake">
-		select id,type,name,logo,time from stake where id=#{id}
+		select id,type,name,logo,time from worldcup_pk_stake where id=#{id}
 	</select>
 	
 	<select id="queryAll" resultType="Stake">
-		select id,type,name,logo,time from stake order by time asc limit 8
+		select id,type,name,logo,time from worldcup_pk_stake order by time asc limit 8
 	</select>
 </mapper>

@@ -24,7 +24,7 @@ public class ContractGroupController {//群pk
 	@RequestMapping("/createContractGroup")
 	public ResultPack createContractGroup(ContractCome contractCome,String code){
 		try {
-			String createContractGroup = contractGroupService.createContractGroup(contractCome, code);
+			Integer createContractGroup = contractGroupService.createContractGroup(contractCome, code);
 			
 			return new ResultPack(1, createContractGroup);
 		} catch (Exception e) {
@@ -36,7 +36,7 @@ public class ContractGroupController {//群pk
 	//加入契约
 	@ResponseBody
 	@RequestMapping("/joinContractGroup")
-	public ResultPack joinContractGroup(String code,String cid,String myGuess,Integer number){
+	public ResultPack joinContractGroup(String code,Integer cid,String myGuess,Integer number){
 		try {
 			contractGroupService.joinContractGroup(code, cid, myGuess, number);
 			return new ResultPack(1, null);
@@ -49,7 +49,7 @@ public class ContractGroupController {//群pk
 	//获取群pk详情
 	@RequestMapping("/queryGroupDetails")
 	@ResponseBody
-	public ResultPack queryGroupDetails(String cid){
+	public ResultPack queryGroupDetails(Integer cid){
 		try {
 			ContractGroupDetails queryGroupDetails = contractGroupService.queryGroupDetails(cid);
 			
@@ -64,7 +64,7 @@ public class ContractGroupController {//群pk
 	//群pk开局
 	@ResponseBody
 	@RequestMapping("/beginContractGroup")
-	public ResultPack beginContractGroup(String cid){
+	public ResultPack beginContractGroup(Integer cid){
 		try {
 			contractGroupService.beginContractGroup(cid);
 			return new ResultPack(1, null);
@@ -77,7 +77,7 @@ public class ContractGroupController {//群pk
 	//获取群pk结果
 	@ResponseBody
 	@RequestMapping("/queryContractGroupResult")
-	public ResultPack queryContractGroupResult(String cid,String code){
+	public ResultPack queryContractGroupResult(Integer cid,String code){
 		try {
 			ContractGroupResult queryContractGroupResult = contractGroupService.queryContractGroupResult(cid, code);
 			return new ResultPack(1, queryContractGroupResult);

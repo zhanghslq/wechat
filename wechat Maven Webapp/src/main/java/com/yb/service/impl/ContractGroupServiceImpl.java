@@ -38,11 +38,10 @@ public class ContractGroupServiceImpl implements ContractGroupService{
 	
 	@Transactional
 	@Override
-	public String createContractGroup(ContractCome contractCome,String code) {//生成契约
+	public Integer createContractGroup(ContractCome contractCome,String code) {//生成契约
 		// TODO Auto-generated method stub
-		String cid = UUID.randomUUID().toString();//先生成契约id
-		contractCome.setId(cid);
 		contractGroupDao.insertContractGroup(contractCome);
+		Integer id = contractCome.getId();
 		String openId = null;
 		try {
 			openId = OpenUtils.getOpenId(code);
@@ -51,12 +50,12 @@ public class ContractGroupServiceImpl implements ContractGroupService{
 			e.printStackTrace();
 			throw new RuntimeException("获取openid出错");
 		}
-		contractGroupDao.insertConstractGroupCreate(cid, openId);
-		contractGroupDao.insertConstractGroupUser(cid, openId, contractCome.getMyGuess(), contractCome.getNumber());
-		return cid;
+		contractGroupDao.insertConstractGroupCreate(id, openId);
+		contractGroupDao.insertConstractGroupUser(id, openId, contractCome.getMyGuess(), contractCome.getNumber());
+		return id;
 	}
 	@Override
-	public void joinContractGroup(String code, String cid, String myGuess,
+	public void joinContractGroup(String code, Integer cid, String myGuess,
 			Integer number) {//加入契约，重置猜测答案
 		// TODO Auto-generated method stub
 		String openId = null;
@@ -70,7 +69,7 @@ public class ContractGroupServiceImpl implements ContractGroupService{
 		contractGroupDao.insertConstractGroupUser(cid, openId, myGuess, number);
 	}
 	@Override
-	public ContractGroupDetails queryGroupDetails(String cid) {//查詢群pk的未完成的契约详情
+	public ContractGroupDetails queryGroupDetails(Integer cid) {//查詢群pk的未完成的契约详情
 		// TODO Auto-generated method stub
 		ContractCome contractCome = contractGroupDao.queryContractGroup(cid);
 		Match match = matchDao.queryById(contractCome.getMatchId());
@@ -87,12 +86,12 @@ public class ContractGroupServiceImpl implements ContractGroupService{
 		return contractGroupDetails;
 	}
 	@Override
-	public void beginContractGroup(String cid) {
+	public void beginContractGroup(Integer cid) {
 		// TODO Auto-generated method stub
 		contractGroupDao.updateStatus(cid);
 	}
 	@Override
-	public ContractGroupResult queryContractGroupResult(String cid,String code) {
+	public ContractGroupResult queryContractGroupResult(Integer cid,String code) {
 		// TODO Auto-generated method stub
 		ContractCome queryContractGroup = contractGroupDao.queryContractGroup(cid);
 		Integer matchId = queryContractGroup.getMatchId();

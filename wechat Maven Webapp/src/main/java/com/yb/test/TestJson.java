@@ -43,7 +43,6 @@ public class TestJson {
 	            Team bean = (Team) net.sf.json.JSONObject.toBean(jsonObject, Team.class);
 	            teams.add(bean);
 			 }
-			System.out.println(teams);
 			List<Events> events = new ArrayList<Events>();
 			String string2 = fromObject.get("events").toString();//整个Event对象
 			JSONObject fromObject2 = JSONObject.fromObject(string2);
@@ -53,8 +52,8 @@ public class TestJson {
 	            Events bean = (Events) JSONObject.toBean(jsonObject, Events.class);
 	           events.add(bean);
 			 }
-			System.out.println(events);
 			String string3 = fromObject.get("matches").toString();//这是最后的比赛数组
+			System.out.println(string3);
 			JSONArray jsonArray = JSONArray.fromObject(string3);
 			List<Match> matches = new ArrayList<Match>();
 			for (Object object : jsonArray) {
@@ -76,7 +75,6 @@ public class TestJson {
 				matches.add(match);
 			}
 			//需要把这些数据插入数据库
-			System.out.println(matches);
 		 /*Object object = fromObject.get(0);
 		 JSONArray fromObject2 = JSONArray.fromObject(object.toString());
 		 Object object2 = fromObject2.get(5);
