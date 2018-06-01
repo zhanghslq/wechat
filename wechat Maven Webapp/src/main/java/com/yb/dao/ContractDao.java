@@ -10,7 +10,7 @@ import com.yb.entity.User;
 
 public interface ContractDao {
 	//生成契约
-	void insertContract(@Param("contractCome")ContractCome contractCome);
+	Integer insertContract(ContractCome contractCome);
 	//生成契约的时候还需要同时生成一条，契约是谁生成的
 	void insertConstractCreate(@Param("cid")Integer cid,@Param("uid")String uid);
 	//生成契约的时候，同时生成一条此人缔结契约的信息
@@ -57,11 +57,21 @@ public interface ContractDao {
 	//查询本场比赛签订的契约
 	List<TheGuess> queryByMatchIdAndUid(@Param("uid")String uid,@Param("matchId")Integer matchId);
 	
-	//根据比赛id查询契约,还可以根据类型
-	List<String> queryByMatchId(@Param("matchId")Integer matchId,@Param("type")Integer type);
-	//更改契约用户中的result值,涉及到竞猜
-	void updateResult(@Param("cid")Integer cid,@Param("result")String result,@Param("yn")String yn);
-		
+	//根据比赛id查询契约,还可以根据类型，查询得到的是猜输赢的或者是猜比分的,返回结果只有id和stakeid
+	List<ContractCome> queryByMatchId(@Param("matchId")Integer matchId,@Param("type")Integer type);
+	
+	
+	
+	
+	
+	//更改契约用户中的result值,涉及到竞猜,这是猜输赢（猜比分的集合），result是实际比赛结果，yn决定是否与比赛结果相同，需要四次查询把
+	//猜输赢猜比分的都求到
+	void updateResult(@Param("cids")List<ContractCome> cid,@Param("result")String result,@Param("yn")String yn);
+	
+	//查出openid结果集合，对结果进行处理
+	List<String> queryByResult(@Param("cids")List<Integer> cid,@Param("result")Integer result);
+	
+	
 	//根据契约id来查契约和结果与用户的关联
 	void queryByCidAndResult(@Param("cid")Integer cid,@Param("result")String result,@Param("yn")String yn);
 	

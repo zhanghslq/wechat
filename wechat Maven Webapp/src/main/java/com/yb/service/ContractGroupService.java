@@ -6,9 +6,9 @@ import com.yb.entity.ContractGroupResult;
 
 public interface ContractGroupService {
 	//生成契约
-	Integer createContractGroup(ContractCome contractCome,String code);
+	Integer createContractGroup(ContractCome contractCome);
 	//加入契约
-	void joinContractGroup(String code,Integer cid,String myGuess,Integer number);
+	void joinContractGroup(String code,Integer cid,String myGuess);
 	//获取群pk详情
 	ContractGroupDetails queryGroupDetails(Integer cid);
 	//群pk开局

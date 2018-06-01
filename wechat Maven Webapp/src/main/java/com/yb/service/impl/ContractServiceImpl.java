@@ -1,8 +1,6 @@
 package com.yb.service.impl;
 
-import java.io.IOException;
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +21,6 @@ import com.yb.entity.Team;
 import com.yb.entity.TheGuess;
 import com.yb.entity.User;
 import com.yb.service.ContractService;
-import com.yb.util.OpenUtils;
 
 @Service
 public class ContractServiceImpl implements ContractService{
@@ -43,14 +40,6 @@ public class ContractServiceImpl implements ContractService{
 	@Transactional
 	public Integer insertContract(ContractCome contractCome) {
 		// TODO Auto-generated method stub
-		String openId="";
-		try {
-			openId = OpenUtils.getOpenId(contractCome.getCode());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			throw new RuntimeException("获取openid出现异常");
-		}
 		if(contractCome.getStakeType()==3){//自定义赌注,需要先添加赌注
 			Stake stake = new Stake(null,3,contractCome.getStakeText(),"",null);
 			stakeDao.insertStake(stake);
@@ -58,8 +47,8 @@ public class ContractServiceImpl implements ContractService{
 		}
 		contractDao.insertContract(contractCome);
 		Integer id = contractCome.getId();
-		contractDao.insertConstractUser(id, openId, contractCome.getMyGuess());
-		contractDao.insertConstractCreate(id, openId);
+		contractDao.insertConstractUser(id, contractCome.getOpenId(), contractCome.getMyGuess());
+		contractDao.insertConstractCreate(id, contractCome.getOpenId());
 		return id;//返回契约id
 	}
 	@Override
@@ -87,20 +76,12 @@ public class ContractServiceImpl implements ContractService{
 		return contractDetails;
 	}
 	@Override
-	public String joinContract(String code, Integer cid,String myGuess) {//加入契约
+	public String joinContract(String openId, Integer cid,String myGuess) {//加入契约
 		// TODO Auto-generated method stub
 		ContractCome contract = contractDao.getContract(cid);
 		if(1==contract.getStatus()){//等于1的时候，证明契约生效，不能更改
 			return "error";
 		}else {
-			String openId;
-			try {
-				openId = OpenUtils.getOpenId(code);
-			}catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				throw new RuntimeException("获取openid出错");
-			}
 			contractDao.insertConstractUser(cid, openId, myGuess);
 			return "success";
 		}
@@ -119,16 +100,8 @@ public class ContractServiceImpl implements ContractService{
 		}
 	}
 	@Override
-	public ContractDone queryContractDone(Integer cid, String code) {
+	public ContractDone queryContractDone(Integer cid, String openId) {
 		// TODO Auto-generated method stub
-		String openId="";
-		try {
-			openId = OpenUtils.getOpenId(code);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			throw new RuntimeException("获取openid出错");
-		}
 		ContractCome contract = contractDao.getContract(cid);//获取契约详情
 		Integer queryResult = contractDao.queryResult(openId, cid);
 		String result;

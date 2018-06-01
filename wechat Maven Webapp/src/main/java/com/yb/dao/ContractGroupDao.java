@@ -3,6 +3,7 @@ package com.yb.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Update;
 
 import com.yb.entity.ContractCome;
 import com.yb.entity.JoinData;
@@ -24,11 +25,11 @@ public interface ContractGroupDao {
 		void updateStatus(@Param("cid")Integer cid);
 		
 		//生成群pk契约
-		Integer insertContractGroup(@Param("contractCome")ContractCome contractCome);
+		Integer insertContractGroup(ContractCome contractCome);
 		//生成群契约的时候还需要同时生成一条，契约是谁生成的
-		Integer insertConstractGroupCreate(@Param("cid")Integer cid,@Param("uid")String uid);
-		//生成群契约的时候，同时生成一条此人缔结契约的信息
-		Integer insertConstractGroupUser(@Param("cid")Integer cid,@Param("uid")String uid,@Param("myGuess")String myGuess,@Param("number")Integer number);
+		void insertConstractGroupCreate(@Param("cid")Integer cid,@Param("uid")String uid);
+		//生成群契约的时候，同时生成一条此人缔结契约的信息,也可当做新参加契约
+		void insertConstractGroupUser(@Param("cid")Integer cid,@Param("uid")String uid,@Param("myGuess")String myGuess,@Param("number")Integer number);
 		//统计结果填入每个用户契约结果
 		void setResult(@Param("cid")Integer cid,@Param("uid")String uid,@Param("result")Integer result);
 		
@@ -42,22 +43,35 @@ public interface ContractGroupDao {
 		List<String> queryNearLogo(@Param("cid")Integer cid);
 		//查询房间人数
 		Integer queryNumberByCid(@Param("cid")Integer cid);
-		
+		//根据id查询下注数量
+		Integer queryNumberById(@Param("cid")Integer cid);
 		//查看契约结果
 		
-		//查看胜利或失败的人
+		
+		
+		//查看胜利或失败的人，结算之后用来显示契约比赛完成之后的
 		List<User> queryUserByResult(@Param("result")Integer result);
 		//查询当事人的竞猜结果
 		Integer queryResultByUidAndCid(@Param("cid")Integer cid,@Param("uid")String uid);
 		
-		
 		//需要查询参与这场比赛竞猜的人数，是否创建，是否参与
-		Integer queryNumberByMatchId(Integer matchId);
+		Integer queryNumberByMatchId(@Param("matchId")Integer matchId);
 		
-		String queryCreateByUid(Integer matchId,String uid);
+		String queryCreateByUid(@Param("matchId")Integer matchId,@Param("uid")String uid);
 		
-		String queryJoinByUid(Integer matchId,String uid);
+		String queryJoinByUid(@Param("matchId")Integer matchId,@Param("uid")String uid);
 		
-		//查询本场比赛签订的契约
+		//查询本场比赛用户签订和参与的契约
 		List<TheGuess> queryByMatchIdAndUid(@Param("uid")String uid,@Param("matchId")Integer matchId);
+		
+		
+		
+		//用于自动结算
+		//查询参与比赛的所有契约，0猜输赢，1猜比分
+		List<Integer> queryByMatchId(@Param("matchId")Integer matchId,@Param("type")Integer type);
+		//更新竞猜结果，填入用户猜测的结果
+		void updateResult(@Param("cids")List<Integer> cid,@Param("result")String result,@Param("yn")String yn);
+		
+		//查询出来openid以及number
+		List<ContractCome> queryByResult(@Param("cids")List<Integer> cid,@Param("result")Integer result);
 }

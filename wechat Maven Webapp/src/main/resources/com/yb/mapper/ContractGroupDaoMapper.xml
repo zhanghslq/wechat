@@ -1,13 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yb.dao.ContractGroupDao">
+	<select id="queryByMatchId" resultType="Integer">
+		select id from worldcup_pk_contract_group
+		where matchId=#{matchId} and guessType=#{type}
+	</select>
+	<update id="updateResult">
+		update worldcup_pk_contract_user_group
+		<if test="yn=='yes'">
+			set result=1
+		</if>
+		<if test="yn!='yes'">
+			set result =0
+		</if>
+		where cid in
+		<foreach collection="cids" item="item" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+		and yn =1 and
+		<if test="yn=='yes'">
+			myGuess=#{result}
+		</if>
+		<if test="yn!='yes'">
+			myGuess!=#{result}
+		</if>
+	</update>
+	<select id="queryByResult" resultType="ContractCome">
+		select uid openId,number from worldcup_pk_contract_user_group where cid in
+		<foreach collection="cids" item="item" open="(" close=")" separator=",">
+			#{item}
+		</foreach> and result=#{result} and yn=1
+	</select>
 	
+	<select id="queryUserByResult" resultType="User">
+		select wpu.openid,wpu.nickname,wpu.imageUrl,wpu.currency
+		from worldcup_pk_contract_user_group cug left join worldcup_pk_user wpu
+		on cug.uid=wpu.openid
+		where cug.result=#{result}
+	</select>
+	<select id="queryResultByUidAndCid" resultType="Integer">
+		select result from worldcup_pk_contract_user_group where cid=#{cid} and uid=#{uid}
+	</select>
 	<select id="queryByMatchIdAndUid" resultType="TheGuess">
 		select "好友赛" as type,c.id cid,u.nickname,u.imageUrl,c.status
-		from contract_user_group cu 
+		from worldcup_pk_contract_user_group cu 
 		left join worldcup_pk_contract_group c on cu.cid=c.id
 		left join worldcup_pk_create_contract_group cc on cu.cid=cc.cid
-		left join worldcup_pk_user u on cc.createUser=u.openId
+		left join worldcup_pk_user u on cc.createUser=u.openid
 		where cu.uid=#{uid} and c.matchId=#{matchId} and cu.yn=1 and c.yn=1 and cc.yn=1
 	</select>
 	
@@ -28,27 +67,30 @@
 		left join worldcup_pk_contract_group c on cc.cid=c.id
 		where cc.uid=#{uid} and c.matchId=#{matchId} and cc.yn=1 and c.yn=1
 	</select>
-	
+	<select id="queryNumberById" resultType="Integer">
+		select number from worldcup_pk_contract_group where id=#{cid}
+	</select>
 	<select id="queryContractGroup" resultType="ContractCome">
-		select id,guessType,status,matchId,time 
+		select id,guessType,status,number,matchId,time 
 		from worldcup_pk_contract_group 
 		where id=#{cid} and yn=1
 	</select>
-	<select id="queryContractGroupUser">
-		select user.nickname name,user.imageUrl,cug.number,cug.myGuess  
-		from worldcup_pk_user left join worldcup_pk_contract_user_group cug on user.openId=cug.uid
+	<select id="queryContractGroupUser" resultType="JoinData">
+		select wpu.nickname name,wpu.imageUrl,cug.number,cug.myGuess  
+		from worldcup_pk_user wpu left join worldcup_pk_contract_user_group cug
+		 on wpu.openid=cug.uid
 		
 		where cug.cid=#{cid} and cug.yn=1
 	</select>
 	<select id="queryCurrencys" resultType="Long">
-		select sum(sug.number) 
+		select sum(cug.number) 
 		from worldcup_pk_contract_user_group cug 
-		left join worldcup_pk_contract_group cg on cug.cid=cd.cid 
+		left join worldcup_pk_contract_group cg on cug.cid=cg.id 
 		where cg.matchId=#{matchId} and cug.yn=1 and cg.yn=1
 	</select>
 	<select id="queryNearLogo" resultType="String">
-		select imageUrl from worldcup_pk_user 
-		right join worldcup_pk_contract_user_group cug on cug.uid=user.openId
+		select imageUrl from worldcup_pk_user wpu
+		right join worldcup_pk_contract_user_group cug on cug.uid=wpu.openid
 		order by cug.time desc limit 5
 	</select>
 	<select id="queryNumberByCid" resultType="Integer">
@@ -90,10 +132,10 @@
 	<update id="updateStatus">
 		update worldcup_pk_contract_group set status=1 where id=#{cid} and yn=1
 	</update>
-	<insert id="insertContractGroup" useGeneratedKeys="true" keyProperty="id">
-		insert into worldcup_pk_contract_group(guessType,status,matchId,time)
-		 values(#{contractCome.guessType},0,
-		 #{contractCome.matchId},now())
+	<insert id="insertContractGroup" parameterType="ContractCome" useGeneratedKeys="true" keyProperty="id">
+		insert into worldcup_pk_contract_group(guessType,number,status,matchId,time)
+		 values(#{guessType},#{number},0,
+		 #{matchId},now())
 	</insert>
 	<insert id="insertConstractGroupCreate">
 		insert into worldcup_pk_create_contract_group(cid,createUser)

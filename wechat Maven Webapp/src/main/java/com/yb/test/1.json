@@ -1,0 +1,21 @@
+[{"id":2480964,
+"stats":[{"type":2,"home":7,"away":2},
+{"type":3,"home":0,"away":0},{"type":4,"home":0,"away":0},
+{"type":8,"home":0,"away":0},{"type":21,"home":10,"away":3},
+{"type":22,"home":6,"away":2},{"type":23,"home":98,"away":79},
+{"type":24,"home":98,"away":60},{"type":25,"home":56,"away":44}],
+
+"incidents":[{"type":1,"position":1,"time":42,"player_name":""},
+{"type":1,"position":1,"time":59,"player_name":""},
+{"type":1,"position":2,"time":80,"player_name":""},
+{"type":1,"position":1,"time":90,"player_name":""}]},
+
+{"id":2440938,"stats":[{"type":2,"home":4,"away":7},{"type":3,"home":1,"away":1},
+{"type":4,"home":0,"away":0},{"type":8,"home":0,"away":0},{"type":21,"home":8,"away":0},
+{"type":22,"home":4,"away":8},{"type":23,"home":88,"away":111},{"type":24,"home":56,"away":82},
+{"type":25,"home":46,"away":54}],"incidents":[{"type":1,"position":1,"time":18,
+"player_name":"\u5e0c\u862d\u5974 (\u52a9\u653b:\u5361\u6b77\u5716)"},
+{"type":1,"position":1,"time":54,"player_name":"G.\u53e4\u5e0c\u7f8e"},
+{"type":3,"position":1,"time":55,"player_name":"P.\u6cf0\u79d1\u65af\u62c9"},
+{"type":9,"position":2,"time":65,"in_player_name":"\u822c\u5974\u4ea8\u6b77\u57fa",
+"out_player_name":"\u5217\u7d0d\u5716"},{"type":9,"position":1,"time":79,"in_player_name":"\u62c9\u83f2\u723e\u7dad\u52a0","out_player_name":"G.\u53e4\u5e0c\u7f8e"},{"type":9,"position":2,"time":79,"in_player_name":"L.\u57fa\u5854\u7538\u5c3c","out_player_name":"\u6bd4\u5ea6\u5361"},{"type":9,"position":1,"time":81,"in_player_name":"\u5e03\u9b6f\u8afe\u00b7\u5409\u99ac\u826f\u65af","out_player_name":"\u8def\u723e\u65af\u5e72\u6c99\u91cc\u65af"},{"type":9,"position":2,"time":83,"in_player_name":"Y.\u963f\u5c14\u8d1d\u6258","out_player_name":"\u7f57\u5fb7\u91cc\u6208\u00b7\u5e2d\u5c14\u74e6"},{"type":3,"position":2,"time":86,"player_name":"\u822c\u5974\u4ea8\u6b77\u57fa"},{"type":9,"position":1,"time":90,"in_player_name":"\u8c9d\u6cbb\u81e3","out_player_name":"\u5c3c\u5361\u5967"}]},{"id":2480225,"stats":[{"type":2,"home":2,"away":7},{"type":3,"home":1,"away":1},{"type":4,"home":0,"away":0},{"type":8,"home":0,"away":0},{"type":21,"home":3,"away":3},{"type":22,"home":2,"away":4},{"type":23,"home":144,"away":138},{"type":24,"home":99,"away":118},{"type":25,"home":0,"away":0}],"incidents":[{"type":1,"position":2,"time":10,"player_name":""},{"type":1,"position":2,"time":39,"player_name":""},{"type":1,"position":2,"time":90,"player_name":""}]},{"id":2442218,"stats":[{"type":2,"home":7,"away":3},{"type":3,"home":2,"away":2},{"type":4,"home":0,"away":0},{"type":8,"home":0,"away":0},{"type":21,"home":4,"away":6},{"type":22,"home":9,"away":4},{"type":23,"home":144,"away":148},{"type":24,"home":82,"away":68},{"type":25,"home":57,"away":43}],"incidents":[{"type":1,"position":1,"time":7,"player_name":"\u6587\u5c3c\u6c99\u8def"},{"type":1,"position":2,"time":10,"player_name":"\u62c9\u65af\u7d20"},{"type":1,"position":1,"time":77,"player_name":"\u6587\u5c3c\u6c99\u8def"},{"type":1,"position":2,"time":85,"player_name":"Cortes"}]}]

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.yb.entity.ContractCome;
 import com.yb.entity.Proceed;
 import com.yb.entity.User;
 
@@ -24,10 +25,13 @@ public interface UserDao {
 	Integer getSelf(@Param("wins")Integer wins); 
 	//当天第一次登陆送100金币,胜利获得赌注相同金币，就是修改金币数量，
 	void updateCurrency(@Param("openid")String openid,@Param("num")Integer num);
-	//获胜之后更改胜利场次+1
-	void updateWins(@Param("openid")String openid);
-	//用户竞猜输，用户参与总对局数+1
-	void updateAll(@Param("openid")String openid);
+	//批量更新金币，yn控制加减,顺便控制加减胜场，总 
+	void addCurrency(@Param("openids")List<String> openid,@Param("num")Integer num,@Param("yn")String yn);
+	void addCurrencyGroup(@Param("contractComes")ContractCome contractComes,@Param("yn")String yn);
+	
+	void updateAll(@Param("openids")List<String> openid);
+	
+	void updateWins(@Param("openids")List<String> openid);
 	
 	//查询用户进程
 	Proceed queryLastContract(@Param("uid")String uid);

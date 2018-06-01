@@ -6,4 +6,26 @@
 		iron_cock,wealthy from worldcup_pk_evaluation
 		where openid=#{openid}
 	</select>
+	<insert id="insert">
+		insert into worldcup_pk_evaluation(openid) values(#{openid})
+	</insert>
+	<update id="update">
+		update worldcup_pk_evaluation
+		<if test="type=='1'">
+			tricky_brains=tricky_brains+1
+		</if>
+		<if test="type=='2'">
+			food_anchor=food_anchor+1
+		</if>
+		<if test="type=='3'">
+			imagination_talent=imagination_talent+1
+		</if>
+		<if test="type=='4'">
+			iron_cock=iron_cock+1
+		</if>
+		where openid in
+		<foreach collection="openids" item="item" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+	</update>
 </mapper>

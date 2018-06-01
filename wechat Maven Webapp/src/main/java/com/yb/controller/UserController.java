@@ -1,6 +1,5 @@
 package com.yb.controller;
 
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -55,9 +54,8 @@ public class UserController {
 	}
 	@RequestMapping("/getMessage")
 	@ResponseBody
-	public Object getMessage(String code) throws IllegalStateException, IOException{
+	public Object getMessage(String openId){
 		try {
-			String openId = OpenUtils.getOpenId(code);
 			User user = userService.getUserStatus(openId);
 			return new ResultPack(1, user);
 		} catch (Exception e) {
@@ -68,9 +66,9 @@ public class UserController {
 	}
 	@RequestMapping("/getRank")
 	@ResponseBody
-	public ResultPack getRank(String code){
+	public ResultPack getRank(String openId){
 		try {
-			RankData rank = userService.getRank(code);
+			RankData rank = userService.getRank(openId);
 			return new ResultPack(1, rank);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

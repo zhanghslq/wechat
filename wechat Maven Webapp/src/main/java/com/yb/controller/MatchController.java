@@ -23,9 +23,9 @@ public class MatchController {
 	private MatchService matchService;
 	@ResponseBody
 	@RequestMapping("/queryBanner")
-	public ResultPack queryBanner(String code){
+	public ResultPack queryBanner(String openId){
 		try {
-			List<Banner> queryBanner = matchService.queryBanner(code);
+			List<Banner> queryBanner = matchService.queryBanner(openId);
 			return new ResultPack(1, queryBanner);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

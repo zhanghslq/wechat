@@ -1,16 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yb.dao.ContractDao">
+	<update id="updateResult">
+		update worldcup_pk_contract_user
+		<if test="yn=='yes'">
+			set result=1
+		</if>
+		<if test="yn!='yes'">
+			set result =0
+		</if>
+		where cid in
+		<foreach collection="cids" item="item" open="(" close=")" separator=",">
+			#{item.id}
+		</foreach>
+		and yn =1 and
+		<if test="yn=='yes'">
+			myGuess=#{result}
+		</if>
+		<if test="yn!='yes'">
+			myGuess!=#{result}
+		</if>
+	</update>
+	<select id="queryByResult" resultType="String">
+		select uid from worldcup_pk_contract_user where cid in
+		<foreach collection="cids" item="item" open="(" close=")" separator=",">
+			#{item}
+		</foreach> and result=#{result} and yn=1
+	</select>
 	<select id="queryNumberByCid" resultType="Integer">
 		select count(uid) from worldcup_pk_contract_user
 		where cid=#{cid}
 	</select>
-
+	<select id="queryByMatchId" resultType="ContractCome">
+		select id,stakeId from worldcup_pk_contract 
+		where matchId=#{matchId} and guessType=#{guessType}
+	</select>
 	<select id="queryByMatchIdAndUid" resultType="TheGuess">
 		select "好友赛" as type,c.id cid,u.nickname,u.imageUrl,c.status
 		from worldcup_pk_contract_user cu left join worldcup_pk_contract c on cu.cid=c.id
 		left join worldcup_pk_create_contract cc on cu.cid=cc.cid
-		left join worldcup_pk_user u on cc.createUser=u.openId
+		left join worldcup_pk_user u on cc.createUser=u.openid
 		where cu.uid=#{uid} and c.matchId=#{matchId} and cu.yn=1 and cc.yn=1
 	</select>
 
@@ -23,7 +52,7 @@
 		select c.id 
 		from worldcup_pk_create_contract cc 
 		left join worldcup_pk_contract c on cc.cid=c.id
-		where cc.createUser=#{uid} and c.matchId=#{matchId} cc.yn=1
+		where cc.createUser=#{uid} and c.matchId=#{matchId} and cc.yn=1
 	</select>
 	<select id="queryJoinByUid" resultType="Integer">
 		select c.id 
@@ -52,16 +81,16 @@
 		update worldcup_pk_contract set status=1 where id=#{cid} and yn=1
 	</update>
 
-	<insert id="insertContract" useGeneratedKeys="true" keyProperty="id">
+	<insert id="insertContract" useGeneratedKeys="true" parameterType="ContractCome" keyProperty="id">
 		insert into worldcup_pk_contract(guessType,stakeId,status,matchId,time)
-		values(#{contractCome.guessType},#{contractCome.stakeId}
-		,#{contractCome.status},#{contractCome.matchId},now())
+		values(#{guessType},#{stakeId}
+		,#{status},#{matchId},now())
 	</insert>
 	<insert id="insertConstractCreate">
-		insert into worldcup_pk_crate_contract(cid,createUser)values(#{cid},#{uid})
+		insert into worldcup_pk_create_contract(cid,createUser)values(#{cid},#{uid})
 	</insert>
 	<insert id="insertConstractUser">
-		replace into worldcup_pk_constract_user(cid,uid,myGuess,result) values(#{cid},#{uid},#{myGuess},2)
+		replace into worldcup_pk_contract_user(cid,uid,myGuess,result) values(#{cid},#{uid},#{myGuess},2)
 	</insert>
 	
 	
@@ -90,12 +119,12 @@
 		where cid=#{cid}
 	</delete>
 	
-	<select id="queryResult" resultType="String">
+	<select id="queryResult" resultType="Integer">
 		select result from worldcup_pk_contract_user 
 		where cid=#{cid} and uid=#{uid} and yn=1
 	</select>
 	<select id="queryUserList" resultType="User">
-		select u.id,u.name,u.imageUrl 
+		select u.id,u.nickname,u.imageUrl 
 		from worldcup_pk_contract_user cu 
 		left join worldcup_pk_user u on cu.uid=u.id 
 		where cu.cid=#{cid} and cu.result=#{result} and cu.yn=1

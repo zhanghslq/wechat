@@ -1,6 +1,5 @@
 package com.yb.controller;
 
-import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -16,7 +15,6 @@ import com.yb.entity.ContractDone;
 import com.yb.entity.ResultPack;
 import com.yb.entity.TheGuess;
 import com.yb.service.ContractService;
-import com.yb.util.OpenUtils;
 
 @Controller
 @RequestMapping("/contract")
@@ -56,9 +54,9 @@ public class ContractController {//0代表失败，1代表成功
 	//重新预测,两个是一样的
 	@ResponseBody
 	@RequestMapping("/joinContract")
-	public ResultPack joinContract(String code,Integer cid,String myGuess){
+	public ResultPack joinContract(String openId,Integer cid,String myGuess){
 		try {
-			String joinContract = contractService.joinContract(code, cid, myGuess);
+			String joinContract = contractService.joinContract(openId, cid, myGuess);
 			return new ResultPack(1, joinContract);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -82,8 +80,8 @@ public class ContractController {//0代表失败，1代表成功
 	//获取完成状态的契约
 	@ResponseBody
 	@RequestMapping("/queryContractDone")
-	public ResultPack queryContractDone(Integer cid,String code){
-		ContractDone queryContractDone = contractService.queryContractDone(cid, code);
+	public ResultPack queryContractDone(Integer cid,String openId){
+		ContractDone queryContractDone = contractService.queryContractDone(cid, openId);
 		return new ResultPack(1, queryContractDone);
 	}
 	/**
@@ -91,12 +89,11 @@ public class ContractController {//0代表失败，1代表成功
 	 */
 	@ResponseBody
 	@RequestMapping("/theGuess")
-	public ResultPack queryTheGuess(String code,Integer matchId){
+	public ResultPack queryTheGuess(String openId,Integer matchId){
 		try {
-			String openId = OpenUtils.getOpenId(code);
 			List<TheGuess> queryByMatchIdAndUid = contractService.queryByMatchIdAndUid(openId, matchId);
 			return new ResultPack(1, queryByMatchIdAndUid);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return new ResultPack(0, e.getMessage());

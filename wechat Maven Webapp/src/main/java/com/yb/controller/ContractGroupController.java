@@ -22,10 +22,9 @@ public class ContractGroupController {//群pk
 	//生成契约
 	@ResponseBody
 	@RequestMapping("/createContractGroup")
-	public ResultPack createContractGroup(ContractCome contractCome,String code){
+	public ResultPack createContractGroup(ContractCome contractCome){
 		try {
-			Integer createContractGroup = contractGroupService.createContractGroup(contractCome, code);
-			
+			Integer createContractGroup = contractGroupService.createContractGroup(contractCome);
 			return new ResultPack(1, createContractGroup);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -36,9 +35,9 @@ public class ContractGroupController {//群pk
 	//加入契约
 	@ResponseBody
 	@RequestMapping("/joinContractGroup")
-	public ResultPack joinContractGroup(String code,Integer cid,String myGuess,Integer number){
+	public ResultPack joinContractGroup(String openId,Integer cid,String myGuess){
 		try {
-			contractGroupService.joinContractGroup(code, cid, myGuess, number);
+			contractGroupService.joinContractGroup(openId, cid, myGuess);
 			return new ResultPack(1, null);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -77,9 +76,9 @@ public class ContractGroupController {//群pk
 	//获取群pk结果
 	@ResponseBody
 	@RequestMapping("/queryContractGroupResult")
-	public ResultPack queryContractGroupResult(Integer cid,String code){
+	public ResultPack queryContractGroupResult(Integer cid,String openId){
 		try {
-			ContractGroupResult queryContractGroupResult = contractGroupService.queryContractGroupResult(cid, code);
+			ContractGroupResult queryContractGroupResult = contractGroupService.queryContractGroupResult(cid, openId);
 			return new ResultPack(1, queryContractGroupResult);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

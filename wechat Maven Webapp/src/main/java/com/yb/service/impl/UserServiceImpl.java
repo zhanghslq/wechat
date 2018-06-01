@@ -70,15 +70,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public RankData getRank(String code) {
+	public RankData getRank(String openId) {
 		// TODO Auto-generated method stub
-		String openId = null;
-		try {
-			openId = OpenUtils.getOpenId(code);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		User user = userDao.getUser(openId);
 		Integer self = userDao.getSelf(user.getWins());
 		List<User> rank = userDao.getRank();

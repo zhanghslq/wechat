@@ -30,7 +30,7 @@ public class MachesQuartz {
 	private TeamDao teamDao;
 	@Autowired
 	private EventDao eventDao;
-	@Scheduled(cron="0 0 1 * * ?")//每天晚上1点
+	@Scheduled(cron="0 0 10 * * ?")//每天晚上1点
 	public void  autoGrade() throws ClientProtocolException, IOException {
 		String asString = Request.Get("http://open.leisu.com/api/sports/football/odds/list?user=cqdr&secret=JyN1wifrX2T0orlp&date="+DateUtil.getTomorrow())
 		.setHeader("content-type", "application/x-www-form-urlencoded")
@@ -59,7 +59,7 @@ public class MachesQuartz {
             Events bean = (Events) JSONObject.toBean(jsonObject, Events.class);
             String logo = bean.getLogo();
             bean.setLogo("https://cdn.leisu.com/eventlogo/"+logo);
-           events.add(bean);
+            events.add(bean);
 		 }
 		eventDao.insertEvent(events);//插入赛事信息
 		String string3 = fromObject.get("matches").toString();//这是最后的比赛数组

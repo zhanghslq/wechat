@@ -18,7 +18,7 @@ public interface ContractService {
 	//开局
 	String beginStake(Integer cid);
 	//获取完成状态的契约
-	ContractDone queryContractDone(Integer cid,String code);
+	ContractDone queryContractDone(Integer cid,String openId);
 	
 	List<TheGuess> queryByMatchIdAndUid(String uid,Integer matchId);
 	

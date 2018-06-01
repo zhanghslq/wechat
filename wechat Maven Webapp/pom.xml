@@ -169,7 +169,7 @@
   <build>
     <finalName>wechat</finalName>
     <plugins>
-    	<plugin>  
+    <plugin>  
             <groupId>org.apache.maven.plugins</groupId>  
             <artifactId>maven-compiler-plugin</artifactId>  
             <version>3.6.1</version>
@@ -179,16 +179,16 @@
             </configuration>  
         </plugin>  
     	<plugin>
-		    <groupId>org.apache.tomcat.maven</groupId>
-		    <artifactId>tomcat7-maven-plugin</artifactId>
-		    <version>2.2</version>
-		    <configuration>
-		        <url>http://39.104.85.35:8989/manager/text</url>
-		        <server>tomcat7</server>
-		        <path>/wechat</path> 
-		        <charset>utf8</charset>
-		        <update>true</update>
-		    </configuration>
+	    <groupId>org.apache.tomcat.maven</groupId>
+	    <artifactId>tomcat7-maven-plugin</artifactId>
+	    <version>2.2</version>
+	    <configuration>
+	        <url>http://39.104.85.35:8989/manager/text</url>
+	        <server>tomcat7</server>
+	        <path>/wechat</path> 
+	        <charset>utf8</charset>
+	        <update>true</update>
+	    </configuration>
 		</plugin>
     </plugins>
   </build>

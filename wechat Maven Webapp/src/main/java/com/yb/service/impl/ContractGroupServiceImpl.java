@@ -38,35 +38,19 @@ public class ContractGroupServiceImpl implements ContractGroupService{
 	
 	@Transactional
 	@Override
-	public Integer createContractGroup(ContractCome contractCome,String code) {//生成契约
+	public Integer createContractGroup(ContractCome contractCome) {//生成契约
 		// TODO Auto-generated method stub
 		contractGroupDao.insertContractGroup(contractCome);
 		Integer id = contractCome.getId();
-		String openId = null;
-		try {
-			openId = OpenUtils.getOpenId(code);
-		}catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			throw new RuntimeException("获取openid出错");
-		}
-		contractGroupDao.insertConstractGroupCreate(id, openId);
-		contractGroupDao.insertConstractGroupUser(id, openId, contractCome.getMyGuess(), contractCome.getNumber());
+		contractGroupDao.insertConstractGroupCreate(id, contractCome.getOpenId());
+		contractGroupDao.insertConstractGroupUser(id, contractCome.getOpenId(), contractCome.getMyGuess(), contractCome.getNumber());
 		return id;
 	}
 	@Override
-	public void joinContractGroup(String code, Integer cid, String myGuess,
-			Integer number) {//加入契约，重置猜测答案
+	public void joinContractGroup(String openId, Integer cid, String myGuess) {//加入契约，重置猜测答案
 		// TODO Auto-generated method stub
-		String openId = null;
-		try {
-			openId = OpenUtils.getOpenId(code);
-		}catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			throw new RuntimeException("获取openid出错");
-		}
-		contractGroupDao.insertConstractGroupUser(cid, openId, myGuess, number);
+		Integer queryNumberById = contractGroupDao.queryNumberById(cid);//得到的是下注数量
+		contractGroupDao.insertConstractGroupUser(cid, openId, myGuess, queryNumberById);
 	}
 	@Override
 	public ContractGroupDetails queryGroupDetails(Integer cid) {//查詢群pk的未完成的契约详情
@@ -91,20 +75,10 @@ public class ContractGroupServiceImpl implements ContractGroupService{
 		contractGroupDao.updateStatus(cid);
 	}
 	@Override
-	public ContractGroupResult queryContractGroupResult(Integer cid,String code) {
+	public ContractGroupResult queryContractGroupResult(Integer cid,String openId) {
 		// TODO Auto-generated method stub
 		ContractCome queryContractGroup = contractGroupDao.queryContractGroup(cid);
 		Integer matchId = queryContractGroup.getMatchId();
-		String openId = "";
-		try {
-			openId = OpenUtils.getOpenId(code);
-		} catch (ClientProtocolException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		String message="获胜";
 		Integer resultByUidAndCid = contractGroupDao.queryResultByUidAndCid(cid, openId);
 		if(0==resultByUidAndCid){

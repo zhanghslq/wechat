@@ -7,7 +7,7 @@ import com.yb.entity.Match;
 import com.yb.entity.MatchData;
 
 public interface MatchService {
-	List<Banner> queryBanner(String code);
+	List<Banner> queryBanner(String openId);
 	
 	List<MatchData> queryMatchDone();
 }

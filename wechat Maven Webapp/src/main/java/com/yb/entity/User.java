@@ -48,10 +48,10 @@ public class User {
 	}
 	@Override
 	public String toString() {
-		return "User [openid=" + openid + ", imageUrl=" + imageUrl
-				+ ", nickname=" + nickname + ", currency=" + currency
-				+ ", wins=" + wins + ", lasttime=" + lasttime + ", rownum="
-				+ rownum + ", message=" + message + "]";
+		return "User [id=" + id + ", openid=" + openid + ", imageUrl="
+				+ imageUrl + ", nickname=" + nickname + ", currency="
+				+ currency + ", wins=" + wins + ", lasttime=" + lasttime
+				+ ", rownum=" + rownum + ", message=" + message + "]";
 	}
 	
 	public Integer getRownum() {
@@ -95,6 +95,26 @@ public class User {
 	}
 	public void setLasttime(Date lasttime) {
 		this.lasttime = lasttime;
+	}
+	public User(Integer id, String openid, String imageUrl, String nickname,
+			Integer currency, Integer wins, Date lasttime, Integer rownum,
+			String message) {
+		super();
+		this.id = id;
+		this.openid = openid;
+		this.imageUrl = imageUrl;
+		this.nickname = nickname;
+		this.currency = currency;
+		this.wins = wins;
+		this.lasttime = lasttime;
+		this.rownum = rownum;
+		this.message = message;
+	}
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	
 	

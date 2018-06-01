@@ -31,16 +31,8 @@ public class MatchServiceImpl implements MatchService{
 	private ContractGroupDao contractGroupDao;
 	private SimpleDateFormat sfDateFormat=new SimpleDateFormat("yyyy-MM-dd");
 	@Override
-	public List<Banner> queryBanner(String code) {//查询当前赛事
+	public List<Banner> queryBanner(String openId) {//查询当前赛事
 		// TODO Auto-generated method stub
-		String openId;
-		try {
-			openId = OpenUtils.getOpenId(code);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			throw new RuntimeException("获取openid出错");
-		}
 		List<Match> queryMatches = matchDao.queryMatches(openId);//获取到的赛事，然后判断，是否是发起人，是否参加契约
 		List<Banner> data = new ArrayList<Banner>();//存放包装好的返回信息
 		for (Match match : queryMatches) {

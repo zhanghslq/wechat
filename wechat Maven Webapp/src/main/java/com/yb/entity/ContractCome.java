@@ -5,7 +5,7 @@ package com.yb.entity;
  *
  */
 public class ContractCome {
-	private String code;//用戶携帶code
+	private String openId;//用戶携帶code
 	private Integer id;
 	private Integer guessType;//竞猜类型，可以0代表输赢，1代表比分
 	private Integer stakeId;
@@ -19,11 +19,11 @@ public class ContractCome {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public ContractCome(String code, Integer id, Integer guessType,
+	public ContractCome(String openId, Integer id, Integer guessType,
 			Integer stakeId, Integer status, Integer stakeType,
 			String stakeText, String myGuess, Integer matchId, Integer number) {
 		super();
-		this.code = code;
+		this.openId = openId;
 		this.id = id;
 		this.guessType = guessType;
 		this.stakeId = stakeId;
@@ -36,17 +36,17 @@ public class ContractCome {
 	}
 	@Override
 	public String toString() {
-		return "ContractCome [code=" + code + ", id=" + id + ", guessType="
+		return "ContractCome [openId=" + openId + ", id=" + id + ", guessType="
 				+ guessType + ", stakeId=" + stakeId + ", status=" + status
 				+ ", stakeType=" + stakeType + ", stakeText=" + stakeText
 				+ ", myGuess=" + myGuess + ", matchId=" + matchId + ", number="
 				+ number + "]";
 	}
-	public String getCode() {
-		return code;
+	public String getOpenId() {
+		return openId;
 	}
-	public void setCode(String code) {
-		this.code = code;
+	public void setOpenId(String openId) {
+		this.openId = openId;
 	}
 	public Integer getId() {
 		return id;
@@ -102,8 +102,5 @@ public class ContractCome {
 	public void setNumber(Integer number) {
 		this.number = number;
 	}
-	
-	
-	
 	
 }

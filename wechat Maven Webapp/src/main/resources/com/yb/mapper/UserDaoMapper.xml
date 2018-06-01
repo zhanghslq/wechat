@@ -29,8 +29,8 @@
 		(#{user.openid},#{user.imageUrl},#{user.nickname},#{user.currency},now())
 	</insert>
 	<select id="getRank" resultType="User">
-		set @rownum:=0;  
-		select openid,nickname,wins,@rownum:=@rownum+1 as rownum from worldcup_pk_user order by wins desc limit 10
+		select openid,nickname,wins,@rownum:=@rownum+1 as rownum
+ 		from worldcup_pk_user p,(select @rownum:=0) q order by wins desc limit 10
 	</select>
 	<select id="getSelf" resultType="Integer">
 		select count(openid)+1 from worldcup_pk_user where wins &lt; #{wins}
@@ -39,10 +39,42 @@
 	<update id="updateCurrency">
 		update worldcup_pk_user set currency=currency+#{num} where openid=#{openid}
 	</update>
+	<update id="addCurrency">
+		update worldcup_pk_user 
+		<if test="yn=='yes'">
+			set currency=currency+#{num},wins=wins+1,all=all+1 
+		</if>
+		<if test="yn!='yes'">
+			set currency=currency-#{num},all=all+1
+		</if>
+		where openid in
+		<foreach collection="openids" item="item" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</update>
+	<update id="addCurrencyGroup">
+			update worldcup_pk_user 
+			<if test="yn=='yes'">
+				set currency=currency+#{contractComes.number},wins=wins+1,all=all+1 
+			</if>
+			<if test="yn!='yes'">
+				set currency=currency-#{contractComes.number},all=all+1
+			</if>
+			where openid = #{contractComes.openId}
+	</update>
 	<update id="updateWins">
-		update worldcup_pk_user set wins=wins+1,all=all+1 where openid=#{openid}
+		update worldcup_pk_user set wins=wins+1,all=all+1 
+		where openid in
+		<foreach collection="openids" item="item" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+		
 	</update>
 	<update id="updateAll">
-		update worldcup_pk_user set all=all+1 where openid=#{openid}
+		update worldcup_pk_user set all=all+1 
+		where openid in
+		<foreach collection="openids" item="item" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
 	</update>
 </mapper>
