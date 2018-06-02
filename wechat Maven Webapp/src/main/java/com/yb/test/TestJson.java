@@ -71,8 +71,8 @@ public class TestJson {
 				JSONArray objvisit = JSONArray.fromObject(object3);
 				int visitid = objvisit.getInt(0);//ke队id
 				int visit_grade = objvisit.getInt(2);//ke队比分
-				Match match = new Match(id, eventid, status, new Date(time*1000), homeid, home_grade, visitid, visit_grade);
-				matches.add(match);
+				//Match match = new Match(id, eventid, status, new Date(time*1000), homeid, home_grade, visitid, visit_grade);
+				//matches.add(match);
 			}
 			//需要把这些数据插入数据库
 		 /*Object object = fromObject.get(0);

@@ -12,7 +12,9 @@ public class Test {
 		/* String string ="{\"session_key\":\"NSLRcknUk4DmRuUFnX8a+w==\",\"openid\":\"om9W35Siht5C9hWmXkbYkXB2f7xI\"}";
 		 WeChatData parseObject = JSON.parseObject(string, WeChatData.class);
 		 System.out.println(parseObject);*/
-		WeChatData permission = OpenUtils.getPermission("061abTrU1OwCjW0G8crU1ztSrU1abTra");
-		System.out.println(permission);
+		/*WeChatData permission = OpenUtils.getPermission("061abTrU1OwCjW0G8crU1ztSrU1abTra");
+		System.out.println(permission);*/
+		String string = new String("\u5206\u7ec4\u8d5b");
+		System.out.println(string);
 	}
 }

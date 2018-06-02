@@ -4,38 +4,25 @@ public class Team {
 	private Integer id;
 	private String name_zh;
 	private String logo;
-	private Integer matchevent_id;//比賽ID
 	private Integer grade;
-	public Integer getGrade() {
-		return grade;
-	}
-	public void setGrade(Integer grade) {
-		this.grade = grade;
-	}
-	public Team(Integer id, String name_zh, String logo, Integer matchevent_id,
-			Integer grade) {
-		super();
-		this.id = id;
-		this.name_zh = name_zh;
-		this.logo = logo;
-		this.matchevent_id = matchevent_id;
-		this.grade = grade;
-	}
+	private String country_logo;
 	public Team() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Team(Integer id, String name_zh, String logo, Integer matchevent_id) {
+	public Team(Integer id, String name_zh, String logo, Integer grade,
+			String country_logo) {
 		super();
 		this.id = id;
 		this.name_zh = name_zh;
 		this.logo = logo;
-		this.matchevent_id = matchevent_id;
+		this.grade = grade;
+		this.country_logo = country_logo;
 	}
 	@Override
 	public String toString() {
 		return "Team [id=" + id + ", name_zh=" + name_zh + ", logo=" + logo
-				+ ", matchevent_id=" + matchevent_id + "]";
+				+ ", grade=" + grade + ", country_logo=" + country_logo + "]";
 	}
 	public Integer getId() {
 		return id;
@@ -55,11 +42,17 @@ public class Team {
 	public void setLogo(String logo) {
 		this.logo = logo;
 	}
-	public Integer getMatchevent_id() {
-		return matchevent_id;
+	public Integer getGrade() {
+		return grade;
 	}
-	public void setMatchevent_id(Integer matchevent_id) {
-		this.matchevent_id = matchevent_id;
+	public void setGrade(Integer grade) {
+		this.grade = grade;
+	}
+	public String getCountry_logo() {
+		return country_logo;
+	}
+	public void setCountry_logo(String country_logo) {
+		this.country_logo = country_logo;
 	}
 	
 }

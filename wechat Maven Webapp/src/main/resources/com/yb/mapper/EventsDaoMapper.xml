@@ -7,6 +7,10 @@
 			(#{item.id},#{item.name_zh},#{item.logo})
 		</foreach>
 	</insert>
+	<insert id="insertEventBean">
+		replace into worldcup_pk_events(id,name,logo) values
+			(#{event.id},#{event.name_zh},#{event.logo})
+	</insert>
 	<select id="queryById" resultType="Events">
 		select id,name name_zh,logo from worldcup_pk_events where id=#{id}
 	</select>

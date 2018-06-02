@@ -56,13 +56,13 @@
 		right join worldcup_pk_contract_user_group cu on c.id=cu.cid 
 		where c.matchId=#{matchId} and c.yn=1 and cu.yn=1
 	</select>
-	<select id="queryCreateByUid" resultType="String">
+	<select id="queryCreateByUid" resultType="Integer">
 		select c.id 
 		from worldcup_pk_create_contract_group cc 
 		left join worldcup_pk_contract_group c on cc.cid=c.id
 		where cc.createUser=#{uid} and c.matchId=#{matchId} and cc.yn=1 and c.yn=1
 	</select>
-	<select id="queryJoinByUid" resultType="String">
+	<select id="queryJoinByUid" resultType="Integer">
 		select c.id from worldcup_pk_contract_user_group cc 
 		left join worldcup_pk_contract_group c on cc.cid=c.id
 		where cc.uid=#{uid} and c.matchId=#{matchId} and cc.yn=1 and c.yn=1
@@ -102,7 +102,7 @@
 		update worldcup_pk_contract_user_group set result=#{result} 
 		where cid=#{cid} and uid=#{uid} and yn=1
 	</update>
-	<select id="queryList" resultType="String">
+	<select id="queryList" resultType="Integer">
 		select id from worldcup_pk_contract_group 
 		where time &lt; DATE_SUB(NOW(),INTERVAL 30 MINUTE) and status=0 and yn=1
 	</select>

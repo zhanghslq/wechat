@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.yb.dao.ContractGroupDao;
 import com.yb.dao.EventDao;
 import com.yb.dao.MatchDao;
+import com.yb.dao.StageDao;
 import com.yb.dao.TeamDao;
 import com.yb.entity.ContractCome;
 import com.yb.entity.ContractGroupDetails;
@@ -19,6 +20,7 @@ import com.yb.entity.ContractGroupResult;
 import com.yb.entity.Events;
 import com.yb.entity.JoinData;
 import com.yb.entity.Match;
+import com.yb.entity.Stage;
 import com.yb.entity.Team;
 import com.yb.entity.User;
 import com.yb.service.ContractGroupService;
@@ -32,7 +34,7 @@ public class ContractGroupServiceImpl implements ContractGroupService{
 	@Autowired
 	private MatchDao matchDao;
 	@Autowired
-	private EventDao eventDao;
+	private StageDao stageDao;
 	@Autowired
 	private TeamDao teamDao;
 	
@@ -57,7 +59,10 @@ public class ContractGroupServiceImpl implements ContractGroupService{
 		// TODO Auto-generated method stub
 		ContractCome contractCome = contractGroupDao.queryContractGroup(cid);
 		Match match = matchDao.queryById(contractCome.getMatchId());
-		Events queryById = eventDao.queryById(match.getEventid());
+	
+		//这里需要取阶段的数据
+		Stage queryById = stageDao.queryById(match.getStageId());
+		
 		Team home = teamDao.queryById(match.getHomeid());
 		Team visit = teamDao.queryById(match.getVisitid());
 		List<JoinData> queryContractGroupUser = contractGroupDao.queryContractGroupUser(cid);
@@ -72,7 +77,13 @@ public class ContractGroupServiceImpl implements ContractGroupService{
 	@Override
 	public void beginContractGroup(Integer cid) {
 		// TODO Auto-generated method stub
-		contractGroupDao.updateStatus(cid);
+		//先查询人数
+				Integer queryNumberByCid = contractGroupDao.queryNumberByCid(cid);//参与群pk的人数
+				if(queryNumberByCid>1){//群pk超过1人，自动开局
+					contractGroupDao.updateStatus(cid);
+				}else {
+					throw new RuntimeException("群pk人数至少两人");
+				}
 	}
 	@Override
 	public ContractGroupResult queryContractGroupResult(Integer cid,String openId) {

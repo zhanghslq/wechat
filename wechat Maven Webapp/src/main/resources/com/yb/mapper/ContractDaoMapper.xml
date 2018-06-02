@@ -33,7 +33,7 @@
 	</select>
 	<select id="queryByMatchId" resultType="ContractCome">
 		select id,stakeId from worldcup_pk_contract 
-		where matchId=#{matchId} and guessType=#{guessType}
+		where matchId=#{matchId} and guessType=#{type}
 	</select>
 	<select id="queryByMatchIdAndUid" resultType="TheGuess">
 		select "好友赛" as type,c.id cid,u.nickname,u.imageUrl,c.status
@@ -48,7 +48,7 @@
 		right join worldcup_pk_contract_user cu on c.id=cu.cid
 		where c.matchId=#{matchId} and cu.yn=1
 	</select>
-	<select id="queryCreateByUid" resultType="String">
+	<select id="queryCreateByUid" resultType="Integer">
 		select c.id 
 		from worldcup_pk_create_contract cc 
 		left join worldcup_pk_contract c on cc.cid=c.id

@@ -8,7 +8,7 @@ import java.util.List;
  *
  */
 public class ContractGroupDetails {
-	private String eventName;//赛事名称
+	private String stageName;//赛事名称
 	private Team home;
 	private Team visit;
 	private Integer guessType;
@@ -22,12 +22,12 @@ public class ContractGroupDetails {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public ContractGroupDetails(String eventName, Team home, Team visit,
+	public ContractGroupDetails(String stageName, Team home, Team visit,
 			Integer guessType, List<User> loser, List<User> success,
 			Long currencys, List<String> nearLogo, Integer number,
 			List<JoinData> joiners) {
 		super();
-		this.eventName = eventName;
+		this.stageName = stageName;
 		this.home = home;
 		this.visit = visit;
 		this.guessType = guessType;
@@ -40,17 +40,17 @@ public class ContractGroupDetails {
 	}
 	@Override
 	public String toString() {
-		return "ContractGroupDetails [eventName=" + eventName + ", home="
+		return "ContractGroupDetails [stageName=" + stageName + ", home="
 				+ home + ", visit=" + visit + ", guessType=" + guessType
 				+ ", loser=" + loser + ", success=" + success + ", currencys="
 				+ currencys + ", nearLogo=" + nearLogo + ", number=" + number
 				+ ", joiners=" + joiners + "]";
 	}
-	public String getEventName() {
-		return eventName;
+	public String getStageName() {
+		return stageName;
 	}
-	public void setEventName(String eventName) {
-		this.eventName = eventName;
+	public void setStageName(String stageName) {
+		this.stageName = stageName;
 	}
 	public Team getHome() {
 		return home;
