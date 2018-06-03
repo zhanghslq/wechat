@@ -10,6 +10,7 @@
 	</select>
 	
 	<select id="queryAll" resultType="Stake">
-		select id,type,name,logo,time from worldcup_pk_stake order by time asc limit 8
+		select id,type,name,logo,time from worldcup_pk_stake
+		where isOriginal =1 order by id asc
 	</select>
 </mapper>

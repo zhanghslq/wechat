@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yb.dao.UserDao">
+	<update id="updateNameAndLogo">
+		update worldcup_pk_user set nickname=#{user.nickname},imageUrl=#{user.imageUrl}
+		where openid=#{user.openid}
+	</update>
 	<update id="update">
 		update worldcup_pk_user set lasttime=now() where openid=#{openid}
 	</update>

@@ -3,6 +3,7 @@ package com.yb.service.impl;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,8 @@ public class MatchServiceImpl implements MatchService{
 	@Autowired
 	private ContractGroupDao contractGroupDao;
 	private SimpleDateFormat sfDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+	private SimpleDateFormat sf=new SimpleDateFormat("MM月dd日   HH:mm");
+	
 	@Override
 	public List<Banner> queryBanner(String openId) {//查询当前赛事
 		// TODO Auto-generated method stub
@@ -63,7 +66,9 @@ public class MatchServiceImpl implements MatchService{
 			if(queryJoinByUid2!=null){
 				join2=true;
 			}
-			Banner banner = new Banner(match.getId(), match.getTime(), home, visit, queryNumber+queryNumberByMatchId, create, join,create2,join2);
+			Date time = match.getTime();
+			Banner banner = new Banner(match.getId(), time, home, visit, queryNumber+queryNumberByMatchId, create, join,create2,join2);
+			banner.setTimeDesc(sf.format(time));
 			data.add(banner);
 		}
 		return data;

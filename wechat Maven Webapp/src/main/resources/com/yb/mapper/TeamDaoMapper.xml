@@ -8,6 +8,6 @@
 		</foreach>
 	</select>
 	<select id="queryById" resultType="Team">
-		select id,name,logo,country_logo from worldcup_pk_team where id=#{id}
+		select id,name name_zh,logo,country_logo from worldcup_pk_team where id=#{id}
 	</select>
 </mapper>

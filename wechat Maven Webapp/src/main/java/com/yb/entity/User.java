@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class User {
 	private Integer id;
+	private String code;
 	private String openid;
 	private String imageUrl;
 	private String nickname;
@@ -16,27 +17,12 @@ public class User {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public User(String openid, String imageUrl, String nickname,
-			Integer currency, Integer wins, Date lasttime) {
+	public User(Integer id, String code, String openid, String imageUrl,
+			String nickname, Integer currency, Integer wins, Date lasttime,
+			Integer rownum, String message) {
 		super();
-		this.openid = openid;
-		this.imageUrl = imageUrl;
-		this.nickname = nickname;
-		this.currency = currency;
-		this.wins = wins;
-		this.lasttime = lasttime;
-	}
-	
-	public String getMessage() {
-		return message;
-	}
-	public void setMessage(String message) {
-		this.message = message;
-	}
-	public User(String openid, String imageUrl, String nickname,
-			Integer currency, Integer wins, Date lasttime, Integer rownum,
-			String message) {
-		super();
+		this.id = id;
+		this.code = code;
 		this.openid = openid;
 		this.imageUrl = imageUrl;
 		this.nickname = nickname;
@@ -48,17 +34,23 @@ public class User {
 	}
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", openid=" + openid + ", imageUrl="
-				+ imageUrl + ", nickname=" + nickname + ", currency="
-				+ currency + ", wins=" + wins + ", lasttime=" + lasttime
-				+ ", rownum=" + rownum + ", message=" + message + "]";
+		return "User [id=" + id + ", code=" + code + ", openid=" + openid
+				+ ", imageUrl=" + imageUrl + ", nickname=" + nickname
+				+ ", currency=" + currency + ", wins=" + wins + ", lasttime="
+				+ lasttime + ", rownum=" + rownum + ", message=" + message
+				+ "]";
 	}
-	
-	public Integer getRownum() {
-		return rownum;
+	public Integer getId() {
+		return id;
 	}
-	public void setRownum(Integer rownum) {
-		this.rownum = rownum;
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
 	}
 	public String getOpenid() {
 		return openid;
@@ -96,26 +88,17 @@ public class User {
 	public void setLasttime(Date lasttime) {
 		this.lasttime = lasttime;
 	}
-	public User(Integer id, String openid, String imageUrl, String nickname,
-			Integer currency, Integer wins, Date lasttime, Integer rownum,
-			String message) {
-		super();
-		this.id = id;
-		this.openid = openid;
-		this.imageUrl = imageUrl;
-		this.nickname = nickname;
-		this.currency = currency;
-		this.wins = wins;
-		this.lasttime = lasttime;
+	public Integer getRownum() {
+		return rownum;
+	}
+	public void setRownum(Integer rownum) {
 		this.rownum = rownum;
+	}
+	public String getMessage() {
+		return message;
+	}
+	public void setMessage(String message) {
 		this.message = message;
 	}
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	
 	
 }

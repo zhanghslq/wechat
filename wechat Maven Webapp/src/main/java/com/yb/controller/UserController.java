@@ -7,7 +7,10 @@ import javax.annotation.Resource;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yb.entity.RankData;
@@ -23,20 +26,25 @@ public class UserController {
 	@Resource
 	private UserService userService;
 	//微信授权登录
-	@RequestMapping("/login")
+	@RequestMapping(value="/login",method=RequestMethod.POST)
 	@ResponseBody
-	public ResultPack login(String nickname,String code,String imageUrl){
+	public ResultPack login(@RequestBody User user1){
 		 try {
 			System.out.println("进入方法");
-			System.out.println("code==========="+code);
-	 		String openId = OpenUtils.getOpenId(code);
+			System.out.println("code==========="+user1.getCode());
+	 		String openId = OpenUtils.getOpenId(user1.getCode());
 	 		System.out.println("获取到的openId"+openId);
 	        User user = userService.getUser(openId);
 	        if(user==null){
-	        	User user2 = new User(openId,imageUrl,nickname,8000,0,new Date());
+	        	User user2 = new User(null,null,openId,user1.getImageUrl(),user1.getNickname(),8000,0,new Date(),null,null);
 	        	userService.insertUser(user2);
 	        	return  new ResultPack(1, user2);
 	        }else {
+	        	User user2 = new User();
+	        	user2.setOpenid(openId);
+	        	user2.setImageUrl(user1.getImageUrl());
+	        	user2.setNickname(user1.getNickname());
+	        	userService.updateNameAndLogo(user2);
 	        	Date lasttime = user.getLasttime();
 				SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
 				String format = simpleDateFormat.format(lasttime);
@@ -45,7 +53,6 @@ public class UserController {
 				}
 				return new ResultPack(1, user);
 			}
-			        
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

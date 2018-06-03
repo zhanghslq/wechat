@@ -16,6 +16,28 @@ public class Banner {
 	private Boolean join;//是否参与
 	private Boolean createGroup;
 	private Boolean joinGroup;
+	private String timeDesc;
+	public String getTimeDesc() {
+		return timeDesc;
+	}
+	public void setTimeDesc(String timeDesc) {
+		this.timeDesc = timeDesc;
+	}
+	public Banner(Integer id, Date time, Team home, Team visit, Integer number,
+			Boolean create, Boolean join, Boolean createGroup,
+			Boolean joinGroup, String timeDesc) {
+		super();
+		this.id = id;
+		this.time = time;
+		this.home = home;
+		this.visit = visit;
+		this.number = number;
+		this.create = create;
+		this.join = join;
+		this.createGroup = createGroup;
+		this.joinGroup = joinGroup;
+		this.timeDesc = timeDesc;
+	}
 	public Banner() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -38,7 +60,7 @@ public class Banner {
 		return "Banner [id=" + id + ", time=" + time + ", home=" + home
 				+ ", visit=" + visit + ", number=" + number + ", create="
 				+ create + ", join=" + join + ", createGroup=" + createGroup
-				+ ", joinGroup=" + joinGroup + "]";
+				+ ", joinGroup=" + joinGroup + ", timeDesc=" + timeDesc + "]";
 	}
 	public Integer getId() {
 		return id;

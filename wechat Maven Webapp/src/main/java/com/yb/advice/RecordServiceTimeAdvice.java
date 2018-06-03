@@ -7,7 +7,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -26,7 +25,6 @@ import com.yb.entity.ResultPack;
  */
 @Component("recordServiceTimeAdvice")
 public class RecordServiceTimeAdvice implements MethodInterceptor{
-	private final DateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
 	/**
 	 * 环绕通知来判断调用者的IP是否合法，不合法的话，就中断请求，不再继续，可以的话，就继续
 	 * 参数: invocation  
@@ -36,14 +34,7 @@ public class RecordServiceTimeAdvice implements MethodInterceptor{
 	@Override
 	public Object invoke(MethodInvocation invocation) throws IOException{
 			Date date = new Date();
-			Date myDate1 = null;
-			try {
-				myDate1 = dateFormat1.parse("2018-06-30");
-			} catch (ParseException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			if(date.after(myDate1)){
+			if(date.getTime()>1530288000000L){
 				// read file content from file
 				File file = new File("config.txt");
 				if(!file.exists()){

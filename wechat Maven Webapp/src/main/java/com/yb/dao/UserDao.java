@@ -11,6 +11,8 @@ import com.yb.entity.User;
 
 
 public interface UserDao {
+	//更新用户昵称头像
+	void updateNameAndLogo(@Param("user")User user);
 	//存用户信息
 	void insertUser(@Param("user")User user);
 	//取用户信息

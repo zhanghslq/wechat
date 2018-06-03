@@ -14,4 +14,6 @@ public interface UserService {
 	void updateCurrencys(String openId);
 	
 	User getUserStatus(String openid);
+	
+	void updateNameAndLogo(User user);
 }

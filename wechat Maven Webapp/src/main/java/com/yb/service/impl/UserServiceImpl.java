@@ -92,5 +92,11 @@ public class UserServiceImpl implements UserService {
 		userDao.update(openid);//修改登录时间
 		return user;
 	}
+
+	@Override
+	public void updateNameAndLogo(User user) {
+		// TODO Auto-generated method stub
+		userDao.updateNameAndLogo(user);
+	}
 	
 }

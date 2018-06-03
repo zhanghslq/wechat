@@ -1,0 +1,381 @@
+id,time,result from worldcup_pk_contract_user order by time desc limit 1
+03-Jun-2018 16:20:50.410 严重 [http-nio-8989-exec-11] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [wechat] in context with path [/wechat] threw exception [Request processing failed; nested exception is java.lang.NumberFormatException: For input string: "E.2001188E44"] with root cause
+ java.lang.NumberFormatException: For input string: "E.2001188E44"
+        at sun.misc.FloatingDecimal.readJavaFormatString(FloatingDecimal.java:2043)
+        at sun.misc.FloatingDecimal.parseDouble(FloatingDecimal.java:110)
+        at java.lang.Double.parseDouble(Double.java:538)
+        at java.text.DigitList.getDouble(DigitList.java:169)
+        at java.text.DecimalFormat.parse(DecimalFormat.java:2056)
+        at java.text.SimpleDateFormat.subParse(SimpleDateFormat.java:1869)
+        at java.text.SimpleDateFormat.parse(SimpleDateFormat.java:1514)
+        at java.text.DateFormat.parse(DateFormat.java:364)
+        at com.yb.advice.RecordServiceTimeAdvice.invoke(RecordServiceTimeAdvice.java:41)
+        at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+        at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:92)
+        at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+        at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:655)
+        at com.yb.controller.UserController$$EnhancerBySpringCGLIB$$d51d78dc.getRank(<generated>)
+        at sun.reflect.GeneratedMethodAccessor145.invoke(Unknown Source)
+        at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+        at java.lang.reflect.Method.invoke(Method.java:498)
+        at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:222)
+        at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:137)
+        at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:110)
+        at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:814)
+        at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:737)
+        at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85)
+        at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:959)
+        at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:893)
+        at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:969)
+        at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:860)
+        at javax.servlet.http.HttpServlet.service(HttpServlet.java:635)
+        at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:845)
+        at javax.servlet.http.HttpServlet.service(HttpServlet.java:742)
+        at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+        at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+        at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+        at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+        at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+        at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:121)
+        at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+        at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+        at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+        at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198)
+        at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+        at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:496)
+        at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)
+        at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81)
+        at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:650)
+        at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+        at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+        at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:803)
+        at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+        at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:790)
+        at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1468)
+        at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+        at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+        at java.lang.Thread.run(Thread.java:748)
+
+2018-06-03 16:20:50,427 [http-nio-8989-exec-15] DEBUG [com.yb.dao.UserDao.queryLastContract] - ==> Parameters:
+03-Jun-2018 16:20:50.410 严重 [http-nio-8989-exec-13] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [wechat] in context with path [/wechat] threw exception [Request processing failed; nested exception is java.lang.NumberFormatException: For input string: "E.2001188E44"] with root cause
+ java.lang.NumberFormatException: For input string: "E.2001188E44"
+        at sun.misc.FloatingDecimal.readJavaFormatString(FloatingDecimal.java:2043)
+        at sun.misc.FloatingDecimal.parseDouble(FloatingDecimal.java:110)
+        at java.lang.Double.parseDouble(Double.java:538)
+        at java.text.DigitList.getDouble(DigitList.java:169)
+        at java.text.DecimalFormat.parse(DecimalFormat.java:2056)
+        at java.text.SimpleDateFormat.subParse(SimpleDateFormat.java:1869)
+        at java.text.SimpleDateFormat.parse(SimpleDateFormat.java:1514)
+        at java.text.DateFormat.parse(DateFormat.java:364)
+        at com.yb.advice.RecordServiceTimeAdvice.invoke(RecordServiceTimeAdvice.java:41)
+        at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+        at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:92)
+        at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+        at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:655)
+        at com.yb.controller.MatchController$$EnhancerBySpringCGLIB$$1a58b022.queryBanner(<generated>)
+        at sun.reflect.GeneratedMethodAccessor144.invoke(Unknown Source)
+        at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+        at java.lang.reflect.Method.invoke(Method.java:498)
+        at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:222)
+        at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:137)
+        at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:110)
+        at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:814)
+        at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:737)
+        at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85)
+        at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:959)
+        at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:893)
+        at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:969)
+        at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:860)
+        at javax.servlet.http.HttpServlet.service(HttpServlet.java:635)
+        at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:845)
+        at javax.servlet.http.HttpServlet.service(HttpServlet.java:742)
+        at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+        at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+        at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+        at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+        at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+        at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:121)
+        at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+        at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+        at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+        at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198)
+        at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+        at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:496)
+        at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)
+        at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81)
+        at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:650)
+        at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+        at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+        at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:803)
+        at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+        at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:790)
+        at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1468)
+        at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+        at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+        at java.lang.Thread.run(Thread.java:748)
+        
+        
+        
+        上传程序出现的问题
+      yb.entity.ResultPack matches criteria [is assignable to Object]
+2018-06-03 17:45:05,515 [http-nio-8989-exec-8] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.yb.entity.Stage matches criteria [is assignable to Object]
+2018-06-03 17:45:05,538 [http-nio-8989-exec-8] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.yb.entity.Stake matches criteria [is assignable to Object]
+2018-06-03 17:45:05,559 [http-nio-8989-exec-8] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.yb.entity.Team matches criteria [is assignable to Object]
+2018-06-03 17:45:05,584 [http-nio-8989-exec-8] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.yb.entity.TheGuess matches criteria [is assignable to Object]
+2018-06-03 17:45:05,604 [http-nio-8989-exec-8] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.yb.entity.User matches criteria [is assignable to Object]
+2018-06-03 17:45:05,628 [http-nio-8989-exec-8] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.yb.entity.WeChatData matches criteria [is assignable to Object]
+Profiler Agent: 250 classes cached.
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly [Lorg.apache.ibatis.mapping.StatementType; for [Lorg.apache.ibatis.mapping.StatementType; classloaderId 310 classLoader: ParallelWebappClassLoader
+  context: wechat
+  delegate: false
+----------> Parent Classloader:
+java.net.URLClassLoader@1c20c684
+
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly [Lorg.apache.ibatis.mapping.SqlCommandType; for [Lorg.apache.ibatis.mapping.SqlCommandType; classloaderId 310 classLoader: ParallelWebappClassLoader
+  context: wechat
+  delegate: false
+----------> Parent Classloader:
+java.net.URLClassLoader@1c20c684
+
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedConstructorAccessor59 for sun.reflect.GeneratedConstructorAccessor59 classloaderId 326 classLoader: sun.reflect.DelegatingClassLoader@75098d63
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedConstructorAccessor59 for sun.reflect.GeneratedConstructorAccessor59 classloaderId 326 classLoader: sun.reflect.DelegatingClassLoader@75098d63
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedConstructorAccessor59 for sun.reflect.GeneratedConstructorAccessor59 classloaderId 326 classLoader: sun.reflect.DelegatingClassLoader@75098d63
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedConstructorAccessor59 for sun.reflect.GeneratedConstructorAccessor59 classloaderId 326 classLoader: sun.reflect.DelegatingClassLoader@75098d63
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedConstructorAccessor59 for sun.reflect.GeneratedConstructorAccessor59 classloaderId 326 classLoader: sun.reflect.DelegatingClassLoader@75098d63
+*** Profiler engine warning: class sun.reflect.GeneratedConstructorAccessor59 that should be instrumented is not loaded
+by target VM
+*** Requested classloader: sun.reflect.DelegatingClassLoader@75098d63, its class = class sun.reflect.DelegatingClassLoader, index = 326, hashcode = 1963560291
+*** Profiler engine warning: target VM cannot load class to instrument sun.reflect.GeneratedConstructorAccessor59
+*** probably it has been unloaded recently
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedConstructorAccessor60 for sun.reflect.GeneratedConstructorAccessor60 classloaderId 327 classLoader: sun.reflect.DelegatingClassLoader@83af47d
+*** Profiler engine warning: class sun.reflect.GeneratedConstructorAccessor60 that should be instrumented is not loaded
+by target VM
+*** Requested classloader: sun.reflect.DelegatingClassLoader@83af47d, its class = class sun.reflect.DelegatingClassLoader, index = 327, hashcode = 138081405
+*** Profiler engine warning: target VM cannot load class to instrument sun.reflect.GeneratedConstructorAccessor60
+*** probably it has been unloaded recently
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedConstructorAccessor61 for sun.reflect.GeneratedConstructorAccessor61 classloaderId 328 classLoader: sun.reflect.DelegatingClassLoader@3ee16819
+*** Profiler engine warning: class sun.reflect.GeneratedConstructorAccessor61 that should be instrumented is not loaded
+by target VM
+*** Requested classloader: sun.reflect.DelegatingClassLoader@3ee16819, its class = class sun.reflect.DelegatingClassLoader, index = 328, hashcode = 1054959641
+*** Profiler engine warning: target VM cannot load class to instrument sun.reflect.GeneratedConstructorAccessor61
+*** probably it has been unloaded recently
+Profiler Agent: 250 classes cached.
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly [Lorg.aopalliance.intercept.MethodInterceptor; for [Lorg.aopalliance.intercept.MethodInterceptor; classloaderId 310 classLoader: ParallelWebappClassLoader
+  context: wechat
+  delegate: false
+----------> Parent Classloader:
+java.net.URLClassLoader@1c20c684
+
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedSerializationConstructorAccessor58 for sun.reflect.GeneratedSerializationConstructorAccessor58 classloaderId 329 classLoader: sun.reflect.DelegatingClassLoader@46a8670d
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedSerializationConstructorAccessor58 for sun.reflect.GeneratedSerializationConstructorAccessor58 classloaderId 329 classLoader: sun.reflect.DelegatingClassLoader@46a8670d
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedSerializationConstructorAccessor58 for sun.reflect.GeneratedSerializationConstructorAccessor58 classloaderId 329 classLoader: sun.reflect.DelegatingClassLoader@46a8670d
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedSerializationConstructorAccessor58 for sun.reflect.GeneratedSerializationConstructorAccessor58 classloaderId 329 classLoader: sun.reflect.DelegatingClassLoader@46a8670d
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedSerializationConstructorAccessor58 for sun.reflect.GeneratedSerializationConstructorAccessor58 classloaderId 329 classLoader: sun.reflect.DelegatingClassLoader@46a8670d
+*** Profiler engine warning: class sun.reflect.GeneratedSerializationConstructorAccessor58 that should be instrumented is not loaded by target VM
+*** Requested classloader: sun.reflect.DelegatingClassLoader@46a8670d, its class = class sun.reflect.DelegatingClassLoader, index = 329, hashcode = 1185441549
+*** Profiler engine warning: target VM cannot load class to instrument sun.reflect.GeneratedSerializationConstructorAccessor58
+*** probably it has been unloaded recently
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedSerializationConstructorAccessor59 for sun.reflect.GeneratedSerializationConstructorAccessor59 classloaderId 330 classLoader: sun.reflect.DelegatingClassLoader@19dec4d7
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedSerializationConstructorAccessor59 for sun.reflect.GeneratedSerializationConstructorAccessor59 classloaderId 330 classLoader: sun.reflect.DelegatingClassLoader@19dec4d7
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedSerializationConstructorAccessor59 for sun.reflect.GeneratedSerializationConstructorAccessor59 classloaderId 330 classLoader: sun.reflect.DelegatingClassLoader@19dec4d7
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedSerializationConstructorAccessor59 for sun.reflect.GeneratedSerializationConstructorAccessor59 classloaderId 330 classLoader: sun.reflect.DelegatingClassLoader@19dec4d7
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedSerializationConstructorAccessor59 for sun.reflect.GeneratedSerializationConstructorAccessor59 classloaderId 330 classLoader: sun.reflect.DelegatingClassLoader@19dec4d7
+*** Profiler engine warning: class sun.reflect.GeneratedSerializationConstructorAccessor59 that should be instrumented is not loaded by target VM
+*** Requested classloader: sun.reflect.DelegatingClassLoader@19dec4d7, its class = class sun.reflect.DelegatingClassLoader, index = 330, hashcode = 434029783
+*** Profiler engine warning: target VM cannot load class to instrument sun.reflect.GeneratedSerializationConstructorAccessor59
+*** probably it has been unloaded recently
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedConstructorAccessor62 for sun.reflect.GeneratedConstructorAccessor62 classloaderId 331 classLoader: sun.reflect.DelegatingClassLoader@f585e7e
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedConstructorAccessor62 for sun.reflect.GeneratedConstructorAccessor62 classloaderId 331 classLoader: sun.reflect.DelegatingClassLoader@f585e7e
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedConstructorAccessor62 for sun.reflect.GeneratedConstructorAccessor62 classloaderId 331 classLoader: sun.reflect.DelegatingClassLoader@f585e7e
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedConstructorAccessor62 for sun.reflect.GeneratedConstructorAccessor62 classloaderId 331 classLoader: sun.reflect.DelegatingClassLoader@f585e7e
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedConstructorAccessor62 for sun.reflect.GeneratedConstructorAccessor62 classloaderId 331 classLoader: sun.reflect.DelegatingClassLoader@f585e7e
+*** Profiler engine warning: class sun.reflect.GeneratedConstructorAccessor62 that should be instrumented is not loaded
+by target VM
+*** Requested classloader: sun.reflect.DelegatingClassLoader@f585e7e, its class = class sun.reflect.DelegatingClassLoader, index = 331, hashcode = 257449598
+*** Profiler engine warning: target VM cannot load class to instrument sun.reflect.GeneratedConstructorAccessor62
+*** probably it has been unloaded recently
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedSerializationConstructorAccessor60 for sun.reflect.GeneratedSerializationConstructorAccessor60 classloaderId 333 classLoader: sun.reflect.DelegatingClassLoader@31cb08c7
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedSerializationConstructorAccessor60 for sun.reflect.GeneratedSerializationConstructorAccessor60 classloaderId 333 classLoader: sun.reflect.DelegatingClassLoader@31cb08c7
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedSerializationConstructorAccessor60 for sun.reflect.GeneratedSerializationConstructorAccessor60 classloaderId 333 classLoader: sun.reflect.DelegatingClassLoader@31cb08c7
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedSerializationConstructorAccessor60 for sun.reflect.GeneratedSerializationConstructorAccessor60 classloaderId 333 classLoader: sun.reflect.DelegatingClassLoader@31cb08c7
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedSerializationConstructorAccessor60 for sun.reflect.GeneratedSerializationConstructorAccessor60 classloaderId 333 classLoader: sun.reflect.DelegatingClassLoader@31cb08c7
+*** Profiler engine warning: class sun.reflect.GeneratedSerializationConstructorAccessor60 that should be instrumented is not loaded by target VM
+*** Requested classloader: sun.reflect.DelegatingClassLoader@31cb08c7, its class = class sun.reflect.DelegatingClassLoader, index = 333, hashcode = 835389639
+*** Profiler engine warning: target VM cannot load class to instrument sun.reflect.GeneratedSerializationConstructorAccessor60
+*** probably it has been unloaded recently
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedConstructorAccessor63 for sun.reflect.GeneratedConstructorAccessor63 classloaderId 334 classLoader: sun.reflect.DelegatingClassLoader@7993fe1d
+*** Profiler engine warning: class sun.reflect.GeneratedConstructorAccessor63 that should be instrumented is not loaded
+by target VM
+*** Requested classloader: sun.reflect.DelegatingClassLoader@7993fe1d, its class = class sun.reflect.DelegatingClassLoader, index = 334, hashcode = 2039741981
+*** Profiler engine warning: target VM cannot load class to instrument sun.reflect.GeneratedConstructorAccessor63
+*** probably it has been unloaded recently
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedConstructorAccessor64 for sun.reflect.GeneratedConstructorAccessor64 classloaderId 335 classLoader: sun.reflect.DelegatingClassLoader@74c5410d
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedConstructorAccessor64 for sun.reflect.GeneratedConstructorAccessor64 classloaderId 335 classLoader: sun.reflect.DelegatingClassLoader@74c5410d
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedConstructorAccessor64 for sun.reflect.GeneratedConstructorAccessor64 classloaderId 335 classLoader: sun.reflect.DelegatingClassLoader@74c5410d
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedConstructorAccessor64 for sun.reflect.GeneratedConstructorAccessor64 classloaderId 335 classLoader: sun.reflect.DelegatingClassLoader@74c5410d
+*** Profiler engine warning: class sun.reflect.GeneratedConstructorAccessor64 that should be instrumented is not loaded
+by target VM
+*** Requested classloader: sun.reflect.DelegatingClassLoader@74c5410d, its class = class sun.reflect.DelegatingClassLoader, index = 335, hashcode = 1959084301
+*** Profiler engine warning: target VM cannot load class to instrument sun.reflect.GeneratedConstructorAccessor64
+*** probably it has been unloaded recently
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly [Lorg.springframework.context.ApplicationContextInitializer; for [Lorg.springframework.context.ApplicationContextInitializer; classloaderId 310 classLoader: ParallelWebappClassLoader
+  context: wechat
+  delegate: false
+----------> Parent Classloader:
+java.net.URLClassLoader@1c20c684
+
+03-Jun-2018 17:45:18.335 信息 [http-nio-8989-exec-8] org.apache.catalina.core.ApplicationContext.log Initializing Spring FrameworkServlet 'wechat'
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly [Lorg.springframework.http.HttpMethod; for [Lorg.springframework.http.HttpMethod; classloaderId 310 classLoader: ParallelWebappClassLoader
+  context: wechat
+  delegate: false
+----------> Parent Classloader:
+java.net.URLClassLoader@1c20c684
+
+Profiler Agent: 250 classes cached.
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly [Lorg.springframework.web.bind.annotation.RequestMethod; for [Lorg.springframework.web.bind.annotation.RequestMethod; classloaderId 310 classLoader: ParallelWebappClassLoader
+  context: wechat
+  delegate: false
+----------> Parent Classloader:
+java.net.URLClassLoader@1c20c684
+
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly [Lorg.springframework.format.datetime.standard.DateTimeFormatterRegistrar$Type; for [Lorg.springframework.format.datetime.standard.DateTimeFormatterRegistrar$Type; classloaderId 310 classLoader: ParallelWebappClassLoader
+  context: wechat
+  delegate: false
+----------> Parent Classloader:
+java.net.URLClassLoader@1c20c684
+
+Profiler Agent: 250 classes cached.
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedConstructorAccessor65 for sun.reflect.GeneratedConstructorAccessor65 classloaderId 336 classLoader: sun.reflect.DelegatingClassLoader@3278e7ba
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedConstructorAccessor65 for sun.reflect.GeneratedConstructorAccessor65 classloaderId 336 classLoader: sun.reflect.DelegatingClassLoader@3278e7ba
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedConstructorAccessor65 for sun.reflect.GeneratedConstructorAccessor65 classloaderId 336 classLoader: sun.reflect.DelegatingClassLoader@3278e7ba
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedConstructorAccessor65 for sun.reflect.GeneratedConstructorAccessor65 classloaderId 336 classLoader: sun.reflect.DelegatingClassLoader@3278e7ba
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedConstructorAccessor65 for sun.reflect.GeneratedConstructorAccessor65 classloaderId 336 classLoader: sun.reflect.DelegatingClassLoader@3278e7ba
+*** Profiler engine warning: class sun.reflect.GeneratedConstructorAccessor65 that should be instrumented is not loaded
+by target VM
+*** Requested classloader: sun.reflect.DelegatingClassLoader@3278e7ba, its class = class sun.reflect.DelegatingClassLoader, index = 336, hashcode = 846784442
+*** Profiler engine warning: target VM cannot load class to instrument sun.reflect.GeneratedConstructorAccessor65
+*** probably it has been unloaded recently
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedConstructorAccessor66 for sun.reflect.GeneratedConstructorAccessor66 classloaderId 337 classLoader: sun.reflect.DelegatingClassLoader@137bb00f
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedConstructorAccessor66 for sun.reflect.GeneratedConstructorAccessor66 classloaderId 337 classLoader: sun.reflect.DelegatingClassLoader@137bb00f
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedConstructorAccessor66 for sun.reflect.GeneratedConstructorAccessor66 classloaderId 337 classLoader: sun.reflect.DelegatingClassLoader@137bb00f
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedConstructorAccessor66 for sun.reflect.GeneratedConstructorAccessor66 classloaderId 337 classLoader: sun.reflect.DelegatingClassLoader@137bb00f
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedConstructorAccessor66 for sun.reflect.GeneratedConstructorAccessor66 classloaderId 337 classLoader: sun.reflect.DelegatingClassLoader@137bb00f
+*** Profiler engine warning: class sun.reflect.GeneratedConstructorAccessor66 that should be instrumented is not loaded
+by target VM
+*** Requested classloader: sun.reflect.DelegatingClassLoader@137bb00f, its class = class sun.reflect.DelegatingClassLoader, index = 337, hashcode = 326873103
+*** Profiler engine warning: target VM cannot load class to instrument sun.reflect.GeneratedConstructorAccessor66
+*** probably it has been unloaded recently
+Profiler Agent: 250 classes cached.
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly [Lorg.springframework.web.accept.ContentNegotiationStrategy; for [Lorg.springframework.web.accept.ContentNegotiationStrategy; classloaderId 310 classLoader: ParallelWebappClassLoader
+  context: wechat
+  delegate: false
+----------> Parent Classloader:
+java.net.URLClassLoader@1c20c684
+
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedConstructorAccessor67 for sun.reflect.GeneratedConstructorAccessor67 classloaderId 346 classLoader: sun.reflect.DelegatingClassLoader@4336060a
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedConstructorAccessor67 for sun.reflect.GeneratedConstructorAccessor67 classloaderId 346 classLoader: sun.reflect.DelegatingClassLoader@4336060a
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedConstructorAccessor67 for sun.reflect.GeneratedConstructorAccessor67 classloaderId 346 classLoader: sun.reflect.DelegatingClassLoader@4336060a
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedConstructorAccessor67 for sun.reflect.GeneratedConstructorAccessor67 classloaderId 346 classLoader: sun.reflect.DelegatingClassLoader@4336060a
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedConstructorAccessor67 for sun.reflect.GeneratedConstructorAccessor67 classloaderId 346 classLoader: sun.reflect.DelegatingClassLoader@4336060a
+*** Profiler engine warning: class sun.reflect.GeneratedConstructorAccessor67 that should be instrumented is not loaded
+by target VM
+*** Requested classloader: sun.reflect.DelegatingClassLoader@4336060a, its class = class sun.reflect.DelegatingClassLoader, index = 346, hashcode = 1127613962
+*** Profiler engine warning: target VM cannot load class to instrument sun.reflect.GeneratedConstructorAccessor67
+*** probably it has been unloaded recently
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedConstructorAccessor68 for sun.reflect.GeneratedConstructorAccessor68 classloaderId 347 classLoader: sun.reflect.DelegatingClassLoader@7b53bc7f
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedConstructorAccessor68 for sun.reflect.GeneratedConstructorAccessor68 classloaderId 347 classLoader: sun.reflect.DelegatingClassLoader@7b53bc7f
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedConstructorAccessor68 for sun.reflect.GeneratedConstructorAccessor68 classloaderId 347 classLoader: sun.reflect.DelegatingClassLoader@7b53bc7f
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedConstructorAccessor68 for sun.reflect.GeneratedConstructorAccessor68 classloaderId 347 classLoader: sun.reflect.DelegatingClassLoader@7b53bc7f
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedConstructorAccessor68 for sun.reflect.GeneratedConstructorAccessor68 classloaderId 347 classLoader: sun.reflect.DelegatingClassLoader@7b53bc7f
+*** Profiler engine warning: class sun.reflect.GeneratedConstructorAccessor68 that should be instrumented is not loaded
+by target VM
+*** Requested classloader: sun.reflect.DelegatingClassLoader@7b53bc7f, its class = class sun.reflect.DelegatingClassLoader, index = 347, hashcode = 2069085311
+*** Profiler engine warning: target VM cannot load class to instrument sun.reflect.GeneratedConstructorAccessor68
+*** probably it has been unloaded recently
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedConstructorAccessor69 for sun.reflect.GeneratedConstructorAccessor69 classloaderId 348 classLoader: sun.reflect.DelegatingClassLoader@79b9f5aa
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedConstructorAccessor69 for sun.reflect.GeneratedConstructorAccessor69 classloaderId 348 classLoader: sun.reflect.DelegatingClassLoader@79b9f5aa
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedConstructorAccessor69 for sun.reflect.GeneratedConstructorAccessor69 classloaderId 348 classLoader: sun.reflect.DelegatingClassLoader@79b9f5aa
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedConstructorAccessor69 for sun.reflect.GeneratedConstructorAccessor69 classloaderId 348 classLoader: sun.reflect.DelegatingClassLoader@79b9f5aa
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly sun.reflect.GeneratedConstructorAccessor69 for sun.reflect.GeneratedConstructorAccessor69 classloaderId 348 classLoader: sun.reflect.DelegatingClassLoader@79b9f5aa
+*** Profiler engine warning: class sun.reflect.GeneratedConstructorAccessor69 that should be instrumented is not loaded
+by target VM
+*** Requested classloader: sun.reflect.DelegatingClassLoader@79b9f5aa, its class = class sun.reflect.DelegatingClassLoader, index = 348, hashcode = 2042230186
+*** Profiler engine warning: target VM cannot load class to instrument sun.reflect.GeneratedConstructorAccessor69
+*** probably it has been unloaded recently
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly [Lorg.springframework.http.MediaType; for [Lorg.springframework.http.MediaType; classloaderId 310 classLoader: ParallelWebappClassLoader
+  context: wechat
+  delegate: false
+----------> Parent Classloader:
+java.net.URLClassLoader@1c20c684
+
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly [Lcom.alibaba.fastjson.serializer.SerializerFeature; for [Lcom.alibaba.fastjson.serializer.SerializerFeature; classloaderId 310 classLoader: ParallelWebappClassLoader
+  context: wechat
+  delegate: false
+----------> Parent Classloader:
+java.net.URLClassLoader@1c20c684
+
+Profiler Agent: 250 classes cached.
+03-Jun-2018 17:45:41.767 信息 [http-nio-8989-exec-8] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web
+application archive [E:\java\新建文件夹\apache-tomcat-8.5.31\webapps\wechat.war] has finished in [65,474] ms
+*** Profiler engine warning: CNFE in getLoadedClassInThisLoaderOnly [Lcom.mysql.jdbc.StringUtils$SearchMode; for [Lcom.mysql.jdbc.StringUtils$SearchMode; classloaderId 310 classLoader: ParallelWebappClassLoader
+  context: wechat
+  delegate: false
+----------> Parent Classloader:
+java.net.URLClassLoader@1c20c684
+
+
+
+
+<!doctype html><html lang="en"><head><title>HTTP Status 500 – Internal Server Error</title><style type="text/css">h1 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:22px;} h2 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:16px;} h3 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:14px;} body {font-family:Tahoma,Arial,sans-serif;color:black;background-color:white;} b {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;} p {font-family:Tahoma,Arial,sans-serif;background:white;color:black;font-size:12px;} a {color:black;} a.name {color:black;} .line {height:1px;background-color:#525D76;border:none;}</style></head><body><h1>HTTP Status 500 – Internal Server Error</h1><hr class="line" /><p><b>Type</b> Exception Report</p ><p><b>Message</b> Request processing failed; nested exception is java.lang.NumberFormatException: multiple points</p ><p><b>Description</b> The server encountered an unexpected condition that prevented it from fulfilling the request.</p ><p><b>Exception</b></p ><pre>org.springframework.web.util.NestedServletException: Request processing failed; nested exception is java.lang.NumberFormatException: multiple points
+	org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:985)
+	org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:860)
+	javax.servlet.http.HttpServlet.service(HttpServlet.java:635)
+	org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:845)
+	javax.servlet.http.HttpServlet.service(HttpServlet.java:743)
+	org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:121)
+	org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:111)
+</pre><p><b>Root Cause</b></p ><pre>java.lang.NumberFormatException: multiple points
+	sun.misc.FloatingDecimal.readJavaFormatString(FloatingDecimal.java:1896)
+	sun.misc.FloatingDecimal.parseDouble(FloatingDecimal.java:110)
+	java.lang.Double.parseDouble(Double.java:538)
+	java.text.DigitList.getDouble(DigitList.java:169)
+	java.text.DecimalFormat.parse(DecimalFormat.java:2067)
+	java.text.SimpleDateFormat.subParse(SimpleDateFormat.java:1871)
+	java.text.SimpleDateFormat.parse(SimpleDateFormat.java:1522)
+	java.text.DateFormat.parse(DateFormat.java:365)
+	com.yb.advice.RecordServiceTimeAdvice.invoke(RecordServiceTimeAdvice.java:42)
+	org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:92)
+	org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:657)
+	com.yb.controller.MatchController$$EnhancerBySpringCGLIB$$171a5e58.queryBanner(&lt;generated&gt;)
+	sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	java.lang.reflect.Method.invoke(Method.java:498)
+	org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:222)
+	org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
+	org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:110)
+	org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:819)
+	org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:737)
+	org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85)
+	org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:980)
+	org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:899)
+	org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:985)
+	org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:860)
+	javax.servlet.http.HttpServlet.service(HttpServlet.java:635)
+	org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:845)
+	javax.servlet.http.HttpServlet.service(HttpServlet.java:743)
+	org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:121)
+	org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:111)
+</pre><p><b>Note</b> The full stack trace of the root cause is available in the server logs.</p ><hr class="line" /><h3>Apache Tomcat/8.5.31</h3></body></html>
+        
+        
+        
+        

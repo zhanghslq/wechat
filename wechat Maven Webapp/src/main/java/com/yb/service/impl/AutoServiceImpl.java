@@ -26,7 +26,6 @@ import com.yb.entity.Match;
 import com.yb.entity.Stage;
 import com.yb.entity.Team;
 import com.yb.service.AutoService;
-import com.yb.util.DateUtil;
 @Service
 @Transactional
 public class AutoServiceImpl implements AutoService{

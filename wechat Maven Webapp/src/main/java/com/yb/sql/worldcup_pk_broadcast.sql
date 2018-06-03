@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50717
 File Encoding         : 65001
 
-Date: 2018-06-02 15:10:18
+Date: 2018-06-03 18:31:48
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -20,7 +20,7 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `worldcup_pk_broadcast`;
 CREATE TABLE `worldcup_pk_broadcast` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `matchId` int(11) DEFAULT NULL,
   `text` varchar(255) DEFAULT NULL,
   `time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
@@ -39,9 +39,9 @@ CREATE TABLE `worldcup_pk_broadcast` (
 DROP TABLE IF EXISTS `worldcup_pk_contract`;
 CREATE TABLE `worldcup_pk_contract` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '好友契约id',
-  `guessType` int(11) unsigned zerofill DEFAULT NULL COMMENT '猜输赢0还是猜比分1',
+  `guessType` int(11) DEFAULT NULL COMMENT '猜输赢0还是猜比分1',
   `stakeId` int(11) NOT NULL COMMENT '赌注id',
-  `status` int(11) unsigned zerofill DEFAULT NULL COMMENT '契约状态，可以分为0未开始，1开局，2结束',
+  `status` int(11) DEFAULT '0' COMMENT '契约状态，可以分为0未开始，1开局，2结束',
   `matchId` int(11) NOT NULL COMMENT '比赛id',
   `time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '契约创建时间',
   `yn` int(11) DEFAULT '1' COMMENT '0代表删除  1代表正常可用',
@@ -107,7 +107,7 @@ CREATE TABLE `worldcup_pk_contract_user_group` (
   `number` int(11) DEFAULT NULL COMMENT '下注数量',
   `myGuess` varchar(20) DEFAULT NULL COMMENT '用户竞猜结果',
   `time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '加入契约的时间',
-  `result` int(11) DEFAULT NULL COMMENT '记录用户的比赛结果,0输，1赢，2是未出结果',
+  `result` int(11) DEFAULT '2' COMMENT '记录用户的比赛结果,0输，1赢，2是未出结果',
   `yn` int(11) DEFAULT '1' COMMENT '0删除，1代表正常',
   `created_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '记录生成时间',
   `modified_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
@@ -173,7 +173,7 @@ CREATE TABLE `worldcup_pk_evaluation` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`),
   UNIQUE KEY `openid唯一标识` (`openid`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='通过用户的赌注类型，对用户的评价';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='通过用户的赌注类型，对用户的评价';
 
 -- ----------------------------
 -- Records of worldcup_pk_evaluation
@@ -249,21 +249,22 @@ CREATE TABLE `worldcup_pk_stake` (
   `time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '赌注生成时间',
   `created_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '记录生成时间',
   `modified_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `isOriginal` int(11) DEFAULT '0' COMMENT '是否原始存在0代表后来自定义的，1代表系统定义的',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='赌注表';
 
 -- ----------------------------
 -- Records of worldcup_pk_stake
 -- ----------------------------
-INSERT INTO `worldcup_pk_stake` VALUES ('1', '4', '献50大洋', null, '2018-06-01 15:56:49', '2018-06-01 15:56:49', '2018-06-01 16:00:29');
-INSERT INTO `worldcup_pk_stake` VALUES ('2', '4', '献100大洋', null, '2018-06-01 15:57:10', '2018-06-01 15:57:10', '2018-06-01 16:00:30');
-INSERT INTO `worldcup_pk_stake` VALUES ('3', '1', '做俯卧撑', null, '2018-06-01 15:57:27', '2018-06-01 15:57:27', '2018-06-01 16:00:17');
-INSERT INTO `worldcup_pk_stake` VALUES ('4', '1', '在大街上喊', null, '2018-06-01 15:57:47', '2018-06-01 15:57:47', '2018-06-01 16:02:29');
-INSERT INTO `worldcup_pk_stake` VALUES ('5', '2', '请吃炸鸡', null, '2018-06-01 15:57:57', '2018-06-01 15:57:57', '2018-06-01 16:00:04');
-INSERT INTO `worldcup_pk_stake` VALUES ('6', '3', '自定义', null, '2018-06-01 15:58:09', '2018-06-01 15:58:09', null);
-INSERT INTO `worldcup_pk_stake` VALUES ('7', '1', '跑三公里', null, '2018-06-01 15:58:44', '2018-06-01 15:58:44', '2018-06-01 16:00:15');
-INSERT INTO `worldcup_pk_stake` VALUES ('8', '1', '穿女装', null, '2018-06-01 15:58:56', '2018-06-01 15:58:56', '2018-06-01 16:02:27');
-INSERT INTO `worldcup_pk_stake` VALUES ('9', '2', '请吃炸鸡', null, '2018-06-01 15:59:01', '2018-06-01 15:59:01', '2018-06-01 16:00:03');
+INSERT INTO `worldcup_pk_stake` VALUES ('1', '4', '献50大洋', 'wechat/images/deed/50.png', '2018-06-01 15:56:49', '2018-06-01 15:56:49', '2018-06-03 17:38:43', '1');
+INSERT INTO `worldcup_pk_stake` VALUES ('2', '4', '献100大洋', 'wechat/images/deed/100.png', '2018-06-01 15:57:10', '2018-06-01 15:57:10', '2018-06-03 17:38:50', '1');
+INSERT INTO `worldcup_pk_stake` VALUES ('3', '1', '做俯卧撑', 'wechat/images/deed/fwc2.png', '2018-06-01 15:57:27', '2018-06-01 15:57:27', '2018-06-03 17:41:11', '1');
+INSERT INTO `worldcup_pk_stake` VALUES ('4', '1', '在大街上喊', 'wechat/images/deed/dh.png', '2018-06-01 15:57:47', '2018-06-01 15:57:47', '2018-06-03 17:39:24', '1');
+INSERT INTO `worldcup_pk_stake` VALUES ('5', '2', '请吃炸鸡', 'wechat/images/deed/czj.png', '2018-06-01 15:57:57', '2018-06-01 15:57:57', '2018-06-03 17:39:04', '1');
+INSERT INTO `worldcup_pk_stake` VALUES ('6', '3', '自定义', 'wechat/images/deed/zdy.png', '2018-06-01 15:58:09', '2018-06-01 15:58:09', '2018-06-03 17:40:46', '1');
+INSERT INTO `worldcup_pk_stake` VALUES ('7', '1', '跑三公里', 'wechat/images/deed/pb.png', '2018-06-01 15:58:44', '2018-06-01 15:58:44', '2018-06-03 17:40:53', '1');
+INSERT INTO `worldcup_pk_stake` VALUES ('8', '1', '穿女装', 'wechat/images/deed/nz.png', '2018-06-01 15:58:56', '2018-06-01 15:58:56', '2018-06-03 17:39:42', '1');
+INSERT INTO `worldcup_pk_stake` VALUES ('9', '2', '请吃炸鸡', 'wechat/images/deed/zj.png', '2018-06-01 15:59:01', '2018-06-01 15:59:01', '2018-06-03 17:39:11', '1');
 
 -- ----------------------------
 -- Table structure for worldcup_pk_status_dict
@@ -324,12 +325,12 @@ CREATE TABLE `worldcup_pk_team` (
 DROP TABLE IF EXISTS `worldcup_pk_user`;
 CREATE TABLE `worldcup_pk_user` (
   `openid` varchar(50) NOT NULL COMMENT '用户唯一标志',
-  `imageUrl` varchar(100) DEFAULT NULL COMMENT '头像',
+  `imageUrl` varchar(300) DEFAULT NULL COMMENT '头像',
   `nickname` varchar(100) DEFAULT NULL COMMENT '昵称',
-  `currency` int(11) unsigned zerofill DEFAULT NULL COMMENT '游戏币',
-  `wins` int(11) unsigned zerofill DEFAULT NULL COMMENT '竞猜胜利场次',
+  `currency` int(11) DEFAULT '8000' COMMENT '游戏币',
+  `wins` int(11) DEFAULT '0' COMMENT '竞猜胜利场次',
   `lasttime` datetime DEFAULT NULL COMMENT '上次登陆时间',
-  `all` int(11) DEFAULT NULL COMMENT '总竞猜场数',
+  `all` int(11) DEFAULT '0' COMMENT '总竞猜场数',
   `created_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '记录生成时间',
   `modified_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `id` int(11) NOT NULL AUTO_INCREMENT,

@@ -1,5 +1,6 @@
 package com.yb.util;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -8,7 +9,8 @@ import java.util.GregorianCalendar;
 
 public class DateUtil {
 	public static void main(String[] args) {
-		getTomorrow();
+		Date date = new Date(1530288000000L);
+		System.out.println(date);
 	}
 	public static String getTomorrow() {
 		 Date date=new Date();//取时间
@@ -20,6 +22,13 @@ public class DateUtil {
 		 String dateString = formatter.format(time);
 		 return dateString;
 	}
+	/*public static long getTomorrowDate(Date date) {
+			String time = "2018/06/30 00:00:00";  
+			Date date = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").parse(time);  
+			long unixTimestamp = /1000;  
+			System.out.println(unixTimestamp);  
+			return unixTimestamp;  
+	}  */
 	public static String getToday() {
 		Date date=new Date();//取时间
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
