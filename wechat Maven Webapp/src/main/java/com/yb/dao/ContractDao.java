@@ -41,7 +41,7 @@ public interface ContractDao {
 	void deleteFromCrateByCid(@Param("cid")Integer cid);
 	
 	//需要根据用户id查询是否创建了竞猜
-	String queryCreateByUid(@Param("uid")String uid,@Param("matchId")Integer matchId);
+	Integer queryCreateByUid(@Param("uid")String uid,@Param("matchId")Integer matchId);
 	//根据用户id查询用户是否参与了竞猜,查询到的是契约id
 	Integer queryJoinByUid(@Param("uid")String uid,@Param("matchId")Integer matchId);
 	//根据比赛id查看参与本场比赛，好友赛，的人数

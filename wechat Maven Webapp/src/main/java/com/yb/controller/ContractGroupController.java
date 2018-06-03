@@ -4,7 +4,9 @@ import javax.annotation.Resource;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yb.entity.ContractCome;
@@ -21,8 +23,8 @@ public class ContractGroupController {//群pk
 	private ContractGroupService contractGroupService;
 	//生成契约
 	@ResponseBody
-	@RequestMapping("/createContractGroup")
-	public ResultPack createContractGroup(ContractCome contractCome){
+	@RequestMapping(value="/createContractGroup",method = RequestMethod.POST)
+	public ResultPack createContractGroup(@RequestBody ContractCome contractCome){
 		try {
 			Integer createContractGroup = contractGroupService.createContractGroup(contractCome);
 			return new ResultPack(1, createContractGroup);

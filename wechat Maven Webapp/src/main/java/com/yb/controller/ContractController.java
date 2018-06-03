@@ -6,7 +6,9 @@ import javax.annotation.Resource;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yb.entity.ContractCome;
@@ -24,9 +26,9 @@ public class ContractController {//0代表失败，1代表成功
 	private ContractService contractService;
 	
 	//生成契约
-	@RequestMapping("/insertContract")
+	@RequestMapping(value="/insertContract",method = RequestMethod.POST)
 	@ResponseBody
-	public ResultPack insertContract(ContractCome contractCome){//生成契约，返回字符串，契约id
+	public ResultPack insertContract(@RequestBody ContractCome contractCome){//生成契约，返回字符串，契约id
 		try {
 			Integer contract = contractService.insertContract(contractCome);
 			return new ResultPack(1, contract);
