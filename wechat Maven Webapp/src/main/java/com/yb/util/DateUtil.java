@@ -1,12 +1,15 @@
 package com.yb.util;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-
+/**
+ * 日期工具类
+ * @author lenovo
+ *
+ */
 public class DateUtil {
 	public static void main(String[] args) {
 		Date date = new Date(1530288000000L);

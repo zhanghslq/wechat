@@ -1,8 +1,5 @@
 package com.yb.util;
 
-import java.io.IOException;
-
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.fluent.Request;
 
 import com.alibaba.fastjson.JSON;

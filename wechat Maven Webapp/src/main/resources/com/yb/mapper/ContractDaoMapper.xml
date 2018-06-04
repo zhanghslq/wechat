@@ -82,9 +82,9 @@
 	</update>
 
 	<insert id="insertContract" useGeneratedKeys="true" parameterType="ContractCome" keyProperty="id">
-		insert into worldcup_pk_contract(guessType,stakeId,status,matchId,time)
+		insert into worldcup_pk_contract(guessType,stakeId,matchId,time)
 		values(#{guessType},#{stakeId}
-		,#{status},#{matchId},now())
+		,#{matchId},now())
 	</insert>
 	<insert id="insertConstractCreate">
 		insert into worldcup_pk_create_contract(cid,createUser)values(#{cid},#{uid})

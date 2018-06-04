@@ -1,5 +1,6 @@
 package com.yb.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -20,5 +21,7 @@ public interface MatchDao {
 	//更改比赛状态和比分的
 	void updateMatch(@Param("id")Integer id,@Param("status")Integer status,
 			@Param("homeGrade")Integer homeGrade,@Param("visitGrade")Integer visitGrade);
+	
+	Integer queryRownum(@Param("time")Date time);
 	
 }

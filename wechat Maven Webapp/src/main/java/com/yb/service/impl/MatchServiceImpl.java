@@ -68,13 +68,15 @@ public class MatchServiceImpl implements MatchService{
 			}
 			Date time = match.getTime();
 			Banner banner = new Banner(match.getId(), time, home, visit, queryNumber+queryNumberByMatchId, create, join,create2,join2);
+			Integer queryRownum = matchDao.queryRownum(match.getTime());
+			banner.setRownum(queryRownum);
 			banner.setTimeDesc(sf.format(time));
 			data.add(banner);
 		}
 		return data;
 	}
 	@Override
-	public List<MatchData> queryMatchDone() {
+	public List<MatchData> queryMatchDone() {//用来后台页面展示的，后台管理
 		// TODO Auto-generated method stub
 		List<Match> queryMatchDone = matchDao.queryMatchDone();
 		List<MatchData> list = new ArrayList<MatchData>();

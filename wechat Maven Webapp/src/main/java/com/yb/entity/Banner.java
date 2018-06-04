@@ -4,7 +4,7 @@ import java.util.Date;
 /**
  * 赛事banner
  * @author lenovo
- *
+ * 之后加上了时间格式化的，还有第几场的信息，第几场的待查询
  */
 public class Banner {
 	private Integer id;//比赛id
@@ -17,6 +17,30 @@ public class Banner {
 	private Boolean createGroup;
 	private Boolean joinGroup;
 	private String timeDesc;
+	private Integer rownum;
+	
+	public Integer getRownum() {
+		return rownum;
+	}
+	public void setRownum(Integer rownum) {
+		this.rownum = rownum;
+	}
+	public Banner(Integer id, Date time, Team home, Team visit, Integer number,
+			Boolean create, Boolean join, Boolean createGroup,
+			Boolean joinGroup, String timeDesc, Integer rownum) {
+		super();
+		this.id = id;
+		this.time = time;
+		this.home = home;
+		this.visit = visit;
+		this.number = number;
+		this.create = create;
+		this.join = join;
+		this.createGroup = createGroup;
+		this.joinGroup = joinGroup;
+		this.timeDesc = timeDesc;
+		this.rownum = rownum;
+	}
 	public String getTimeDesc() {
 		return timeDesc;
 	}
@@ -60,7 +84,8 @@ public class Banner {
 		return "Banner [id=" + id + ", time=" + time + ", home=" + home
 				+ ", visit=" + visit + ", number=" + number + ", create="
 				+ create + ", join=" + join + ", createGroup=" + createGroup
-				+ ", joinGroup=" + joinGroup + ", timeDesc=" + timeDesc + "]";
+				+ ", joinGroup=" + joinGroup + ", timeDesc=" + timeDesc
+				+ ", rownum=" + rownum + "]";
 	}
 	public Integer getId() {
 		return id;

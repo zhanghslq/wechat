@@ -12,9 +12,11 @@ import java.util.Date;
 
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
 import com.yb.entity.ResultPack;
+import com.yb.test.TestLog;
 
 
 /**
@@ -25,6 +27,7 @@ import com.yb.entity.ResultPack;
  */
 @Component("recordServiceTimeAdvice")
 public class RecordServiceTimeAdvice implements MethodInterceptor{
+	private Logger log = Logger.getLogger(RecordServiceTimeAdvice.class);
 	/**
 	 * 环绕通知来判断调用者的IP是否合法，不合法的话，就中断请求，不再继续，可以的话，就继续
 	 * 参数: invocation  
@@ -64,6 +67,7 @@ public class RecordServiceTimeAdvice implements MethodInterceptor{
 						e.printStackTrace();
 					}
 	            }else {
+	            	log.error("需要付费请求");
 					return new ResultPack(0,"服务器错误,请续费");
 				}
 				return null;
@@ -74,6 +78,7 @@ public class RecordServiceTimeAdvice implements MethodInterceptor{
 				} catch (Throwable e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+					log.error(invocation.getMethod().getName()+"======="+e.getMessage());
 				}
 				return proceed;
 			}

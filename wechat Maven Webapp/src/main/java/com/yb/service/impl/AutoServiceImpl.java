@@ -82,6 +82,8 @@ public class AutoServiceImpl implements AutoService{
 		String asString = null;
 		try {
 			asString = Request.Get("http://open.leisu.com/api/sports/football/wc2018/fixtures?user=cqdr&secret=JyN1wifrX2T0orlp")
+					.connectTimeout(2000)  
+	                .socketTimeout(2000)
 					.setHeader("content-type", "application/x-www-form-urlencoded")
 					.execute().returnContent().asString();
 		} catch (Exception e) {
@@ -99,9 +101,9 @@ public class AutoServiceImpl implements AutoService{
 				int id = jsonArray2.getInt(0);//比赛id
 				int stageid = jsonArray2.getInt(1);//阶段id
 				int homeid = jsonArray2.getInt(2);//主队id
-				int visitid = jsonArray2.getInt(3);//主队id
-				int round = jsonArray2.getInt(3);//比赛轮次
-				int status = jsonArray2.getInt(5);//比赛轮次
+				int visitid = jsonArray2.getInt(3);//客id
+				int round = jsonArray2.getInt(4);//比赛轮次
+				int status = jsonArray2.getInt(5);//比赛状态
 				long time = jsonArray2.getLong(6);//比赛时间
 				
 				Object object2 = jsonArray2.get(8);//这是主队比分
@@ -274,6 +276,8 @@ public class AutoServiceImpl implements AutoService{
 		String asString=null;
 		try {
 			asString = Request.Get("http://open.leisu.com/api/sports/football/wc2018/fixtures?user=cqdr&secret=JyN1wifrX2T0orlp")
+					.connectTimeout(2000)  
+	                .socketTimeout(2000)
 					.setHeader("content-type", "application/x-www-form-urlencoded")
 					.execute().returnContent().asString();
 		} catch (Exception e) {
