@@ -57,9 +57,9 @@ public interface ContractGroupDao {
 		//需要查询参与这场比赛竞猜的人数，是否创建，是否参与
 		Integer queryNumberByMatchId(@Param("matchId")Integer matchId);
 		
-		String queryCreateByUid(@Param("matchId")Integer matchId,@Param("uid")String uid);
+		Integer queryCreateByUid(@Param("matchId")Integer matchId,@Param("uid")String uid);
 		
-		String queryJoinByUid(@Param("matchId")Integer matchId,@Param("uid")String uid);
+		Integer queryJoinByUid(@Param("matchId")Integer matchId,@Param("uid")String uid);
 		
 		//查询本场比赛用户签订和参与的契约
 		List<TheGuess> queryByMatchIdAndUid(@Param("uid")String uid,@Param("matchId")Integer matchId);
@@ -74,4 +74,8 @@ public interface ContractGroupDao {
 		
 		//查询出来openid以及number
 		List<ContractCome> queryByResult(@Param("cids")List<Integer> cid,@Param("result")Integer result);
+		
+		//根据openid查询历史完成的赌局
+		List<ContractCome> queryByOpenId(@Param("openId")String openId);
+		
 }

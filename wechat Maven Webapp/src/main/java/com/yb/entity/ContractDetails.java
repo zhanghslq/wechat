@@ -20,6 +20,34 @@ public class ContractDetails {
 	private String nickname;//发起人昵称
 	private String logo;//发起人头像
 	private List<User> contractDetails;//契约人
+	private Integer contractStatus;
+	
+	public Integer getContractStatus() {
+		return contractStatus;
+	}
+	public void setContractStatus(Integer contractStatus) {
+		this.contractStatus = contractStatus;
+	}
+	public ContractDetails(Team home, Team visit, String message,
+			Integer guessType, String myGuess, String stakeLogo,
+			String stakeText, Integer matchStatus, String miutes,
+			String nickname, String logo, List<User> contractDetails,
+			Integer contractStatus) {
+		super();
+		this.home = home;
+		this.visit = visit;
+		this.message = message;
+		this.guessType = guessType;
+		this.myGuess = myGuess;
+		this.stakeLogo = stakeLogo;
+		this.stakeText = stakeText;
+		this.matchStatus = matchStatus;
+		this.miutes = miutes;
+		this.nickname = nickname;
+		this.logo = logo;
+		this.contractDetails = contractDetails;
+		this.contractStatus = contractStatus;
+	}
 	public ContractDetails() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -49,7 +77,8 @@ public class ContractDetails {
 				+ ", myGuess=" + myGuess + ", stakeLogo=" + stakeLogo
 				+ ", stakeText=" + stakeText + ", matchStatus=" + matchStatus
 				+ ", miutes=" + miutes + ", nickname=" + nickname + ", logo="
-				+ logo + ", contractDetails=" + contractDetails + "]";
+				+ logo + ", contractDetails=" + contractDetails
+				+ ", contractStatus=" + contractStatus + "]";
 	}
 	public Team getHome() {
 		return home;

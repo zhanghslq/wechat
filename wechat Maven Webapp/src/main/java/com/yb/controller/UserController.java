@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.yb.entity.RankData;
 import com.yb.entity.ResultPack;
 import com.yb.entity.User;
+import com.yb.entity.UserAndHistory;
 import com.yb.service.UserService;
 import com.yb.util.OpenUtils;
 
@@ -82,4 +83,17 @@ public class UserController {
 			return new ResultPack(0, e.getMessage());
 		}
 	}
+	@RequestMapping("/queryUserAndHistory")
+	@ResponseBody
+	public ResultPack queryUserAndHistory(String openId){
+		try {
+			UserAndHistory queryUserAndHistory = userService.queryUserAndHistory(openId);
+			return new ResultPack(1, queryUserAndHistory);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return new ResultPack(0, e.getMessage());
+		}
+	}
+	
 }

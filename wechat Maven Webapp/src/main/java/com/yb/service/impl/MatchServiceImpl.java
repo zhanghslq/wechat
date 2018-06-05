@@ -1,6 +1,5 @@
 package com.yb.service.impl;
 
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,7 +17,6 @@ import com.yb.entity.Match;
 import com.yb.entity.MatchData;
 import com.yb.entity.Team;
 import com.yb.service.MatchService;
-import com.yb.util.OpenUtils;
 
 @Service
 public class MatchServiceImpl implements MatchService{
@@ -56,8 +54,8 @@ public class MatchServiceImpl implements MatchService{
 			}
 			//检查群pk,
 			Integer queryNumberByMatchId = contractGroupDao.queryNumberByMatchId(id);
-			String queryCreateByUid2 = contractGroupDao.queryCreateByUid(id,openId);
-			String queryJoinByUid2 = contractGroupDao.queryJoinByUid(id, openId);
+			Integer queryCreateByUid2 = contractGroupDao.queryCreateByUid(id,openId);
+			Integer queryJoinByUid2 = contractGroupDao.queryJoinByUid(id, openId);
 			Boolean create2=false;
 			Boolean join2=false;
 			if(queryCreateByUid2!=null){

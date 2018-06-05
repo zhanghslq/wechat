@@ -26,6 +26,7 @@ import com.yb.entity.Match;
 import com.yb.entity.Stage;
 import com.yb.entity.Team;
 import com.yb.service.AutoService;
+import com.yb.util.CountryUtil;
 @Service
 @Transactional
 public class AutoServiceImpl implements AutoService{
@@ -297,8 +298,10 @@ public class AutoServiceImpl implements AutoService{
 	            Team bean = (Team) net.sf.json.JSONObject.toBean(jsonObject, Team.class);
 	            String logo = bean.getLogo();
 	            bean.setLogo("https://cdn.leisu.com/teamflag_s/"+logo);
-	            String country_logo = bean.getCountry_logo();
-	            bean.setCountry_logo("https://cdn.leisu.com/teamflag_s/"+country_logo);
+	            String name = bean.getName_zh();
+	            bean.setCountry_logo(CountryUtil.getLogo(name));
+	            /*String country_logo = bean.getCountry_logo();
+	            bean.setCountry_logo("https://cdn.leisu.com/teamflag_s/"+country_logo);*/
 	            teams.add(bean);
 			 }
 			teamDao.insertTeam(teams);//插入球队信息

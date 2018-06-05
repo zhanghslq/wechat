@@ -79,4 +79,8 @@ public interface ContractDao {
 	
 	
 	
+	//根据用户openid查询历史参与的契约,需要契约id，比赛id
+	List<ContractCome> queryByOpenId(@Param("openId")String openId);
+	
+	
 }

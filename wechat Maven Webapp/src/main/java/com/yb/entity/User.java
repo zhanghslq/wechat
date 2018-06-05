@@ -1,7 +1,11 @@
 package com.yb.entity;
 
 import java.util.Date;
-
+/**
+ * 用户信息，新加all
+ * @author lenovo
+ *
+ */
 public class User {
 	private Integer id;
 	private String code;
@@ -10,9 +14,35 @@ public class User {
 	private String nickname;
 	private Integer currency;
 	private Integer wins;
+	private Integer allNumber;
 	private Date lasttime;
 	private Integer rownum;
 	private String message;
+	private Integer continuWins;
+	
+	public Integer getContinuWins() {
+		return continuWins;
+	}
+	public void setContinuWins(Integer continuWins) {
+		this.continuWins = continuWins;
+	}
+	public User(Integer id, String code, String openid, String imageUrl,
+			String nickname, Integer currency, Integer wins, Integer allNumber,
+			Date lasttime, Integer rownum, String message, Integer continuWins) {
+		super();
+		this.id = id;
+		this.code = code;
+		this.openid = openid;
+		this.imageUrl = imageUrl;
+		this.nickname = nickname;
+		this.currency = currency;
+		this.wins = wins;
+		this.allNumber = allNumber;
+		this.lasttime = lasttime;
+		this.rownum = rownum;
+		this.message = message;
+		this.continuWins = continuWins;
+	}
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -32,13 +62,36 @@ public class User {
 		this.rownum = rownum;
 		this.message = message;
 	}
+	
+	public Integer getAllNumber() {
+		return allNumber;
+	}
+	public void setAllNumber(Integer allNumber) {
+		this.allNumber = allNumber;
+	}
+	public User(Integer id, String code, String openid, String imageUrl,
+			String nickname, Integer currency, Integer wins, Integer allNumber,
+			Date lasttime, Integer rownum, String message) {
+		super();
+		this.id = id;
+		this.code = code;
+		this.openid = openid;
+		this.imageUrl = imageUrl;
+		this.nickname = nickname;
+		this.currency = currency;
+		this.wins = wins;
+		this.allNumber = allNumber;
+		this.lasttime = lasttime;
+		this.rownum = rownum;
+		this.message = message;
+	}
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", code=" + code + ", openid=" + openid
 				+ ", imageUrl=" + imageUrl + ", nickname=" + nickname
-				+ ", currency=" + currency + ", wins=" + wins + ", lasttime="
-				+ lasttime + ", rownum=" + rownum + ", message=" + message
-				+ "]";
+				+ ", currency=" + currency + ", wins=" + wins + ", allNumber="
+				+ allNumber + ", lasttime=" + lasttime + ", rownum=" + rownum
+				+ ", message=" + message + ", continuWins=" + continuWins + "]";
 	}
 	public Integer getId() {
 		return id;

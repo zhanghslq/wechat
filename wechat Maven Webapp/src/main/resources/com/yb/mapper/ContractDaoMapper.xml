@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yb.dao.ContractDao">
+	<select id="queryByOpenId" resultType="ContractCome">
+		select wpc.id,wpc.matchId,wpcu.result number
+		from worldcup_pk_contract_user wpcu left join  worldcup_pk_contract wpc
+		on wpcu.cid=wpc.id
+		where wpcu.uid=#{openId} and wpc.status=2
+	</select>
+
 	<update id="updateResult">
 		update worldcup_pk_contract_user
 		<if test="yn=='yes'">
@@ -53,12 +60,14 @@
 		from worldcup_pk_create_contract cc 
 		left join worldcup_pk_contract c on cc.cid=c.id
 		where cc.createUser=#{uid} and c.matchId=#{matchId} and cc.yn=1
+		limit 1
 	</select>
 	<select id="queryJoinByUid" resultType="Integer">
 		select c.id 
 		from worldcup_pk_contract_user cc 
 		left join worldcup_pk_contract c on cc.cid=c.id
 		where cc.uid=#{uid} and c.matchId=#{matchId} and cc.yn=1
+		limit 1
 	</select>
 	<select id="getContract" resultType="ContractCome">
 		select id,guessType,stakeId,status,matchId 
@@ -82,9 +91,8 @@
 	</update>
 
 	<insert id="insertContract" useGeneratedKeys="true" parameterType="ContractCome" keyProperty="id">
-		insert into worldcup_pk_contract(guessType,stakeId,matchId,time)
-		values(#{guessType},#{stakeId}
-		,#{matchId},now())
+		insert into worldcup_pk_contract(guessType,stakeId,matchId)
+		values(#{guessType},#{stakeId},#{matchId})
 	</insert>
 	<insert id="insertConstractCreate">
 		insert into worldcup_pk_create_contract(cid,createUser)values(#{cid},#{uid})

@@ -2,6 +2,7 @@ package com.yb.service;
 
 import com.yb.entity.RankData;
 import com.yb.entity.User;
+import com.yb.entity.UserAndHistory;
 
 public interface UserService {
 	//插入用户信息
@@ -16,4 +17,6 @@ public interface UserService {
 	User getUserStatus(String openid);
 	
 	void updateNameAndLogo(User user);
+	
+	UserAndHistory queryUserAndHistory(String openId);
 }

@@ -61,7 +61,6 @@ public class ContractServiceImpl implements ContractService{
 		Match queryById = matchDao.queryById(matchId);
 		Team homeTeam = teamDao.queryById(queryById.getHomeid());
 		Team visitTeam = teamDao.queryById(queryById.getVisitid());
-		
 		String openId = contractDao.getOpenId(cid);//创建人openid,創建人一定是有的
 		User user = userDao.getUser(openId);//創建人信息
 		String myGuess = contractDao.queryGuessByUid(openId, cid);
@@ -72,7 +71,7 @@ public class ContractServiceImpl implements ContractService{
 		
 		ContractDetails contractDetails = new ContractDetails(homeTeam, visitTeam, "文案", contract.getGuessType(),
 				myGuess, stake.getLogo(), stake.getName(), queryById.getStatus(),
-				"30minutes待定", user.getNickname(), user.getImageUrl(), queryUsers);
+				"30minutes待定", user.getNickname(), user.getImageUrl(), queryUsers,contract.getStatus());
 		return contractDetails;
 	}
 	@Override

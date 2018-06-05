@@ -25,7 +25,7 @@
 		
 	</select>
 	<select id="getUser" resultType="User">
-		select openid,nickname,imageUrl,currency,wins,lasttime 
+		select openid,nickname,imageUrl,currency,wins,allNumber,continuWins,lasttime 
 		from worldcup_pk_user where openid=#{openid}
 	</select>
 	<insert id="insertUser">
@@ -46,10 +46,10 @@
 	<update id="addCurrency">
 		update worldcup_pk_user 
 		<if test="yn=='yes'">
-			set currency=currency+#{num},wins=wins+1,all=all+1 
+			set currency=currency+#{num},wins=wins+1,allNumber=allNumber+1,continuWins=continuWins+1
 		</if>
 		<if test="yn!='yes'">
-			set currency=currency-#{num},all=all+1
+			set currency=currency-#{num},allNumber=allNumber+1,continuWins=0
 		</if>
 		where openid in
 		<foreach collection="openids" item="item" open="(" separator="," close=")">
@@ -59,23 +59,22 @@
 	<update id="addCurrencyGroup">
 			update worldcup_pk_user 
 			<if test="yn=='yes'">
-				set currency=currency+#{contractComes.number},wins=wins+1,all=all+1 
+				set currency=currency+#{contractComes.number},wins=wins+1,allNumber=allNumber+1,continuWins=continuWins+1
 			</if>
 			<if test="yn!='yes'">
-				set currency=currency-#{contractComes.number},all=all+1
+				set currency=currency-#{contractComes.number},allNumber=allNumber+1,continuWins=0
 			</if>
 			where openid = #{contractComes.openId}
 	</update>
 	<update id="updateWins">
-		update worldcup_pk_user set wins=wins+1,all=all+1 
+		update worldcup_pk_user set wins=wins+1,allNumber=allNumber+1,continuWins=continuWins+1
 		where openid in
 		<foreach collection="openids" item="item" open="(" close=")" separator=",">
 			#{item}
 		</foreach>
-		
 	</update>
 	<update id="updateAll">
-		update worldcup_pk_user set all=all+1 
+		update worldcup_pk_user set allNumber=allNumber+1,continuWins=0
 		where openid in
 		<foreach collection="openids" item="item" open="(" close=")" separator=",">
 			#{item}

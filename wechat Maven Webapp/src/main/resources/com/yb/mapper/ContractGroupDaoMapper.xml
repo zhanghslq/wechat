@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yb.dao.ContractGroupDao">
+	<select id="queryByOpenId" resultType="ContractCome">
+		select wpc.id,wpc.matchId,wpcu.result number
+		from worldcup_pk_contract_user_group wpcu left join  worldcup_pk_contract_group wpc
+		on wpcu.cid=wpc.id
+		where wpcu.uid=#{openId} and wpc.status=2
+	</select>
 	<select id="queryByMatchId" resultType="Integer">
 		select id from worldcup_pk_contract_group
 		where matchId=#{matchId} and guessType=#{type}
@@ -61,11 +67,13 @@
 		from worldcup_pk_create_contract_group cc 
 		left join worldcup_pk_contract_group c on cc.cid=c.id
 		where cc.createUser=#{uid} and c.matchId=#{matchId} and cc.yn=1 and c.yn=1
+		limit 1
 	</select>
 	<select id="queryJoinByUid" resultType="Integer">
 		select c.id from worldcup_pk_contract_user_group cc 
 		left join worldcup_pk_contract_group c on cc.cid=c.id
 		where cc.uid=#{uid} and c.matchId=#{matchId} and cc.yn=1 and c.yn=1
+		limit 1
 	</select>
 	<select id="queryNumberById" resultType="Integer">
 		select number from worldcup_pk_contract_group where id=#{cid}

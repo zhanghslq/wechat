@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.yb.entity.ContractCome;
 import com.yb.entity.ContractDetails;
 import com.yb.entity.ContractDone;
+import com.yb.entity.JoinContract;
 import com.yb.entity.ResultPack;
 import com.yb.entity.TheGuess;
 import com.yb.service.ContractService;
@@ -55,10 +56,10 @@ public class ContractController {//0代表失败，1代表成功
 	//参与契约
 	//重新预测,两个是一样的
 	@ResponseBody
-	@RequestMapping("/joinContract")
-	public ResultPack joinContract(String openId,Integer cid,String myGuess){
+	@RequestMapping(value="/joinContract",method=RequestMethod.POST)
+	public ResultPack joinContract(@RequestBody JoinContract joinData){
 		try {
-			String joinContract = contractService.joinContract(openId, cid, myGuess);
+			String joinContract = contractService.joinContract(joinData.getOpenId(), joinData.getCid(), joinData.getMyGuess());
 			return new ResultPack(1, joinContract);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

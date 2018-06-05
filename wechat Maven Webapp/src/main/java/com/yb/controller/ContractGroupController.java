@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.yb.entity.ContractCome;
 import com.yb.entity.ContractGroupDetails;
 import com.yb.entity.ContractGroupResult;
+import com.yb.entity.JoinContract;
 import com.yb.entity.ResultPack;
 import com.yb.service.ContractGroupService;
 
@@ -36,10 +37,10 @@ public class ContractGroupController {//群pk
 	}
 	//加入契约
 	@ResponseBody
-	@RequestMapping("/joinContractGroup")
-	public ResultPack joinContractGroup(String openId,Integer cid,String myGuess){
+	@RequestMapping(value="/joinContractGroup",method=RequestMethod.POST)
+	public ResultPack joinContractGroup(@RequestBody JoinContract joinData){
 		try {
-			contractGroupService.joinContractGroup(openId, cid, myGuess);
+			contractGroupService.joinContractGroup(joinData.getOpenId(), joinData.getCid(), joinData.getMyGuess());
 			return new ResultPack(1, null);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
