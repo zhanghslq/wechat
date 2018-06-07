@@ -48,7 +48,7 @@
 		select result from worldcup_pk_contract_user_group where cid=#{cid} and uid=#{uid}
 	</select>
 	<select id="queryByMatchIdAndUid" resultType="TheGuess">
-		select "好友赛" as type,c.id cid,u.nickname,u.imageUrl,c.status
+		select "群PK" as type,c.id cid,u.nickname,u.imageUrl,c.status
 		from worldcup_pk_contract_user_group cu 
 		left join worldcup_pk_contract_group c on cu.cid=c.id
 		left join worldcup_pk_create_contract_group cc on cu.cid=cc.cid

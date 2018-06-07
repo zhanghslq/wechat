@@ -37,5 +37,15 @@ public class MatchController {
 	public void queryMatchDone(){
 		
 	}
-	
+	//赛前提醒弹框
+	@RequestMapping("/queryBefore")
+	@ResponseBody
+	public void queryBefore(){
+		
+	}
+	@RequestMapping("/queryAfter")
+	@ResponseBody
+	public void queryAfter(){
+		
+	}
 }

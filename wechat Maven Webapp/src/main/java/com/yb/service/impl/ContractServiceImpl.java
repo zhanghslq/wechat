@@ -69,9 +69,9 @@ public class ContractServiceImpl implements ContractService{
 		List<User> queryUsers = userDao.queryUsers(openLists,cid);//包括創建人在内的契約人列表
 		
 		
-		ContractDetails contractDetails = new ContractDetails(homeTeam, visitTeam, "文案", contract.getGuessType(),
+		ContractDetails contractDetails = new ContractDetails(homeTeam, visitTeam, "", contract.getGuessType(),
 				myGuess, stake.getLogo(), stake.getName(), queryById.getStatus(),
-				"30minutes待定", user.getNickname(), user.getImageUrl(), queryUsers,contract.getStatus());
+				"", user.getNickname(), user.getImageUrl(), queryUsers,contract.getStatus());
 		return contractDetails;
 	}
 	@Override
