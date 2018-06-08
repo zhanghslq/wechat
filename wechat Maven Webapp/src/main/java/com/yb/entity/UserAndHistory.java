@@ -13,7 +13,34 @@ public class UserAndHistory {
 	private User user;
 	private String rate;
 	private List<History> histories;
-	
+	private String evaluation;
+
+	@Override
+	public String toString() {
+		return "UserAndHistory{" +
+				"user=" + user +
+				", rate='" + rate + '\'' +
+				", histories=" + histories +
+				", evaluation='" + evaluation + '\'' +
+				'}';
+	}
+
+	public String getEvaluation() {
+		return evaluation;
+	}
+
+	public void setEvaluation(String evaluation) {
+		this.evaluation = evaluation;
+	}
+
+	public UserAndHistory(User user, String rate, List<History> histories, String evaluation) {
+
+		this.user = user;
+		this.rate = rate;
+		this.histories = histories;
+		this.evaluation = evaluation;
+	}
+
 	public List<History> getHistories() {
 		return histories;
 	}
@@ -38,12 +65,6 @@ public class UserAndHistory {
 		super();
 		this.user = user;
 		this.rate = rate;
-	}
-
-	@Override
-	public String toString() {
-		return "UserAndHistory [user=" + user + ", rate=" + rate
-				+ ", histories=" + histories + "]";
 	}
 
 	public User getUser() {

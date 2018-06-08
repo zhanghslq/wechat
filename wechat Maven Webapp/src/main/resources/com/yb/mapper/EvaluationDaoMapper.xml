@@ -6,6 +6,11 @@
 		iron_cock,wealthy from worldcup_pk_evaluation
 		where openid=#{openid}
 	</select>
+	<select id="queryMax" resultType="Integer">
+		SELECT GREATEST(tricky_brains,food_anchor,imagination_talent,iron_cock,wealthy)
+		from worldcup_pk_evaluation
+		where openid=#{openId}
+	</select>
 	<insert id="insert">
 		insert into worldcup_pk_evaluation(openid) values(#{openId})
 	</insert>

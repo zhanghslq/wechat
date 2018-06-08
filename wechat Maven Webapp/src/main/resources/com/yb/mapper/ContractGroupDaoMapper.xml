@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yb.dao.ContractGroupDao">
+	<select id="queryByOpenIdAndCid" resultType="Integer">
+		SELECT  id
+		from worldcup_pk_contract_user_group
+		where cid=#{cid} and uid=#{uid} and yn=1
+	</select>
+	<select id="queryUserByCid" resultType="User">
+		SELECT wpu.openId,wpu.nickname,wpu.imageUrl from worldcup_pk_create_contract_group wpccg LEFT JOIN worldcup_pk_user wpu
+		  on wpccg.createUser=wpu.openid
+		  where wpccg.cid=#{cid}
+	</select>
 	<select id="queryByOpenId" resultType="ContractCome">
 		select wpc.id,wpc.matchId,wpcu.result number
 		from worldcup_pk_contract_user_group wpcu left join  worldcup_pk_contract_group wpc
@@ -99,6 +109,7 @@
 	<select id="queryNearLogo" resultType="String">
 		select imageUrl from worldcup_pk_user wpu
 		right join worldcup_pk_contract_user_group cug on cug.uid=wpu.openid
+		WHERE cug.cid=#{cid}
 		order by cug.time desc limit 5
 	</select>
 	<select id="queryNumberByCid" resultType="Integer">

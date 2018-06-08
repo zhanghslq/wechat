@@ -9,9 +9,14 @@ import com.yb.entity.Match;
 
 //比赛信息
 public interface MatchDao {
-	//查询未来48小时以内的球赛
+	//查询未来四场球赛，未开赛前使用
 	List<Match> queryMatches(@Param("openid")String openid);
-	
+	//查询今天的比赛
+	List<Match> queryMatchesToday(@Param("openid")String openid);
+
+	//查询两个小时内的比赛,为赛事提醒做准备
+	List<Match> queryMatchesTwoHours();
+	//插入数据
 	void insertMatches(@Param("matchs")List<Match> matchs);
 	
 	Match queryById(@Param("id")Integer id);
@@ -23,5 +28,7 @@ public interface MatchDao {
 			@Param("homeGrade")Integer homeGrade,@Param("visitGrade")Integer visitGrade);
 	
 	Integer queryRownum(@Param("time")Date time);
+
+
 	
 }

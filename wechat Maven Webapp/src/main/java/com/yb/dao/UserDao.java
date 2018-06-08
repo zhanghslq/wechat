@@ -24,7 +24,7 @@ public interface UserDao {
 	//排行榜
 	List<User> getRank();
 	//获取自己的排行位置
-	Integer getSelf(@Param("wins")Integer wins); 
+	Integer getSelf(@Param("openId")String openId);
 	//当天第一次登陆送100金币,胜利获得赌注相同金币，就是修改金币数量，
 	void updateCurrency(@Param("openid")String openid,@Param("num")Integer num);
 	//批量更新金币，yn控制加减,顺便控制加减胜场，总 
@@ -38,4 +38,6 @@ public interface UserDao {
 	//查询用户进程
 	Proceed queryLastContract(@Param("uid")String uid);
 	Proceed queryLastContractGroup(@Param("uid")String uid);
+
+	//
 }

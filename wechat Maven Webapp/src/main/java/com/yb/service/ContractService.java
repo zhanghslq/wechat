@@ -2,10 +2,7 @@ package com.yb.service;
 
 import java.util.List;
 
-import com.yb.entity.ContractCome;
-import com.yb.entity.ContractDetails;
-import com.yb.entity.ContractDone;
-import com.yb.entity.TheGuess;
+import com.yb.entity.*;
 
 public interface ContractService {
 	//生成契约
@@ -24,4 +21,7 @@ public interface ContractService {
 	
 	//更新契约结果，结算赌局
 	void updateResultAndAutoCommit(Integer matchId,Integer homeGrade,Integer visitGrade);
+
+	//查询是否能加入契约
+	ResultPack isJoinContract(String openId,Integer cid);
 }

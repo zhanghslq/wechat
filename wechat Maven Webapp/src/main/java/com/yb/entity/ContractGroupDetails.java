@@ -18,6 +18,74 @@ public class ContractGroupDetails {
 	private List<String> nearLogo;//最近进入房间的五个邮箱
 	private Integer number;//房间人数   
 	private List<JoinData> joiners;
+	private User user;
+	private Integer contractStatus;
+
+	@Override
+	public String toString() {
+		return "ContractGroupDetails{" +
+				"stageName='" + stageName + '\'' +
+				", home=" + home +
+				", visit=" + visit +
+				", guessType=" + guessType +
+				", loser=" + loser +
+				", success=" + success +
+				", currencys=" + currencys +
+				", nearLogo=" + nearLogo +
+				", number=" + number +
+				", joiners=" + joiners +
+				", user=" + user +
+				", contractStatus=" + contractStatus +
+				'}';
+	}
+
+	public Integer getContractStatus() {
+		return contractStatus;
+	}
+
+	public void setContractStatus(Integer contractStatus) {
+		this.contractStatus = contractStatus;
+	}
+
+	public ContractGroupDetails(String stageName, Team home, Team visit, Integer guessType, List<User> loser, List<User> success, Long currencys, List<String> nearLogo, Integer number, List<JoinData> joiners, User user, Integer contractStatus) {
+
+		this.stageName = stageName;
+		this.home = home;
+		this.visit = visit;
+		this.guessType = guessType;
+		this.loser = loser;
+		this.success = success;
+		this.currencys = currencys;
+		this.nearLogo = nearLogo;
+		this.number = number;
+		this.joiners = joiners;
+		this.user = user;
+		this.contractStatus = contractStatus;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public ContractGroupDetails(String stageName, Team home, Team visit, Integer guessType, List<User> loser, List<User> success, Long currencys, List<String> nearLogo, Integer number, List<JoinData> joiners, User user) {
+
+		this.stageName = stageName;
+		this.home = home;
+		this.visit = visit;
+		this.guessType = guessType;
+		this.loser = loser;
+		this.success = success;
+		this.currencys = currencys;
+		this.nearLogo = nearLogo;
+		this.number = number;
+		this.joiners = joiners;
+		this.user = user;
+	}
+
 	public ContractGroupDetails() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -38,14 +106,7 @@ public class ContractGroupDetails {
 		this.number = number;
 		this.joiners = joiners;
 	}
-	@Override
-	public String toString() {
-		return "ContractGroupDetails [stageName=" + stageName + ", home="
-				+ home + ", visit=" + visit + ", guessType=" + guessType
-				+ ", loser=" + loser + ", success=" + success + ", currencys="
-				+ currencys + ", nearLogo=" + nearLogo + ", number=" + number
-				+ ", joiners=" + joiners + "]";
-	}
+
 	public String getStageName() {
 		return stageName;
 	}

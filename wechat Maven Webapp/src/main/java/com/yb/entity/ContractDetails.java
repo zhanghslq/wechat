@@ -21,7 +21,54 @@ public class ContractDetails {
 	private String logo;//发起人头像
 	private List<User> contractDetails;//契约人
 	private Integer contractStatus;
-	
+	private String openId;
+
+	@Override
+	public String toString() {
+		return "ContractDetails{" +
+				"home=" + home +
+				", visit=" + visit +
+				", message='" + message + '\'' +
+				", guessType=" + guessType +
+				", myGuess='" + myGuess + '\'' +
+				", stakeLogo='" + stakeLogo + '\'' +
+				", stakeText='" + stakeText + '\'' +
+				", matchStatus=" + matchStatus +
+				", miutes='" + miutes + '\'' +
+				", nickname='" + nickname + '\'' +
+				", logo='" + logo + '\'' +
+				", contractDetails=" + contractDetails +
+				", contractStatus=" + contractStatus +
+				", openId='" + openId + '\'' +
+				'}';
+	}
+
+	public String getOpenId() {
+		return openId;
+	}
+
+	public void setOpenId(String openId) {
+		this.openId = openId;
+	}
+
+	public ContractDetails(Team home, Team visit, String message, Integer guessType, String myGuess, String stakeLogo, String stakeText, Integer matchStatus, String miutes, String nickname, String logo, List<User> contractDetails, Integer contractStatus, String openId) {
+
+		this.home = home;
+		this.visit = visit;
+		this.message = message;
+		this.guessType = guessType;
+		this.myGuess = myGuess;
+		this.stakeLogo = stakeLogo;
+		this.stakeText = stakeText;
+		this.matchStatus = matchStatus;
+		this.miutes = miutes;
+		this.nickname = nickname;
+		this.logo = logo;
+		this.contractDetails = contractDetails;
+		this.contractStatus = contractStatus;
+		this.openId = openId;
+	}
+
 	public Integer getContractStatus() {
 		return contractStatus;
 	}
@@ -70,16 +117,7 @@ public class ContractDetails {
 		this.logo = logo;
 		this.contractDetails = contractDetails;
 	}
-	@Override
-	public String toString() {
-		return "ContractDetails [home=" + home + ", visit=" + visit
-				+ ", message=" + message + ", guessType=" + guessType
-				+ ", myGuess=" + myGuess + ", stakeLogo=" + stakeLogo
-				+ ", stakeText=" + stakeText + ", matchStatus=" + matchStatus
-				+ ", miutes=" + miutes + ", nickname=" + nickname + ", logo="
-				+ logo + ", contractDetails=" + contractDetails
-				+ ", contractStatus=" + contractStatus + "]";
-	}
+
 	public Team getHome() {
 		return home;
 	}

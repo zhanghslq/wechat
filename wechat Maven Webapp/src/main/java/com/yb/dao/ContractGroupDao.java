@@ -77,5 +77,9 @@ public interface ContractGroupDao {
 		
 		//根据openid查询历史完成的赌局
 		List<ContractCome> queryByOpenId(@Param("openId")String openId);
+		//根据契约id查询用户信息
+		User queryUserByCid(@Param("cid")Integer cid);
+		//queryByOpenIdAndCid  用来判定用户是否参加契约
+        Integer queryByOpenIdAndCid(@Param("openId")String openId,@Param("cid")Integer cid);
 		
 }

@@ -34,44 +34,88 @@ public class MatchServiceImpl implements MatchService{
 	@Override
 	public List<Banner> queryBanner(String openId) {//查询当前赛事
 		// TODO Auto-generated method stub
-		List<Match> queryMatches = matchDao.queryMatches(openId);//获取到的赛事，然后判断，是否是发起人，是否参加契约
-		List<Banner> data = new ArrayList<Banner>();//存放包装好的返回信息
-		for (Match match : queryMatches) {
-			Team home = teamDao.queryById(match.getHomeid());
-			Team visit = teamDao.queryById(match.getVisitid());
-			Integer id = match.getId();
-			//这是普通契约
-			Integer queryNumber = contractDao.queryNumber(id);
-			Integer queryCreateByUid = contractDao.queryCreateByUid(openId,id);
-			Integer queryJoinByUid = contractDao.queryJoinByUid(openId, id);
-			Boolean create=false;
-			Boolean join=false;
-			if(queryCreateByUid!=null){
-				create=true;
+		if(new Date().getTime()>1528905600000l){//世界杯开始,取当天的数据
+			List<Match> queryMatches = matchDao.queryMatchesToday(openId);//获取到的赛事，然后判断，是否是发起人，是否参加契约
+			List<Banner> data = new ArrayList<Banner>();//存放包装好的返回信息
+			for (Match match : queryMatches) {
+				Team home = teamDao.queryById(match.getHomeid());
+				Team visit = teamDao.queryById(match.getVisitid());
+				Integer id = match.getId();
+				//这是普通契约
+				Integer queryNumber = contractDao.queryNumber(id);
+				Integer queryCreateByUid = contractDao.queryCreateByUid(openId,id);
+				Integer queryJoinByUid = contractDao.queryJoinByUid(openId, id);
+				Boolean create=false;
+				Boolean join=false;
+				if(queryCreateByUid!=null){
+					create=true;
+				}
+				if(queryJoinByUid!=null){
+					join=true;
+				}
+				//检查群pk,
+				Integer queryNumberByMatchId = contractGroupDao.queryNumberByMatchId(id);
+				Integer queryCreateByUid2 = contractGroupDao.queryCreateByUid(id,openId);
+				Integer queryJoinByUid2 = contractGroupDao.queryJoinByUid(id, openId);
+				Boolean create2=false;
+				Boolean join2=false;
+				if(queryCreateByUid2!=null){
+					create2=true;
+				}
+				if(queryJoinByUid2!=null){
+					join2=true;
+				}
+				Date time = match.getTime();
+				Banner banner = new Banner(match.getId(), time, home, visit, queryNumber+queryNumberByMatchId, create, join,create2,join2);
+				Integer queryRownum = matchDao.queryRownum(match.getTime());
+				banner.setRownum(queryRownum);
+				banner.setTimeDesc(sf.format(time));
+				data.add(banner);
 			}
-			if(queryJoinByUid!=null){
-				join=true;
+			return data;
+		}else{//世界杯未开始
+			List<Match> queryMatches = matchDao.queryMatches(openId);//获取到的赛事，然后判断，是否是发起人，是否参加契约
+			List<Banner> data = new ArrayList<Banner>();//存放包装好的返回信息
+			int i=1;
+			for (Match match : queryMatches) {
+				Team home = teamDao.queryById(match.getHomeid());
+				Team visit = teamDao.queryById(match.getVisitid());
+				Integer id = match.getId();
+				//这是普通契约
+				Integer queryNumber = contractDao.queryNumber(id);
+				Integer queryCreateByUid = contractDao.queryCreateByUid(openId,id);
+				Integer queryJoinByUid = contractDao.queryJoinByUid(openId, id);
+				Boolean create=false;
+				Boolean join=false;
+				if(queryCreateByUid!=null){
+					create=true;
+				}
+				if(queryJoinByUid!=null){
+					join=true;
+				}
+				//检查群pk,
+				Integer queryNumberByMatchId = contractGroupDao.queryNumberByMatchId(id);
+				Integer queryCreateByUid2 = contractGroupDao.queryCreateByUid(id,openId);
+				Integer queryJoinByUid2 = contractGroupDao.queryJoinByUid(id, openId);
+				Boolean create2=false;
+				Boolean join2=false;
+				if(queryCreateByUid2!=null){
+					create2=true;
+				}
+				if(queryJoinByUid2!=null){
+					join2=true;
+				}
+				Date time = match.getTime();
+				Banner banner = new Banner(match.getId(), time, home, visit, queryNumber+queryNumberByMatchId, create, join,create2,join2);
+
+				banner.setRownum(i);
+				i++;
+				banner.setTimeDesc(sf.format(time));
+				data.add(banner);
 			}
-			//检查群pk,
-			Integer queryNumberByMatchId = contractGroupDao.queryNumberByMatchId(id);
-			Integer queryCreateByUid2 = contractGroupDao.queryCreateByUid(id,openId);
-			Integer queryJoinByUid2 = contractGroupDao.queryJoinByUid(id, openId);
-			Boolean create2=false;
-			Boolean join2=false;
-			if(queryCreateByUid2!=null){
-				create2=true;
-			}
-			if(queryJoinByUid2!=null){
-				join2=true;
-			}
-			Date time = match.getTime();
-			Banner banner = new Banner(match.getId(), time, home, visit, queryNumber+queryNumberByMatchId, create, join,create2,join2);
-			Integer queryRownum = matchDao.queryRownum(match.getTime());
-			banner.setRownum(queryRownum);
-			banner.setTimeDesc(sf.format(time));
-			data.add(banner);
+			return data;
 		}
-		return data;
+
 	}
 	@Override
 	public List<MatchData> queryMatchDone() {//用来后台页面展示的，后台管理

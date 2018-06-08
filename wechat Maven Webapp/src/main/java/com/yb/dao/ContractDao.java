@@ -79,8 +79,10 @@ public interface ContractDao {
 	
 	
 	
-	//根据用户openid查询历史参与的契约,需要契约id，比赛id
+	//根据用户openid查询历史参与的契约,需要契约id，比赛id,已经结束的
 	List<ContractCome> queryByOpenId(@Param("openId")String openId);
-	
-	
+
+	//查询人是不是已经加入
+	Integer queryByOpenIdAndCid(@Param("cid")Integer cid,@Param("uid")String uid);
+
 }

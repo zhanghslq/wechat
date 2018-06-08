@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yb.dao.UserDao">
+
 	<update id="updateNameAndLogo">
 		update worldcup_pk_user set nickname=#{user.nickname},imageUrl=#{user.imageUrl}
 		where openid=#{user.openid}
@@ -34,10 +35,13 @@
 	</insert>
 	<select id="getRank" resultType="User">
 		select openid,nickname,wins,@rownum:=@rownum+1 as rownum
- 		from worldcup_pk_user p,(select @rownum:=0) q order by wins desc limit 10
+ 		from worldcup_pk_user p,(select @rownum:=0) q order by wins desc,created_time asc,nickname asc limit 10
 	</select>
 	<select id="getSelf" resultType="Integer">
-		select count(openid)+1 from worldcup_pk_user where wins &lt; #{wins}
+		select rank.rownum
+		from (select openid,nickname,wins,@rownum:=@rownum+1 as rownum
+ 		from worldcup_pk_user p,(select @rownum:=0) q order by wins desc,created_time asc,nickname asc) rank
+ 		where rank.openid=#{openId}
 	</select>
 	
 	<update id="updateCurrency">

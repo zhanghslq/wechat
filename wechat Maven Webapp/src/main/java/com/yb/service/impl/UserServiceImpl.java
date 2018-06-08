@@ -5,22 +5,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.yb.dao.*;
+import com.yb.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.yb.dao.ContractDao;
-import com.yb.dao.ContractGroupDao;
-import com.yb.dao.MatchDao;
-import com.yb.dao.TeamDao;
-import com.yb.dao.UserDao;
-import com.yb.entity.ContractCome;
-import com.yb.entity.History;
-import com.yb.entity.Match;
-import com.yb.entity.Proceed;
-import com.yb.entity.RankData;
-import com.yb.entity.Team;
-import com.yb.entity.User;
-import com.yb.entity.UserAndHistory;
 import com.yb.service.UserService;
 
 @Service
@@ -35,12 +24,15 @@ public class UserServiceImpl implements UserService {
 	private MatchDao matchDao;
 	@Autowired
 	private TeamDao teamDao;
-	
+	@Autowired
+	private EvaluationDao evaluationDao;
+
 	private SimpleDateFormat sfDateFormat=new SimpleDateFormat("MM月dd日");
 	@Override
 	public void insertUser(User user) {
 		// TODO Auto-generated method stub
 		userDao.insertUser(user);
+		evaluationDao.insert(user.getOpenid());
 	}
 
 	@Override
@@ -91,7 +83,7 @@ public class UserServiceImpl implements UserService {
 	public RankData getRank(String openId) {
 		// TODO Auto-generated method stub
 		User user = userDao.getUser(openId);
-		Integer self = userDao.getSelf(user.getWins());
+		Integer self = userDao.getSelf(user.getOpenid());
 		List<User> rank = userDao.getRank();
 		RankData rankData = new RankData(self, rank);
 		return rankData;
@@ -100,7 +92,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void updateCurrencys(String openId) {
 		// TODO Auto-generated method stub
-		userDao.updateCurrency(openId, 100);
+		userDao.updateCurrency(openId, 1000);
 	}
 	//只有在登录的时候用到
 	@Override
@@ -132,7 +124,7 @@ public class UserServiceImpl implements UserService {
 			rate="0%";
 		}
 		List<History> list = new ArrayList<History>();//存放历史战绩的
-		List<ContractCome> queryByOpenId = contractDao.queryByOpenId(openId);//得到的
+		List<ContractCome> queryByOpenId = contractDao.queryByOpenId(openId);//得到的已经结束的
 		if(queryByOpenId!=null&&queryByOpenId.size()!=0){
 			for (ContractCome contractCome : queryByOpenId) {
 				Integer id = contractCome.getId();//参加的契约id
@@ -143,7 +135,7 @@ public class UserServiceImpl implements UserService {
 				Team queryById = teamDao.queryById(visitid);//客队
 				Team queryById2 = teamDao.queryById(homeid);//主队
 				Date time = match.getTime();//
-				Integer number = contractCome.getNumber();
+				Integer number = contractCome.getNumber1();
 				String resultString="赢";
 				if(0==number){
 					resultString="输";
@@ -179,7 +171,24 @@ public class UserServiceImpl implements UserService {
 				list.add(history);
 			}
 		}
-		UserAndHistory userAndHistory = new UserAndHistory(user, rate, list);
+		//查询称号的
+		String evaluationName="猜球达人";
+		Integer integer = evaluationDao.queryMax(openId);
+		Evaluation evaluation = evaluationDao.queryEvaluation(openId);
+		if(integer!=0){
+			if (evaluation.getTricky_brains()==integer){
+				evaluationName="整蛊专家";
+			}else if (evaluation.getIron_cock()==integer){
+				evaluationName="钢铁公鸡";
+			}else if (evaluation.getImagination_talent()==integer){
+				evaluationName="脑洞达人";
+			}else if (evaluation.getFood_anchor()==integer){
+				evaluationName="美食主播";
+			}else if (evaluation.getWealthy()==integer){
+				evaluationName="富甲一方";
+			}
+		}
+		UserAndHistory userAndHistory = new UserAndHistory(user, rate, list,evaluationName);
 		return userAndHistory;
 	}
 	

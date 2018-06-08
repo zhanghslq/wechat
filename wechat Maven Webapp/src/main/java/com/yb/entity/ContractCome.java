@@ -15,6 +15,38 @@ public class ContractCome {
 	private String myGuess;
 	private Integer matchId;
 	private Integer number;//留给群pk使用
+	private Integer number1;
+
+	@Override
+	public String toString() {
+		return "ContractCome{" +
+				"openId='" + openId + '\'' +
+				", id=" + id +
+				", guessType=" + guessType +
+				", stakeId=" + stakeId +
+				", status=" + status +
+				", stakeType=" + stakeType +
+				", stakeText='" + stakeText + '\'' +
+				", myGuess='" + myGuess + '\'' +
+				", matchId=" + matchId +
+				", number=" + number +
+				", number1=" + number1 +
+				'}';
+	}
+
+	public Integer getNumber1() {
+		return number1;
+	}
+
+	public void setNumber1(Integer number1) {
+		this.number1 = number1;
+	}
+
+	public ContractCome(String openId) {
+
+		this.openId = openId;
+	}
+
 	public ContractCome() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -34,14 +66,7 @@ public class ContractCome {
 		this.matchId = matchId;
 		this.number = number;
 	}
-	@Override
-	public String toString() {
-		return "ContractCome [openId=" + openId + ", id=" + id + ", guessType="
-				+ guessType + ", stakeId=" + stakeId + ", status=" + status
-				+ ", stakeType=" + stakeType + ", stakeText=" + stakeText
-				+ ", myGuess=" + myGuess + ", matchId=" + matchId + ", number="
-				+ number + "]";
-	}
+
 	public String getOpenId() {
 		return openId;
 	}

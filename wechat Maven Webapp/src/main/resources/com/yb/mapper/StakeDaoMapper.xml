@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yb.dao.StakeDao">
 	<insert id="insertStake" useGeneratedKeys="true" parameterType="Stake" keyProperty="id">
-		insert into worldcup_pk_stake(name,type) values(#{name},#{type})
+		insert into worldcup_pk_stake(name,type,logo) values(#{name},#{type},"images/deed/zdy.png")
 	</insert>
 	
 	<select id="queryById" resultType="Stake">

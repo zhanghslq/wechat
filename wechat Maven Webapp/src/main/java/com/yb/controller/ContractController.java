@@ -102,4 +102,16 @@ public class ContractController {//0代表失败，1代表成功
 			return new ResultPack(0, e.getMessage());
 		}
 	}
+	//查询契约是否可以加入
+	@ResponseBody
+	@RequestMapping("/queryJoinContract")
+	public  Object queryJoinContract(String openId,Integer cid){
+		try {
+			ResultPack joinContract = contractService.isJoinContract(openId, cid);
+			return  joinContract;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResultPack(0,"查询出错");
+		}
+	}
 }

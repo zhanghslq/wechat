@@ -9,6 +9,39 @@ public class ContractGroupResult {
 	private List<User> loser;
 	private List<User> success;
 	private Long currencys;
+	private String result;
+	@Override
+	public String toString() {
+		return "ContractGroupResult{" +
+				"message='" + message + '\'' +
+				", home=" + home +
+				", visit=" + visit +
+				", loser=" + loser +
+				", success=" + success +
+				", currencys=" + currencys +
+				", result='" + result + '\'' +
+				'}';
+	}
+
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
+	}
+
+	public ContractGroupResult(String message, Team home, Team visit, List<User> loser, List<User> success, Long currencys, String result) {
+
+		this.message = message;
+		this.home = home;
+		this.visit = visit;
+		this.loser = loser;
+		this.success = success;
+		this.currencys = currencys;
+		this.result = result;
+	}
+
 	public ContractGroupResult() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -23,12 +56,7 @@ public class ContractGroupResult {
 		this.success = success;
 		this.currencys = currencys;
 	}
-	@Override
-	public String toString() {
-		return "ContractGroupResult [message=" + message + ", home=" + home
-				+ ", visit=" + visit + ", loser=" + loser + ", success="
-				+ success + ", currencys=" + currencys + "]";
-	}
+
 	public String getMessage() {
 		return message;
 	}

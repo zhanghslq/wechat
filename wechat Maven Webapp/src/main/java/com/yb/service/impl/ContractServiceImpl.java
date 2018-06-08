@@ -1,26 +1,13 @@
 package com.yb.service.impl;
 
-import java.util.List;
-
+import com.yb.dao.*;
+import com.yb.entity.*;
+import com.yb.service.ContractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.yb.dao.ContractDao;
-import com.yb.dao.ContractGroupDao;
-import com.yb.dao.MatchDao;
-import com.yb.dao.StakeDao;
-import com.yb.dao.TeamDao;
-import com.yb.dao.UserDao;
-import com.yb.entity.ContractCome;
-import com.yb.entity.ContractDetails;
-import com.yb.entity.ContractDone;
-import com.yb.entity.Match;
-import com.yb.entity.Stake;
-import com.yb.entity.Team;
-import com.yb.entity.TheGuess;
-import com.yb.entity.User;
-import com.yb.service.ContractService;
+import java.util.List;
 
 @Service
 public class ContractServiceImpl implements ContractService{
@@ -65,13 +52,13 @@ public class ContractServiceImpl implements ContractService{
 		User user = userDao.getUser(openId);//創建人信息
 		String myGuess = contractDao.queryGuessByUid(openId, cid);
 		List<String> openLists = contractDao.getOpenLists(cid);//缔结契约人列表，這個
-		
+
 		List<User> queryUsers = userDao.queryUsers(openLists,cid);//包括創建人在内的契約人列表
-		
-		
+
+
 		ContractDetails contractDetails = new ContractDetails(homeTeam, visitTeam, "", contract.getGuessType(),
 				myGuess, stake.getLogo(), stake.getName(), queryById.getStatus(),
-				"", user.getNickname(), user.getImageUrl(), queryUsers,contract.getStatus());
+				"", user.getNickname(), user.getImageUrl(), queryUsers,contract.getStatus(),openId);
 		return contractDetails;
 	}
 	@Override
@@ -85,7 +72,7 @@ public class ContractServiceImpl implements ContractService{
 			return "success";
 		}
 	}
-	
+
 	@Override
 	public String beginStake(Integer cid) {
 		// TODO Auto-generated method stub
@@ -107,10 +94,10 @@ public class ContractServiceImpl implements ContractService{
 		String message;
 		if(0==queryResult){//0代表输，1代表赢
 			result="WIN";
-			message="";
+			message="大获全胜，一起哈皮";
 		}else {
 			result="LOSE";
-			message="";
+			message="再接再厉，下局通杀";
 		}
 		List<User> loser = contractDao.queryUserList(cid, 0);//获取 胜利或者输的人列表
 		List<User> success = contractDao.queryUserList(cid, 1);//获取 胜利或者输的人列表
@@ -154,8 +141,27 @@ public class ContractServiceImpl implements ContractService{
 	public void updateResultAndAutoCommit(Integer matchId, Integer homeGrade,
 			Integer visitGrade) {//更新比赛结果，结算赌局
 		// TODO Auto-generated method stub
-		
-		
+
+	}
+	public ResultPack isJoinContract(String openId,Integer cid){
+
+		ContractCome contract = contractDao.getContract(cid);//契约详情
+		if(contract!=null){
+
+			Integer status = contract.getStatus();
+			if (0!=status){//证明契约已经开局，或者结束，不是可加入的状态
+				return new ResultPack(0,"契约不可加入");
+			}else {
+				Integer integer = contractDao.queryByOpenIdAndCid(cid, openId);
+				if(integer!=null){//证明已经加入过契约
+					return new ResultPack(0,"已经加入此契约了");
+				}else {
+					return new ResultPack(1,"契约正常，可以加入");
+				}
+			}
+		}else {
+			return new ResultPack(0,"契约不存在");
+		}
 	}
 
 }

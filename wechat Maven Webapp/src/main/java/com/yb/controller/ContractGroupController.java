@@ -88,6 +88,18 @@ public class ContractGroupController {//群pk
 			e.printStackTrace();
 			return new ResultPack(0, e.getMessage());
 		}
-		
+	}
+	//获取契约是否能正常加入
+	@ResponseBody
+	@RequestMapping("/queryJoinContractGroup")
+	public Object queryJoinContractGroup(String openId,Integer cid){
+		try {
+			ResultPack joinContractGroup = contractGroupService.isJoinContractGroup(openId, cid);
+			return joinContractGroup;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return  new ResultPack(0,"查询出错");
+		}
+
 	}
 }
