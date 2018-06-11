@@ -86,7 +86,7 @@ public class ContractGroupServiceImpl implements ContractGroupService{
 		String result="WIN";
 		Integer resultByUidAndCid = contractGroupDao.queryResultByUidAndCid(cid, openId);
 		if(0==resultByUidAndCid){
-			message="再接再厉，下局通杀";
+			message="再接再厉，下次能赢";
 			result="LOSE";
 		}
 		Match match = matchDao.queryById(matchId);
@@ -96,9 +96,9 @@ public class ContractGroupServiceImpl implements ContractGroupService{
 		Team visiTeam = teamDao.queryById(visitid);
 		homeTeam.setGrade(match.getHome_grade());
 		visiTeam.setGrade(match.getVisit_grade());
-		Long queryCurrencys = contractGroupDao.queryCurrencys(matchId);
-		List<User> loserList = contractGroupDao.queryUserByResult(0);
-		List<User> successList = contractGroupDao.queryUserByResult(1);
+		Long queryCurrencys = contractGroupDao.queryCurrencyByCid(cid);
+		List<User> loserList = contractGroupDao.queryUserByResultAndCid(0,cid);
+		List<User> successList = contractGroupDao.queryUserByResultAndCid(1,cid);
 		ContractGroupResult contractGroupResult = new ContractGroupResult(message, homeTeam, visiTeam, loserList, successList, queryCurrencys,result);
 		return contractGroupResult;
 	}

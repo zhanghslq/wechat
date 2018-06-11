@@ -39,18 +39,25 @@ public interface ContractGroupDao {
 		List<JoinData> queryContractGroupUser(@Param("cid")Integer cid);
 		//查询本场赛事总的参与下注金币
 		Long queryCurrencys(@Param("matchId") Integer matchId);
+
+		Long queryCurrencyByCid(@Param("cid") Integer cid);
 		//查询最近进入房间的五个人的头像
 		List<String> queryNearLogo(@Param("cid")Integer cid);
 		//查询房间人数
 		Integer queryNumberByCid(@Param("cid")Integer cid);
 		//根据id查询下注数量
 		Integer queryNumberById(@Param("cid")Integer cid);
+
 		//查看契约结果
 		
 		
 		
 		//查看胜利或失败的人，结算之后用来显示契约比赛完成之后的
 		List<User> queryUserByResult(@Param("result")Integer result);
+
+		//这是为了查询结果页的输赢的人
+		List<User> queryUserByResultAndCid(@Param("result")Integer result,@Param("cid")Integer cid);
+
 		//查询当事人的竞猜结果
 		Integer queryResultByUidAndCid(@Param("cid")Integer cid,@Param("uid")String uid);
 		
@@ -81,5 +88,7 @@ public interface ContractGroupDao {
 		User queryUserByCid(@Param("cid")Integer cid);
 		//queryByOpenIdAndCid  用来判定用户是否参加契约
         Integer queryByOpenIdAndCid(@Param("openId")String openId,@Param("cid")Integer cid);
+        //更改群契约状态
+        void updateStatusAutoResult(@Param("cids")List<Integer> cids,@Param("status")Integer status);
 		
 }

@@ -27,11 +27,13 @@
     <!--创建数据源对象-->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost:3306/wechat?useSSL=false"/>
+        <!--<property name="url" value="jdbc:mysql://localhost:3306/wechat?useSSL=false"/>
+         <property name="username" value="admin"/>
+       <property name="password" value="admin"/>-->
+        <property name="url" value="jdbc:mysql://bj-cdb-2g8te123.sql.tencentcdb.com:63267/caiqiu?useSSL=false"/>
         <property name="username" value="admin"/>
-        <property name="password" value="admin"/>
+        <property name="password" value="workath6appcom"/>
     </bean>
-    
 
     <!--创建sqlSessionFactory-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -56,5 +58,5 @@
 
    <!-- 开启shiro方法上权限注解生效 -->
     <aop:config proxy-target-class="true" ></aop:config>
-    
+    <import resource="classpath:spring-shiro.xml"/>
 </beans>

@@ -14,6 +14,62 @@ public class ContractDone {
 	private List<User> success;
 	private Team home;
 	private Team visit;
+	private String logo;
+	private String stakeText;
+
+	@Override
+	public String toString() {
+		return "ContractDone{" +
+				"result='" + result + '\'' +
+				", message='" + message + '\'' +
+				", loser=" + loser +
+				", success=" + success +
+				", home=" + home +
+				", visit=" + visit +
+				", logo='" + logo + '\'' +
+				", stakeText='" + stakeText + '\'' +
+				'}';
+	}
+
+	public String getStakeText() {
+		return stakeText;
+	}
+
+	public void setStakeText(String stakeText) {
+		this.stakeText = stakeText;
+	}
+
+	public ContractDone(String result, String message, List<User> loser, List<User> success, Team home, Team visit, String logo, String stakeText) {
+
+		this.result = result;
+		this.message = message;
+		this.loser = loser;
+		this.success = success;
+		this.home = home;
+		this.visit = visit;
+		this.logo = logo;
+		this.stakeText = stakeText;
+	}
+
+	public String getLogo() {
+		return logo;
+	}
+
+	public void setLogo(String logo) {
+		this.logo = logo;
+	}
+
+	public ContractDone(String result, String message, List<User> loser, List<User> success, Team home, Team visit, String logo) {
+
+		this.result = result;
+		this.message = message;
+		this.loser = loser;
+		this.success = success;
+		this.home = home;
+		this.visit = visit;
+		this.logo = logo;
+	}
+
 	public ContractDone() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -28,12 +84,7 @@ public class ContractDone {
 		this.home = home;
 		this.visit = visit;
 	}
-	@Override
-	public String toString() {
-		return "ContractDone [result=" + result + ", message=" + message
-				+ ", loser=" + loser + ", success=" + success + ", home="
-				+ home + ", visit=" + visit + "]";
-	}
+
 	public String getResult() {
 		return result;
 	}

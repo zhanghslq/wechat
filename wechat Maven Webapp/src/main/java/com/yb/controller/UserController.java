@@ -30,10 +30,7 @@ public class UserController {
 	@ResponseBody
 	public ResultPack login(@RequestBody User user1){
 		 try {
-			System.out.println("进入方法");
-			System.out.println("code==========="+user1.getCode());
 	 		String openId = OpenUtils.getOpenId(user1.getCode());
-	 		System.out.println("获取到的openId"+openId);
 	        User user = userService.getUser(openId);
 	        if(user==null){
 	        	User user2 = new User(null,null,openId,user1.getImageUrl(),user1.getNickname(),8000,0,new Date(),null,null);

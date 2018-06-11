@@ -27,7 +27,7 @@ public interface ContractDao {
 	String queryGuessByUid(@Param("uid")String uid,@Param("cid")Integer cid);
 	
 	//开始赌局，契约生效
-	void updateStatus(@Param("cid")Integer cid);
+	void updateStatus(@Param("cid")Integer cid,@Param("status")Integer status);
 	
 	//查询时间大于30分钟还未开局的契约
 	List<Integer> queryList();

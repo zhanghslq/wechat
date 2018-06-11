@@ -19,7 +19,52 @@ public class User {
 	private Integer rownum;
 	private String message;
 	private Integer continuWins;
-	
+	private String description;
+
+	@Override
+	public String toString() {
+		return "User{" +
+				"id=" + id +
+				", code='" + code + '\'' +
+				", openid='" + openid + '\'' +
+				", imageUrl='" + imageUrl + '\'' +
+				", nickname='" + nickname + '\'' +
+				", currency=" + currency +
+				", wins=" + wins +
+				", allNumber=" + allNumber +
+				", lasttime=" + lasttime +
+				", rownum=" + rownum +
+				", message='" + message + '\'' +
+				", continuWins=" + continuWins +
+				", description='" + description + '\'' +
+				'}';
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public User(Integer id, String code, String openid, String imageUrl, String nickname, Integer currency, Integer wins, Integer allNumber, Date lasttime, Integer rownum, String message, Integer continuWins, String description) {
+
+		this.id = id;
+		this.code = code;
+		this.openid = openid;
+		this.imageUrl = imageUrl;
+		this.nickname = nickname;
+		this.currency = currency;
+		this.wins = wins;
+		this.allNumber = allNumber;
+		this.lasttime = lasttime;
+		this.rownum = rownum;
+		this.message = message;
+		this.continuWins = continuWins;
+		this.description = description;
+	}
+
 	public Integer getContinuWins() {
 		return continuWins;
 	}
@@ -85,14 +130,7 @@ public class User {
 		this.rownum = rownum;
 		this.message = message;
 	}
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", code=" + code + ", openid=" + openid
-				+ ", imageUrl=" + imageUrl + ", nickname=" + nickname
-				+ ", currency=" + currency + ", wins=" + wins + ", allNumber="
-				+ allNumber + ", lasttime=" + lasttime + ", rownum=" + rownum
-				+ ", message=" + message + ", continuWins=" + continuWins + "]";
-	}
+
 	public Integer getId() {
 		return id;
 	}

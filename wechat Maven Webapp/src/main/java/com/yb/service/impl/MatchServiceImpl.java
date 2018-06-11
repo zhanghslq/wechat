@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,7 @@ import com.yb.service.MatchService;
 
 @Service
 public class MatchServiceImpl implements MatchService{
+
 	@Autowired
 	private MatchDao matchDao;
 	@Autowired
@@ -30,7 +32,11 @@ public class MatchServiceImpl implements MatchService{
 	private ContractGroupDao contractGroupDao;
 	private SimpleDateFormat sfDateFormat=new SimpleDateFormat("yyyy-MM-dd");
 	private SimpleDateFormat sf=new SimpleDateFormat("MM月dd日   HH:mm");
-	
+
+	@Override
+	public void updateMatch(Integer id,Integer status,Integer homeGrade,Integer visitGrade) {
+		matchDao.updateMatch(id,status,homeGrade,visitGrade);
+	}
 	@Override
 	public List<Banner> queryBanner(String openId) {//查询当前赛事
 		// TODO Auto-generated method stub
@@ -42,7 +48,7 @@ public class MatchServiceImpl implements MatchService{
 				Team visit = teamDao.queryById(match.getVisitid());
 				Integer id = match.getId();
 				//这是普通契约
-				Integer queryNumber = contractDao.queryNumber(id);
+
 				Integer queryCreateByUid = contractDao.queryCreateByUid(openId,id);
 				Integer queryJoinByUid = contractDao.queryJoinByUid(openId, id);
 				Boolean create=false;
@@ -54,7 +60,8 @@ public class MatchServiceImpl implements MatchService{
 					join=true;
 				}
 				//检查群pk,
-				Integer queryNumberByMatchId = contractGroupDao.queryNumberByMatchId(id);
+				Random random = new Random();
+				int i = random.nextInt(9999) + 1000;
 				Integer queryCreateByUid2 = contractGroupDao.queryCreateByUid(id,openId);
 				Integer queryJoinByUid2 = contractGroupDao.queryJoinByUid(id, openId);
 				Boolean create2=false;
@@ -66,7 +73,7 @@ public class MatchServiceImpl implements MatchService{
 					join2=true;
 				}
 				Date time = match.getTime();
-				Banner banner = new Banner(match.getId(), time, home, visit, queryNumber+queryNumberByMatchId, create, join,create2,join2);
+				Banner banner = new Banner(match.getId(), time, home, visit, i, create, join,create2,join2);
 				Integer queryRownum = matchDao.queryRownum(match.getTime());
 				banner.setRownum(queryRownum);
 				banner.setTimeDesc(sf.format(time));
@@ -82,7 +89,6 @@ public class MatchServiceImpl implements MatchService{
 				Team visit = teamDao.queryById(match.getVisitid());
 				Integer id = match.getId();
 				//这是普通契约
-				Integer queryNumber = contractDao.queryNumber(id);
 				Integer queryCreateByUid = contractDao.queryCreateByUid(openId,id);
 				Integer queryJoinByUid = contractDao.queryJoinByUid(openId, id);
 				Boolean create=false;
@@ -94,7 +100,6 @@ public class MatchServiceImpl implements MatchService{
 					join=true;
 				}
 				//检查群pk,
-				Integer queryNumberByMatchId = contractGroupDao.queryNumberByMatchId(id);
 				Integer queryCreateByUid2 = contractGroupDao.queryCreateByUid(id,openId);
 				Integer queryJoinByUid2 = contractGroupDao.queryJoinByUid(id, openId);
 				Boolean create2=false;
@@ -105,8 +110,10 @@ public class MatchServiceImpl implements MatchService{
 				if(queryJoinByUid2!=null){
 					join2=true;
 				}
+				Random random=new Random();
+				int i1 = random.nextInt(9999) + 1000;
 				Date time = match.getTime();
-				Banner banner = new Banner(match.getId(), time, home, visit, queryNumber+queryNumberByMatchId, create, join,create2,join2);
+				Banner banner = new Banner(match.getId(), time, home, visit, i1, create, join,create2,join2);
 
 				banner.setRownum(i);
 				i++;
@@ -118,10 +125,10 @@ public class MatchServiceImpl implements MatchService{
 
 	}
 	@Override
-	public List<MatchData> queryMatchDone() {//用来后台页面展示的，后台管理
+	public List<Match> queryMatchDone() {//用来后台页面展示的，后台管理
 		// TODO Auto-generated method stub
 		List<Match> queryMatchDone = matchDao.queryMatchDone();
-		List<MatchData> list = new ArrayList<MatchData>();
+		/*List<MatchData> list = new ArrayList<MatchData>();
 		if(queryMatchDone!=null&&queryMatchDone.size()!=0){
 			for (Match match : queryMatchDone) {
 				Integer homeid = match.getHomeid();
@@ -134,8 +141,8 @@ public class MatchServiceImpl implements MatchService{
 				list.add(matchData);
 			}
 			return list;
-		}
-		return null;
+		}*/
+		return queryMatchDone;
 	}
 
 }

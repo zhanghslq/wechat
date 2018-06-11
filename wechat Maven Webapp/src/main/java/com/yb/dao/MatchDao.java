@@ -16,6 +16,9 @@ public interface MatchDao {
 
 	//查询两个小时内的比赛,为赛事提醒做准备
 	List<Match> queryMatchesTwoHours();
+
+	//查询十分钟内的比赛,为赛事提醒做准备
+	List<Match> queryMatchesTenMinutes();
 	//插入数据
 	void insertMatches(@Param("matchs")List<Match> matchs);
 	
@@ -28,6 +31,7 @@ public interface MatchDao {
 			@Param("homeGrade")Integer homeGrade,@Param("visitGrade")Integer visitGrade);
 	
 	Integer queryRownum(@Param("time")Date time);
+
 
 
 	

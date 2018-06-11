@@ -44,4 +44,16 @@ public class MachesQuartz {
 			e.printStackTrace();
 		}
 	}
+
+	//暂时注释，正式上线必须去掉
+	//@Scheduled(cron="0 18 21 * * ?")//每分钟一次，取超过时间未开局的契约
+	public void  autoTest(){
+		try {
+			autoService.autoTest();
+		} catch (Exception e) {
+			System.out.println("假的比赛结束");
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

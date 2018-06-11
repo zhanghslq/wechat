@@ -79,7 +79,7 @@ public class ContractServiceImpl implements ContractService{
 		//契约开局，但是需要参与人数大于1
 		List<String> openLists = contractDao.getOpenLists(cid);
 		if(openLists.size()>1){//当人数大于1,开局
-			contractDao.updateStatus(cid);
+			contractDao.updateStatus(cid,1);
 			return "success";
 		}else {
 			return "error";
@@ -92,12 +92,12 @@ public class ContractServiceImpl implements ContractService{
 		Integer queryResult = contractDao.queryResult(openId, cid);
 		String result;
 		String message;
-		if(0==queryResult){//0代表输，1代表赢
+		if(1==queryResult){//0代表输，1代表赢
 			result="WIN";
 			message="大获全胜，一起哈皮";
 		}else {
 			result="LOSE";
-			message="再接再厉，下局通杀";
+			message="再接再厉，下次能赢";
 		}
 		List<User> loser = contractDao.queryUserList(cid, 0);//获取 胜利或者输的人列表
 		List<User> success = contractDao.queryUserList(cid, 1);//获取 胜利或者输的人列表
@@ -111,7 +111,10 @@ public class ContractServiceImpl implements ContractService{
 		home.setGrade(home_grade);
 		Team visit = teamDao.queryById(visitid);
 		visit.setGrade(visit_grade);
-		ContractDone contractDone = new ContractDone(result, message, loser, success, home, visit);
+
+		Integer stakeId = contract.getStakeId();
+		Stake stake = stakeDao.queryById(stakeId);
+		ContractDone contractDone = new ContractDone(result, message, loser, success, home, visit,stake.getLogo(),stake.getName());
 		return contractDone;
 	}
 	/**

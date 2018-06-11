@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" 
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:cache="http://www.springframework.org/schema/cache"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans.xsd 
+       http://www.springframework.org/schema/context 
+       http://www.springframework.org/schema/context/spring-context.xsd 
+       http://www.springframework.org/schema/tx 
+       http://www.springframework.org/schema/tx/spring-tx.xsd 
+       http://www.springframework.org/schema/aop 
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/cache
+	   http://www.springframework.org/schema/cache/spring-cache.xsd">
+    <bean class="com.yb.shiro.filter.CustomRolesAuthorizationFilter" id="customRolesAuthorizationFilter"></bean>
+    <bean class="org.apache.shiro.spring.web.ShiroFilterFactoryBean" id="shiroFilter">
+        <!--安全管理器-->
+        <!-- 配置系统中受限资源列表   系统中那些资源是受限的
+			 anon  ======== 匿名访问不需要认证
+			 authc ======== 必须认证访问
+			 logout ======= 注销fileter
+		 -->
+        <property name="securityManager" ref="securityManager"/>
+        <!--认证页面-->
+        <property name="loginUrl" value="/back/platform/login.html"></property>
+        <property name="successUrl" value="/back/platform/adminIndex.html"/>
+        <property name="filterChainDefinitions">
+            <value>
+                /admin/logout = logout
+                /admin/login = anon
+                /back/platform/adminIndex.html = authc
+                /back/data/**=authc
+            </value>
+        </property>
+        <!--修改系统默认使用的Filter为自定义Filter-->
+        <property name="filters">
+            <map>
+                <entry key="roles" value-ref="customRolesAuthorizationFilter"/>
+            </map>
+        </property>
+        <!-- 没有权限的跳转页面路径 -->
+        <property name="unauthorizedUrl" value="/back/platform/login.html"/>
+    </bean>
+<!--创建安全管理器-->
+    <bean class="org.apache.shiro.web.mgt.DefaultWebSecurityManager" id="securityManager">
+        <property name="realms">
+            <list>
+                <ref bean="customerRealm"/>
+            </list>
+        </property>
+        <!-- 依赖缓存管理 -->
+        <property name="cacheManager" ref="shirocacheManager"/>
+    </bean>
+
+    <!-- 创建自定义realm -->
+    <bean id="customerRealm" class="com.yb.shiro.realm.CustomerRealm">
+        <!-- 注入 凭证匹配器 -->
+        <property name="credentialsMatcher" ref="credentialsMatcher"/>
+        <!-- 开启认证和授权的数据加入缓存中 -->
+        <property name="authenticationCachingEnabled" value="true"/>
+        <property name="authenticationCacheName" value="authenticationCache"/>
+        <property name="authorizationCachingEnabled" value="true"/>
+        <property name="authorizationCacheName" value="authorizationCache"/>
+    </bean>
+
+    <!-- 凭证匹配器 -->
+    <bean id="credentialsMatcher" class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+        <property name="hashAlgorithmName" value="md5"/>
+        <property name="hashIterations" value="1"/>
+    </bean>
+	<bean id="shirocacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager" />
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" /> 
+</beans>

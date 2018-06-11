@@ -14,6 +14,7 @@ public class UserAndHistory {
 	private String rate;
 	private List<History> histories;
 	private String evaluation;
+	private String description;
 
 	@Override
 	public String toString() {
@@ -22,7 +23,25 @@ public class UserAndHistory {
 				", rate='" + rate + '\'' +
 				", histories=" + histories +
 				", evaluation='" + evaluation + '\'' +
+				", description='" + description + '\'' +
 				'}';
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public UserAndHistory(User user, String rate, List<History> histories, String evaluation, String description) {
+
+		this.user = user;
+		this.rate = rate;
+		this.histories = histories;
+		this.evaluation = evaluation;
+		this.description = description;
 	}
 
 	public String getEvaluation() {

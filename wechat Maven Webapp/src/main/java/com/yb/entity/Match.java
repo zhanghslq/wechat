@@ -12,6 +12,46 @@ public class Match {
 	private Integer visitid;
 	private Integer visit_grade;
 	private Integer round;//轮次
+	private String timeDesc;
+
+	@Override
+	public String toString() {
+		return "Match{" +
+				"id=" + id +
+				", stageId=" + stageId +
+				", status=" + status +
+				", time=" + time +
+				", homeid=" + homeid +
+				", home_grade=" + home_grade +
+				", visitid=" + visitid +
+				", visit_grade=" + visit_grade +
+				", round=" + round +
+				", timeDesc='" + timeDesc + '\'' +
+				'}';
+	}
+
+	public String getTimeDesc() {
+		return timeDesc;
+	}
+
+	public void setTimeDesc(String timeDesc) {
+		this.timeDesc = timeDesc;
+	}
+
+	public Match(Integer id, Integer stageId, Integer status, Date time, Integer homeid, Integer home_grade, Integer visitid, Integer visit_grade, Integer round, String timeDesc) {
+
+		this.id = id;
+		this.stageId = stageId;
+		this.status = status;
+		this.time = time;
+		this.homeid = homeid;
+		this.home_grade = home_grade;
+		this.visitid = visitid;
+		this.visit_grade = visit_grade;
+		this.round = round;
+		this.timeDesc = timeDesc;
+	}
+
 	public Match() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -30,13 +70,7 @@ public class Match {
 		this.visit_grade = visit_grade;
 		this.round = round;
 	}
-	@Override
-	public String toString() {
-		return "Match [id=" + id + ", stageId=" + stageId + ", status="
-				+ status + ", time=" + time + ", homeid=" + homeid
-				+ ", home_grade=" + home_grade + ", visitid=" + visitid
-				+ ", visit_grade=" + visit_grade + ", round=" + round + "]";
-	}
+
 	public Integer getId() {
 		return id;
 	}

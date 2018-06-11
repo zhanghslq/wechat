@@ -10,6 +10,47 @@ public class Incident {
 	private Integer position;//事件发生方,0-中立 1,主队 2,客队
 	private Integer time;//时间(分钟)
 	private  String player_name;// "B.費南迪斯 (助攻:G.艾賓)"//球员名称,可能为空
+	private String in_player_name;//进场球员
+	private String out_player_name;//出场球员
+
+	@Override
+	public String toString() {
+		return "Incident{" +
+				"type=" + type +
+				", position=" + position +
+				", time=" + time +
+				", player_name='" + player_name + '\'' +
+				", in_player_name='" + in_player_name + '\'' +
+				", out_player_name='" + out_player_name + '\'' +
+				'}';
+	}
+
+	public String getIn_player_name() {
+		return in_player_name;
+	}
+
+	public void setIn_player_name(String in_player_name) {
+		this.in_player_name = in_player_name;
+	}
+
+	public String getOut_player_name() {
+		return out_player_name;
+	}
+
+	public void setOut_player_name(String out_player_name) {
+		this.out_player_name = out_player_name;
+	}
+
+	public Incident(Integer type, Integer position, Integer time, String player_name, String in_player_name, String out_player_name) {
+
+		this.type = type;
+		this.position = position;
+		this.time = time;
+		this.player_name = player_name;
+		this.in_player_name = in_player_name;
+		this.out_player_name = out_player_name;
+	}
+
 	public Incident() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -22,11 +63,7 @@ public class Incident {
 		this.time = time;
 		this.player_name = player_name;
 	}
-	@Override
-	public String toString() {
-		return "Incident [type=" + type + ", position=" + position + ", time="
-				+ time + ", player_name=" + player_name + "]";
-	}
+
 	public Integer getType() {
 		return type;
 	}

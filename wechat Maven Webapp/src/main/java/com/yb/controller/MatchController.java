@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import com.yb.entity.Match;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,8 +35,18 @@ public class MatchController {
 	}
 	@RequestMapping("/queryMatchDone")
 	@ResponseBody
-	public void queryMatchDone(){
-		
+	public List<Match> queryMatchDone(){
+		List<Match> matches = matchService.queryMatchDone();
+		return matches;
+	}
+	@ResponseBody
+	@RequestMapping("/updateMatch")
+	public void updateMatch(Integer id,Integer status,Integer homeGrade,Integer visitGrade){
+		try {
+			matchService.updateMatch(id,status,homeGrade,visitGrade);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	//赛前提醒弹框
 	@RequestMapping("/queryBefore")

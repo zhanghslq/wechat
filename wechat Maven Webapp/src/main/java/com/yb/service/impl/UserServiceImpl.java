@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.yb.dao.*;
 import com.yb.entity.*;
+import com.yb.util.DoubleUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +39,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User getUserStatus(String openid) {
 		// TODO Auto-generated method stub
-		String message="无竞猜";
+		String message="未开始";
 		User user = userDao.getUser(openid);
 		Proceed queryLastContract = userDao.queryLastContract(openid);
 		Proceed queryLastContractGroup = userDao.queryLastContractGroup(openid);
@@ -50,14 +51,14 @@ public class UserServiceImpl implements UserService {
 				if(2!=result){
 					message="已完成";
 				}else {
-					message="未完成";
+					message="进行中";
 				}
 			}else {
 				Integer result = queryLastContractGroup.getResult();
 				if(2!=result){
 					message="已完成";
 				}else {
-					message="未完成";
+					message="进行中";
 				}
 			}
 		}else if (queryLastContract!=null&&queryLastContractGroup==null) {
@@ -65,17 +66,36 @@ public class UserServiceImpl implements UserService {
 			if(2!=result){
 				message="已完成";
 			}else {
-				message="未完成";
+				message="进行中";
 			}
 		}else if (queryLastContract==null&&queryLastContractGroup!=null) {
 			Integer result = queryLastContractGroup.getResult();
 			if(2!=result){
 				message="已完成";
 			}else {
-				message="未完成";
+				message="进行中";
+			}
+		}
+		//查询称号的
+
+		String description="";
+		Integer integer = evaluationDao.queryMax(openid);
+		Evaluation evaluation = evaluationDao.queryEvaluation(openid);
+		if(integer!=0){
+			if (evaluation.getTricky_brains()==integer){
+				description="我打算先给自己定一个亿的小目标！";
+			}else if (evaluation.getIron_cock()==integer){
+				description="说起来你可能不相信，我差点被TA包养！";
+			}else if (evaluation.getImagination_talent()==integer){
+				description="你看那个人好像一条柯基";
+			}else if (evaluation.getFood_anchor()==integer){
+				description="别动筷子，别张嘴，我先拍个照。";
+			}else if (evaluation.getWealthy()==integer){
+				description="我的脑洞是星辰大海!";
 			}
 		}
 		user.setMessage(message);
+		user.setDescription(description);
 		return user;
 	}
 
@@ -119,7 +139,7 @@ public class UserServiceImpl implements UserService {
 		String rate="0";
 		if(all!=null&&all!=0){
 			Double rateDouble=wins*1.0/all*100;
-			rate=rateDouble+"%";
+			rate= DoubleUtils.format(rateDouble)+"%";
 		}else {
 			rate="0%";
 		}
@@ -173,22 +193,29 @@ public class UserServiceImpl implements UserService {
 		}
 		//查询称号的
 		String evaluationName="猜球达人";
+		String description="";
 		Integer integer = evaluationDao.queryMax(openId);
 		Evaluation evaluation = evaluationDao.queryEvaluation(openId);
 		if(integer!=0){
 			if (evaluation.getTricky_brains()==integer){
 				evaluationName="整蛊专家";
+				description="我打算先给自己定一个亿的小目标！";
 			}else if (evaluation.getIron_cock()==integer){
 				evaluationName="钢铁公鸡";
+				description="说起来你可能不相信，我差点被TA包养！";
 			}else if (evaluation.getImagination_talent()==integer){
 				evaluationName="脑洞达人";
+				description="你看那个人好像一条柯基";
 			}else if (evaluation.getFood_anchor()==integer){
 				evaluationName="美食主播";
+				description="别动筷子，别张嘴，我先拍个照。";
 			}else if (evaluation.getWealthy()==integer){
 				evaluationName="富甲一方";
+				description="我的脑洞是星辰大海!";
+
 			}
 		}
-		UserAndHistory userAndHistory = new UserAndHistory(user, rate, list,evaluationName);
+		UserAndHistory userAndHistory = new UserAndHistory(user, rate, list,evaluationName,description);
 		return userAndHistory;
 	}
 	

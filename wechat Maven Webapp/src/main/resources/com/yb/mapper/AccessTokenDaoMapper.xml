@@ -2,10 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yb.dao.AccessTokenDao">
 	<insert id="insertToken">
-		insert into worldcup_pk_access_token(access_token) values (#{token.access_token})
+		insert into worldcup2018_pk_access_token(access_token) values (#{token.access_token})
 	</insert>
 	<select id="query" resultType="String">
-		select access_token from worldcup_pk_access_token 
+		select access_token from worldcup2018_pk_access_token
+		order by created_time desc
 		where created_time > DATE_SUB(NOW(),INTERVAL 5400 SECOND) limit 1
 	</select>
 </mapper>

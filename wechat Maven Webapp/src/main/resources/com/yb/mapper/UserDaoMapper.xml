@@ -3,22 +3,26 @@
 <mapper namespace="com.yb.dao.UserDao">
 
 	<update id="updateNameAndLogo">
-		update worldcup_pk_user set nickname=#{user.nickname},imageUrl=#{user.imageUrl}
+		update worldcup2018_pk_user set nickname=#{user.nickname},imageUrl=#{user.imageUrl}
 		where openid=#{user.openid}
 	</update>
 	<update id="update">
-		update worldcup_pk_user set lasttime=now() where openid=#{openid}
+		update worldcup2018_pk_user set lasttime=now() where openid=#{openid}
 	</update>
 	<select id="queryLastContract" resultType="Proceed"> 
-		select cid,time,result from worldcup_pk_contract_user order by time desc limit 1
+		select cid,time,result from worldcup2018_pk_contract_user
+		where uid=#{uid} and yn=1
+		 order by time desc limit 1
 	</select>
 	<select id="queryLastContractGroup" resultType="Proceed">
-		select cid,time,result from worldcup_pk_contract_user_group order by time desc limit 1
+		select cid,time,result from worldcup2018_pk_contract_user_group
+		where uid=#{uid} and yn=1
+		order by time desc limit 1
 	</select>
 	<select id="queryUsers" resultType="User">
 		select u.openid,u.nickname,u.imageUrl,cu.myGuess message
-		from worldcup_pk_user u 
-		left join worldcup_pk_contract_user cu on u.openid=cu.uid
+		from worldcup2018_pk_user u 
+		left join worldcup2018_pk_contract_user cu on u.openid=cu.uid
 		where cu.cid=#{cid} and u.openid in
 		<foreach collection="ids" open="(" close=")" separator="," item="item" index="i">
 			#{item}
@@ -27,28 +31,28 @@
 	</select>
 	<select id="getUser" resultType="User">
 		select openid,nickname,imageUrl,currency,wins,allNumber,continuWins,lasttime 
-		from worldcup_pk_user where openid=#{openid}
+		from worldcup2018_pk_user where openid=#{openid}
 	</select>
 	<insert id="insertUser">
-		insert into worldcup_pk_user(openid,imageUrl,nickname,currency,lasttime) values
+		insert into worldcup2018_pk_user(openid,imageUrl,nickname,currency,lasttime) values
 		(#{user.openid},#{user.imageUrl},#{user.nickname},#{user.currency},now())
 	</insert>
 	<select id="getRank" resultType="User">
 		select openid,nickname,wins,@rownum:=@rownum+1 as rownum
- 		from worldcup_pk_user p,(select @rownum:=0) q order by wins desc,created_time asc,nickname asc limit 10
+ 		from worldcup2018_pk_user p,(select @rownum:=0) q order by wins desc,created_time asc,nickname asc limit 10
 	</select>
 	<select id="getSelf" resultType="Integer">
 		select rank.rownum
 		from (select openid,nickname,wins,@rownum:=@rownum+1 as rownum
- 		from worldcup_pk_user p,(select @rownum:=0) q order by wins desc,created_time asc,nickname asc) rank
+ 		from worldcup2018_pk_user p,(select @rownum:=0) q order by wins desc,created_time asc,nickname asc) rank
  		where rank.openid=#{openId}
 	</select>
 	
 	<update id="updateCurrency">
-		update worldcup_pk_user set currency=currency+#{num} where openid=#{openid}
+		update worldcup2018_pk_user set currency=currency+#{num} where openid=#{openid}
 	</update>
 	<update id="addCurrency">
-		update worldcup_pk_user 
+		update worldcup2018_pk_user 
 		<if test="yn=='yes'">
 			set currency=currency+#{num},wins=wins+1,allNumber=allNumber+1,continuWins=continuWins+1
 		</if>
@@ -61,7 +65,7 @@
 		</foreach>
 	</update>
 	<update id="addCurrencyGroup">
-			update worldcup_pk_user 
+			update worldcup2018_pk_user 
 			<if test="yn=='yes'">
 				set currency=currency+#{contractComes.number},wins=wins+1,allNumber=allNumber+1,continuWins=continuWins+1
 			</if>
@@ -71,14 +75,14 @@
 			where openid = #{contractComes.openId}
 	</update>
 	<update id="updateWins">
-		update worldcup_pk_user set wins=wins+1,allNumber=allNumber+1,continuWins=continuWins+1
+		update worldcup2018_pk_user set wins=wins+1,allNumber=allNumber+1,continuWins=continuWins+1
 		where openid in
 		<foreach collection="openids" item="item" open="(" close=")" separator=",">
 			#{item}
 		</foreach>
 	</update>
 	<update id="updateAll">
-		update worldcup_pk_user set allNumber=allNumber+1,continuWins=0
+		update worldcup2018_pk_user set allNumber=allNumber+1,continuWins=0
 		where openid in
 		<foreach collection="openids" item="item" open="(" close=")" separator=",">
 			#{item}

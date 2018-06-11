@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yb.dao.RemindDao">
+	<select id="queryAllByMatchId" resultType="Remind">
+		SELECT id,uid,matchId,form_id from worldcup2018_pk_remind where isSended=0 and matchId=#{matchId}
+	</select>
+
+	<insert id="insert" >
+		INSERT into worldcup2018_pk_remind(uid,matchId,form_id) VALUES (#{remind.uid},#{remind.matchId},#{remind.form_id})
+	</insert>
+
+	<update id="updateStatus">
+		update worldcup2018_pk_remind set isSended=1
+		where id in
+		<foreach collection="ids" item="item" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+	</update>
+</mapper>

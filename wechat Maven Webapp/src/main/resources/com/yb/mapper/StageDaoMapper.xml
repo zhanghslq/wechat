@@ -2,12 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yb.dao.StageDao">
 	<select id="insert">
-		replace into worldcup_pk_stage(id,type,mode,name_zh) values
+		replace into worldcup2018_pk_stage(id,type,mode,name_zh) values
 		<foreach collection="stages" index="i" separator=","  item="item">
 			(#{item.id},#{item.type},#{item.mode},#{item.name_zh})
 		</foreach>
 	</select>
 	<select id="queryById" resultType="Stage">
-		select id,type,mode,name_zh from worldcup_pk_stage where id=#{id}
+		select id,type,mode,name_zh from worldcup2018_pk_stage where id=#{id}
 	</select>
 </mapper>
