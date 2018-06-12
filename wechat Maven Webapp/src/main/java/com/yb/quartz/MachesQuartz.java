@@ -14,7 +14,7 @@ import com.yb.service.AutoService;
 public class MachesQuartz {
 	@Resource
 	private AutoService autoService;
-	@Scheduled(cron="1 0 0 * * ?")//每天晚上第一秒点
+	//@Scheduled(cron="1 0 0 * * ?")//每天晚上第一秒点
 	public void  autoGrade() throws ClientProtocolException, IOException {
 		try {
 			autoService.autoData();
@@ -24,7 +24,7 @@ public class MachesQuartz {
 			e.printStackTrace();
 		}
 	}
-	@Scheduled(cron="0 */3 * * * ?")//每3分钟一次，取当天的数据
+	//@Scheduled(cron="0 */3 * * * ?")//每3分钟一次，取当天的数据
 	public void  autoResult() throws ClientProtocolException, IOException {
 		try {
 			autoService.autoResult();
@@ -34,7 +34,7 @@ public class MachesQuartz {
 			e.printStackTrace();
 		}
 	}
-	@Scheduled(cron="0 */2 * * * ?")//每分钟一次，取超过时间未开局的契约
+	//@Scheduled(cron="0 */2 * * * ?")//每分钟一次，取超过时间未开局的契约
 	public void  autoCheck(){
 		try {
 			autoService.autoCheck();
@@ -46,7 +46,7 @@ public class MachesQuartz {
 	}
 
 	//暂时注释，正式上线必须去掉
-	//@Scheduled(cron="0 18 21 * * ?")//每分钟一次，取超过时间未开局的契约
+	//@Scheduled(cron="0 10 22 * * ?")//每分钟一次，取超过时间未开局的契约
 	public void  autoTest(){
 		try {
 			autoService.autoTest();

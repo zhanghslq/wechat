@@ -21,6 +21,7 @@ import com.yb.util.OpenUtils;
 @Service
 public class ContractGroupServiceImpl implements ContractGroupService{
 
+
 	@Autowired
 	private ContractGroupDao contractGroupDao;
 	@Autowired
@@ -29,7 +30,15 @@ public class ContractGroupServiceImpl implements ContractGroupService{
 	private StageDao stageDao;
 	@Autowired
 	private TeamDao teamDao;
-	
+	@Override
+	public ResultPack isCreateContract(String openId, Integer matchId) {
+		Integer integer = contractGroupDao.queryCreateByUidAndMatchId(openId, matchId);
+		if(integer!=null){
+			return new ResultPack(0,"已经创建过本场比赛群契约");
+		}else {
+			return new ResultPack(1,"未创建，可以正常创建");
+		}
+	}
 	@Transactional
 	@Override
 	public Integer createContractGroup(ContractCome contractCome) {//生成契约
@@ -58,7 +67,7 @@ public class ContractGroupServiceImpl implements ContractGroupService{
 		Team home = teamDao.queryById(match.getHomeid());
 		Team visit = teamDao.queryById(match.getVisitid());
 		List<JoinData> queryContractGroupUser = contractGroupDao.queryContractGroupUser(cid);
-		Long queryCurrencys = contractGroupDao.queryCurrencys(contractCome.getMatchId());
+		Long queryCurrencys = contractGroupDao.queryCurrencysByCid(cid);//契约的下注金币数量
 		List<String> queryNearLogo = contractGroupDao.queryNearLogo(cid);
 		Integer queryNumberByCid = contractGroupDao.queryNumberByCid(cid);
 		User user = contractGroupDao.queryUserByCid(cid);
@@ -99,7 +108,7 @@ public class ContractGroupServiceImpl implements ContractGroupService{
 		Long queryCurrencys = contractGroupDao.queryCurrencyByCid(cid);
 		List<User> loserList = contractGroupDao.queryUserByResultAndCid(0,cid);
 		List<User> successList = contractGroupDao.queryUserByResultAndCid(1,cid);
-		ContractGroupResult contractGroupResult = new ContractGroupResult(message, homeTeam, visiTeam, loserList, successList, queryCurrencys,result);
+		ContractGroupResult contractGroupResult = new ContractGroupResult(message, homeTeam, visiTeam, loserList, successList, queryCurrencys,result,loserList.size()+successList.size());
 		return contractGroupResult;
 	}
 	@Override
@@ -108,11 +117,11 @@ public class ContractGroupServiceImpl implements ContractGroupService{
 		if(contractCome!=null){
 			Integer status = contractCome.getStatus();
 			if(status!=0){
-				return new ResultPack(0,"契约不可加入");
+				return new ResultPack(3,"契约不可加入");
 			}else {
 				Integer integer = contractGroupDao.queryByOpenIdAndCid(openId, cid);
 				if (integer!=null){//已经参加过契约了
-					return new ResultPack(0,"已经加入过此契约了");
+					return new ResultPack(2,"已经加入过此契约了");
 				}else {//未参加契约，现在可以加入
 					return new ResultPack(1,"可以加入");
 				}

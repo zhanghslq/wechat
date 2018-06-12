@@ -41,22 +41,17 @@ public class MatchController {
 	}
 	@ResponseBody
 	@RequestMapping("/updateMatch")
-	public void updateMatch(Integer id,Integer status,Integer homeGrade,Integer visitGrade){
+	public void updateMatch(Match match){
 		try {
-			matchService.updateMatch(id,status,homeGrade,visitGrade);
+			matchService.updateMatch(match.getId(),match.getStatus(),match.getHome_grade(),match.getVisit_grade());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	//赛前提醒弹框
-	@RequestMapping("/queryBefore")
 	@ResponseBody
-	public void queryBefore(){
-		
-	}
-	@RequestMapping("/queryAfter")
-	@ResponseBody
-	public void queryAfter(){
-		
+	@RequestMapping("/queryById")
+	public Match queryById(Integer id){
+		Match match = matchService.queryById(id);
+		return match;
 	}
 }

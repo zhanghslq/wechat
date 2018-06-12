@@ -29,12 +29,16 @@ public interface UserDao {
 	void updateCurrency(@Param("openid")String openid,@Param("num")Integer num);
 	//批量更新金币，yn控制加减,顺便控制加减胜场，总 
 	void addCurrency(@Param("openids")List<String> openid,@Param("num")Integer num,@Param("yn")String yn);
+
 	void addCurrencyGroup(@Param("contractComes")ContractCome contractComes,@Param("yn")String yn);
 	
 	void updateAll(@Param("openids")List<String> openid);
-	
+	//回退哪些输了胜场的
+	void revertAll(@Param("openids")List<String> openid);
+
 	void updateWins(@Param("openids")List<String> openid);
-	
+	//把加错的胜场回退回来
+	void revertWins(@Param("openids")List<String> openid);
 	//查询用户进程
 	Proceed queryLastContract(@Param("uid")String uid);
 	Proceed queryLastContractGroup(@Param("uid")String uid);

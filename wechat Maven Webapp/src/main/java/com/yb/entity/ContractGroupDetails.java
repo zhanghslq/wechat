@@ -14,7 +14,7 @@ public class ContractGroupDetails {
 	private Integer guessType;
 	private List<User> loser;
 	private List<User> success;
-	private Long currencys;//当前比赛的下注总金币
+	private Long currencys;//当前比赛的下注总金币,后修改为契约的金币
 	private List<String> nearLogo;//最近进入房间的五个邮箱
 	private Integer number;//房间人数   
 	private List<JoinData> joiners;

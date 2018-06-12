@@ -100,6 +100,17 @@ public class ContractGroupController {//群pk
 			e.printStackTrace();
 			return  new ResultPack(0,"查询出错");
 		}
-
+	}
+	//查询是否能创建本场比赛的契约
+	@RequestMapping("/queryCreateByMatchIdAndOpenId")
+	@ResponseBody
+	public Object queryCreateByMatchIdAndOpenId(String openId,Integer matchId){
+		try {
+			ResultPack createContract = contractGroupService.isCreateContract(openId, matchId);
+			return createContract;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResultPack(0,e.getMessage());
+		}
 	}
 }

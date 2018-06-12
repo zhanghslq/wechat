@@ -19,8 +19,52 @@ public class Banner {
 	private String timeDesc;
 	private Integer rownum;
 	private Integer contractStatus;
-	
-	
+	private Integer status;
+
+	@Override
+	public String toString() {
+		return "Banner{" +
+				"id=" + id +
+				", time=" + time +
+				", home=" + home +
+				", visit=" + visit +
+				", number=" + number +
+				", create=" + create +
+				", join=" + join +
+				", createGroup=" + createGroup +
+				", joinGroup=" + joinGroup +
+				", timeDesc='" + timeDesc + '\'' +
+				", rownum=" + rownum +
+				", contractStatus=" + contractStatus +
+				", status=" + status +
+				'}';
+	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+
+	public Banner(Integer id, Date time, Team home, Team visit, Integer number, Boolean create, Boolean join, Boolean createGroup, Boolean joinGroup, String timeDesc, Integer rownum, Integer contractStatus, Integer status) {
+
+		this.id = id;
+		this.time = time;
+		this.home = home;
+		this.visit = visit;
+		this.number = number;
+		this.create = create;
+		this.join = join;
+		this.createGroup = createGroup;
+		this.joinGroup = joinGroup;
+		this.timeDesc = timeDesc;
+		this.rownum = rownum;
+		this.contractStatus = contractStatus;
+		this.status = status;
+	}
+
 	public Integer getContractStatus() {
 		return contractStatus;
 	}
@@ -105,15 +149,7 @@ public class Banner {
 		this.createGroup = createGroup;
 		this.joinGroup = joinGroup;
 	}
-	@Override
-	public String toString() {
-		return "Banner [id=" + id + ", time=" + time + ", home=" + home
-				+ ", visit=" + visit + ", number=" + number + ", create="
-				+ create + ", join=" + join + ", createGroup=" + createGroup
-				+ ", joinGroup=" + joinGroup + ", timeDesc=" + timeDesc
-				+ ", rownum=" + rownum + ", contractStatus=" + contractStatus
-				+ "]";
-	}
+
 	public Integer getId() {
 		return id;
 	}

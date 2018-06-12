@@ -37,4 +37,27 @@
 			#{item}
 		</foreach>
 	</update>
+	<update id="revert">
+		update worldcup2018_pk_evaluation
+		set
+		<if test="type==1">
+			tricky_brains=tricky_brains-1
+		</if>
+		<if test="type==2">
+			food_anchor=food_anchor-1
+		</if>
+		<if test="type==3">
+			imagination_talent=imagination_talent-1
+		</if>
+		<if test="type==4">
+			iron_cock=iron_cock-1
+		</if>
+		<if test="type==5">
+			wealthy=wealthy-1
+		</if>
+		where openid in
+		<foreach collection="openids" item="item" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+	</update>
 </mapper>

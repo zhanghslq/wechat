@@ -16,6 +16,7 @@ public class ContractDone {
 	private Team visit;
 	private String logo;
 	private String stakeText;
+	private Integer joinNumber;
 
 	@Override
 	public String toString() {
@@ -28,7 +29,29 @@ public class ContractDone {
 				", visit=" + visit +
 				", logo='" + logo + '\'' +
 				", stakeText='" + stakeText + '\'' +
+				", joinNumber=" + joinNumber +
 				'}';
+	}
+
+	public Integer getJoinNumber() {
+		return joinNumber;
+	}
+
+	public void setJoinNumber(Integer joinNumber) {
+		this.joinNumber = joinNumber;
+	}
+
+	public ContractDone(String result, String message, List<User> loser, List<User> success, Team home, Team visit, String logo, String stakeText, Integer joinNumber) {
+
+		this.result = result;
+		this.message = message;
+		this.loser = loser;
+		this.success = success;
+		this.home = home;
+		this.visit = visit;
+		this.logo = logo;
+		this.stakeText = stakeText;
+		this.joinNumber = joinNumber;
 	}
 
 	public String getStakeText() {

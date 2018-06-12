@@ -1,3 +1,4 @@
+<%@ page isELIgnored="false" contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,48 +8,47 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <title>登录</title>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/back/easyui/css/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/back/easyui/css/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/back/easyui/css/IconExtension.css">
+    <script src="${pageContext.request.contextPath}/back/easyui/js/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/back/easyui/js/jquery.easyui.min.js"></script>
+    <script src="${pageContext.request.contextPath}/back/easyui/js/form.validator.rules.js"></script>
+    <script src="${pageContext.request.contextPath}/back/easyui/js/easyui-lang-zh_CN.js"></script>
 </head>
 <body>
-<div class="loginContent">
-            <input type="text" placeholder="请输入用户名" id="username">
-            <input type="password" placeholder="请输入密码" id="password">
-            <input type="text" placeholder="请输入验证码" class="verification" id="code">
-        <a href="#" onclick="submit()" class="loginBtn">登录</a>
-    </div>
+<div style="margin:0 auto;width:400px;height: 300px;margin-top: 20%">
+            <span id="message"></span><br/>
+            <input id="username"  name="username"  class="easyui-textbox" data-options="required:true,prompt:'请输入用户名'" /><br/>
+            <input id="password"  name="password"  class="easyui-textbox" data-options="required:true,prompt:'请输入密码'"/><br/>
+            <input id="code"  name="code"  class="easyui-textbox" data-options="required:true,prompt:'请输入下方验证码'"/><br/>
+            <img  src="${pageContext.request.contextPath}/image/code" onclick="this.src='${pageContext.request.contextPath}/image/code?'+Math.random()"/>
+           <br/> <a href="#" class="easyui-linkbutton" onclick="submit()">登录</a>
 </div>
 </body>
 <script type="text/javascript">
     if(self!=top){
-        window.top.location = "/sysmanager/back/platform2/login.html";
+        window.top.location = "${pageContext.request.contextPath}/index.jsp";
     }
-
     function submit() {
         $.ajax({
             type:"POST",
-            url:"/sysmanager/admin/login",
+            url:"${pageContext.request.contextPath}/admin/login",
             dataType:"JSON",
             data:{"name":$("#username").val(),"password":$("#password").val(),
                 "code":$("#code").val()
             },
             success:function(message){
                 if(message=="success"){
-                    top.location='/sysmanager/back/platform2/adminIndex.html';
-                }else if(message=="name"){
-                    $("#usermes").html("用户名不存在");
-                    $("#pwdmes").html("");
-                    $("#codemes").html("");
+                    top.location='${pageContext.request.contextPath}/back/platform/adminIndex.html';
                 }else if(message=="password"){
-                    $("#pwdmes").html("密码错误");
-                    $("#usermes").html("");
-                    $("#codemes").html("");
+                    $("#message").html("用户名密码错误");
                 }else if(message=="code"){
-                    $("#usermes").html("");
-                    $("#pwdmes").html("");
-                    $("#codemes").html("验证码有误");
+                    $("#message").html("验证码有误");
                 }
             }
         });
     }
 </script>
-<script type="text/javascript" src="/sysmanager/back/platform2/js/libs/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="back/platform/js/libs/jquery-1.11.3.min.js"></script>
 </html>

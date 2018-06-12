@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+		<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yb.dao.TeamDao">
-	<select id="insertTeam">
-		replace into worldcup2018_pk_team(id,name,logo,country_logo) values
-		<foreach collection="teams" index="i" separator=","  item="item">
-			(#{item.id},#{item.name_zh},#{item.logo},#{item.country_logo})
-		</foreach>
-	</select>
-	<select id="queryById" resultType="Team">
-		select id,name name_zh,logo,country_logo from worldcup2018_pk_team where id=#{id}
-	</select>
+<select id="queryAll" resultType="Team">
+	select id,name name_zh,logo,country_logo from worldcup2018_pk_team
+</select>
+<update id="update">
+	update worldcup2018_pk_team
+	set name=#{team.name_zh},country_logo=#{team.country_logo}
+	where id=#{team.id}
+</update>
+<select id="insertTeam">
+	replace into worldcup2018_pk_team(id,name,logo,country_logo) values
+	<foreach collection="teams" index="i" separator=","  item="item">
+		(#{item.id},#{item.name_zh},#{item.logo},#{item.country_logo})
+	</foreach>
+</select>
+<select id="queryById" resultType="Team">
+	select id,name name_zh,logo,country_logo from worldcup2018_pk_team where id=#{id}
+</select>
 </mapper>

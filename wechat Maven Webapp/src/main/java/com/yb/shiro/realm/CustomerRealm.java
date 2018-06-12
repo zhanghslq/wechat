@@ -38,8 +38,8 @@ public class CustomerRealm extends AuthorizingRealm {
 
         UsernamePasswordToken loginToken=(UsernamePasswordToken)token;
         String password=new String(loginToken.getPassword());
-        if(loginToken.getUsername()=="admin"&&password.equals("admintest123")){
-            SimpleAuthenticationInfo info= new SimpleAuthenticationInfo(loginToken.getUsername(),password,getName());
+		if(loginToken.getUsername().equals("admin")&&password.equals("admintest123")){
+            SimpleAuthenticationInfo info= new SimpleAuthenticationInfo(new String(loginToken.getUsername()),password,getName());
             return info;
         }else{
             throw new IncorrectCredentialsException("密码错误");

@@ -3,6 +3,7 @@ package com.yb.service.impl;
 import com.yb.dao.*;
 import com.yb.entity.*;
 import com.yb.service.ContractService;
+import com.yb.util.RandomMessageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -54,9 +55,7 @@ public class ContractServiceImpl implements ContractService{
 		List<String> openLists = contractDao.getOpenLists(cid);//缔结契约人列表，這個
 
 		List<User> queryUsers = userDao.queryUsers(openLists,cid);//包括創建人在内的契約人列表
-
-
-		ContractDetails contractDetails = new ContractDetails(homeTeam, visitTeam, "", contract.getGuessType(),
+		ContractDetails contractDetails = new ContractDetails(homeTeam, visitTeam, RandomMessageUtil.getMessage(), contract.getGuessType(),
 				myGuess, stake.getLogo(), stake.getName(), queryById.getStatus(),
 				"", user.getNickname(), user.getImageUrl(), queryUsers,contract.getStatus(),openId);
 		return contractDetails;
@@ -111,10 +110,9 @@ public class ContractServiceImpl implements ContractService{
 		home.setGrade(home_grade);
 		Team visit = teamDao.queryById(visitid);
 		visit.setGrade(visit_grade);
-
 		Integer stakeId = contract.getStakeId();
 		Stake stake = stakeDao.queryById(stakeId);
-		ContractDone contractDone = new ContractDone(result, message, loser, success, home, visit,stake.getLogo(),stake.getName());
+		ContractDone contractDone = new ContractDone(result, message, loser, success, home, visit,stake.getLogo(),stake.getName(),loser.size()+success.size());
 		return contractDone;
 	}
 	/**
@@ -153,11 +151,11 @@ public class ContractServiceImpl implements ContractService{
 
 			Integer status = contract.getStatus();
 			if (0!=status){//证明契约已经开局，或者结束，不是可加入的状态
-				return new ResultPack(0,"契约不可加入");
+				return new ResultPack(3,"契约不可加入");
 			}else {
 				Integer integer = contractDao.queryByOpenIdAndCid(cid, openId);
 				if(integer!=null){//证明已经加入过契约
-					return new ResultPack(0,"已经加入此契约了");
+					return new ResultPack(2,"已经加入此契约了");
 				}else {
 					return new ResultPack(1,"契约正常，可以加入");
 				}

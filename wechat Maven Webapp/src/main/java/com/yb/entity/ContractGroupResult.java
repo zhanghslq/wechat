@@ -10,6 +10,8 @@ public class ContractGroupResult {
 	private List<User> success;
 	private Long currencys;
 	private String result;
+	private Integer joinNumber;
+
 	@Override
 	public String toString() {
 		return "ContractGroupResult{" +
@@ -20,7 +22,28 @@ public class ContractGroupResult {
 				", success=" + success +
 				", currencys=" + currencys +
 				", result='" + result + '\'' +
+				", joinNumber=" + joinNumber +
 				'}';
+	}
+
+	public Integer getJoinNumber() {
+		return joinNumber;
+	}
+
+	public void setJoinNumber(Integer joinNumber) {
+		this.joinNumber = joinNumber;
+	}
+
+	public ContractGroupResult(String message, Team home, Team visit, List<User> loser, List<User> success, Long currencys, String result, Integer joinNumber) {
+
+		this.message = message;
+		this.home = home;
+		this.visit = visit;
+		this.loser = loser;
+		this.success = success;
+		this.currencys = currencys;
+		this.result = result;
+		this.joinNumber = joinNumber;
 	}
 
 	public String getResult() {

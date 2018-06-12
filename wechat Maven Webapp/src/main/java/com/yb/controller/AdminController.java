@@ -20,8 +20,6 @@ import com.yb.entity.Admin;
 @Scope("prototype")
 @RequestMapping("/admin")
 public class AdminController {
-
-
 	@RequestMapping("/login")
 	@ResponseBody
 	public String login(String name,String password,String code,HttpServletRequest request){

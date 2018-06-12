@@ -9,145 +9,80 @@
     <script src="${pageContext.request.contextPath}/back/easyui/js/form.validator.rules.js"></script>
     <script src="${pageContext.request.contextPath}/back/easyui/js/easyui-lang-zh_CN.js"></script>
     <script>
-        var $dgteam, $dateam;
+        var $dgmatch, $damatch;
         $(function () {
-            $dgteam = $("#teamDg");
-             $dateam = $("#teamDa");
-            $dgteam.datagrid({
+            $dgmatch = $("#matchDg");
+             $damatch = $("#matchDa");
+            $dgmatch.datagrid({
                 url: '${pageContext.request.contextPath}/match/queryMatchDone',
                 fit:true,
                 columns: [[
-                    {title: "比赛编号", field: "id", width: 200, align: 'center'},
-                    {title: "比赛时间", field: "timeDesc", width: 200, align: 'center'},
-                    {title: "主队得分", field: "homeGrade", width: 200, align: 'center'},
-                    {title: "客队得分", field: "visitGrade", width: 200, align: 'center'},
+                    {title: "比赛编号", field: "id", width: 150, align: 'center'},
+                    {title: "比赛时间", field: "timeDesc", width: 150, align: 'center'},
+                    {title: "主队id", field: "homeid", width: 150, align: 'center'},
+                    {title: "主队得分", field: "home_grade", width: 100, align: 'center'},
+                    {title: "客队id", field: "visitid", width: 150, align: 'center'},
+                    {title: "客队得分", field: "visit_grade", width: 100, align: 'center'},
                     {
                         title: "操作", field: "options", width: 250, align: 'center',
                         formatter: function (value, row, index) {
-                            return "<a class='del' onClick=\"delteam('" + row.id + "')\" href='javascript:;'>删除</a>&nbsp;&nbsp;" +
-                                    "<a class='edit' onClick=\"editteam('" + row.id + "')\"  href='javascript:;'>修改</a>";
+                            return "<a class='edit' onClick=\"editmatch('" + row.id + "')\"  href='javascript:;'>修改</a>";
                         }
                     }
                 ]],
                 onLoadSuccess: function (data) {
-                    $(".del").linkbutton({
-                        plain: true,
-                        iconCls: 'icon-remove',
-                    });
+
                     $(".edit").linkbutton({
                         plain: true,
                         iconCls: 'icon-edit',
                     });
                 },
-                toolbar:'#teamtb',
+                toolbar:'#matchtb',
             });
         });
-        //删除的操作
-        function delteam(id){
-            $.messager.confirm("提示","您确定要删除吗?",function(r){
-                if(r){
-                	 $.ajax({
-                     	url:"${pageContext.request.contextPath}/team/delete",
-                     	data:{"id":id},
-                     	async:false
-                     });
-                    $dgteam.datagrid('reload');
-                }
-            });
-        }
-        //修改的操作
-        function editteam(id){
-             $dateam.dialog({
-                width:600,
-                height:300,
-                title:"修改角色",
-                iconCls:"icon-man",
-                href:'${pageContext.request.contextPath}/back/main/team/update.jsp?id='+id,
-                buttons:[{
-                    text:'保存',
-                    iconCls:'icon-save',
-                    handler:saveUpdateteam,
-                },{
-                    text:'关闭',
-                    iconCls:'icon-cancel',
-                    handler:closeDa,
-                }],
-            });
-             
-             
-        }
 
-        function saveGrant() {
-        	var nodes = $('#tree').tree('getChecked');//获取:checked的结点.
-			var s = '';
-			for(var i=0; i<nodes.length; i++){
-    				if (s != '') s += ',';
-    				s += nodes[i].id;//例如:菜单的menuID
-			}
-        	$.ajax({
-        		type:"POST",
-        		async:false,
-        		url:'${pageContext.request.contextPath}/team/grantPermission',
-        		dataType:"JSON",
-        		data:{"rid":$("#teamId").attr("value"),"pid":s},
-        		success:function(message){
-        			$dateam.dialog('close',true);
-        			alert(message);
-        		}
-        	});
-		}
-        function addteam() {
-             $dateam.dialog({
+        //修改的操作
+        function editmatch(id){
+             $damatch.dialog({
                 width:600,
                 height:300,
-                title:"添加角色",
+                title:"修改比赛信息",
                 iconCls:"icon-man",
-                href:'${pageContext.request.contextPath}/back/main/team/add.jsp',
+                href:'${pageContext.request.contextPath}/back/data/match/update.jsp?id='+id,
                 buttons:[{
                     text:'保存',
                     iconCls:'icon-save',
-                    handler:saveAddteam,
+                    handler:saveUpdatematch,
                 },{
                     text:'关闭',
                     iconCls:'icon-cancel',
                     handler:closeDa,
                 }],
             });
-        
-        }
-        //保存添加
-        function saveAddteam(){
-            $("#addteamForm").form('submit',{
-                url:'${pageContext.request.contextPath}/team/insert',
-                success:function(){
-                     $dateam.dialog('close',true);
-                     $dgteam.datagrid('reload');
-                }
-            });
+
         }
         //保存修改
-        function saveUpdateteam(){
-            $("#teamUpdateForm").form('submit',{
-                url:'${pageContext.request.contextPath}/team/update',
+        function saveUpdatematch(){
+            $("#matchUpdateForm").form('submit',{
+                url:'${pageContext.request.contextPath}/match/updateMatch',
                 success:function(){
-                    $dateam.dialog('close',true);
-                    $dgteam.datagrid('reload');
+                    $damatch.dialog('close',true);
+                    $dgmatch.datagrid('reload');
                 }
             });
         }
         //关闭对话框
         function closeDa(){
-             $dateam.dialog('close',true);
+             $damatch.dialog('close',true);
         }
     </script>
     </head>
     <body>
     <div  class="easyui-layout" data-options="fit:true" style="width: 100%;height: 80%;min-width: 800px;min-height: 1000px">
         <div data-options="region:'center',">
-            <table id="teamDg" ></table>
-            <div id="teamDa"></div>
-            <div id="teamtb">
-                <a  onclick="addteam()" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true">添加</a>
+            <table id="matchDg" ></table>
+            <div id="matchDa"></div>
+            <div id="matchtb">
             </div>
         </div>
     </div>

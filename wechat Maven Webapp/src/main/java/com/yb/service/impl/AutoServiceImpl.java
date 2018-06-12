@@ -49,17 +49,140 @@ public class AutoServiceImpl implements AutoService{
 	private EventDao eventDao;
 	@Autowired
 	private StageDao stageDao;
+	//回退系统结算的堵住
 	@Override
-	public void autoTest() {
-						/*13464	0	13447	0	2018-06-08 00:00:09		13447*/
-		Match match = new Match(2306734, 17664, 8, new Date(),
-				13464, 2, 13447,
-				1, 1);
-		if(8==match.getStatus()){//证明比赛结束
+	public void autoRevertResult(Match match) {
 					//根据id查询数据库中的比赛状态是不是已完成的
-					Match queryById = matchDao.queryById(match.getId());
-					if(queryById!=null){//等于null的时候证明数据库不存在这个比赛，正常不会出现
-						if(queryById.getStatus()!=8){//现在数据库是不等于8的时候认为比赛没完成，可能有意外情况，比如其他的也可以代表完成
+					//数据库不等于8证明未完成，实际完成了，需要更新比赛结果
+					Integer home_grade = match.getHome_grade();//主队得分
+					//需要取分数,更新比赛
+					Integer visit_grade = match.getVisit_grade();//客队得分
+					String myGuess0="";//猜输赢的结果
+					String myGuess1=home_grade+":"+visit_grade;//猜比分的结果
+					if(home_grade>visit_grade){
+						myGuess0="赢";
+					}else if (visit_grade>home_grade) {
+						myGuess0="输";
+					}else {
+						myGuess0="平";
+					}
+					matchDao.updateMatch(match.getId(),8,home_grade,visit_grade);//更新比赛状态
+					//开始查询这个参与赛事的契约,里面只有契约id和赌注id是正常的，其他未查询，结果为空
+					List<ContractCome> queryByMatchId = contractDao.queryByMatchId(match.getId(), 0);//猜输赢的
+
+
+					List<ContractCome> queryByMatchId1 = contractDao.queryByMatchId(match.getId(), 1);//猜比分的
+					//把原来的自动注入结果的删掉了，因为结果已经注入，等重新结算的时候可以直接结算
+					List<Integer> arrayList1 = new ArrayList<Integer>();//赌注为50大洋
+					List<Integer> arrayList2 = new ArrayList<Integer>();//赌注为100大洋
+					List<Integer> arrayList3 = new ArrayList<Integer>();//赌注为整人类型
+					List<Integer> arrayList4 = new ArrayList<Integer>();//赌注为美食
+					List<Integer> arrayList5 = new ArrayList<Integer>();//赌注为自定义
+					queryByMatchId.addAll(queryByMatchId1);
+					for (ContractCome contractCome : queryByMatchId) {
+						contractDao.updateStatus(contractCome.getId(),2);
+						Integer stakeId = contractCome.getStakeId();
+						Integer id = contractCome.getId();//契约id
+						if(1==stakeId){//赌注为50大洋
+							arrayList1.add(id);
+						}else if (2==stakeId) {//赌注为100大洋
+							arrayList2.add(id);
+						}else if(3==stakeId||4==stakeId||7==stakeId||8==stakeId){//整人，结算的时候需要记录结果，更新整人和输赢数据
+							arrayList3.add(id);
+						}else if (5==stakeId||9==stakeId) {//请吃炸鸡
+							arrayList4.add(id);
+						}else {//剩余为自定义的
+							arrayList5.add(id);
+						}
+					}//遍历结束
+					if(arrayList1!=null&&arrayList1.size()!=0){
+						List<String> queryByResult = contractDao.queryByResult(arrayList1, 0);//50金币猜错的
+						if(queryByResult!=null&&queryByResult.size()!=0){//不为空的话
+							userDao.addCurrency(queryByResult, -50, "no");
+						}
+						List<String> queryByResult1 = contractDao.queryByResult(arrayList1, 1);//50金币猜对的
+						if(queryByResult1!=null&&queryByResult1.size()!=0){//不为空的话
+							userDao.addCurrency(queryByResult1, -50, "yes");
+							evaluationDao.revert(4, queryByResult1);
+						}
+					}
+					if(arrayList2!=null&&arrayList2.size()!=0){
+						List<String> queryByResult2 = contractDao.queryByResult(arrayList2, 1);//100金币猜对的
+						if(queryByResult2!=null&&queryByResult2.size()!=0){//不为空的话
+							userDao.addCurrency(queryByResult2, -100, "yes");
+							evaluationDao.revert(4, queryByResult2);
+						}
+						List<String> queryByResult3 = contractDao.queryByResult(arrayList2, 0);//100金币猜错的
+						if(queryByResult3!=null&&queryByResult3.size()!=0){//不为空的话
+							userDao.addCurrency(queryByResult3, -100, "no");
+						}
+					}
+					if(arrayList3!=null&&arrayList3.size()!=0){
+
+						List<String> queryByResult4 = contractDao.queryByResult(arrayList3, 1);//整蛊猜对的
+						if(queryByResult4!=null&&queryByResult4.size()!=0){//不为空的话
+
+							userDao.revertWins(queryByResult4);
+
+							evaluationDao.revert(1, queryByResult4);
+						}
+						List<String> queryByResult5 = contractDao.queryByResult(arrayList3, 0);//整蛊猜错的
+						if(queryByResult5!=null&&queryByResult5.size()!=0){//不为空的话
+
+							userDao.revertAll(queryByResult5);
+						}
+					}
+					if(arrayList4!=null&&arrayList4.size()!=0){
+
+						List<String> queryByResult6 = contractDao.queryByResult(arrayList4, 1);//美食猜对的
+						if(queryByResult6!=null&&queryByResult6.size()!=0){//不为空的话
+							userDao.revertWins(queryByResult6);
+							evaluationDao.revert(2, queryByResult6);
+						}
+						List<String> queryByResult7 = contractDao.queryByResult(arrayList4, 0);//美食猜错的
+						if(queryByResult7!=null&&queryByResult7.size()!=0){//不为空的话
+							userDao.revertAll(queryByResult7);
+						}
+					}
+					if(arrayList5!=null&&arrayList5.size()!=0){
+						List<String> queryByResult8 = contractDao.queryByResult(arrayList5, 1);//自定义猜对的
+						if(queryByResult8!=null&&queryByResult8.size()!=0){//不为空的话
+							userDao.revertWins(queryByResult8);
+							evaluationDao.revert(3, queryByResult8);
+						}
+						List<String> queryByResult9 = contractDao.queryByResult(arrayList5, 0);//自定义猜错的
+						if(queryByResult9!=null&&queryByResult9.size()!=0){//不为空的话
+							userDao.revertAll(queryByResult9);
+						}
+					}
+
+					//需要结算群pk的，类似于好友赛的
+					List<Integer> queryByMatchId2 = contractGroupDao.queryByMatchId(match.getId(), 0);//猜输赢的
+
+					List<Integer> queryByMatchId3 = contractGroupDao.queryByMatchId(match.getId(), 1);//猜比分的
+
+					queryByMatchId2.addAll(queryByMatchId3);//这是把猜输赢的和猜比分的加在一起
+					if(queryByMatchId2!=null&&queryByMatchId2.size()!=0){
+						contractGroupDao.updateStatusAutoResult(queryByMatchId2,2);
+						List<ContractCome> queryByResult10 = contractGroupDao.queryByResult(queryByMatchId2, 0);//猜测错误
+						if(queryByResult10!=null&&queryByResult10.size()!=0){
+							for (ContractCome contractCome : queryByResult10) {
+								userDao.addCurrencyGroup(contractCome, "yes");//这是不等于
+							}
+						}
+						List<String> openids = new ArrayList<String>();//猜测正确的openid
+						List<ContractCome> queryByResult11 = contractGroupDao.queryByResult(queryByMatchId2, 1);//猜测正确
+						if(queryByResult11!=null&&queryByResult11.size()!=0){
+							for (ContractCome contractCome : queryByResult11) {
+								userDao.addCurrencyGroup(contractCome, "no");//这是等于的，反过来就可以了
+								openids.add(contractCome.getOpenId());
+							}
+							evaluationDao.revert(5, openids);
+						}
+					}
+	}
+		@Override
+		public void handResult(Match match) {
 							//数据库不等于8证明未完成，实际完成了，需要更新比赛结果
 							Integer home_grade = match.getHome_grade();//主队得分
 							//需要取分数,更新比赛
@@ -198,10 +321,6 @@ public class AutoServiceImpl implements AutoService{
 									evaluationDao.update(5, openids);
 								}
 							}
-						}
-					}
-				}//if结束
-
 			}
 
 	@Override

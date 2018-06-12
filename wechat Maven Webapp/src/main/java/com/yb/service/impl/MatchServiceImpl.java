@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
+import com.yb.service.AutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,9 @@ import com.yb.entity.Match;
 import com.yb.entity.MatchData;
 import com.yb.entity.Team;
 import com.yb.service.MatchService;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.annotation.Resource;
 
 @Service
 public class MatchServiceImpl implements MatchService{
@@ -30,11 +34,33 @@ public class MatchServiceImpl implements MatchService{
 	private ContractDao contractDao;
 	@Autowired
 	private ContractGroupDao contractGroupDao;
+
+	@Resource
+	private AutoService autoService;
+
 	private SimpleDateFormat sfDateFormat=new SimpleDateFormat("yyyy-MM-dd");
 	private SimpleDateFormat sf=new SimpleDateFormat("MM月dd日   HH:mm");
+	@Override
+	public Match queryById(Integer id) {
+		Match match = matchDao.queryById(id);
+
+		return match;
+	}
 
 	@Override
+	@Transactional
 	public void updateMatch(Integer id,Integer status,Integer homeGrade,Integer visitGrade) {
+		//更改比赛结果和状态，但是需要把原来计算的回退，然后重新结算
+		//数据库查出来的原来的比赛信息
+		Match match = matchDao.queryById(id);
+		autoService.autoRevertResult(match);//回退比赛
+		Match match1 = new Match();
+		match1.setId(id);
+		match1.setStatus(status);
+		match1.setHome_grade(homeGrade);
+		match1.setVisit_grade(visitGrade);
+		autoService.handResult(match1);
+		//需要修改的比赛信息
 		matchDao.updateMatch(id,status,homeGrade,visitGrade);
 	}
 	@Override
@@ -76,6 +102,11 @@ public class MatchServiceImpl implements MatchService{
 				Banner banner = new Banner(match.getId(), time, home, visit, i, create, join,create2,join2);
 				Integer queryRownum = matchDao.queryRownum(match.getTime());
 				banner.setRownum(queryRownum);
+				if(new Date().after(time)){//比赛已经开始
+					banner.setStatus(0);//0代表不能参加
+				}else {//比赛未开始
+					banner.setStatus(1);
+				}
 				banner.setTimeDesc(sf.format(time));
 				data.add(banner);
 			}
@@ -116,6 +147,7 @@ public class MatchServiceImpl implements MatchService{
 				Banner banner = new Banner(match.getId(), time, home, visit, i1, create, join,create2,join2);
 
 				banner.setRownum(i);
+				banner.setStatus(1);//世界杯未开始的时候，都是1
 				i++;
 				banner.setTimeDesc(sf.format(time));
 				data.add(banner);

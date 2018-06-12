@@ -64,6 +64,7 @@
 			#{item}
 		</foreach>
 	</update>
+
 	<update id="addCurrencyGroup">
 			update worldcup2018_pk_user 
 			<if test="yn=='yes'">
@@ -74,6 +75,7 @@
 			</if>
 			where openid = #{contractComes.openId}
 	</update>
+
 	<update id="updateWins">
 		update worldcup2018_pk_user set wins=wins+1,allNumber=allNumber+1,continuWins=continuWins+1
 		where openid in
@@ -81,8 +83,22 @@
 			#{item}
 		</foreach>
 	</update>
+	<update id="revertWins">
+		update worldcup2018_pk_user set wins=wins-1,allNumber=allNumber-1,continuWins=continuWins-1
+		where openid in
+		<foreach collection="openids" item="item" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+	</update>
 	<update id="updateAll">
 		update worldcup2018_pk_user set allNumber=allNumber+1,continuWins=0
+		where openid in
+		<foreach collection="openids" item="item" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+	</update>
+	<update id="revertAll">
+		update worldcup2018_pk_user set allNumber=allNumber-1
 		where openid in
 		<foreach collection="openids" item="item" open="(" close=")" separator=",">
 			#{item}

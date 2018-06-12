@@ -25,7 +25,7 @@
 		 -->
         <property name="securityManager" ref="securityManager"/>
         <!--认证页面-->
-        <property name="loginUrl" value="/back/platform/login.html"></property>
+        <property name="loginUrl" value="/index.jsp"></property>
         <property name="successUrl" value="/back/platform/adminIndex.html"/>
         <property name="filterChainDefinitions">
             <value>
@@ -42,7 +42,7 @@
             </map>
         </property>
         <!-- 没有权限的跳转页面路径 -->
-        <property name="unauthorizedUrl" value="/back/platform/login.html"/>
+        <property name="unauthorizedUrl" value="/index.jsp"/>
     </bean>
 <!--创建安全管理器-->
     <bean class="org.apache.shiro.web.mgt.DefaultWebSecurityManager" id="securityManager">
@@ -58,7 +58,6 @@
     <!-- 创建自定义realm -->
     <bean id="customerRealm" class="com.yb.shiro.realm.CustomerRealm">
         <!-- 注入 凭证匹配器 -->
-        <property name="credentialsMatcher" ref="credentialsMatcher"/>
         <!-- 开启认证和授权的数据加入缓存中 -->
         <property name="authenticationCachingEnabled" value="true"/>
         <property name="authenticationCacheName" value="authenticationCache"/>
@@ -67,10 +66,7 @@
     </bean>
 
     <!-- 凭证匹配器 -->
-    <bean id="credentialsMatcher" class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
-        <property name="hashAlgorithmName" value="md5"/>
-        <property name="hashIterations" value="1"/>
-    </bean>
+
 	<bean id="shirocacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager" />
 	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" /> 
 </beans>

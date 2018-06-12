@@ -12,4 +12,6 @@ public interface MatchService {
 	List<Match> queryMatchDone();
 
 	void updateMatch(Integer id,Integer status,Integer homeGrade,Integer visitGrade);
+
+	Match queryById(Integer id);
 }

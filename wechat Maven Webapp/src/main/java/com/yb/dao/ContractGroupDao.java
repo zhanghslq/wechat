@@ -45,9 +45,10 @@ public interface ContractGroupDao {
 		List<String> queryNearLogo(@Param("cid")Integer cid);
 		//查询房间人数
 		Integer queryNumberByCid(@Param("cid")Integer cid);
-		//根据id查询下注数量
+		//根据id查询单个契约下注数量
 		Integer queryNumberById(@Param("cid")Integer cid);
-
+		//根据cid查询此契约下注金币总数
+		Long queryCurrencysByCid(@Param("cid") Integer cid);
 		//查看契约结果
 		
 		
@@ -90,5 +91,7 @@ public interface ContractGroupDao {
         Integer queryByOpenIdAndCid(@Param("openId")String openId,@Param("cid")Integer cid);
         //更改群契约状态
         void updateStatusAutoResult(@Param("cids")List<Integer> cids,@Param("status")Integer status);
+        //查询是否已经创建本场比赛的群PK,已经创建过的不能重复创建
+		Integer queryCreateByUidAndMatchId(@Param("uid")String uid,@Param("matchId")Integer matchId);
 		
 }

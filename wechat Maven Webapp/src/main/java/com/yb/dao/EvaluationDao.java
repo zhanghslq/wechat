@@ -12,6 +12,8 @@ public interface EvaluationDao {
 	void insert(@Param("openId")String openId);
 	//批量更新
 	void update(@Param("type")Integer type,@Param("openids")List<String> openids);
+	//批量回退更新，用于人工控制
+	void revert(@Param("type")Integer type,@Param("openids")List<String> openids);
 
 	//查询用户最大的那个指
 	Integer queryMax(@Param("openId")String openId);

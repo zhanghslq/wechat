@@ -16,7 +16,9 @@ public interface ContractGroupService {
 	void beginContractGroup(Integer cid);
 	//获取群pk结果
 	ContractGroupResult queryContractGroupResult(Integer cid,String code);
-
+	//查询是否加入群契约
 	ResultPack isJoinContractGroup(String openId,Integer cid);
+	//查询已创建这场比赛的契约
+	ResultPack isCreateContract(String openId,Integer matchId);
 
 }

@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yb.dao.ContractGroupDao">
+	<select id="queryCreateByUidAndMatchId" resultType="Integer">
+		SELECT ccg.id
+		from worldcup2018_pk_create_contract_group ccg
+		left JOIN worldcup2018_pk_contract_group cg
+		on ccg.cid=cg.id
+		where ccg.createUser=#{openId} and cg.matchId=#{matchId} limit 1
+	</select>
 	<update id="updateStatusAutoResult" >
 		update worldcup2018_pk_contract_group
 		SET status=#{status}
@@ -12,7 +19,7 @@
 	<select id="queryByOpenIdAndCid" resultType="Integer">
 		SELECT  id
 		from worldcup2018_pk_contract_user_group
-		where cid=#{cid} and uid=#{uid} and yn=1
+		where cid=#{cid} and uid=#{openId} and yn=1
 	</select>
 	<select id="queryUserByCid" resultType="User">
 		SELECT wpu.openId,wpu.nickname,wpu.imageUrl from worldcup2018_pk_create_contract_group wpccg LEFT JOIN worldcup2018_pk_user wpu
@@ -102,6 +109,9 @@
 	</select>
 	<select id="queryNumberById" resultType="Integer">
 		select number from worldcup2018_pk_contract_group where id=#{cid}
+	</select>
+	<select id="queryCurrencysByCid" resultType="Long">
+		select sum(number) from worldcup2018_pk_contract_user_group where cid=#{cid}
 	</select>
 	<select id="queryCurrencyByCid" resultType="Long">
 		select sum(number) from worldcup2018_pk_contract_user_group where cid=#{cid} and yn=1
