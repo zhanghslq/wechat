@@ -28,11 +28,6 @@ public class ContractServiceImpl implements ContractService{
 	@Transactional
 	public Integer insertContract(ContractCome contractCome) {
 		// TODO Auto-generated method stub
-		if(contractCome.getStakeType()==3){//自定义赌注,需要先添加赌注
-			Stake stake = new Stake(null,3,contractCome.getStakeText(),"",null);
-			stakeDao.insertStake(stake);
-			contractCome.setStakeId(stake.getId());//自定义的id放进去
-		}
 		contractDao.insertContract(contractCome);
 		Integer id = contractCome.getId();
 		contractDao.insertConstractUser(id, contractCome.getOpenId(), contractCome.getMyGuess());
@@ -43,22 +38,27 @@ public class ContractServiceImpl implements ContractService{
 	public ContractDetails queryContract(Integer cid) {//获取契约详情，
 		// TODO Auto-generated method stub
 		ContractCome contract = contractDao.getContract(cid);//获取契约基本信息
-		Integer stakeId = contract.getStakeId();
-		Stake stake = stakeDao.queryById(stakeId);
-		Integer matchId = contract.getMatchId();//契约所针对的比赛id
-		Match queryById = matchDao.queryById(matchId);
-		Team homeTeam = teamDao.queryById(queryById.getHomeid());
-		Team visitTeam = teamDao.queryById(queryById.getVisitid());
-		String openId = contractDao.getOpenId(cid);//创建人openid,創建人一定是有的
-		User user = userDao.getUser(openId);//創建人信息
-		String myGuess = contractDao.queryGuessByUid(openId, cid);
-		List<String> openLists = contractDao.getOpenLists(cid);//缔结契约人列表，這個
+        if (contract != null) {
+            Integer stakeId = contract.getStakeId();
+            Stake stake = stakeDao.queryById(stakeId);
+            Integer matchId = contract.getMatchId();//契约所针对的比赛id
+            Match queryById = matchDao.queryById(matchId);
+            Team homeTeam = teamDao.queryById(queryById.getHomeid());
+            Team visitTeam = teamDao.queryById(queryById.getVisitid());
+            String openId = contractDao.getOpenId(cid);//创建人openid,創建人一定是有的
+            User user = userDao.getUser(openId);//創建人信息
+            String myGuess = contractDao.queryGuessByUid(openId, cid);
+            List<String> openLists = contractDao.getOpenLists(cid);//缔结契约人列表，這個
+            List<User> queryUsers = userDao.queryUsers(openLists,cid);//包括創建人在内的契約人列表
+            ContractDetails contractDetails = new ContractDetails(homeTeam, visitTeam, RandomMessageUtil.getMessage(), contract.getGuessType(),
+                    myGuess, stake.getLogo(), stake.getName(), queryById.getStatus(),
+                    "", user.getNickname(), user.getImageUrl(), queryUsers,contract.getStatus(),openId);
+            return contractDetails;
 
-		List<User> queryUsers = userDao.queryUsers(openLists,cid);//包括創建人在内的契約人列表
-		ContractDetails contractDetails = new ContractDetails(homeTeam, visitTeam, RandomMessageUtil.getMessage(), contract.getGuessType(),
-				myGuess, stake.getLogo(), stake.getName(), queryById.getStatus(),
-				"", user.getNickname(), user.getImageUrl(), queryUsers,contract.getStatus(),openId);
-		return contractDetails;
+        }else {
+            throw new RuntimeException("获取好友契约为空");
+        }
+
 	}
 	@Override
 	public String joinContract(String openId, Integer cid,String myGuess) {//加入契约
@@ -146,23 +146,24 @@ public class ContractServiceImpl implements ContractService{
 	}
 	public ResultPack isJoinContract(String openId,Integer cid){
 
-		ContractCome contract = contractDao.getContract(cid);//契约详情
-		if(contract!=null){
-
-			Integer status = contract.getStatus();
-			if (0!=status){//证明契约已经开局，或者结束，不是可加入的状态
-				return new ResultPack(3,"契约不可加入");
-			}else {
-				Integer integer = contractDao.queryByOpenIdAndCid(cid, openId);
-				if(integer!=null){//证明已经加入过契约
-					return new ResultPack(2,"已经加入此契约了");
+			ContractCome contract = contractDao.getContract(cid);//契约详情
+			if(contract!=null){
+				Integer status = contract.getStatus();
+				if (0!=status){//证明契约已经开局，或者结束，不是可加入的状态
+					return new ResultPack(3,"契约不可加入");
 				}else {
-					return new ResultPack(1,"契约正常，可以加入");
+					Integer integer = contractDao.queryByOpenIdAndCid(cid, openId);
+					if(integer!=null){//证明已经加入过契约
+						return new ResultPack(2,"已经加入此契约了");
+					}else {
+						return new ResultPack(1,"契约正常，可以加入");
+					}
 				}
+			}else {
+				return new ResultPack(0,"契约不存在");
 			}
-		}else {
-			return new ResultPack(0,"契约不存在");
-		}
+
+
 	}
 
 }

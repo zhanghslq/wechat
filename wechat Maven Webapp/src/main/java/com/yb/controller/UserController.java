@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.annotation.Resource;
 
+import com.yb.util.FilterUtils;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,7 +31,10 @@ public class UserController {
 	@ResponseBody
 	public ResultPack login(@RequestBody User user1){
 		 try {
-	 		String openId = OpenUtils.getOpenId(user1.getCode());
+			 String nickname = user1.getNickname();
+			 String s = FilterUtils.filterOffUtf8Mb4(nickname);
+			 user1.setNickname(s);
+			 String openId = OpenUtils.getOpenId(user1.getCode());
 	        User user = userService.getUser(openId);
 	        if(user==null){
 	        	User user2 = new User(null,null,openId,user1.getImageUrl(),user1.getNickname(),8000,0,new Date(),null,null);

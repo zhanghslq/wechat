@@ -6,7 +6,7 @@
 	</insert>
 	<select id="query" resultType="String">
 		select access_token from worldcup2018_pk_access_token
-		order by created_time desc
-		where created_time > DATE_SUB(NOW(),INTERVAL 5400 SECOND) limit 1
+		where created_time > DATE_SUB(NOW(),INTERVAL 5400 SECOND)
+		order by created_time desc,id desc  limit 1
 	</select>
 </mapper>

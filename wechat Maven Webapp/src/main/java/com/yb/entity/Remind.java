@@ -5,7 +5,7 @@ package com.yb.entity;
  */
 public class Remind {
     private Integer id;
-    private String uid;
+    private String openId;
     private String form_id;
     private Integer matchId;
     private Integer isSended;
@@ -14,7 +14,7 @@ public class Remind {
     public String toString() {
         return "Remind{" +
                 "id=" + id +
-                ", uid='" + uid + '\'' +
+                ", openId='" + openId + '\'' +
                 ", form_id='" + form_id + '\'' +
                 ", matchId=" + matchId +
                 ", isSended=" + isSended +
@@ -29,12 +29,12 @@ public class Remind {
         this.id = id;
     }
 
-    public String getUid() {
-        return uid;
+    public String getOpenId() {
+        return openId;
     }
 
-    public void setUid(String uid) {
-        this.uid = uid;
+    public void setOpenId(String openId) {
+        this.openId = openId;
     }
 
     public String getForm_id() {
@@ -61,10 +61,10 @@ public class Remind {
         this.isSended = isSended;
     }
 
-    public Remind(Integer id, String uid, String form_id, Integer matchId, Integer isSended) {
+    public Remind(Integer id, String openId, String form_id, Integer matchId, Integer isSended) {
 
         this.id = id;
-        this.uid = uid;
+        this.openId = openId;
         this.form_id = form_id;
         this.matchId = matchId;
         this.isSended = isSended;
@@ -72,13 +72,5 @@ public class Remind {
 
     public Remind() {
 
-    }
-
-    public Remind(String uid, String form_id, Integer matchId, Integer isSended) {
-
-        this.uid = uid;
-        this.form_id = form_id;
-        this.matchId = matchId;
-        this.isSended = isSended;
     }
 }

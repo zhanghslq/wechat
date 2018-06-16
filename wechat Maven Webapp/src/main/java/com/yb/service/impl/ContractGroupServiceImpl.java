@@ -1,6 +1,7 @@
 package com.yb.service.impl;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -32,12 +33,18 @@ public class ContractGroupServiceImpl implements ContractGroupService{
 	private TeamDao teamDao;
 	@Override
 	public ResultPack isCreateContract(String openId, Integer matchId) {
-		Integer integer = contractGroupDao.queryCreateByUidAndMatchId(openId, matchId);
-		if(integer!=null){
-			return new ResultPack(0,"已经创建过本场比赛群契约");
+		Match match = matchDao.queryById(matchId);
+		if(new Date().after(match.getTime())){//比赛已经开始
+			return new ResultPack(0,"比赛已经开始");
 		}else {
-			return new ResultPack(1,"未创建，可以正常创建");
+			Integer integer = contractGroupDao.queryCreateByUidAndMatchId(openId, matchId);
+			if(integer!=null){
+				return new ResultPack(0,"已经创建过本场比赛群契约");
+			}else {
+				return new ResultPack(1,"未创建，可以正常创建");
+			}
 		}
+
 	}
 	@Transactional
 	@Override
@@ -59,21 +66,25 @@ public class ContractGroupServiceImpl implements ContractGroupService{
 	public ContractGroupDetails queryGroupDetails(Integer cid) {//查詢群pk的未完成的契约详情
 		// TODO Auto-generated method stub
 		ContractCome contractCome = contractGroupDao.queryContractGroup(cid);
-		Match match = matchDao.queryById(contractCome.getMatchId());
-	
-		//这里需要取阶段的数据
-		Stage queryById = stageDao.queryById(match.getStageId());
-		
-		Team home = teamDao.queryById(match.getHomeid());
-		Team visit = teamDao.queryById(match.getVisitid());
-		List<JoinData> queryContractGroupUser = contractGroupDao.queryContractGroupUser(cid);
-		Long queryCurrencys = contractGroupDao.queryCurrencysByCid(cid);//契约的下注金币数量
-		List<String> queryNearLogo = contractGroupDao.queryNearLogo(cid);
-		Integer queryNumberByCid = contractGroupDao.queryNumberByCid(cid);
-		User user = contractGroupDao.queryUserByCid(cid);
-		ContractGroupDetails contractGroupDetails = new ContractGroupDetails(queryById.getName_zh(), home, visit, contractCome.getGuessType(),
-				null, null, queryCurrencys, queryNearLogo, queryNumberByCid, queryContractGroupUser,user,contractCome.getStatus());
-		return contractGroupDetails;
+		if(contractCome!=null){
+			Match match = matchDao.queryById(contractCome.getMatchId());
+
+			//这里需要取阶段的数据
+			Stage queryById = stageDao.queryById(match.getStageId());
+			Team home = teamDao.queryById(match.getHomeid());
+			Team visit = teamDao.queryById(match.getVisitid());
+			List<JoinData> queryContractGroupUser = contractGroupDao.queryContractGroupUser(cid);
+			Long queryCurrencys = contractGroupDao.queryCurrencysByCid(cid);//契约的下注金币数量
+			List<String> queryNearLogo = contractGroupDao.queryNearLogo(cid);
+			Integer queryNumberByCid = contractGroupDao.queryNumberByCid(cid);//参加契约人数
+			User user = contractGroupDao.queryUserByCid(cid);
+			ContractGroupDetails contractGroupDetails = new ContractGroupDetails(queryById.getName_zh(), home, visit, contractCome.getGuessType(),
+					null, null, queryCurrencys, queryNearLogo, queryNumberByCid, queryContractGroupUser,user,contractCome.getStatus());
+			return contractGroupDetails;
+		}else {
+			throw new RuntimeException("契约为空");
+		}
+
 	}
 	@Override
 	public void beginContractGroup(Integer cid) {

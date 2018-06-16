@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,7 @@ public class StakeController {
 	
 	@RequestMapping("/queryAll")
 	@ResponseBody
+	@Cacheable(value ="stake")
 	public ResultPack queryAll(){
 		try {
 			List<Stake> queryAll = stakeService.queryAll();

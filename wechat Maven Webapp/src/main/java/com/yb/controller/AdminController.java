@@ -22,16 +22,11 @@ import com.yb.entity.Admin;
 public class AdminController {
 	@RequestMapping("/login")
 	@ResponseBody
-	public String login(String name,String password,String code,HttpServletRequest request){
+	public String login(String name,String password,HttpServletRequest request){
 			 	try {
-					String attribute = (String)request.getSession().getAttribute("code");
-					if(attribute.equalsIgnoreCase(code)){
 						Subject subject = SecurityUtils.getSubject();
 						subject.login(new UsernamePasswordToken(name,password));
 						return "success";
-					}else {
-						return "code";
-					}
 				} catch (AuthenticationException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

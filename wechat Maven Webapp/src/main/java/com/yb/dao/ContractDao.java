@@ -19,6 +19,8 @@ public interface ContractDao {
 	//获取契约详情,需要获取契约基本信息，获取比赛，然后获取两只球队，获取契约创建人，获取契约人列表
 	//契约基本信息
 	ContractCome getContract(@Param("cid")Integer cid);
+	//为了查询用户是否加入过此契约
+	Integer queryContractByCidAndUid(@Param("cid")Integer cid,@Param("openId")String openId);
 	//获取創建契约人id
 	String getOpenId(@Param("cid")Integer cid);
 	//获取契约人列表id，包括创建人,需要在业务层，通过id去查询信息
@@ -31,6 +33,10 @@ public interface ContractDao {
 	
 	//查询时间大于30分钟还未开局的契约
 	List<Integer> queryList();
+	//查询所有有效的未开局的契约所猜测的比赛id
+
+
+
 	//删除单个契约
 	void delete(@Param("id")Integer id);
 	//删除多个契约
@@ -84,5 +90,7 @@ public interface ContractDao {
 
 	//查询人是不是已经加入
 	Integer queryByOpenIdAndCid(@Param("cid")Integer cid,@Param("uid")String uid);
+
+
 
 }

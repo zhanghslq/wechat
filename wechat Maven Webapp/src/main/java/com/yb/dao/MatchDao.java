@@ -27,9 +27,16 @@ public interface MatchDao {
 	//查询比赛出结果的，进行人工干预，只查询过去两天之内的
 	List<Match> queryMatchDone();
 
+	//查询已经过了开始时间的比赛,也用作人工干预比赛///后更改为8场未完成的比赛
+	List<Match> queryStartedMatch();
+
 	//更改比赛状态和比分的
 	void updateMatch(@Param("id")Integer id,@Param("status")Integer status,
 			@Param("homeGrade")Integer homeGrade,@Param("visitGrade")Integer visitGrade);
 	
-	Integer queryRownum(@Param("time")Date time);
+	Integer queryRownum(@Param("time")Date time,@Param("id") Integer id);
+
+	//查询明天的比赛
+	List<Match> queryTommorrow();
+
 }

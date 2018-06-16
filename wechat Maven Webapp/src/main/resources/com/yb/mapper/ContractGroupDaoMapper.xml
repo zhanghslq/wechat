@@ -6,7 +6,7 @@
 		from worldcup2018_pk_create_contract_group ccg
 		left JOIN worldcup2018_pk_contract_group cg
 		on ccg.cid=cg.id
-		where ccg.createUser=#{openId} and cg.matchId=#{matchId} limit 1
+		where ccg.createUser=#{uid} and cg.matchId=#{matchId} limit 1
 	</select>
 	<update id="updateStatusAutoResult" >
 		update worldcup2018_pk_contract_group
@@ -73,7 +73,7 @@
 		select wpu.openid,wpu.nickname,wpu.imageUrl,wpu.currency
 		from worldcup2018_pk_contract_user_group cug left join worldcup2018_pk_user wpu
 		on cug.uid=wpu.openid
-		where cug.result=#{result} and cug.cid=#{cid} limit 4
+		where cug.result=#{result} and cug.cid=#{cid}
 
 	</select>
 	<select id="queryResultByUidAndCid" resultType="Integer">

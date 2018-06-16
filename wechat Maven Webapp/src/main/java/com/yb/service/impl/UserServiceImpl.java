@@ -2,6 +2,7 @@ package com.yb.service.impl;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -12,8 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yb.service.UserService;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserDao userDao;
@@ -185,36 +188,43 @@ public class UserServiceImpl implements UserService {
 					resultString="输";
 				}
 				String timeDesc = sfDateFormat.format(time);
-				Integer joinNumber = contractDao.queryNumberByCid(id);//参与契约人数
+				Integer joinNumber = contractGroupDao.queryNumberByCid(id);//参与契约人数
 				History history = new History(timeDesc, time, id, queryById2.getName_zh(),
 						queryById.getName_zh(), "群PK", joinNumber, resultString);
 				list.add(history);
 			}
 		}
 		//查询称号的
-		String evaluationName="猜球达人";
+		String evaluationName="";
 		String description="";
-		Integer integer = evaluationDao.queryMax(openId);
-		Evaluation evaluation = evaluationDao.queryEvaluation(openId);
-		if(integer!=0){
-			if (evaluation.getTricky_brains()==integer){
-				evaluationName="整蛊专家";
-				description="我打算先给自己定一个亿的小目标！";
-			}else if (evaluation.getIron_cock()==integer){
-				evaluationName="钢铁公鸡";
-				description="说起来你可能不相信，我差点被TA包养！";
-			}else if (evaluation.getImagination_talent()==integer){
-				evaluationName="脑洞达人";
-				description="你看那个人好像一条柯基";
-			}else if (evaluation.getFood_anchor()==integer){
-				evaluationName="美食主播";
-				description="别动筷子，别张嘴，我先拍个照。";
-			}else if (evaluation.getWealthy()==integer){
-				evaluationName="富甲一方";
-				description="我的脑洞是星辰大海!";
-
+		if(user!=null&&user.getAllNumber()==0){
+			evaluationName="猜球达人";
+			description="您还未参加竞猜，快去猜猜看吧！";
+		}else {
+			Integer integer = evaluationDao.queryMax(openId);
+			Evaluation evaluation = evaluationDao.queryEvaluation(openId);
+			if(integer!=0){
+				if (evaluation.getTricky_brains()==integer){
+					evaluationName="整蛊专家";
+					description="我打算先给自己定一个亿的小目标！";
+				}else if (evaluation.getIron_cock()==integer){
+					evaluationName="钢铁公鸡";
+					description="说起来你可能不相信，我差点被TA包养！";
+				}else if (evaluation.getImagination_talent()==integer){
+					evaluationName="脑洞达人";
+					description="你看那个人好像一条柯基";
+				}else if (evaluation.getFood_anchor()==integer){
+					evaluationName="美食主播";
+					description="别动筷子，别张嘴，我先拍个照。";
+				}else if (evaluation.getWealthy()==integer){
+					evaluationName="富甲一方";
+					description="我的脑洞是星辰大海!";
+				}
+			}else {
+				evaluationName="猜球萌新";
 			}
 		}
+		Collections.sort(list);
 		UserAndHistory userAndHistory = new UserAndHistory(user, rate, list,evaluationName,description);
 		return userAndHistory;
 	}

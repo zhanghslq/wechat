@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import com.yb.entity.Match;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,4 +55,40 @@ public class MatchController {
 		Match match = matchService.queryById(id);
 		return match;
 	}
+	@ResponseBody
+	@RequestMapping("/handResult")
+	public void handResult(Match match){
+		try {
+			matchService.handResult(match);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	@RequestMapping("/queryMatchesTwoHours")
+	@ResponseBody
+	//两个小时之内的比赛，用于比赛提醒
+	public ResultPack queryMatchesTwoHours(){
+		try {
+			List<Match> matches = matchService.queryMatchesTwoHours();
+			return new ResultPack(1,matches);
+		} catch (Exception e) {
+
+			e.printStackTrace();
+			return new ResultPack(0,e.getMessage());
+		}
+	}
+
+	//已经开始的比赛
+	@ResponseBody
+	@RequestMapping("/queryStartedMatch")
+	public Object queryStartedMatch(){
+		try {
+			List<Match> matches = matchService.queryStartedMatch();
+			return matches;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 }

@@ -3,6 +3,7 @@ package com.yb.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.yb.dao.*;
 import com.yb.entity.*;
+import com.yb.service.AutoService;
 import com.yb.service.RemindService;
 import com.yb.util.AccessTokenUtil;
 import org.apache.http.HttpEntity;
@@ -14,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -32,6 +34,8 @@ public class RemindServiceImpl implements RemindService{
     private TeamDao teamDao;
     @Autowired
     private StageDao stageDao;
+    @Autowired
+    private AutoService autoService;
     @Override
     public void insert(Remind remind) {
         remindDao.insert(remind);
@@ -47,6 +51,10 @@ public class RemindServiceImpl implements RemindService{
             for (Match match : matches) { //然后遍历比赛
                 List<Remind> reminds = remindDao.queryAllByMatchId(match.getId());//查出来的需要提醒的比赛
                 String token = accessTokenDao.query();//查询出来的可用token
+                if(token==null){
+                    autoService.autoAccessToken();
+                }
+                token=accessTokenDao.query();
                 String requestUrl="https://api.weixin.qq.com/cgi-bin/message/template/send?access_token="+token;
                 AccessData accessData = new AccessData();
                 Data data = new Data();
@@ -61,9 +69,11 @@ public class RemindServiceImpl implements RemindService{
                 data.setKeyWord4(new KeyWord(team.getName_zh()+" VS "+visit.getName_zh()));//比赛双方信息
                 accessData.setData(data);
                 accessData.setTemplate_id("ieGlFt3tw-MeWygXztLbAgiuxzkt1SSn8-x7wMUJmrw");
+                List<Integer> ids = new ArrayList<>();
                 for (Remind remind : reminds) {
+                    ids.add(remind.getId());
                     accessData.setForm_id(remind.getForm_id());
-                    accessData.setTouser(remind.getUid());
+                    accessData.setTouser(remind.getOpenId());
                     HttpEntity entity= null;
                     try {
                         entity = new StringEntity(JSON.toJSONString(accessData));
@@ -76,14 +86,13 @@ public class RemindServiceImpl implements RemindService{
                         e.printStackTrace();
                     }
                 }
+                if(ids.size()!=0){
+                    remindDao.updateStatus(ids);
+                }
+
             }
 
             }
     }
 
-    @Override
-    public void updateAccessToken() {//更新accessToken
-        AccessToken accessToken = AccessTokenUtil.freshAccessToken();
-        accessTokenDao.insertToken(accessToken);
-    }
 }

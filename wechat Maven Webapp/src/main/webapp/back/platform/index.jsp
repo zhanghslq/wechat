@@ -25,9 +25,10 @@
         <ul class="downMenu" id="downMenu">
             <li class="menuItem">
                 <a href="javascript:void(0);"  class="headline"><i class="navIcon icon_2"></i><span>比赛管理</span></a>
-                    <ul>
-                    <li><a href="../data/match/showAll.jsp" target="contentFrame">比赛管理</a></li>
-                   <li><a href="../data/team/showAll.jsp" target="contentFrame">球队管理</a></li>
+                <ul>
+                   <li><a href="../data/match/showAll.jsp" target="contentFrame">比赛管理（比赛完成）</a></li>
+                   <%--<li><a href="../data/team/showAll.jsp" target="contentFrame">球队管理</a></li>--%>
+                   <li><a href="../data/handMatch/showAll.jsp" target="contentFrame">手动结算（未完成）</a></li>
                 </ul>
             </li>
         </ul>

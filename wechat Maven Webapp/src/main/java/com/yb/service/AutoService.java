@@ -8,4 +8,5 @@ public interface AutoService {
 	void autoData();
 	void handResult(Match match);//手动结算
 	void autoRevertResult(Match match);//手动回退比赛
+	void autoAccessToken();
 }

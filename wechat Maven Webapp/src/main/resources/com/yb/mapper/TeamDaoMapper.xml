@@ -2,7 +2,7 @@
 		<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yb.dao.TeamDao">
 <select id="queryAll" resultType="Team">
-	select id,name name_zh,logo,country_logo from worldcup2018_pk_team
+	select id,name name_zh,logo,country_logo from worldcup2018_pk_team order by id desc
 </select>
 <update id="update">
 	update worldcup2018_pk_team

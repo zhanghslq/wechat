@@ -1,5 +1,8 @@
 package com.yb.entity;
 
+/**
+ * 单条的直播消息
+ */
 public class BroadcastMessage {
     private Integer minutes;
     private String text;

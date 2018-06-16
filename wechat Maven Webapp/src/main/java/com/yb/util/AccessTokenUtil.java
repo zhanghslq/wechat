@@ -30,8 +30,8 @@ public class AccessTokenUtil {
 		//freshAccessTokenSystem.out.println(freshAccessToken);
 		/*String id = getId();
 		System.out.println(id);*/
-		AccessToken accessToken = freshAccessToken();
-		System.out.println(accessToken);
+		String id = getId();
+		System.out.println(id);
 	}
 	//获取模板列表
 	public static String getId(){
@@ -40,7 +40,7 @@ public class AccessTokenUtil {
 		HttpEntity entity = new StringEntity(s, "UTF-8");
 		String asString ;
 		try {
-			asString = Request.Post("https://api.weixin.qq.com/cgi-bin/wxopen/template/library/list?access_token=10_klhbeNkkEHrfcG0yvstJJZYaf2Z9X7Xu5FM6TjJ4Y8Coi4KWYMJuy_gZDq6PK2vB0VKCeblo29PpQczwN_poMj5bfUvmhDf9keTXCp6GrDy5VzfeKhSyWcak9IdGaE85FPomZaCRcnNdYOXoWUTgABADBA")
+			asString = Request.Post("https://api.weixin.qq.com/cgi-bin/wxopen/template/library/list?access_token=10_0wp8jgPYmedHowQ-PFnbI232AfL5nmOX1UCsZh_zalKym34dRoWziHRG4y1YkL80VzPGo_xm8jVph9dQAwMhvUDHOlI_vNR0g7soDcNI75lh-SJ3Q0zdzAEOz5l_EMBiqWVhXnFSGk5wML6mSJQdAJAVMT")
                     .body(entity).execute().returnContent().asString();
 		} catch (IOException e) {
 			e.printStackTrace();

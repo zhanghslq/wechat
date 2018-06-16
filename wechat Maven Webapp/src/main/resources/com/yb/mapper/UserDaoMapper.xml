@@ -34,7 +34,7 @@
 		from worldcup2018_pk_user where openid=#{openid}
 	</select>
 	<insert id="insertUser">
-		insert into worldcup2018_pk_user(openid,imageUrl,nickname,currency,lasttime) values
+		replace into worldcup2018_pk_user(openid,imageUrl,nickname,currency,lasttime) values
 		(#{user.openid},#{user.imageUrl},#{user.nickname},#{user.currency},now())
 	</insert>
 	<select id="getRank" resultType="User">

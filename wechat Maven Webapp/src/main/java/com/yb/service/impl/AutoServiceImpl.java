@@ -1,10 +1,14 @@
 package com.yb.service.impl;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.alibaba.fastjson.JSON;
+import com.yb.dao.*;
+import com.yb.entity.*;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -13,26 +17,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.yb.dao.ContractDao;
-import com.yb.dao.ContractGroupDao;
-import com.yb.dao.EvaluationDao;
-import com.yb.dao.EventDao;
-import com.yb.dao.MatchDao;
-import com.yb.dao.StageDao;
-import com.yb.dao.TeamDao;
-import com.yb.dao.UserDao;
-import com.yb.entity.ContractCome;
-import com.yb.entity.Events;
-import com.yb.entity.Match;
-import com.yb.entity.Stage;
-import com.yb.entity.Team;
 import com.yb.service.AutoService;
 import com.yb.util.CountryUtil;
 @Service
 @Transactional
 public class AutoServiceImpl implements AutoService{
-
-
 	@Autowired
 	private ContractGroupDao contractGroupDao;
 	@Autowired
@@ -49,6 +38,23 @@ public class AutoServiceImpl implements AutoService{
 	private EventDao eventDao;
 	@Autowired
 	private StageDao stageDao;
+	@Autowired
+	private AccessTokenDao accessTokenDao;
+	@Override
+	public void autoAccessToken() {
+		String query = accessTokenDao.query();
+		if(query==null||query.equals("")){//当一个半小时之内没有token的时候来进行获取
+			String asString = null;
+			try {
+				asString = Request.Get("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wxd8e55b753a567d41&secret=fd365e71704a8f1e8bc28f0f3f532314")
+						.execute().returnContent().asString();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			AccessToken parseObject = JSON.parseObject(asString, AccessToken.class);
+			accessTokenDao.insertToken(parseObject);
+		}
+	}
 	//回退系统结算的堵住
 	@Override
 	public void autoRevertResult(Match match) {
@@ -324,7 +330,7 @@ public class AutoServiceImpl implements AutoService{
 			}
 
 	@Override
-	public void autoCheck() {
+	public void autoCheck() {//自动开局的契约
 		// TODO Auto-generated method stub
 		List<Integer> list = contractDao.queryList();//超过30分钟未开局的契约id
 		if(list!=null&&list.size()!=0){//这是好友契约的遍历
@@ -352,6 +358,8 @@ public class AutoServiceImpl implements AutoService{
 				}
 			}
 		}
+		//需要判断比赛是否开始
+
 	}
 
 	@Override

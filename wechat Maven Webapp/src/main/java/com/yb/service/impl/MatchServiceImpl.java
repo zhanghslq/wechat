@@ -25,7 +25,6 @@ import javax.annotation.Resource;
 
 @Service
 public class MatchServiceImpl implements MatchService{
-
 	@Autowired
 	private MatchDao matchDao;
 	@Autowired
@@ -40,6 +39,28 @@ public class MatchServiceImpl implements MatchService{
 
 	private SimpleDateFormat sfDateFormat=new SimpleDateFormat("yyyy-MM-dd");
 	private SimpleDateFormat sf=new SimpleDateFormat("MM月dd日   HH:mm");
+
+	@Override
+	public List<Match> queryMatchesTwoHours() {
+		List<Match> matches = matchDao.queryMatchesTwoHours();
+
+		return matches;
+	}
+
+	@Override
+	public List<Match> queryStartedMatch() {
+		List<Match> matches = matchDao.queryStartedMatch();
+		return matches;
+	}
+	@Override
+	public void handResult(Match match) {
+		autoService.handResult(match);
+	}
+
+	@Override
+	public void update(Match match) {//应该暂时用不到
+		matchDao.updateMatch(match.getId(),match.getStatus(),match.getHome_grade(),match.getVisit_grade());
+	}
 	@Override
 	public Match queryById(Integer id) {
 		Match match = matchDao.queryById(id);
@@ -66,15 +87,18 @@ public class MatchServiceImpl implements MatchService{
 	@Override
 	public List<Banner> queryBanner(String openId) {//查询当前赛事
 		// TODO Auto-generated method stub
-		if(new Date().getTime()>1528905600000l){//世界杯开始,取当天的数据
+		//if(new Date().getTime()>1528905600000l){//世界杯开始,取当天的数据
 			List<Match> queryMatches = matchDao.queryMatchesToday(openId);//获取到的赛事，然后判断，是否是发起人，是否参加契约
+			if(queryMatches==null||queryMatches.size()==0){//当天的没数据了，开始取明天的数据
+				queryMatches = matchDao.queryTommorrow();
+			}
 			List<Banner> data = new ArrayList<Banner>();//存放包装好的返回信息
+			int rownum=0;
 			for (Match match : queryMatches) {
 				Team home = teamDao.queryById(match.getHomeid());
 				Team visit = teamDao.queryById(match.getVisitid());
 				Integer id = match.getId();
 				//这是普通契约
-
 				Integer queryCreateByUid = contractDao.queryCreateByUid(openId,id);
 				Integer queryJoinByUid = contractDao.queryJoinByUid(openId, id);
 				Boolean create=false;
@@ -100,8 +124,9 @@ public class MatchServiceImpl implements MatchService{
 				}
 				Date time = match.getTime();
 				Banner banner = new Banner(match.getId(), time, home, visit, i, create, join,create2,join2);
-				Integer queryRownum = matchDao.queryRownum(match.getTime());
-				banner.setRownum(queryRownum);
+				//Integer queryRownum = matchDao.queryRownum(match.getTime(),match.getId());
+				rownum++;
+				banner.setRownum(rownum);
 				if(new Date().after(time)){//比赛已经开始
 					banner.setStatus(0);//0代表不能参加
 				}else {//比赛未开始
@@ -110,8 +135,9 @@ public class MatchServiceImpl implements MatchService{
 				banner.setTimeDesc(sf.format(time));
 				data.add(banner);
 			}
+
 			return data;
-		}else{//世界杯未开始
+		/*}else{//世界杯未开始
 			List<Match> queryMatches = matchDao.queryMatches(openId);//获取到的赛事，然后判断，是否是发起人，是否参加契约
 			List<Banner> data = new ArrayList<Banner>();//存放包装好的返回信息
 			int i=1;
@@ -153,7 +179,7 @@ public class MatchServiceImpl implements MatchService{
 				data.add(banner);
 			}
 			return data;
-		}
+		}*/
 
 	}
 	@Override

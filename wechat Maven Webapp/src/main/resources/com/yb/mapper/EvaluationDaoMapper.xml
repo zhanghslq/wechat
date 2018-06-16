@@ -12,7 +12,7 @@
 		where openid=#{openId}
 	</select>
 	<insert id="insert">
-		insert into worldcup2018_pk_evaluation(openid) values(#{openId})
+		replace into worldcup2018_pk_evaluation(openid) values(#{openId})
 	</insert>
 	<update id="update">
 		update worldcup2018_pk_evaluation

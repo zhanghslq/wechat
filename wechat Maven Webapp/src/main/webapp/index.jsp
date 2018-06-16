@@ -21,9 +21,7 @@
             <span id="message"></span><br/>
             <input id="username"  name="username"  class="easyui-textbox" data-options="required:true,prompt:'请输入用户名'" /><br/>
             <input id="password"  name="password"  class="easyui-textbox" data-options="required:true,prompt:'请输入密码'"/><br/>
-            <input id="code"  name="code"  class="easyui-textbox" data-options="required:true,prompt:'请输入下方验证码'"/><br/>
-            <img  src="${pageContext.request.contextPath}/image/code" onclick="this.src='${pageContext.request.contextPath}/image/code?'+Math.random()"/>
-           <br/> <a href="#" class="easyui-linkbutton" onclick="submit()">登录</a>
+           <a href="#" class="easyui-linkbutton" onclick="submit()">登录</a>
 </div>
 </body>
 <script type="text/javascript">
@@ -35,8 +33,8 @@
             type:"POST",
             url:"${pageContext.request.contextPath}/admin/login",
             dataType:"JSON",
-            data:{"name":$("#username").val(),"password":$("#password").val(),
-                "code":$("#code").val()
+            data:{"name":$("#username").val(),"password":$("#password").val()
+
             },
             success:function(message){
                 if(message=="success"){
