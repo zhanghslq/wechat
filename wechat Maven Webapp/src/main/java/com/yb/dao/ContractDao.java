@@ -91,6 +91,9 @@ public interface ContractDao {
 	//查询人是不是已经加入
 	Integer queryByOpenIdAndCid(@Param("cid")Integer cid,@Param("uid")String uid);
 
+	//查询竞猜本场比赛的契约，用来自动开局
+	List<Integer> queryContractByMatchId(@Param("matchId")Integer id);
+
 
 
 }

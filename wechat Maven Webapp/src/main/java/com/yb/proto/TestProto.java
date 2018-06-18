@@ -6,14 +6,15 @@ import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.ByteArrayRequestEntity;
 import org.apache.commons.httpclient.methods.PostMethod;
 
+import java.util.Date;
 
 public class TestProto {
-    public static void main(String[] args) {
+    public static void send(String token) {
         Miniprogram.CJdZtMiniProgramData p = Miniprogram.CJdZtMiniProgramData.newBuilder()
+                .setSAccessToken(ByteString.copyFromUtf8(token))
+                .setDdwValidBeginTime(new Date().getTime())
                 .setSAccessToken(ByteString.copyFromUtf8(""))
-                .setDdwValidBeginTime(1l)
-                .setSAccessToken(ByteString.copyFromUtf8(""))
-                .setDdwValidEndTime(1l)
+                .setDdwValidEndTime(new Date().getTime()+7200000)
                 .setSAppId(ByteString.copyFromUtf8(""))
                 .setSOriginalId(ByteString.copyFromUtf8(""))
                 .build();

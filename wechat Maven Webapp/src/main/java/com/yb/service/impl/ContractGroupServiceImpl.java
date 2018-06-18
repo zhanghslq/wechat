@@ -73,9 +73,12 @@ public class ContractGroupServiceImpl implements ContractGroupService{
 			Stage queryById = stageDao.queryById(match.getStageId());
 			Team home = teamDao.queryById(match.getHomeid());
 			Team visit = teamDao.queryById(match.getVisitid());
+
 			List<JoinData> queryContractGroupUser = contractGroupDao.queryContractGroupUser(cid);
 			Long queryCurrencys = contractGroupDao.queryCurrencysByCid(cid);//契约的下注金币数量
+
 			List<String> queryNearLogo = contractGroupDao.queryNearLogo(cid);
+
 			Integer queryNumberByCid = contractGroupDao.queryNumberByCid(cid);//参加契约人数
 			User user = contractGroupDao.queryUserByCid(cid);
 			ContractGroupDetails contractGroupDetails = new ContractGroupDetails(queryById.getName_zh(), home, visit, contractCome.getGuessType(),
@@ -127,9 +130,11 @@ public class ContractGroupServiceImpl implements ContractGroupService{
 		ContractCome contractCome = contractGroupDao.queryContractGroup(cid);
 		if(contractCome!=null){
 			Integer status = contractCome.getStatus();
-			if(status!=0){
-				return new ResultPack(3,"契约不可加入");
-			}else {
+			if(status==1){
+				return new ResultPack(3,"契约已开局");
+			}else if(status==2){
+				return new ResultPack(4,"契约已完成");
+			} else{
 				Integer integer = contractGroupDao.queryByOpenIdAndCid(openId, cid);
 				if (integer!=null){//已经参加过契约了
 					return new ResultPack(2,"已经加入过此契约了");

@@ -39,4 +39,7 @@ public interface MatchDao {
 	//查询明天的比赛
 	List<Match> queryTommorrow();
 
+	//查询已经开始的比赛,然后去把对应的契约开局
+	List<Match> queryMatchBegin();
+
 }

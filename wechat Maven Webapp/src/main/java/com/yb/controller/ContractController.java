@@ -84,8 +84,13 @@ public class ContractController {//0代表失败，1代表成功
 	@ResponseBody
 	@RequestMapping("/queryContractDone")
 	public ResultPack queryContractDone(Integer cid,String openId){
-		ContractDone queryContractDone = contractService.queryContractDone(cid, openId);
-		return new ResultPack(1, queryContractDone);
+		try {
+			ContractDone queryContractDone = contractService.queryContractDone(cid, openId);
+			return new ResultPack(1, queryContractDone);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResultPack(0,e.getMessage());
+		}
 	}
 	/**
 	 * 本场竞猜

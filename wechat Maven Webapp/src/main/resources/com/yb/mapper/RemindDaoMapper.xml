@@ -17,4 +17,9 @@
 				#{item}
 			</foreach>
 		</update>
+	<select id="queryByMatchIdAndUid" resultType="Remind">
+		SELECT id,uid openId,matchId,form_id from worldcup2018_pk_remind
+		where isSended=0 and matchId=#{matchId} and uid=#{uid} limit 1
+
+	</select>
 </mapper>

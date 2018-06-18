@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yb.dao.ContractDao">
+	<select id="queryContractByMatchId" resultType="Integer">
+		SELECT id from worldcup2018_pk_contract
+		where matchId=#{matchId} and status=0 and yn=1
+	</select>
 	<select id="queryContractByCidAndUid" resultType="Integer">
 		SELECT  id from worldcup2018_pk_contract_user
 		where uid=#{openId} and cid=#{cid}
@@ -14,7 +18,7 @@
 		select wpc.id,wpc.matchId,wpcu.result as number1
 		from worldcup2018_pk_contract_user wpcu left join  worldcup2018_pk_contract wpc
 		on wpcu.cid=wpc.id
-		where wpcu.uid=#{openId} and wpc.status=2
+		where wpcu.uid=#{openId} and wpc.status=2 and wpc.yn=1
 	</select>
 
 	<update id="updateResult">
@@ -49,7 +53,7 @@
 	</select>
 	<select id="queryByMatchId" resultType="ContractCome">
 		select id,stakeId from worldcup2018_pk_contract
-		where matchId=#{matchId} and guessType=#{type}
+		where matchId=#{matchId} and guessType=#{type} and yn=1 and status=1
 	</select>
 	<select id="queryByMatchIdAndUid" resultType="TheGuess">
 		select "好友赛" as type,c.id cid,u.nickname,u.imageUrl,c.status

@@ -40,7 +40,7 @@ public class AccessTokenUtil {
 		HttpEntity entity = new StringEntity(s, "UTF-8");
 		String asString ;
 		try {
-			asString = Request.Post("https://api.weixin.qq.com/cgi-bin/wxopen/template/library/list?access_token=10_0wp8jgPYmedHowQ-PFnbI232AfL5nmOX1UCsZh_zalKym34dRoWziHRG4y1YkL80VzPGo_xm8jVph9dQAwMhvUDHOlI_vNR0g7soDcNI75lh-SJ3Q0zdzAEOz5l_EMBiqWVhXnFSGk5wML6mSJQdAJAVMT")
+			asString = Request.Post("https://api.weixin.qq.com/cgi-bin/wxopen/template/library/list?access_token=10_joQhEdEadVDtBP1XPFnbI232AfL5nmOX1UCsZlFwWEaGuUrHU6LMGLvsn7KSvMpyafCdmIsT2znrwYfy3xuYn8o5UobYoNjPdeLTkYvQ8sRl1LmybEOInyQ6LwS0e19o2CIAQ-Q1Mt8m84YdIWJhAHACQD")
                     .body(entity).execute().returnContent().asString();
 		} catch (IOException e) {
 			e.printStackTrace();

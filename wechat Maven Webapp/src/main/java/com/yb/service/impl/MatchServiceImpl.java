@@ -101,6 +101,9 @@ public class MatchServiceImpl implements MatchService{
 				//这是普通契约
 				Integer queryCreateByUid = contractDao.queryCreateByUid(openId,id);
 				Integer queryJoinByUid = contractDao.queryJoinByUid(openId, id);
+
+
+
 				Boolean create=false;
 				Boolean join=false;
 				if(queryCreateByUid!=null){
@@ -111,7 +114,12 @@ public class MatchServiceImpl implements MatchService{
 				}
 				//检查群pk,
 				Random random = new Random();
-				int i = random.nextInt(9999) + 1000;
+				int i = random.nextInt(4000) + 1000;
+				//查询比赛的参与人数
+				Integer integer = contractDao.queryNumber(id);
+				Integer integer1 = contractGroupDao.queryNumberByMatchId(id);
+				i+=integer;
+				i+=integer1;
 				Integer queryCreateByUid2 = contractGroupDao.queryCreateByUid(id,openId);
 				Integer queryJoinByUid2 = contractGroupDao.queryJoinByUid(id, openId);
 				Boolean create2=false;

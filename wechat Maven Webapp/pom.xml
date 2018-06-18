@@ -252,7 +252,7 @@
 				<version>2.2</version>
 				<configuration>
 					<!--<url>http://39.104.85.35:8989/manager/text</url>-->
-					<url>http://jd-worldcup-pk.h6app.com//manager/text</url>
+					<url>192.144.157.252:80/manager/text</url>
 					<server>tomcat7</server>
 					<path>/wechat</path>
 					<charset>utf8</charset>

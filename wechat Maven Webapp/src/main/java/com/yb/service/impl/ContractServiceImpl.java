@@ -149,9 +149,11 @@ public class ContractServiceImpl implements ContractService{
 			ContractCome contract = contractDao.getContract(cid);//契约详情
 			if(contract!=null){
 				Integer status = contract.getStatus();
-				if (0!=status){//证明契约已经开局，或者结束，不是可加入的状态
-					return new ResultPack(3,"契约不可加入");
-				}else {
+				if(status==1){
+					return new ResultPack(3,"契约已开局");
+				}else if(status==2){
+					return new ResultPack(4,"契约已完成");
+				} else {
 					Integer integer = contractDao.queryByOpenIdAndCid(cid, openId);
 					if(integer!=null){//证明已经加入过契约
 						return new ResultPack(2,"已经加入此契约了");

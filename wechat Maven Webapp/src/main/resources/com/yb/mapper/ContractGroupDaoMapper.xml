@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yb.dao.ContractGroupDao">
+	<select id="queryContractGroupByMatchId" resultType="Integer">
+		SELECT id from worldcup2018_pk_contract_group
+		where   now()>time and status=0 and yn=1
+	</select>
 	<select id="queryCreateByUidAndMatchId" resultType="Integer">
 		SELECT ccg.id
 		from worldcup2018_pk_create_contract_group ccg
 		left JOIN worldcup2018_pk_contract_group cg
 		on ccg.cid=cg.id
-		where ccg.createUser=#{uid} and cg.matchId=#{matchId} limit 1
+		where ccg.createUser=#{uid} and cg.matchId=#{matchId} and ccg.yn=1 and cg.yn=1  limit 1
 	</select>
 	<update id="updateStatusAutoResult" >
 		update worldcup2018_pk_contract_group
@@ -30,11 +34,11 @@
 		select wpc.id,wpc.matchId,wpcu.result number
 		from worldcup2018_pk_contract_user_group wpcu left join  worldcup2018_pk_contract_group wpc
 		on wpcu.cid=wpc.id
-		where wpcu.uid=#{openId} and wpc.status=2
+		where wpcu.uid=#{openId} and wpc.status=2 and wpc.yn=1
 	</select>
 	<select id="queryByMatchId" resultType="Integer">
 		select id from worldcup2018_pk_contract_group
-		where matchId=#{matchId} and guessType=#{type}
+		where matchId=#{matchId} and guessType=#{type} and yn=1 and status=1
 	</select>
 	<update id="updateResult">
 		update worldcup2018_pk_contract_user_group
@@ -74,6 +78,7 @@
 		from worldcup2018_pk_contract_user_group cug left join worldcup2018_pk_user wpu
 		on cug.uid=wpu.openid
 		where cug.result=#{result} and cug.cid=#{cid}
+		order by cug.created_time asc
 
 	</select>
 	<select id="queryResultByUidAndCid" resultType="Integer">
@@ -125,8 +130,8 @@
 		select wpu.nickname name,wpu.imageUrl,cug.number,cug.myGuess  
 		from worldcup2018_pk_user wpu left join worldcup2018_pk_contract_user_group cug
 		 on wpu.openid=cug.uid
-		
 		where cug.cid=#{cid} and cug.yn=1
+		order by cug.created_time asc
 	</select>
 	<select id="queryCurrencys" resultType="Long">
 		select sum(cug.number) 
@@ -138,7 +143,7 @@
 		select imageUrl from worldcup2018_pk_user wpu
 		right join worldcup2018_pk_contract_user_group cug on cug.uid=wpu.openid
 		WHERE cug.cid=#{cid}
-		order by cug.time desc limit 5
+		order by cug.time desc limit 20
 	</select>
 	<select id="queryNumberByCid" resultType="Integer">
 		select count(uid) from worldcup2018_pk_contract_user_group 

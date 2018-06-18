@@ -93,5 +93,8 @@ public interface ContractGroupDao {
         void updateStatusAutoResult(@Param("cids")List<Integer> cids,@Param("status")Integer status);
         //查询是否已经创建本场比赛的群PK,已经创建过的不能重复创建
 		Integer queryCreateByUidAndMatchId(@Param("uid")String uid,@Param("matchId")Integer matchId);
+
+		//查询比赛已经开始之后，未开局的契约
+		List<Integer> queryContractGroupByMatchId(@Param("matchId")Integer matchId);
 		
 }

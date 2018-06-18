@@ -1,9 +1,10 @@
 package com.yb.test;
 
-import com.alibaba.fastjson.JSON;
 import com.yb.entity.*;
+import net.sf.json.JSONObject;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.fluent.Request;
+import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 
 import java.io.IOException;
@@ -16,7 +17,7 @@ import java.util.List;
 public class TestRemind {
     public static void main(String[] args) {
          SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String token = "10_0wp8jgPYmedHowQ-PFnbI232AfL5nmOX1UCsZh_zalKym34dRoWziHRG4y1YkL80VzPGo_xm8jVph9dQAwMhvUDHOlI_vNR0g7soDcNI75lh-SJ3Q0zdzAEOz5l_EMBiqWVhXnFSGk5wML6mSJQdAJAVMT";//查询出来的可用token
+        String token = "10_oaABf5EJbMUKOljTfrON2x0WIMuQwrJQK9XK8_OVwiUmPiwEnIemvax_4GQkdbNNkeoTIdpDtN8DzRS8kQDXcGPIGmkp4Cy0XgM1BaLQ8HlvrmruMi2m-gdhDyImFF6tPJJG0OUChMcGcF-aSDXeAIAYJD";//查询出来的可用token
 
         String requestUrl="https://api.weixin.qq.com/cgi-bin/message/template/send?access_token="+token;
         AccessData accessData = new AccessData();
@@ -30,13 +31,19 @@ public class TestRemind {
             accessData.setForm_id("1529112675609");
             accessData.setTouser("om9W35XZSDg9jD69BD1Uc_CYId50");
             HttpEntity entity= null;
+
+        String sdata="";
             try {
-                entity = new StringEntity(JSON.toJSONString(accessData));
+                sdata = JSONObject.fromObject(accessData).toString();
+                System.out.println(sdata);
+                entity = new StringEntity(sdata);
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
             try {
-                String s = Request.Post(requestUrl).body(entity).execute().returnContent().asString();
+                String s = Request.Post(requestUrl).bodyString(sdata, ContentType.APPLICATION_JSON)
+                        //.body(entity)
+                        .execute().returnContent().asString();
                 System.out.println("返回结果"+s);
             } catch (IOException e) {
                 e.printStackTrace();

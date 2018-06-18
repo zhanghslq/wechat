@@ -308,9 +308,9 @@ public class AutoServiceImpl implements AutoService{
 								contractGroupDao.updateResult(queryByMatchId3, myGuess1, "no");
 								contractGroupDao.updateStatusAutoResult(queryByMatchId2,2);
 							}
-							queryByMatchId2.addAll(queryByMatchId3);//这是把猜输赢的和猜比分的加在一起
+
 							if(queryByMatchId2!=null&&queryByMatchId2.size()!=0){
-								contractGroupDao.updateStatusAutoResult(queryByMatchId2,2);
+								contractGroupDao.updateStatusAutoResult(queryByMatchId3,2);
 								List<ContractCome> queryByResult10 = contractGroupDao.queryByResult(queryByMatchId2, 0);//猜测错误
 								if(queryByResult10!=null&&queryByResult10.size()!=0){
 									for (ContractCome contractCome : queryByResult10) {
@@ -332,7 +332,25 @@ public class AutoServiceImpl implements AutoService{
 	@Override
 	public void autoCheck() {//自动开局的契约
 		// TODO Auto-generated method stub
+		List<Integer> contractsList=new ArrayList<Integer>();
+		List<Integer> contractsGroupList=new ArrayList<Integer>();
+		List<Match> matches = matchDao.queryMatchBegin();
+
+		if(matches!=null&&matches.size()!=0){
+			for (Match match : matches) {
+				Integer id = match.getId();
+				//好友契约
+				List<Integer> integers = contractDao.queryContractByMatchId(id);
+				contractsList.addAll(integers);
+
+				//群PK
+				List<Integer> integers1 = contractGroupDao.queryContractGroupByMatchId(id);
+				contractsGroupList.addAll(integers1);
+			}
+		}
+
 		List<Integer> list = contractDao.queryList();//超过30分钟未开局的契约id
+		list.addAll(contractsList);
 		if(list!=null&&list.size()!=0){//这是好友契约的遍历
 			for (Integer cid : list) {
 				Integer queryNumberByCid = contractDao.queryNumberByCid(cid);//参与契约的人数
@@ -346,6 +364,7 @@ public class AutoServiceImpl implements AutoService{
 			}
 		}
 		List<Integer> queryList = contractGroupDao.queryList();//群pk的超过30分钟未开局的契约
+		queryList.addAll(contractsGroupList);
 		if(queryList!=null&&queryList.size()!=0){
 			for (Integer cid : queryList) {
 				Integer queryNumberByCid = contractGroupDao.queryNumberByCid(cid);//参与群pk的人数
@@ -359,6 +378,13 @@ public class AutoServiceImpl implements AutoService{
 			}
 		}
 		//需要判断比赛是否开始
+		//查询已经开始的比赛，time>now() and status!=8
+
+
+
+
+		//然后根据比赛查询契约
+
 
 	}
 
@@ -539,7 +565,7 @@ public class AutoServiceImpl implements AutoService{
 								}
 								queryByMatchId2.addAll(queryByMatchId3);//这是把猜输赢的和猜比分的加在一起
 								if(queryByMatchId2!=null&&queryByMatchId2.size()!=0){
-									contractGroupDao.updateStatusAutoResult(queryByMatchId3,2);//更新群pk的状态
+									contractGroupDao.updateStatusAutoResult(queryByMatchId2,2);//更新群pk的状态
 									List<ContractCome> queryByResult10 = contractGroupDao.queryByResult(queryByMatchId2, 0);//猜测错误
 									if(queryByResult10!=null&&queryByResult10.size()!=0){
 										for (ContractCome contractCome : queryByResult10) {

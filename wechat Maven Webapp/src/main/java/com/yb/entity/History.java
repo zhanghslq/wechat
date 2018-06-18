@@ -86,9 +86,9 @@ public class History implements Comparable<History>{
 	@Override
 	public int compareTo(History o) {
 		if(time.after(o.time)){
-			return 1;
-		}else if(time.before(o.time)){
 			return -1;
+		}else if(time.before(o.time)){
+			return 1;
 		}else {
 			return 0;
 		}

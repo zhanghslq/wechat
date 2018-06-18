@@ -14,4 +14,6 @@ public interface RemindDao {
     //改变数据状态,发完提醒，就改变状态
     void updateStatus(@Param("ids") List<Integer> ids);
 
+    Remind queryByMatchIdAndUid(@Param("uid")String uid,@Param("matchId")Integer matchId);
+
 }

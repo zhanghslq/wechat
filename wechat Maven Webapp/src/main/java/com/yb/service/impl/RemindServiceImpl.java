@@ -6,6 +6,7 @@ import com.yb.entity.*;
 import com.yb.service.AutoService;
 import com.yb.service.RemindService;
 import com.yb.util.AccessTokenUtil;
+import com.yb.util.HttpUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.entity.StringEntity;
@@ -38,13 +39,15 @@ public class RemindServiceImpl implements RemindService{
     private AutoService autoService;
     @Override
     public void insert(Remind remind) {
-        remindDao.insert(remind);
+        Remind remind1 = remindDao.queryByMatchIdAndUid(remind.getOpenId(), remind.getMatchId());
+        if(remind1==null){//如果没有这场比赛的赛事提醒，才会添加赛事提醒
+            remindDao.insert(remind);
+        }
     }
     private SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     @Override
     public void remind() {//自动提醒
         //查询出来需要提醒的
-
         //需要先查询还有十分钟开始的比赛
         List<Match> matches = matchDao.queryMatchesTenMinutes();
         if(matches!=null&&matches.size()!=0){//最近有比赛去查询
@@ -53,45 +56,35 @@ public class RemindServiceImpl implements RemindService{
                 String token = accessTokenDao.query();//查询出来的可用token
                 if(token==null){
                     autoService.autoAccessToken();
+                    token=accessTokenDao.query();
                 }
-                token=accessTokenDao.query();
                 String requestUrl="https://api.weixin.qq.com/cgi-bin/message/template/send?access_token="+token;
-                AccessData accessData = new AccessData();
                 Data data = new Data();
                 Date time = match.getTime();//比赛时间
                 Team team = teamDao.queryById(match.getHomeid());//主队
                 Team visit = teamDao.queryById(match.getVisitid());//客队
                 Stage stage = stageDao.queryById(match.getStageId());
 
-                data.setKeyWord1(new KeyWord(simpleDateFormat.format(time)));//时间
-                data.setKeyWord2(new KeyWord("世界杯"));//名称
-                data.setKeyWord3(new KeyWord(stage.getName_zh()));//类别
-                data.setKeyWord4(new KeyWord(team.getName_zh()+" VS "+visit.getName_zh()));//比赛双方信息
-                accessData.setData(data);
-                accessData.setTemplate_id("ieGlFt3tw-MeWygXztLbAgiuxzkt1SSn8-x7wMUJmrw");
                 List<Integer> ids = new ArrayList<>();
                 for (Remind remind : reminds) {
                     ids.add(remind.getId());
-                    accessData.setForm_id(remind.getForm_id());
-                    accessData.setTouser(remind.getOpenId());
-                    HttpEntity entity= null;
-                    try {
-                        entity = new StringEntity(JSON.toJSONString(accessData));
-                    } catch (UnsupportedEncodingException e) {
-                        e.printStackTrace();
-                    }
-                    try {
-                        Request.Post(requestUrl).body(entity).execute().returnContent().asString();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    Template tem=new Template();
+                    tem.setTemplateId("ieGlFt3tw-MeWygXztLbAgiuxzkt1SSn8-x7wMUJmrw");
+                    tem.setFormId(remind.getForm_id());
+                    tem.setTopColor("#00DD00");
+                    tem.setToUser(remind.getOpenId());
+                    List<TemplateParam> paras=new ArrayList<TemplateParam>();
+                    paras.add(new TemplateParam("keyword1",simpleDateFormat.format(time),"#0044BB"));
+                    paras.add(new TemplateParam("keyword2","世界杯","#0044BB"));
+                    paras.add(new TemplateParam("keyword3",stage.getName_zh(),"#AAAAAA"));
+                    paras.add(new TemplateParam("keyword4",team.getName_zh()+" VS "+visit.getName_zh(),"#0044BB"));
+                    tem.setTemplateParamList(paras);
+                    boolean result= HttpUtils.sendTemplateMsg(tem,token);
                 }
                 if(ids.size()!=0){
                     remindDao.updateStatus(ids);
                 }
-
             }
-
             }
     }
 
