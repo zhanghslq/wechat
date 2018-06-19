@@ -39,8 +39,14 @@ public class AccessTokenUtil {
 		String s = JSON.toJSONString(requestTempData);
 		HttpEntity entity = new StringEntity(s, "UTF-8");
 		String asString ;
+		//String token="10_lGEp5MtPcQoFM2Zk40nj3oENpfS-CFV1ww-Jbmcf0w5HvEqDAullx5XRXy0gZC0BFpmhPGjyWS0hjngpMnZk7kCYHBKjAQ0P1c_ydRGNVo6OAFCYJYzrGcdBA6SWe2uD18avIuUqzirY5UYTMXMaAJAITI";
+		// String token="10_pvmb3ce3JrBqmmGL40nj3oENpfS-CFV1ww-Jbmcf0w5HvEqDAullx5XRXy1tDoE2bQZ9dagDJPUnHtpn4rx2adwXBL_9XB_KapW3BvWTyq2U4SqNb8d09qA3sB5ytfltcQ9UxigNIq7j5asKYLJaAJAUHF";
+		//String token="10_vwcvQerPzTSC_bui40nj3oENpfS-CFV1ww-Jbmcf0w5HvEqDAullx5XRXy1tl90sFnItKn_5a4R8inoLHAzfDGdem2QqadNYoPIxqAK2UkUVypbgVrc5W3MXt9N3zl2S4PQqk0bThCJZ0LJlHZEaAJACUZ";
+		//String token="10_LN74hHsn-fCdp70Q40nj3oENpfS-CFV1ww-Jbmcf0w5HvEqDAullx5XRXy0tDs5YpjMj9Y5OIxydU0TTQ2vyC0y1YuBV4n6mZATAiAT94Ee0_PqdOliOIKZKO6we4ldxPzdi_JR92WkM-0M3WCIaAJAMSY";
+		//String token="10_8QuJXKtj9z8d3e5_40nj3oENpfS-CFV1ww-Jbmcf0w5HvEqDAullx5XRXy1Ui8yOkIPpdfxuY6yjxWPnojMcFTf8TatuVxM-aDxP8YN4IMdURh6VukwAy-6RWh7CLnLX1WyPGjqEHzqgsbMiNFEaAJAUML";
+		String token="10__3gxt5_MihDhfGyvc_o7AXuSrcxD3FhbUziIQddX1RW3Uykuuu2gu9_UPhz9fAk3D_hGEpQ4tTZL0uOISg6R_Z-Le7bhEOqHEMO7sfRafjghs53630yvYYeD-QcAVHjAEAWRD";
 		try {
-			asString = Request.Post("https://api.weixin.qq.com/cgi-bin/wxopen/template/library/list?access_token=10_joQhEdEadVDtBP1XPFnbI232AfL5nmOX1UCsZlFwWEaGuUrHU6LMGLvsn7KSvMpyafCdmIsT2znrwYfy3xuYn8o5UobYoNjPdeLTkYvQ8sRl1LmybEOInyQ6LwS0e19o2CIAQ-Q1Mt8m84YdIWJhAHACQD")
+			asString = Request.Post("https://api.weixin.qq.com/cgi-bin/wxopen/template/library/list?access_token="+token)
                     .body(entity).execute().returnContent().asString();
 		} catch (IOException e) {
 			e.printStackTrace();

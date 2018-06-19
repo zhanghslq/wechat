@@ -13,10 +13,9 @@ public class TestProto {
         Miniprogram.CJdZtMiniProgramData p = Miniprogram.CJdZtMiniProgramData.newBuilder()
                 .setSAccessToken(ByteString.copyFromUtf8(token))
                 .setDdwValidBeginTime(new Date().getTime())
-                .setSAccessToken(ByteString.copyFromUtf8(""))
                 .setDdwValidEndTime(new Date().getTime()+7200000)
-                .setSAppId(ByteString.copyFromUtf8(""))
-                .setSOriginalId(ByteString.copyFromUtf8(""))
+                .setSAppId(ByteString.copyFromUtf8("wxd8e55b753a567d41"))
+                .setSOriginalId(ByteString.copyFromUtf8("gh_f171a0f86c50"))
                 .build();
         Miniprogram.CJdZtMiniProgramReq req = Miniprogram.CJdZtMiniProgramReq.newBuilder().addVData(p).build();
         byte[] content = req.toByteArray();
@@ -39,7 +38,7 @@ public class TestProto {
             }
         } catch(Exception e) {
             e.printStackTrace();
-            throw  new RuntimeException("一场");
+            throw  new RuntimeException("异常");
         } finally {
             postMethod.releaseConnection();
             client.getHttpConnectionManager().closeIdleConnections(0);

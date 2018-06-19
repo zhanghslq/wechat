@@ -19,5 +19,6 @@ public class Test {
 		System.out.println(string);*/
 		String test = Md5Utils.MD5("test");
 		System.out.println(test);
+
 	}
 }
