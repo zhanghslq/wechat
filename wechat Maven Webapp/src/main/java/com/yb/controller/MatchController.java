@@ -24,6 +24,7 @@ public class MatchController {
 	private MatchService matchService;
 	@ResponseBody
 	@RequestMapping("/queryBanner")
+	//首页比赛banner获取
 	public ResultPack queryBanner(String openId){
 		try {
 			List<Banner> queryBanner = matchService.queryBanner(openId);
@@ -36,10 +37,12 @@ public class MatchController {
 	}
 	@RequestMapping("/queryMatchDone")
 	@ResponseBody
+	//完成的比赛
 	public List<Match> queryMatchDone(){
 		List<Match> matches = matchService.queryMatchDone();
 		return matches;
 	}
+	//更改比赛
 	@ResponseBody
 	@RequestMapping("/updateMatch")
 	public void updateMatch(Match match){
@@ -49,12 +52,14 @@ public class MatchController {
 			e.printStackTrace();
 		}
 	}
+	//根据id查询
 	@ResponseBody
 	@RequestMapping("/queryById")
 	public Match queryById(Integer id){
 		Match match = matchService.queryById(id);
 		return match;
 	}
+	//手动处理结果
 	@ResponseBody
 	@RequestMapping("/handResult")
 	public void handResult(Match match){

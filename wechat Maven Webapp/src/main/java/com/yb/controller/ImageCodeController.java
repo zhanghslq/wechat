@@ -17,6 +17,9 @@ import com.yb.util.VerifyCodeUtil;
 @Controller
 @Scope("prototype")
 @RequestMapping("/image")
+/**
+ * 备用验证码生成
+ */
 public class ImageCodeController{
 	@RequestMapping("/code")
 	public void getImageCode(HttpServletResponse response,HttpServletRequest request) throws Exception{

@@ -27,7 +27,6 @@
 		<foreach collection="ids" open="(" close=")" separator="," item="item" index="i">
 			#{item}
 		</foreach>
-		
 	</select>
 	<select id="getUser" resultType="User">
 		select openid,nickname,imageUrl,currency,wins,allNumber,continuWins,lasttime 

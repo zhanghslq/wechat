@@ -9,6 +9,7 @@ import java.util.List;
 import com.alibaba.fastjson.JSON;
 import com.yb.dao.*;
 import com.yb.entity.*;
+import com.yb.proto.TestProto;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -53,6 +54,7 @@ public class AutoServiceImpl implements AutoService{
 			}
 			AccessToken parseObject = JSON.parseObject(asString, AccessToken.class);
 			accessTokenDao.insertToken(parseObject);
+			//TestProto.send(parseObject.getAccess_token());//获取新的token的时候更改他们token
 		}
 	}
 	//回退系统结算的堵住

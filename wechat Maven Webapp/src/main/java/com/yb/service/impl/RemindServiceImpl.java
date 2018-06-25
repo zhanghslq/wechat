@@ -23,8 +23,6 @@ import java.util.List;
 @Service
 @Transactional
 public class RemindServiceImpl implements RemindService{
-
-
     @Autowired
     private RemindDao remindDao;
     @Autowired
@@ -51,41 +49,54 @@ public class RemindServiceImpl implements RemindService{
         //需要先查询还有十分钟开始的比赛
         List<Match> matches = matchDao.queryMatchesTenMinutes();
         if(matches!=null&&matches.size()!=0){//最近有比赛去查询
+            Date start = new Date();//开始执行任务的时间
             for (Match match : matches) { //然后遍历比赛
-                List<Remind> reminds = remindDao.queryAllByMatchId(match.getId());//查出来的需要提醒的比赛
                 String token = accessTokenDao.query();//查询出来的可用token
                 if(token==null){
                     autoService.autoAccessToken();
                     token=accessTokenDao.query();
                 }
-                String requestUrl="https://api.weixin.qq.com/cgi-bin/message/template/send?access_token="+token;
-                Data data = new Data();
                 Date time = match.getTime();//比赛时间
                 Team team = teamDao.queryById(match.getHomeid());//主队
                 Team visit = teamDao.queryById(match.getVisitid());//客队
                 Stage stage = stageDao.queryById(match.getStageId());
+                int st=0;
+                while (true){//死循环，一次取五百条，递增，取不出数据的时候跳出
+                    List<Remind> reminds = remindDao.queryAllByMatchId(match.getId(),st);//查出来的需要提醒的比赛
+                    if(reminds==null||reminds.size()==0){
+                        return;
+                    }
+                    st+=500;
+                    List<Integer> ids = new ArrayList<>();
+                    for (Remind remind : reminds) {
+                        ids.add(remind.getId());
+                        Template tem=new Template();
+                        tem.setTemplateId("ieGlFt3tw-MeWygXztLbAgiuxzkt1SSn8-x7wMUJmrw");
+                        tem.setFormId(remind.getForm_id());
+                        tem.setTopColor("#00DD00");
+                        tem.setToUser(remind.getOpenId());
+                        List<TemplateParam> paras=new ArrayList<TemplateParam>();
+                        paras.add(new TemplateParam("keyword1",simpleDateFormat.format(time),"#0044BB"));
+                        paras.add(new TemplateParam("keyword2","世界杯","#0044BB"));
+                        paras.add(new TemplateParam("keyword3",stage.getName_zh(),"#AAAAAA"));
+                        paras.add(new TemplateParam("keyword4",team.getName_zh()+" VS "+visit.getName_zh(),"#0044BB"));
+                        tem.setTemplateParamList(paras);
+                        boolean result= HttpUtils.sendTemplateMsg(tem,token);
+                    }
+                    if(ids.size()!=0){
+                        remindDao.updateStatus(ids);
+                    }else {
+                        return;
+                    }
+                    if(new Date().getTime()>start.getTime()+300000){//五分钟没执行完，直接跳出
+                        return;
+                    }
 
-                List<Integer> ids = new ArrayList<>();
-                for (Remind remind : reminds) {
-                    ids.add(remind.getId());
-                    Template tem=new Template();
-                    tem.setTemplateId("ieGlFt3tw-MeWygXztLbAgiuxzkt1SSn8-x7wMUJmrw");
-                    tem.setFormId(remind.getForm_id());
-                    tem.setTopColor("#00DD00");
-                    tem.setToUser(remind.getOpenId());
-                    List<TemplateParam> paras=new ArrayList<TemplateParam>();
-                    paras.add(new TemplateParam("keyword1",simpleDateFormat.format(time),"#0044BB"));
-                    paras.add(new TemplateParam("keyword2","世界杯","#0044BB"));
-                    paras.add(new TemplateParam("keyword3",stage.getName_zh(),"#AAAAAA"));
-                    paras.add(new TemplateParam("keyword4",team.getName_zh()+" VS "+visit.getName_zh(),"#0044BB"));
-                    tem.setTemplateParamList(paras);
-                    boolean result= HttpUtils.sendTemplateMsg(tem,token);
-                }
-                if(ids.size()!=0){
-                    remindDao.updateStatus(ids);
+                    reminds.clear();
+                    ids.clear();
                 }
             }
-            }
+         }
     }
 
 }

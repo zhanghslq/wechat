@@ -16,7 +16,7 @@ import javax.annotation.Resource;
 public class BroadcastController {
     @Resource
     private BroadcastService broadcastService;
-
+    //备用直播
     @ResponseBody
     @RequestMapping("/queryMessage")
     @Cacheable(value = "broadcast")

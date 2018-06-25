@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.annotation.Resource;
 
 import com.yb.util.FilterUtils;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,7 +33,8 @@ public class UserController {
 	public ResultPack login(@RequestBody User user1){
 		 try {
 			 String nickname = user1.getNickname();
-			 String s = FilterUtils.filterOffUtf8Mb4(nickname);
+			 //nickname.replaceAll("[\ue000-\uefff]"," ");
+			 String s = FilterUtils.filterEmoji(nickname);
 			 user1.setNickname(s);
 			 String openId = OpenUtils.getOpenId(user1.getCode());
 	        User user = userService.getUser(openId);
@@ -42,9 +44,9 @@ public class UserController {
 	        	return  new ResultPack(1, user2);
 	        }else {
 	        	User user2 = new User();
-	        	user2.setOpenid(openId);
-	        	user2.setImageUrl(user1.getImageUrl());
-	        	user2.setNickname(user1.getNickname());
+                user2.setOpenid(openId);
+                user2.setImageUrl(user1.getImageUrl());
+                user2.setNickname(user1.getNickname());
 	        	userService.updateNameAndLogo(user2);
 	        	Date lasttime = user.getLasttime();
 				SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
@@ -74,6 +76,7 @@ public class UserController {
 	}
 	@RequestMapping("/getRank")
 	@ResponseBody
+	@Cacheable("rank")
 	public ResultPack getRank(String openId){
 		try {
 			RankData rank = userService.getRank(openId);

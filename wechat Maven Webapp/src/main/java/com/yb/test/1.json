@@ -1,9 +1,0 @@
-{"code":1,"data":{"currencys":900,
-  "guessType":0,
-  "home":{"country_logo":"images/country/1_0010_埃及.png",
-    "id":13464,"logo":"https://cdn.leisu.com/teamflag_s/79edcf47d951f420627948dca4bf5f94.png","name_zh":"埃及"},
-  "joiners":[{"imageUrl":"https://wx.qlogo.cn/mmopen/vi_32/PiajxSqBRaELjSn6wQ3r3QU0AcDkro78r3jRdeYy84SJdArEfN9pUQMx7a3ZMsHOlszejB0hP5WRRJnhmAxKO4w/132","myGuess":"1:1","name":"張小蝶","number":100},
-    {"imageUrl":"https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLck7AiaXyXM4rBx3aArCEWvwfmtyDnAlvIiaLUWSXwfiarkXFwCp0TOlk62Z8d3k6TnC9sCsyFjxtlg/132","myGuess":"输","name":"M1rrorriM","number":100},
-    {"imageUrl":"https://wx.qlogo.cn/mmopen/vi_32/nY0GTDhRQPD67lMLBx0pJJ79sUJRlTU4O6XpJLia8Kg6XF1DsNbeic1BRq9bExSpOmoSUIldIVpmMwaU0Pu0evtQ/132","myGuess":"1:1","name":"张海松","number":100}],
-  "nearLogo":["https://wx.qlogo.cn/mmopen/vi_32/PiajxSqBRaELjSn6wQ3r3QU0AcDkro78r3jRdeYy84SJdArEfN9pUQMx7a3ZMsHOlszejB0hP5WRRJnhmAxKO4w/132","https://wx.qlogo.cn/mmopen/vi_32/nY0GTDhRQPD67lMLBx0pJJ79sUJRlTU4O6XpJLia8Kg6XF1DsNbeic1BRq9bExSpOmoSUIldIVpmMwaU0Pu0evtQ/132","https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLck7AiaXyXM4rBx3aArCEWvwfmtyDnAlvIiaLUWSXwfiarkXFwCp0TOlk62Z8d3k6TnC9sCsyFjxtlg/132"],
-  "number":3,"stageName":"分组赛","user":{"imageUrl":"https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLck7AiaXyXM4rBx3aArCEWvwfmtyDnAlvIiaLUWSXwfiarkXFwCp0TOlk62Z8d3k6TnC9sCsyFjxtlg/132","nickname":"M1rrorriM","openid":"om9W35fUsrvRCTrzAk3IYHhqfxZk"},"visit":{"country_logo":"images/country/1_0017_乌拉圭.png","id":13447,"logo":"https://cdn.leisu.com/teamflag_s/087731b0d5df3969923ce974f874b453.png","name_zh":"乌拉圭"}}}

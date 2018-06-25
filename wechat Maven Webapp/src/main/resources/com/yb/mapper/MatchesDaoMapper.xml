@@ -11,7 +11,7 @@
 	<select id="queryMatchBegin" resultType="Match">
 		SELECT id,stageId,status,time,homeid,home_grade,visitid,visit_grade,DATE_FORMAT(time,'%Y-%m-%d %H:%i') timeDesc
 		from worldcup2018_pk_matches
-		where now()>time and status!=8
+		where time >now() and time &lt; DATE_ADD(NOW(),INTERVAL 5 MINUTE )
 
 	</select>
 	<select id="queryStartedMatch" resultType="Match">
@@ -28,7 +28,7 @@
 		select id,stageId,status,time,homeid,home_grade,visitid,visit_grade,round
 		from worldcup2018_pk_matches
 
-		where time >now() and time &lt; DATE_ADD(NOW(),INTERVAL 10 MINUTE ) order by time asc limit 1
+		where time >now() and time &lt; DATE_ADD(NOW(),INTERVAL 20 MINUTE ) order by time asc limit 1
 	</select>
 	<select id="queryRownum" resultType="Integer">
 		select count(id) from worldcup2018_pk_matches

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 import com.yb.service.AutoService;
+import com.yb.util.RandomMatchUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -113,8 +114,8 @@ public class MatchServiceImpl implements MatchService{
 					join=true;
 				}
 				//检查群pk,
-				Random random = new Random();
-				int i = random.nextInt(4000) + 1000;
+
+				int i = RandomMatchUtil.get(id);
 				//查询比赛的参与人数
 				Integer integer = contractDao.queryNumber(id);
 				Integer integer1 = contractGroupDao.queryNumberByMatchId(id);

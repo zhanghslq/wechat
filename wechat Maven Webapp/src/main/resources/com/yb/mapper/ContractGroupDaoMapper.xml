@@ -194,7 +194,7 @@
 		values(#{cid},#{uid})
 	</insert>
 	<insert id="insertConstractGroupUser">
-		replace into worldcup2018_pk_contract_user_group(cid,uid,number,myGuess,time,result)
+		insert into worldcup2018_pk_contract_user_group(cid,uid,number,myGuess,time,result)
 		values(#{cid},#{uid},#{number},#{myGuess},now(),2)
 	</insert>
 </mapper>

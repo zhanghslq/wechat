@@ -3,7 +3,7 @@
 <mapper namespace="com.yb.dao.RemindDao">
 	<select id="queryAllByMatchId" resultType="Remind">
 		SELECT id,uid openId,matchId,form_id from worldcup2018_pk_remind
-		where isSended=0 and matchId=#{matchId}
+		where isSended=0 and matchId=#{matchId} order by created_time asc limit #{st},500
 	</select>
 
 	<insert id="insert" >

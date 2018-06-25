@@ -28,6 +28,11 @@ public class ContractServiceImpl implements ContractService{
 	@Transactional
 	public Integer insertContract(ContractCome contractCome) {
 		// TODO Auto-generated method stub
+		String myGuess = contractCome.getMyGuess();//猜测内容
+		if(myGuess.indexOf("undefined")!=-1){//包含
+			String undefined = myGuess.replaceAll("undefined", "0");
+			contractCome.setMyGuess(undefined);
+		}
 		contractDao.insertContract(contractCome);
 		Integer id = contractCome.getId();
 		contractDao.insertConstractUser(id, contractCome.getOpenId(), contractCome.getMyGuess());
@@ -89,14 +94,13 @@ public class ContractServiceImpl implements ContractService{
 		// TODO Auto-generated method stub
 		ContractCome contract = contractDao.getContract(cid);//获取契约详情
 		Integer queryResult = contractDao.queryResult(openId, cid);
-		String result;
-		String message;
-		if(1==queryResult){//0代表输，1代表赢
-			result="WIN";
-			message="大获全胜，一起哈皮";
-		}else {
-			result="LOSE";
-			message="再接再厉，下次能赢";
+		String result="WIN";
+		String message="大获全胜，一起哈皮";
+		if(queryResult!=null){
+			if(0==queryResult){//0代表输，1代表赢
+				result="LOSE";
+				message="再接再厉，下次能赢";
+			}
 		}
 		List<User> loser = contractDao.queryUserList(cid, 0);//获取 胜利或者输的人列表
 		List<User> success = contractDao.queryUserList(cid, 1);//获取 胜利或者输的人列表

@@ -60,9 +60,4 @@
     <bean id="ehcache" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
         <property name="configLocation" value="classpath:ehcache.xml"/>
     </bean>
-
-    <aop:config>
-		<aop:pointcut expression="execution(* com.yb.controller.*.*(..))" id="pc"/>
-		<aop:advisor advice-ref="recordServiceTimeAdvice" pointcut-ref="pc" order="1"/>
-	</aop:config>
 </beans>

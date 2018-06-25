@@ -10,7 +10,7 @@ public interface RemindDao {
 
     void insert(@Param("remind") Remind remind);
     //查询需要提醒的数据
-    List<Remind> queryAllByMatchId(@Param("matchId") Integer matchId);
+    List<Remind> queryAllByMatchId(@Param("matchId") Integer matchId,@Param("st")Integer st);
     //改变数据状态,发完提醒，就改变状态
     void updateStatus(@Param("ids") List<Integer> ids);
 

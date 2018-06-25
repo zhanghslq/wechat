@@ -20,10 +20,12 @@ import com.yb.entity.Admin;
 @Scope("prototype")
 @RequestMapping("/admin")
 public class AdminController {
+	//后台管理登陆
 	@RequestMapping("/login")
 	@ResponseBody
 	public String login(String name,String password,HttpServletRequest request){
 			 	try {
+
 						Subject subject = SecurityUtils.getSubject();
 						subject.login(new UsernamePasswordToken(name,password));
 						return "success";

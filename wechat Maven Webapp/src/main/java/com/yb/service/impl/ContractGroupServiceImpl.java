@@ -50,6 +50,12 @@ public class ContractGroupServiceImpl implements ContractGroupService{
 	@Override
 	public Integer createContractGroup(ContractCome contractCome) {//生成契约
 		// TODO Auto-generated method stub
+		String myGuess = contractCome.getMyGuess();//猜测内容
+		if(myGuess.indexOf("undefined")!=-1){//包含
+			String undefined = myGuess.replaceAll("undefined", "0");
+			contractCome.setMyGuess(undefined);
+		}
+
 		contractGroupDao.insertContractGroup(contractCome);
 		Integer id = contractCome.getId();
 		contractGroupDao.insertConstractGroupCreate(id, contractCome.getOpenId());
@@ -108,7 +114,7 @@ public class ContractGroupServiceImpl implements ContractGroupService{
 		String message="大获全胜，一起哈皮";
 		String result="WIN";
 		Integer resultByUidAndCid = contractGroupDao.queryResultByUidAndCid(cid, openId);
-		if(0==resultByUidAndCid){
+		if(resultByUidAndCid!=null&&0==resultByUidAndCid){
 			message="再接再厉，下次能赢";
 			result="LOSE";
 		}
